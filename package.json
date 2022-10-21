@@ -1,5 +1,5 @@
 {
-  "name": "my-turborepo",
+  "name": "foxone-uikit-next",
   "version": "0.0.0",
   "private": true,
   "workspaces": [
@@ -13,13 +13,14 @@
     "format": "prettier --write \"**/*.{ts,tsx,md}\""
   },
   "devDependencies": {
-    "eslint-config-custom": "*",
     "prettier": "latest",
     "turbo": "latest"
   },
   "engines": {
     "node": ">=14.0.0"
   },
-  "dependencies": {},
+  "dependencies": {
+    "@foxone/dev": "^0.2.22"
+  },
   "packageManager": "yarn@1.22.1"
 }

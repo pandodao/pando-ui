@@ -1,10 +1,18 @@
 module.exports = {
   root: true,
-  // This tells ESLint to load the config from the package `eslint-config-custom`
-  extends: ["custom"],
-  settings: {
-    next: {
-      rootDir: ["apps/*/"],
-    },
+  env: {
+    node: true,
+    browser: true,
+    es6: true,
   },
+  parser: "vue-eslint-parser",
+  parserOptions: {
+    ecmaVersion: "latest",
+    sourceType: "module",
+    parser: "@typescript-eslint/parser",
+    project: "./tsconfig.eslint.json",
+    extraFileExtensions: [".vue", ".mjs", ".cjs"],
+  },
+  extends: ["plugin:vue/vue3-recommended"],
+  plugins: ["@typescript-eslint"],
 };

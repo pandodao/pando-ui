@@ -1,0 +1,59 @@
+{
+  "name": "@foxone/uikit",
+  "version": "4.0.1",
+  "main": "index.js",
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/cli": "^7.17.10",
+    "@babel/core": "^7.19.3",
+    "@babel/preset-env": "^7.18.2",
+    "@babel/preset-typescript": "^7.17.12",
+    "@rollup/plugin-alias": "^4.0.0",
+    "@rollup/plugin-babel": "^6.0.0",
+    "@rollup/plugin-node-resolve": "^15.0.0",
+    "@storybook/addon-actions": "^6.5.12",
+    "@storybook/addon-essentials": "^6.5.12",
+    "@storybook/addon-interactions": "^6.5.12",
+    "@storybook/addon-links": "^6.5.12",
+    "@storybook/addons": "^6.5.12",
+    "@storybook/builder-vite": "^0.2.4",
+    "@storybook/testing-library": "^0.0.13",
+    "@storybook/theming": "^6.5.12",
+    "@storybook/vue3": "^6.5.12",
+    "@vitejs/plugin-vue": "^3.1.2",
+    "@vitejs/plugin-vue-jsx": "^2.0.1",
+    "@vue/babel-plugin-jsx": "^1.1.1",
+    "autoprefixer": "^10.4.12",
+    "babel-loader": "^8.2.5",
+    "cssnano": "^5.1.13",
+    "eslint-plugin-vue": "^9.6.0",
+    "postcss": "^8.4.18",
+    "rollup": "^3.1.0",
+    "rollup-plugin-dts": "^4.2.2",
+    "rollup-plugin-sass": "^1.2.12",
+    "rollup-plugin-scss": "^3.0.0",
+    "rollup-plugin-sourcemaps": "^0.6.3",
+    "rollup-plugin-terser": "^7.0.2",
+    "sass": "^1.55.0",
+    "vite": "^3.1.7",
+    "vite-plugin-vuetify": "^1.0.0",
+    "vue": "^3.2.40",
+    "vue-eslint-parser": "^9.1.0",
+    "vue-loader": "^16.8.3",
+    "vuetify": "^3.0.0-beta.13",
+    "@foxone/icons": "*"
+  },
+  "dependencies": {
+    "tsconfig": "^7.0.0"
+  },
+  "peerDependencies": {
+    "vue": "^3.2.40",
+    "vuetify": "^3.0.0-beta.13"
+  },
+  "scripts": {
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook",
+    "build": "",
+    "build:dist": "rollup --config config/rollup.config.mjs"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "name": "@foxone/icons",
+  "version": "4.0.1",
+  "description": "UIKit custom icons",
+  "main": "src/icons/index.ts",
+  "scripts": {
+    "generate": "rm -rf src/icons && node scripts/build.js && yarn format",
+    "format": "prettier --write src"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "cheerio": "^1.0.0-rc.12",
+    "rimraf": "^3.0.2",
+    "svgo": "^2.8.0"
+  }
+}

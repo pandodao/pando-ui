@@ -1,0 +1,20 @@
+@use "../../styles/variables.scss" as *;
+
+.f-input {
+  .v-field {
+    &.v-field--variant-filled {
+      border-bottom-left-radius: $border-radius-root;
+      border-bottom-right-radius: $border-radius-root;
+
+      .v-field__outline {
+        &::before, &::after {
+          display: none;
+        }
+      }
+    }
+
+    &--error {
+      background: rgb(var(--v-theme-error_bg)) !important;
+    }
+  }
+}

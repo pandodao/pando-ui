@@ -1,0 +1,4 @@
+{
+  "extends": "@foxone/dev/config/tsconfig.base.json",
+  "exclude": ["node_modules"]
+}

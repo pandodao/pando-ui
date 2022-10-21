@@ -1,0 +1,47 @@
+$body-font-family: Inter;
+$border-radius-root: 8px;
+
+@use 'vuetify/_settings' with (
+  $utilities: false,
+  $border-radius-root: $border-radius-root,
+
+  // button
+  $button-height: 56px,
+  $button-padding-ratio: 1.75,
+  $size-scales: (
+    'x-small': -4,
+    'small': -2,
+    'default': 0,
+    'large': 1,
+    'x-large': 2
+  ),
+
+  // input field
+  $field-control-height: 52px,
+  $input-control-height: 52px,
+  $input-font-weight: 500,
+  $input-details-line-height: 15px,
+  $input-details-letter-spacing: 0,
+  $input-density: ('default': -1, 'comfortable': -2, 'compact': -4),
+
+  // typography
+  $typography: (
+    'button': (
+      'size': 1rem,
+      'weight': 600,
+      'line-height': 1.1875,
+      'letter-spacing': 0,
+      'font-family': $body-font-family,
+      'text-transform': capitalize,
+    ),
+  ),
+
+  $states: (
+    'hover': 0.02,
+    'focus': 0.06,
+    'selected': 0.04,
+    'activated': 0.06,
+    'pressed': 0.08,
+    'dragged': 0.04
+  ),
+);
