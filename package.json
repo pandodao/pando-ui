@@ -20,6 +20,7 @@
     "node": ">=14.0.0"
   },
   "dependencies": {
+    "@changesets/cli": "^2.25.0",
     "@foxone/dev": "^0.2.22"
   },
   "packageManager": "yarn@1.22.1"
