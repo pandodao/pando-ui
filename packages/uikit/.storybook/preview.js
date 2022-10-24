@@ -6,8 +6,8 @@ import * as directives from "vuetify/directives";
 import { themes } from "@storybook/theming";
 
 import "../src/styles/main.scss";
-import { dark, light } from "../src/preset/theme";
-import { icons } from "../src/preset/icons";
+import { dark, light } from "../src/presets/theme";
+import { icons } from "../src/presets/icons";
 
 export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },

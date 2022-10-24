@@ -3,6 +3,18 @@
   "version": "4.0.1",
   "main": "index.js",
   "license": "MIT",
+  "scripts": {
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook",
+    "build": "rollup --config config/rollup.config.mjs"
+  },
+  "dependencies": {
+    "tsconfig": "^7.0.0"
+  },
+  "peerDependencies": {
+    "vue": "^3.2.40",
+    "vuetify": "^3.0.0-beta.13"
+  },
   "devDependencies": {
     "@babel/cli": "^7.17.10",
     "@babel/core": "^7.19.3",
@@ -42,18 +54,5 @@
     "vue-loader": "^16.8.3",
     "vuetify": "^3.0.0-beta.13",
     "@foxone/icons": "*"
-  },
-  "dependencies": {
-    "tsconfig": "^7.0.0"
-  },
-  "peerDependencies": {
-    "vue": "^3.2.40",
-    "vuetify": "^3.0.0-beta.13"
-  },
-  "scripts": {
-    "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook",
-    "build": "",
-    "build:dist": "rollup --config config/rollup.config.mjs"
   }
 }

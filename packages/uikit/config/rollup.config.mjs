@@ -22,7 +22,7 @@ export default {
       sourcemap: true,
     },
   ],
-  external: ["vue", /^vuetify/],
+  external: ["vue", /^vuetify/, "@foxone/icons"],
   plugins: [
     nodeResolve({ extensions }),
     babel({
