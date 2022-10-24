@@ -1,6 +1,6 @@
 {
   "name": "@foxone/icons",
-  "version": "4.0.1",
+  "version": "4.0.1-1",
   "description": "UIKit custom icons",
   "main": "src/icons/index.ts",
   "scripts": {
@@ -12,5 +12,8 @@
     "cheerio": "^1.0.0-rc.12",
     "rimraf": "^3.0.2",
     "svgo": "^2.8.0"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
