@@ -2,14 +2,22 @@
   "name": "@foxone/icons",
   "version": "4.0.1",
   "description": "UIKit custom icons",
-  "main": "src/icons/index.ts",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
   "scripts": {
-    "generate": "rm -rf src/icons && node scripts/build.js && yarn format",
-    "format": "prettier --write src"
+    "generate": "rm -rf src && node scripts/build.js && yarn format",
+    "format": "prettier --write src",
+    "build": "babel src --out-dir lib --extensions \".ts\",\".tsx\" && tsc --pretty --emitDeclarationOnly",
+    "dev": "yarn build --watch"
   },
+  "files": [
+    "lib/",
+    "src/"
+  ],
   "license": "MIT",
   "devDependencies": {
     "cheerio": "^1.0.0-rc.12",
+    "prettier": "^2.7.1",
     "rimraf": "^3.0.2",
     "svgo": "^2.8.0"
   },

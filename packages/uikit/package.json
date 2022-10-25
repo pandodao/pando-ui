@@ -1,15 +1,27 @@
 {
   "name": "@foxone/uikit",
   "version": "4.0.1",
-  "main": "index.js",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "module": "lib/index.js",
   "license": "MIT",
   "scripts": {
-    "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook",
-    "build": "rollup --config config/rollup.config.mjs"
+    "dev": "start-storybook -p 6006",
+    "doc": "build-storybook",
+    "build": "yarn build:dist && yarn build:lib && yarn build:types",
+    "build:dist": "rm -rf dist && rollup --config config/rollup.config.mjs",
+    "build:lib-2": "babel src --out-dir lib --extensions \".ts\",\".tsx\"",
+    "build:lib": "rm -rf lib && gulp --gulpfile config/gulp.config.js",
+    "build:types": "tsc --pretty --emitDeclarationOnly -p tsconfig.lib.json"
   },
   "dependencies": {
     "tsconfig": "^7.0.0"
+  },
+  "exports": {
+    ".": {
+      "import": "./lib/index.js",
+      "require": "./dist/index.js"
+    }
   },
   "peerDependencies": {
     "vue": "^3.2.40",
@@ -20,6 +32,7 @@
     "@babel/core": "^7.19.3",
     "@babel/preset-env": "^7.18.2",
     "@babel/preset-typescript": "^7.17.12",
+    "@foxone/icons": "*",
     "@rollup/plugin-alias": "^4.0.0",
     "@rollup/plugin-babel": "^6.0.0",
     "@rollup/plugin-node-resolve": "^15.0.0",
@@ -39,7 +52,21 @@
     "babel-loader": "^8.2.5",
     "cssnano": "^5.1.13",
     "eslint-plugin-vue": "^9.6.0",
+    "gulp": "^4.0.2",
+    "gulp-autoprefixer": "^8.0.0",
+    "gulp-babel": "^8.0.0",
+    "gulp-clean-css": "^4.3.0",
+    "gulp-concat-css": "^3.1.0",
+    "gulp-copy": "^4.0.1",
+    "gulp-header": "^2.0.9",
+    "gulp-replace-path": "^0.4.0",
+    "gulp-rollup": "^2.17.0",
+    "gulp-sass": "^5.1.0",
+    "gulp-typescript": "^6.0.0-alpha.1",
+    "node-sass": "^6.0.0",
+    "node-sass-tilde-importer": "^1.0.2",
     "postcss": "^8.4.18",
+    "rimraf": "^3.0.2",
     "rollup": "^3.1.0",
     "rollup-plugin-dts": "^4.2.2",
     "rollup-plugin-sass": "^1.2.12",
@@ -52,8 +79,7 @@
     "vue": "^3.2.40",
     "vue-eslint-parser": "^9.1.0",
     "vue-loader": "^16.8.3",
-    "vuetify": "^3.0.0-beta.13",
-    "@foxone/icons": "*"
+    "vuetify": "^3.0.0-beta.13"
   },
   "publishConfig": {
     "access": "public"

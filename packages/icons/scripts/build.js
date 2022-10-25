@@ -7,8 +7,8 @@ const { getElementCode } = require("./template");
 const styles = ["outline", "fill", "colorful"];
 
 const rootDir = path.join(__dirname, "../");
-const srcDir = path.join(rootDir, "src");
-const iconsDir = path.join(rootDir, "src/icons");
+const srcDir = path.join(rootDir, "./");
+const iconsDir = path.join(rootDir, "src/");
 const svgDir = path.join(rootDir, "svg");
 
 const generateComponentCode = ({ componentName, filename, style }) => {
@@ -50,7 +50,7 @@ const build = () => {
   });
 
   fs.writeFileSync(
-    path.join(srcDir, "meta.json"),
+    path.join(iconsDir, "meta.json"),
     JSON.stringify(meta),
     "utf-8"
   );

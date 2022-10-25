@@ -2,7 +2,7 @@ module.exports = {
   assumptions: {
     noDocumentAll: true,
   },
-  ignore: [/\.d\.ts$/],
+  ignore: [/\.d\.ts$/, /\.stories\.ts$/],
   presets: [
     [
       "@babel/preset-env",
@@ -14,20 +14,5 @@ module.exports = {
   ],
   plugins: [
     ["@vue/babel-plugin-jsx", { optimize: false, enableObjectSlots: false }],
-    [
-      "module-resolver",
-      {
-        root: ["."],
-        alias: {
-          "@": "./src",
-        },
-      },
-    ],
   ],
-  env: {
-    lib: {
-      ignore: ["**/__tests__"],
-      plugins: [["babel-plugin-add-import-extension", { extension: "mjs" }]],
-    },
-  },
 };

@@ -23,7 +23,7 @@ module.exports = {
         exclude: [/\.stories\.(t|j)sx?$/, /node_modules/],
       }),
       require("vite-plugin-vuetify")({
-        styles: { configFile: "./src/styles/settings.scss" },
+        styles: { configFile: "./src/styles/_settings.scss" },
       }),
     ];
     return config;

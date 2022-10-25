@@ -4,8 +4,9 @@ import { createVuetify } from "vuetify";
 import * as components from "vuetify/components";
 import * as directives from "vuetify/directives";
 import { themes } from "@storybook/theming";
+import ficons from "./ficons";
 
-import "../src/styles/main.scss";
+import "../src/styles/_main.scss";
 import { dark, light } from "../src/presets/theme";
 import { icons } from "../src/presets/icons";
 
@@ -39,7 +40,7 @@ export const globalTypes = {
 const vuetify = createVuetify({
   components,
   directives,
-  icons,
+  icons: { aliases: { ...icons.aliases, ...ficons } },
   theme: {
     defaultTheme: "dark",
     themes: { dark, light },
