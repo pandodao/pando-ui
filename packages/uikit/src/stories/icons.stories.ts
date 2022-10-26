@@ -7,7 +7,7 @@ export default {
   component: FIcons,
 };
 
-const Template: StoryFn<any> = (args) => ({
+const Template: StoryFn<typeof FIcons> = (args) => ({
   name: "Icons",
   components: { FIcons },
   setup() {

@@ -58,9 +58,11 @@ export const decorators = [
       components: { WrappedComponent },
       template: `
         <v-app :theme="theme">
-          <v-container fluid>
-            <wrapped-component />
-          </v-container>
+          <v-main>
+            <v-container fluid>
+              <wrapped-component />
+            </v-container>
+          </v-main>
         </v-app>
       `,
       setup() {

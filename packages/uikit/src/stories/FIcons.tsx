@@ -1,6 +1,6 @@
 import "./FIcons.scss";
 import { defineComponent, PropType } from "vue";
-import { VIcon, VTooltip, VBtn } from "vuetify/components";
+import { VIcon, VTooltip } from "vuetify/components";
 
 export const FIcons = defineComponent({
   name: "FIcons",
