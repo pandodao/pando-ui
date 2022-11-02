@@ -1,0 +1,17 @@
+.f-bottom-nav {
+  .v-bottom-navigation__content {
+    justify-content: space-evenly;
+
+    .f-bottom-nav__item:not(.v-btn--active) {
+      color: rgb(var(--v-theme-greyscale_4));
+    }
+
+    .f-bottom-nav__text {
+      font-weight: 500;
+      font-size: 12px;
+      line-height: 14px;
+      font-family: 'SF Pro Text';
+      margin-top: 8px;
+    }
+  }
+}

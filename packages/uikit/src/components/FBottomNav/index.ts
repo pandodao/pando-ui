@@ -1,0 +1,1 @@
+export { FBottomNav } from "./FBottomNav";

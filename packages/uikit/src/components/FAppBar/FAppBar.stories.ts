@@ -38,7 +38,7 @@ const Template2: StoryFn<typeof FAppBar> = (args) => ({
       <template #title>
         <v-menu>
           <template #activator="{props}">
-            <FButton size="small" v-bind="props">
+            <FButton size="small" v-bind="props" class="pa-4">
               Products
               <v-icon class="pl-1">$expand</v-icon>
             </FButton>

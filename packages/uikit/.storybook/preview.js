@@ -6,9 +6,10 @@ import * as directives from "vuetify/directives";
 import { themes } from "@storybook/theming";
 import ficons from "./ficons";
 
-import "../src/styles/_main.scss";
-import { dark, light } from "../src/presets/theme";
-import { icons } from "../src/presets/icons";
+import "vuetify/styles";
+import "../src/styles/index.scss";
+
+import { usePresets } from "../src/presets";
 
 export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },
@@ -37,15 +38,13 @@ export const globalTypes = {
   },
 };
 
-const vuetify = createVuetify({
+const options = usePresets({
   components,
   directives,
-  icons: { aliases: { ...icons.aliases, ...ficons } },
-  theme: {
-    defaultTheme: "dark",
-    themes: { dark, light },
-  },
+  icons: { aliases: { ...ficons } },
 });
+
+const vuetify = createVuetify(options);
 
 app.use(vuetify);
 

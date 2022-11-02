@@ -6,12 +6,12 @@ export default {
   component: FButton,
 } as Meta<typeof FButton>;
 
-const Template: any = (args) => ({
+const Template: StoryFn<typeof FButton> = (args) => ({
   components: { FButton },
   setup() {
     return { args };
   },
-  template: '<FButton v-bind="args">It is a Button</FButton>',
+  template: '<FButton v-bind="args" :rounded="false">It is a Button</FButton>',
 });
 
 // color

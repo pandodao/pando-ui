@@ -4,6 +4,7 @@ import { VTextField } from "vuetify/components/VTextField";
 import "./FInput.scss";
 
 export const FInput = defineComponent({
+  name: "FInput",
   setup(props, { attrs }) {
     const presets: any = {};
 

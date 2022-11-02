@@ -21,7 +21,12 @@
     ".": {
       "import": "./lib/index.js",
       "require": "./dist/index.js"
-    }
+    },
+    "./sass/main": "./src/styles/_main.scss",
+    "./sass/setting": "./src/styles/_settings.scss",
+    "./components": "./lib/components/index.js",
+    "./components/*": "./lib/components/*/index.js",
+    "./*": "./*"
   },
   "peerDependencies": {
     "vue": "^3.2.40",
@@ -33,6 +38,7 @@
     "@babel/preset-env": "^7.18.2",
     "@babel/preset-typescript": "^7.17.12",
     "@foxone/icons": "*",
+    "@foxone/utils": "^0.2.26",
     "@rollup/plugin-alias": "^4.0.0",
     "@rollup/plugin-babel": "^6.0.0",
     "@rollup/plugin-node-resolve": "^15.0.0",
@@ -51,7 +57,6 @@
     "autoprefixer": "^10.4.12",
     "babel-loader": "^8.2.5",
     "cssnano": "^5.1.13",
-    "eslint-plugin-vue": "^9.6.0",
     "gulp": "^4.0.2",
     "gulp-autoprefixer": "^8.0.0",
     "gulp-babel": "^8.0.0",
@@ -79,7 +84,7 @@
     "vue": "^3.2.40",
     "vue-eslint-parser": "^9.1.0",
     "vue-loader": "^16.8.3",
-    "vuetify": "^3.0.0-beta.13"
+    "vuetify": "^3.0.0"
   },
   "publishConfig": {
     "access": "public"

@@ -1,4 +1,4 @@
-import * as components from "./components";
-import { presets } from "./presets";
+export * from "./components";
+export * from "./presets";
 
-export { components, presets };
+import "./styles/index.scss";

@@ -3,7 +3,7 @@ import { StoryFn } from "@storybook/vue3";
 import { FIcons } from "./FIcons";
 
 export default {
-  title: "Icons",
+  title: "FIcons",
   component: FIcons,
 };
 

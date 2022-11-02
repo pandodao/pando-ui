@@ -1,0 +1,12 @@
+.f-asset-logo {
+  position: relative;
+  display: inline-block;
+
+  .f-asset-logo__chain {
+    position: absolute;
+    left: 0;
+    bottom: 0;    
+    border: 2px solid currentColor;
+    border-radius: 50%;
+  }
+}

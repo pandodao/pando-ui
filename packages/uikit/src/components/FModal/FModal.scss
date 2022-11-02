@@ -1,0 +1,36 @@
+.f-modal {
+  .f-modal__title {
+    padding: 16px;
+    text-align: center;
+  }
+
+  .f-modal__text {
+    padding: 0 16px 16px 16px !important;
+    max-height: 50vh;
+    overflow: auto;
+  }
+
+  .f-modal__content {
+    position: relative;
+
+    .f-modal__close {
+      position: absolute;
+      top: 12px;
+      right: 16px;
+    }
+  }
+}
+
+.f-bottom-sheet {
+  .v-overlay__content {
+    align-self: flex-end;
+    margin: 0;
+    overflow: visible;
+    width: 100%;
+    max-width: 100%;
+  }
+}
+
+  
+
+  

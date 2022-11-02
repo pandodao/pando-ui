@@ -1,0 +1,15 @@
+.f-asset-field {
+  display: flex;
+  align-items: center;
+  padding: 4px 16px;
+  min-height: 56px;
+  border-radius: 8px;
+
+  &--outlined {
+    border: 1px solid rgb(var(--v-theme-greyscale_5));
+  }
+
+  &--selectable {
+    cursor: pointer;
+  }
+}

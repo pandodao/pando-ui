@@ -5,14 +5,13 @@ module.exports = {
     browser: true,
     es6: true,
   },
-  parser: "vue-eslint-parser",
   parserOptions: {
-    ecmaVersion: "latest",
+    ecmaVersion: 2020,
     sourceType: "module",
     parser: "@typescript-eslint/parser",
     project: "./tsconfig.eslint.json",
-    extraFileExtensions: [".vue", ".mjs", ".cjs"],
   },
   extends: ["plugin:vue/vue3-recommended"],
-  plugins: ["@typescript-eslint"],
+  plugins: ["@typescript-eslint", "react"],
+  rules: {},
 };
