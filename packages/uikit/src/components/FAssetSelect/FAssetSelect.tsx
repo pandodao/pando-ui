@@ -31,6 +31,7 @@ export const FAssetSelect = defineComponent({
 
   setup(props, { emit }) {
     const { t } = useLocale();
+
     const handleSelect = (v) => {
       emit("update:asset", v);
       emit("update:dialog", false);

@@ -10,11 +10,32 @@
         &::before, &::after {
           display: none;
         }
-      }
+      } 
     }
 
     &--error {
+      .v-field__overlay {
+        opacity: 0;
+      }
+      
       background: rgb(var(--v-theme-error_bg)) !important;
     }
+  }
+
+  .f-input__tools {
+    width: 100%;
+    margin-bottom: 4px;
+  }
+
+  .v-input__details {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: flex-start;
+  }
+}
+
+.f-input--hide-default-messages {
+  .v-input__details > .v-messages {
+    display: none;
   }
 }

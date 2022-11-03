@@ -13,5 +13,7 @@ module.exports = {
   },
   extends: ["plugin:vue/vue3-recommended"],
   plugins: ["@typescript-eslint", "react"],
-  rules: {},
+  rules: {
+    "vue/require-default-prop": "off",
+  },
 };

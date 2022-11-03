@@ -1,0 +1,26 @@
+.f-asset-input-tools {
+  display: flex;
+  font-size: 12px;
+  font-weight: 500;
+  
+  .f-asset-input-tools__left {
+    .f-asset-input-tools__balance {
+      font-size: 12px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+
+      .f-asset-input-tools__balance-label {
+        color: rgb(var(--v-theme-greyscale_3));
+        font-weight: 400;
+      }
+    }
+  }
+
+  .v-messages {
+    opacity: 1;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+}
