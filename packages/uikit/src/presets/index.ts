@@ -1,7 +1,7 @@
 import { mdi } from "vuetify/iconsets/mdi";
 import { en, ja, zhHans, zhHant } from "vuetify/locale";
 import { icons } from "./icons";
-import { mergeDeep } from "../util";
+import { mergeDeep } from "vuetify/lib/util/helpers.mjs";
 import { dark, light } from "./theme";
 import { locales } from "../locales";
 

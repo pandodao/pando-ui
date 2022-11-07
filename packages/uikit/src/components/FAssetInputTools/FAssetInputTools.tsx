@@ -67,7 +67,10 @@ export const FAssetInputTools = defineComponent({
                   <span class="f-asset-input-tools__balance-label">
                     {props.balanceLabel || t("$vuetify.uikit.balance_short")}
                   </span>
-                  <span onClick={withModifiers(handleFill, ["stop"]) as any}>
+                  <span
+                    class="f-asset-input-tools__balance-value"
+                    onClick={withModifiers(handleFill, ["stop"]) as any}
+                  >
                     {props.balance}
                   </span>
                   {props.fillable && (

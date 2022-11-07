@@ -1,0 +1,8 @@
+.f-input.f-search-input {
+  .v-field--focused {
+    .v-field__prepend-inner {
+      opacity: 0;
+      width: 0;
+    } 
+  }
+}

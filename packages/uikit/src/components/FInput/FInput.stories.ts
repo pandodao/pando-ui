@@ -13,7 +13,7 @@ export const Variant: StoryFn<typeof FInput> = () => ({
   components: { FInput },
   template: `
     <div style="display: grid; gap: 16px;">
-      <FInput label="Default" placeholder="Placeholder" :rules="rules" bg-color="greyscale_6" />
+      <FInput label="Default" placeholder="Placeholder" :rules="rules" />
       <FInput label="Outlined" placeholder="Placeholder" :rules="rules" variant="outlined" />
     </div>
   `,
@@ -29,7 +29,7 @@ export const SingleLine: StoryFn<typeof FInput> = () => ({
   components: { FInput },
   template: `
     <div style="display: grid; gap: 16px;">
-      <FInput label="Default" placeholder="Placeholder" :rules="rules" single-line bg-color="greyscale_6" />
+      <FInput label="Default" placeholder="Placeholder" :rules="rules" single-line />
       <FInput label="Outlined" placeholder="Placeholder" :rules="rules" variant="outlined" single-line />
     </div>
   `,
@@ -49,7 +49,7 @@ export const NumberInput: StoryFn<typeof FInput> = () => ({
     return { num, rules };
   },
   template: `
-    <FInput v-model="num" type="number" precision="8" placeholder="Input Number" :rules="rules" bg-color="greyscale_6" />
+    <FInput v-model="num" type="number" precision="8" placeholder="Input Number" :rules="rules" />
   `,
 });
 

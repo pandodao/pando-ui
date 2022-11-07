@@ -6,7 +6,6 @@ import {
   VCardText,
   VIcon,
   VMenu,
-  VDialogBottomTransition,
 } from "vuetify/components";
 import { FButton } from "../FButton";
 import { useDisplay } from "vuetify";
@@ -42,7 +41,7 @@ export const FModal = defineComponent({
         elevation: isMenu ? 2 : 0,
         wrapper: isMenu ? VMenu : VDialog,
         presets: smAndDown.value
-          ? { transition: VDialogBottomTransition }
+          ? { transition: "dialog-bottom-transition" }
           : { maxWidth: 600 },
       };
     });

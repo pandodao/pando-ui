@@ -2,7 +2,7 @@ import { FAssetSelect } from "./FAssetSelect";
 import { Meta, StoryFn } from "@storybook/vue3";
 import { ref } from "vue";
 import assets from "../../data/assets.json";
-import { convertMixinAsset } from "../../util";
+import { convertMixinAsset } from "../../utils";
 
 export default {
   title: "FAssetSelect",

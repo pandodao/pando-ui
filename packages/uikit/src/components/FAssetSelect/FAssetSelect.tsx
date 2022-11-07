@@ -1,10 +1,14 @@
-import { defineComponent, PropType } from "vue";
+import { computed, defineComponent, PropType, ref } from "vue";
 import { useLocale } from "vuetify";
 import { FModal } from "../FModal";
 import { FAssetList } from "./FAssetList";
 import { FAssetSelectField } from "./FAssetSelectField";
+import { FSearchInput } from "../FSearchInput";
+import { filterAssets } from "../../utils";
 
 import type { Asset } from "../../types";
+
+import "./FAssetSelect.scss";
 
 export const FAssetSelect = defineComponent({
   name: "FAssetSelect",
@@ -29,8 +33,13 @@ export const FAssetSelect = defineComponent({
     "update:dialog": (value: Boolean) => true,
   },
 
-  setup(props, { emit }) {
+  setup(props, { emit, attrs }) {
     const { t } = useLocale();
+    const filter = ref("");
+
+    const filteredAssets = computed(() =>
+      filterAssets(props.assets, filter.value)
+    );
 
     const handleSelect = (v) => {
       emit("update:asset", v);
@@ -45,10 +54,19 @@ export const FAssetSelect = defineComponent({
       >
         {{
           activator: ({ props: _props }) => (
-            <FAssetSelectField asset={props.asset} {..._props} />
+            <FAssetSelectField asset={props.asset} {..._props} {...attrs} />
           ),
           default: () => (
-            <FAssetList assets={props.assets} onSelect={handleSelect} />
+            <div class="f-asset-select">
+              <div class="px-4 mb-2">
+                <FSearchInput v-model={filter.value} />
+              </div>
+              <FAssetList
+                class="f-asset-select__list"
+                assets={filteredAssets.value}
+                onSelect={handleSelect}
+              />
+            </div>
           ),
         }}
       </FModal>

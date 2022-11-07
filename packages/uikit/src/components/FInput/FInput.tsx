@@ -1,6 +1,6 @@
-import { defineComponent, ref, onMounted } from "vue";
+import { defineComponent, ref } from "vue";
 import { VTextField } from "vuetify/components/VTextField";
-import { numberInput } from "../../util";
+import { numberInput } from "../../utils";
 
 import "./FInput.scss";
 
@@ -8,13 +8,13 @@ export const FInput = defineComponent({
   name: "FInput",
 
   props: {
-    modelValue: { type: [Number, String], default: "" },
+    modelValue: { type: String, default: "" },
     precision: { type: [Number, String] },
     hideDefaultMessages: Boolean,
   },
 
   emits: {
-    "update:modelValue": (value: string | number) => true,
+    "update:modelValue": (value) => true,
   },
 
   setup(props, { attrs, emit, slots }) {
@@ -41,10 +41,6 @@ export const FInput = defineComponent({
       }
     };
 
-    onMounted(() => {
-      console.log(inputRef.value, inputRef?.value?.$refs.value);
-    });
-
     return () => (
       <VTextField
         ref={inputRef}
@@ -57,6 +53,7 @@ export const FInput = defineComponent({
         onKeydown={handleKeydown}
       >
         {{
+          ...slots,
           details: (slotProps) => {
             return (
               slots.tools && (

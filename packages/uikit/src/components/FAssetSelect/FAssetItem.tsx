@@ -22,7 +22,6 @@ export const FAssetItem = defineComponent({
           title={props.asset.symbol}
           subtitle={props.asset.name}
           value={props.asset.id}
-          class="px-0"
         >
           {{
             prepend: () => (

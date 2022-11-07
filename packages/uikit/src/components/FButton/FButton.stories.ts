@@ -18,7 +18,7 @@ const Template: StoryFn<typeof FButton> = (args) => ({
 export const Color = Template.bind({});
 Color.args = { color: "primary" };
 
-//disabled
+// disabled
 export const Disabled = Template.bind({});
 Disabled.args = { disabled: true, color: "primary" };
 

@@ -1,7 +1,11 @@
 @use "../../styles/_variables.scss" as *;
 
-.f-input {
+.f-input.v-input {
+
   .v-field {
+    font-size: 1.125rem;
+    font-weight: 600;
+
     &.v-field--variant-filled {
       border-bottom-left-radius: $border-radius-root;
       border-bottom-right-radius: $border-radius-root;
@@ -18,19 +22,23 @@
         opacity: 0;
       }
       
-      background: rgb(var(--v-theme-error_bg)) !important;
+      background: rgb(var(--v-theme-error_bg));
     }
   }
 
   .f-input__tools {
     width: 100%;
-    margin-bottom: 4px;
   }
 
   .v-input__details {
     display: flex;
     flex-direction: column-reverse;
     align-items: flex-start;
+    gap: 4px;
+
+    > .v-messages {
+      min-height: 0;
+    }
   }
 }
 

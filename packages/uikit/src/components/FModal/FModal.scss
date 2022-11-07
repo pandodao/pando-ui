@@ -2,11 +2,12 @@
   .f-modal__title {
     padding: 16px;
     text-align: center;
+    text-transform: capitalize;
   }
 
   .f-modal__text {
-    padding: 0 16px 16px 16px !important;
-    max-height: 50vh;
+    padding: 0 !important;
+    max-height: 80vh;
     overflow: auto;
   }
 
@@ -22,6 +23,11 @@
 }
 
 .f-bottom-sheet {
+  .f-modal__content {
+    border-bottom-left-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+  }
+
   .v-overlay__content {
     align-self: flex-end;
     margin: 0;
