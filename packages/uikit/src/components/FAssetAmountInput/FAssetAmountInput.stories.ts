@@ -6,7 +6,7 @@ import assets from "../../data/assets.json";
 import { convertMixinAsset } from "../../utils";
 
 export default {
-  title: "FAssetAmountInput",
+  name: "FAssetAmountInput",
   component: FAssetAmountInput,
 } as Meta<typeof FAssetAmountInput>;
 

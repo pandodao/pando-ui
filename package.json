@@ -14,19 +14,13 @@
     "publish-packages": "turbo run build lint && changeset version && changeset publish"
   },
   "devDependencies": {
-    "prettier": "latest",
-    "turbo": "latest",
     "@typescript-eslint/eslint-plugin": "^5.26.0",
     "@typescript-eslint/parser": "^5.26.0",
     "eslint": "^8.16.0",
-    "eslint-formatter-codeframe": "^7.32.1",
-    "eslint-plugin-import": "^2.26.0",
-    "eslint-plugin-local-rules": "^1.1.0",
-    "eslint-plugin-n": "^15.2.0",
-    "eslint-plugin-promise": "^6.0.0",
-    "eslint-plugin-react": "^7.30.0",
     "eslint-plugin-vue": "^9.0.1",
-    "eslint-plugin-vuetify": "^1.1.0",
+    "eslint-utils": "^3.0.0",
+    "prettier": "latest",
+    "turbo": "latest",
     "typescript": "^4.8.4"
   },
   "engines": {

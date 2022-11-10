@@ -5,24 +5,36 @@
   .v-field {
     font-size: 1.125rem;
     font-weight: 600;
+    line-height: 1.5rem;
+    overflow: hidden;
 
     &.v-field--variant-filled {
       border-bottom-left-radius: $border-radius-root;
       border-bottom-right-radius: $border-radius-root;
 
+
+      .v-field__overlay {
+        opacity: 1;
+        background: rgb(var(--v-theme-greyscale_6));
+      }
+      
       .v-field__outline {
         &::before, &::after {
           display: none;
         }
-      } 
-    }
-
-    &--error {
-      .v-field__overlay {
-        opacity: 0;
       }
-      
-      background: rgb(var(--v-theme-error_bg));
+
+      &.v-field--focused {
+        .v-field__overlay {
+          background: rgb(var(--v-theme-greyscale_5));
+        }
+      }
+
+      &.v-field--error {
+        .v-field__overlay {
+          background: rgb(var(--v-theme-error_bg));
+        }
+      }
     }
   }
 

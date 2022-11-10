@@ -1,0 +1,1 @@
+export { FQRCode } from "./FQRCode";

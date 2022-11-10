@@ -1,0 +1,16 @@
+.f-loading {
+  justify-content: center;
+  align-items: center;
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__text {
+    font-size: 12px;
+    padding: 8px;
+  }
+}

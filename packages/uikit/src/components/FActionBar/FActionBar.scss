@@ -1,0 +1,43 @@
+.f-action-bar {
+  display: flex;
+  justify-content: space-evenly;
+  height: auto !important;
+  padding: 16px;
+
+  &--fixed {
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+
+  .v-btn {
+    font-size: 12px;
+    min-width: 80px;
+    padding: 4px;
+    background-color: transparent;
+    
+    .v-btn__content {
+      flex-direction: column-reverse;
+      height: inherit;
+
+      > *:not(.v-icon) {
+        line-height: 1.2;
+        margin-top: 4px;
+      }
+    }
+
+    &.v-btn--active {
+      color: inherit;
+    }
+  }
+}
+
+.f-actionbar--fixed {
+  position: fixed;
+  z-index: 4;
+  border-bottom-left-radius: 0 !important;
+  border-bottom-right-radius: 0 !important;
+}

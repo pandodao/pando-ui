@@ -4,41 +4,32 @@ import { Meta, StoryFn } from "@storybook/vue3";
 import { ref } from "vue";
 
 export default {
-  title: "FInput",
+  name: "FInput",
   component: FInput,
 } as Meta<typeof FInput>;
 
-// Variant
-export const Variant: StoryFn<typeof FInput> = () => ({
+const Template: StoryFn<typeof FInput> = (args) => ({
   components: { FInput },
   template: `
     <div style="display: grid; gap: 16px;">
-      <FInput label="Default" placeholder="Placeholder" :rules="rules" />
-      <FInput label="Outlined" placeholder="Placeholder" :rules="rules" variant="outlined" />
+      <FInput v-model="text" placeholder="Placeholder" :rules="rules" v-bind="args" />
     </div>
   `,
   setup() {
-    const rules = [(v) => !v || "Field is required"];
+    const text = ref("Default");
+    const rules = [(v) => !!v || "Field is required"];
 
-    return { rules };
+    return { rules, args, text };
   },
 });
 
-// Single Line
-export const SingleLine: StoryFn<typeof FInput> = () => ({
-  components: { FInput },
-  template: `
-    <div style="display: grid; gap: 16px;">
-      <FInput label="Default" placeholder="Placeholder" :rules="rules" single-line />
-      <FInput label="Outlined" placeholder="Placeholder" :rules="rules" variant="outlined" single-line />
-    </div>
-  `,
-  setup() {
-    const rules = [(v) => !v || "Field is required"];
-
-    return { rules };
-  },
-});
+export const Default = Template.bind({});
+Default.args = {
+  loading: false,
+  singleLine: true,
+  disabled: false,
+  label: "Label",
+};
 
 export const NumberInput: StoryFn<typeof FInput> = () => ({
   components: { FInput },

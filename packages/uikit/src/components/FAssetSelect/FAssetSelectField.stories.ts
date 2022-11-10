@@ -2,7 +2,7 @@ import { Meta, StoryFn } from "@storybook/vue3";
 import { FAssetSelectField } from "./FAssetSelectField";
 
 export default {
-  title: "FAssetSelectField",
+  name: "FAssetSelectField",
   component: FAssetSelectField,
 } as Meta<typeof FAssetSelectField>;
 

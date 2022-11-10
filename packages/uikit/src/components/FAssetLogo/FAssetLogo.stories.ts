@@ -2,7 +2,7 @@ import { FAssetLogo } from "./FAssetLogo";
 import { Meta, StoryFn } from "@storybook/vue3";
 
 export default {
-  title: "FAssetLogo",
+  name: "FAssetLogo",
   component: FAssetLogo,
 } as Meta<typeof FAssetLogo>;
 

@@ -2,7 +2,7 @@ import { FListItem } from "./FListItem";
 import { Meta, StoryFn } from "@storybook/vue3";
 
 export default {
-  title: "FListItem",
+  name: "FListItem",
   component: FListItem,
 } as Meta<typeof FListItem>;
 

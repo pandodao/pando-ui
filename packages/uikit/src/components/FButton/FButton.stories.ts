@@ -2,7 +2,7 @@ import { FButton } from "./FButton";
 import { Meta, StoryFn } from "@storybook/vue3";
 
 export default {
-  title: "FButton",
+  name: "FButton",
   component: FButton,
 } as Meta<typeof FButton>;
 

@@ -4,7 +4,7 @@ import { ref } from "vue";
 import { Meta, StoryFn } from "@storybook/vue3";
 
 export default {
-  title: "FModal",
+  name: "FModal",
   component: { FModal },
 } as Meta<typeof FModal>;
 

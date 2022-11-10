@@ -1,0 +1,35 @@
+.f-asset-swap-form {
+  background: rgb(var(--v-theme-greyscale_6));
+  border-radius: 8px;
+  overflow: hidden;
+
+  &__divider {
+    position: relative;
+
+    &:after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 50%;
+      width: 100%;
+      height: 0;
+      display: block;
+      z-index: 1;
+      border-top: 0.5px solid;
+      opacity: 0.06;
+    }
+  }
+
+  &__swap {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+  }
+
+  .f-input.v-input {
+    border-radius: 0;
+  }
+}

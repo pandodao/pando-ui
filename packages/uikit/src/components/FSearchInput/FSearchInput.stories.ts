@@ -3,7 +3,7 @@ import { FSearchInput } from "./FSearchInput";
 import { Meta, StoryFn } from "@storybook/vue3";
 
 export default {
-  title: "FSearchInput",
+  name: "FSearchInput",
   component: FSearchInput,
 } as Meta<typeof FSearchInput>;
 

@@ -1,0 +1,18 @@
+.f-info-grid-item {
+  display: flex;
+  flex-direction: column;
+  font-size: 14px;
+  font-weight: 500;
+
+  &__title {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    color: rgb(var(--v-theme-greyscale_3));
+  }
+
+  &__value {
+    display: flex;
+    gap: 4px;
+  }
+}

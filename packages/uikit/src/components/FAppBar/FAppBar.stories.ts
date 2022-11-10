@@ -3,7 +3,7 @@ import { FButton } from "../FButton";
 import { Meta, StoryFn } from "@storybook/vue3";
 
 export default {
-  title: "FAppBar",
+  name: "FAppBar",
   component: FAppBar,
 } as Meta<typeof FAppBar>;
 

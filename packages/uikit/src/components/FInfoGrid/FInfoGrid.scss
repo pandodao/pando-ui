@@ -1,0 +1,25 @@
+.f-info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  column-gap: 8px;
+  row-gap: 8px;
+
+  &--reverse {
+    .f-info-grid-item {
+      flex-direction: column-reverse;
+    }
+  }
+
+  &--list {
+    grid-template-columns:  1fr;
+
+    .f-info-grid-item {
+      flex-direction: row;
+
+      .f-info-grid-item__value {
+        flex: 1;
+        justify-content: flex-end;
+      }
+    }
+  }
+}

@@ -15,6 +15,7 @@
     "build:types": "tsc --pretty --emitDeclarationOnly -p tsconfig.lib.json"
   },
   "dependencies": {
+    "qrcode": "^1.5.1",
     "tsconfig": "^7.0.0"
   },
   "exports": {
@@ -51,12 +52,14 @@
     "@storybook/testing-library": "^0.0.13",
     "@storybook/theming": "^6.5.12",
     "@storybook/vue3": "^6.5.12",
+    "@typescript-eslint/utils": "^5.42.1",
     "@vitejs/plugin-vue": "^3.1.2",
     "@vitejs/plugin-vue-jsx": "^2.0.1",
     "@vue/babel-plugin-jsx": "^1.1.1",
     "autoprefixer": "^10.4.12",
     "babel-loader": "^8.2.5",
     "cssnano": "^5.1.13",
+    "eslint-utils": "^3.0.0",
     "gulp": "^4.0.2",
     "gulp-autoprefixer": "^8.0.0",
     "gulp-babel": "^8.0.0",
@@ -82,7 +85,6 @@
     "vite": "^3.1.7",
     "vite-plugin-vuetify": "^1.0.0",
     "vue": "^3.2.40",
-    "vue-eslint-parser": "^9.1.0",
     "vue-loader": "^16.8.3",
     "vuetify": "^3.0.0"
   },
