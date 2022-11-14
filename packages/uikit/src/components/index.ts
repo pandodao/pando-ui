@@ -17,3 +17,5 @@ export * from "./FModal";
 export * from "./FPhoneInput";
 export * from "./FQRCode";
 export * from "./FSearchInput";
+export * from "./FSegmentControl";
+export * from "./FSlider";

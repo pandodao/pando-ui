@@ -1,0 +1,46 @@
+.f-slider {
+  &.v-slider.v-input--horizontal {
+    .v-slider-track {
+      height: var(--v-slider-track-size);
+    }
+
+    .v-slider-track__tick {
+      margin-top: calc(calc(var(--v-slider-track-size)) / 2);
+    }
+  }
+
+  &--hide-thumb {
+    .v-slider-thumb {
+      display: none;
+    }
+  }
+
+  .v-slider-track__tick {
+    border-radius: 0;
+    background-color: white;
+
+    .v-slider-track__tick-label {
+      font-weight: 500;
+      font-size: 12px;
+      line-height: 15px;
+      color: rgb(var(--v-theme-greyscale_4))
+    }
+  }
+
+  .v-slider-thumb__ripple {
+    display: none;
+  }
+
+  .v-slider-thumb__surface {
+    &::before {
+      display: none;
+    }
+
+    &::after {
+      width: 16px;
+      height: 16px;
+      background-color: rgb(var(--v-theme-greyscale_7));
+      border-radius: 50%;
+    }
+  }
+}

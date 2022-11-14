@@ -1,0 +1,17 @@
+.f-segment-control.v-btn-group {
+  height: 36px;
+
+  &.f-segment-control--grow {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  }
+
+  .f-button {
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 16px;
+    background: transparent;
+    border-radius: 8px;
+    transition: none;
+  }
+}
