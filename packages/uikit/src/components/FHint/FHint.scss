@@ -1,0 +1,17 @@
+.f-hint {
+  &__activator {
+    background-color: #ccc;
+    border-radius: 14px;
+  }
+
+  &__tip {
+    font-size: 12px;
+    line-height: 17px;
+  }
+
+  &__link {
+    color: blue;
+    font-weight: 500;
+    margin-left: 6px;
+  }
+}
