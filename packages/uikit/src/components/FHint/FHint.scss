@@ -1,6 +1,6 @@
 .f-hint {
   &__activator {
-    background-color: #ccc;
+    background-color: rgb(var(--v-theme-greyscale_5));
     border-radius: 14px;
   }
 
@@ -13,7 +13,7 @@
     font-weight: 500;
     margin-left: 6px;
     text-decoration: none;
-    color: rbg(var(--v-theme-blue-base));
+    color: rgb(var(--v-theme-info));
   }
 
   &__modal-content {

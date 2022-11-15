@@ -1,5 +1,4 @@
-// import { FTextarea } from "./FTextarea";
-import { VTextarea as FTextarea } from "vuetify/components";
+import { FTextarea } from "./FTextarea";
 import { Meta, StoryFn } from "@storybook/vue3";
 
 export default {
@@ -12,8 +11,8 @@ const Template: StoryFn<typeof FTextarea> = (args) => ({
   setup() {
     return { args };
   },
-  template: '<FTextarea v-bind="args" label="Label-textarea"></FTextarea>',
+  template: '<FTextarea v-bind="args" placeholder="Text..."></FTextarea>',
 });
 
 export const Default = Template.bind({});
-Default.args = { color: "", bgColor: "" };
+Default.args = {};

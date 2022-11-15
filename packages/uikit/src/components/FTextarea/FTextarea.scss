@@ -1,0 +1,11 @@
+.f-textarea {
+  .v-field__outline {
+    &::before, &::after {
+      display: none;
+    }
+  }
+
+  .v-field__overlay {
+    border-radius: 8px;
+  }
+}
