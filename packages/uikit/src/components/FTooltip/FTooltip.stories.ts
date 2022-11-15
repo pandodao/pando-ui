@@ -1,3 +1,5 @@
+import { ref } from "vue";
+
 import { FTooltip } from "./FTooltip";
 import { FButton } from "../FButton";
 import { Meta, StoryFn } from "@storybook/vue3";
@@ -9,12 +11,15 @@ export default {
 
 const Template: StoryFn<typeof FTooltip> = (args) => ({
   components: { FTooltip, FButton },
+
   setup() {
-    return { args };
+    const dialog = ref(false);
+    return { args, dialog };
   },
+
   template: `
     <div style="text-align: center; padding: 100px">
-      <FTooltip text="tooltip test test test test test test test test test test test test test test tip test test test" v-bind="args">
+      <FTooltip text="tooltip test test test test test test test test test test test test test test tip test test test" v-model="dialog" v-bind="args">
         <template #activator="{props}">
           <FButton color="primary" v-bind="props">
             Tooltip

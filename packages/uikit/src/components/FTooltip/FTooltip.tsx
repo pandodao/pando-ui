@@ -13,7 +13,7 @@ export const FTooltip = defineComponent({
     },
   },
 
-  setup(props, { slots, attrs }) {
+  setup(props, { slots, attrs, emit }) {
     const content = () => {
       return (
         <div class="f-tooltip__tip">
@@ -41,7 +41,11 @@ export const FTooltip = defineComponent({
     };
 
     return () => (
-      <VTooltip class="f-tooltip">
+      <VTooltip
+        class="f-tooltip"
+        onClick:outside={() => emit("update:modelValue", false)}
+        onUpdate:modelValue={(v) => emit("update:modelValue", v)}
+      >
         {{
           ...slots,
           default: () => content(),

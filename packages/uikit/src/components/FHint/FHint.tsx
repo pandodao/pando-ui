@@ -24,10 +24,9 @@ export const FHint = defineComponent({
   },
 
   setup(props) {
-    const { smAndUp } = useDisplay();
-    console.log("smAndUp:", smAndUp.value);
+    const { mdAndUp } = useDisplay();
 
-    if (smAndUp.value) {
+    if (mdAndUp.value) {
       return () => (
         <FTooltip contentClass="f-hint__tip" text={props.hint} >
           {{

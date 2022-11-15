@@ -11,17 +11,17 @@ export const FHintLink = defineComponent({
     },
   },
 
-  setup(props, { emit }) {
+  setup(props) {
     return () => (
-      <span class="f-hint__link" onClick={() => console.log("clicked")}>
+      <a class="f-hint__link" href={props.href} target="_blank">
         Learn more
         <VIcon
           size="16"
-          // color="blue"
+          color="blue"
         >
           $link
         </VIcon>
-      </span>
+      </a>
     );
   },
 });

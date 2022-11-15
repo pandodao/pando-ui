@@ -6,12 +6,14 @@
 
   &__tip {
     font-size: 12px !important;
+    pointer-events: auto !important;
   }
 
   &__link {
-    color: blue;
     font-weight: 500;
     margin-left: 6px;
+    text-decoration: none;
+    color: rbg(var(--v-theme-blue-base));
   }
 
   &__modal-content {
