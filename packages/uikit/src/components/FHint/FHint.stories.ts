@@ -27,4 +27,4 @@ export const Text = Template.bind({});
 Text.args = { location: "top", openOnHover: false, openOnClick: true };
 
 export const Href = Template.bind({});
-Href.args = { location: "top", href: "https://www.google.com", openOnHover: false, openOnClick: true };
+Href.args = { location: "bottom", href: "https://www.google.com", openOnHover: false, openOnClick: true };

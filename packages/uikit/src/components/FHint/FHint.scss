@@ -5,13 +5,18 @@
   }
 
   &__tip {
-    font-size: 12px;
-    line-height: 17px;
+    font-size: 12px !important;
   }
 
   &__link {
     color: blue;
     font-weight: 500;
     margin-left: 6px;
+  }
+
+  &__modal-content {
+    line-height: 22px;
+    font-size: 16px;
+    padding: 0 16px 32px 16px;
   }
 }

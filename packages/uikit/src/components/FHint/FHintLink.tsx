@@ -7,18 +7,17 @@ export const FHintLink = defineComponent({
   props: {
     href: {
       type: String,
-      default: ""
-    }
+      default: "",
+    },
   },
 
-  setup(props) {
+  setup(props, { emit }) {
     return () => (
-      <span class="f-hint__link">
+      <span class="f-hint__link" onClick={() => console.log("clicked")}>
         Learn more
         <VIcon
           size="16"
-          color="blue"
-          onClick={() => window.open(props.href)}
+          // color="blue"
         >
           $link
         </VIcon>

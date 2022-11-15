@@ -1,12 +1,13 @@
 import { defineComponent } from "vue";
 
 import { FTooltip } from "../FTooltip";
+import { FModal } from "../FModal";
 import { FHintActivator } from "./FHintActivator";
 import { FHintLink } from "./FHintLink";
 
 import { useDisplay } from "vuetify";
 
-import "./FHint.scss"
+import "./FHint.scss";
 
 export const FHint = defineComponent({
   name: "FHint",
@@ -14,45 +15,41 @@ export const FHint = defineComponent({
   props: {
     hint: {
       type: String,
-      default: ""
+      default: "",
     },
     href: {
       type: String,
-      default: ""
+      default: "",
     },
   },
 
-  setup(props, { slots }) {
+  setup(props) {
     const { smAndUp } = useDisplay();
-    console.log('smAndUp:', smAndUp.value)
+    console.log("smAndUp:", smAndUp.value);
 
     if (smAndUp.value) {
       return () => (
-        <FTooltip text={props.hint}>
-        {/* <FTooltip text={<FHintLink href={props.href} />}> */}
+        <FTooltip contentClass="f-hint__tip" text={props.hint} >
           {{
-            activator: ({ props: _props }) => <FHintActivator {..._props}  />,
-            default: () =>
-              <div class="f-hint__tip">
-                {props.hint}
-                { props.href && <FHintLink href={props.href} /> }
-              </div>
+            activator: ({ props: _props }) => <FHintActivator {..._props} />,
+            default: () => props.href && <FHintLink href={props.href} />,
           }}
         </FTooltip>
       );
     }
 
     return () => (
-      <div></div>
-      // <FTooltip text={props.hint}>
-      //   {{
-      //     activator: ({ props: _props }) => <FHintActivator {..._props}  />,
-      //   }}
-      // </FTooltip>
-
-      // <FBottomSheet>
-
-      // </FBottomSheet>
+      <FModal title="Details">
+        {{
+          activator: ({ props: _props }) => <FHintActivator {..._props} />,
+          default: () => (
+            <div class="f-hint__modal-content">
+              {props.hint}
+              {props.href && <FHintLink href={props.href} />}
+            </div>
+          ),
+        }}
+      </FModal>
     );
   },
 });

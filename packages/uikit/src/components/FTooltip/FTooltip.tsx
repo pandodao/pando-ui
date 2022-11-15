@@ -1,10 +1,6 @@
 import { defineComponent } from "vue";
 import { VTooltip } from "vuetify/components";
 
-// import { makeDimensionProps } from "vuetify/lib/composables/dimensions.mjs";
-// import type { Anchor } from "vuetify/lib/util/anchor.mjs"
-// import type { FunctionalComponent, PropType } from "vue";
-
 import "./FTooltip.scss";
 
 export const FTooltip = defineComponent({
@@ -15,14 +11,15 @@ export const FTooltip = defineComponent({
       type: String,
       default: "",
     },
-    location: {}, // type is Anchor
   },
 
-  setup(props, { slots }) {
+  setup(props, { slots, attrs }) {
     const content = () => {
       return (
         <div class="f-tooltip__tip">
-          <span class={[ "f-tooltip__arrow", `f-tooltip__arrow--${props.location}` ]}>
+          <span
+            class={["f-tooltip__arrow", `f-tooltip__arrow--${attrs.location}`]}
+          >
             <svg
               width="23"
               height="12"
@@ -40,14 +37,14 @@ export const FTooltip = defineComponent({
           <span>{props.text}</span>
           <span>{slots.default?.()}</span>
         </div>
-      )
+      );
     };
 
     return () => (
-      <VTooltip class="f-tooltip" location={props.location}>
+      <VTooltip class="f-tooltip">
         {{
-          default: () => content(),
           ...slots,
+          default: () => content(),
         }}
       </VTooltip>
     );
