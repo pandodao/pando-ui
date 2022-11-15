@@ -1556,9 +1556,15 @@
     yargs "^16.2.0"
 
 "@foxone/utils@^0.2.26":
+<<<<<<< HEAD
   version "0.2.27"
   resolved "https://registry.npmmirror.com/@foxone/utils/-/utils-0.2.27.tgz#dcd5dbf1c01f3f27508f9736ce1ab854ca469d4b"
   integrity sha512-R6EoJDaGHxl53GFraksmt9+G7bQIwRUxAEMOwOwMb2TtudR1STk7ivDSppqav3z/QiS3O3bZKnEdIuYwnjaSfw==
+=======
+  version "0.2.22"
+  resolved "https://registry.npmmirror.com/@foxone/utils/-/utils-0.2.22.tgz#c9089aab73a87e35476f59c8e42341587eede5c1"
+  integrity sha512-JmW+v7VKyqXuemci7S5cUvAKWg+vKz9LTpKA1pr7Ja9HRZmhWvyJt723jXZqB77OcKPwGNxd0ET3LjdcFbOZiA==
+>>>>>>> 862adc8 (update style)
   dependencies:
     axios "^0.21.1"
     bignumber.js "^9.0.1"
