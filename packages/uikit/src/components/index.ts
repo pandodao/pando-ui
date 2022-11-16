@@ -26,6 +26,6 @@ export * from "./FSegmentControl";
 export * from "./FSlider";
 export * from "./FSwitch";
 export * from "./FTabs";
-export * from "./FToast";
 export * from "./FTextarea";
+export * from "./FToast";
 export * from "./FTooltip";
