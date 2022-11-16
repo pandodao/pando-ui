@@ -1,4 +1,5 @@
 import { defineComponent } from "vue";
+import { useLocale } from "vuetify";
 import { VIcon } from "vuetify/components";
 
 export const FHintLink = defineComponent({
@@ -12,15 +13,11 @@ export const FHintLink = defineComponent({
   },
 
   setup(props) {
+    const { t } = useLocale();
+
     return () => (
       <a class="f-hint__link" href={props.href} target="_blank">
-        Learn more
-        <VIcon
-          size="16"
-          color="blue"
-        >
-          $link
-        </VIcon>
+        {t("$vuetify.uikit.learn_more")}
       </a>
     );
   },

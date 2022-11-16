@@ -1,11 +1,11 @@
-import { defineComponent } from "vue";
+import { defineComponent, computed } from "vue";
 
 import { FTooltip } from "../FTooltip";
 import { FModal } from "../FModal";
 import { FHintActivator } from "./FHintActivator";
 import { FHintLink } from "./FHintLink";
 
-import { useDisplay } from "vuetify";
+import { useDisplay, useLocale } from "vuetify";
 
 import "./FHint.scss";
 
@@ -25,30 +25,36 @@ export const FHint = defineComponent({
 
   setup(props) {
     const { mdAndUp } = useDisplay();
+    const { t } = useLocale();
 
-    if (mdAndUp.value) {
-      return () => (
-        <FTooltip contentClass="f-hint__tip" text={props.hint} >
-          {{
-            activator: ({ props: _props }) => <FHintActivator {..._props} />,
-            default: () => props.href && <FHintLink href={props.href} />,
-          }}
-        </FTooltip>
+    const meta = computed(() => {
+      const isTooltip = mdAndUp.value;
+      return {
+        isTooltip,
+        wrapper: isTooltip ? FTooltip : FModal,
+        presets: isTooltip
+          ? { contentClass: "f-hint__content", text: props.hint }
+          : { title: t("$vuetify.uikit.details") },
+      };
+    });
+
+    const content = () =>
+      meta.value.isTooltip ? (
+        props.href && <FHintLink href={props.href} />
+      ) : (
+        <div class="f-hint__modal-content">
+          {props.hint}
+          {props.href && <FHintLink href={props.href} />}
+        </div>
       );
-    }
 
     return () => (
-      <FModal title="Details">
+      <meta.value.wrapper {...meta.value.presets}>
         {{
           activator: ({ props: _props }) => <FHintActivator {..._props} />,
-          default: () => (
-            <div class="f-hint__modal-content">
-              {props.hint}
-              {props.href && <FHintLink href={props.href} />}
-            </div>
-          ),
+          default: () => content(),
         }}
-      </FModal>
+      </meta.value.wrapper>
     );
   },
 });

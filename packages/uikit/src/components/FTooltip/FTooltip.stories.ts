@@ -19,7 +19,7 @@ const Template: StoryFn<typeof FTooltip> = (args) => ({
 
   template: `
     <div style="text-align: center; padding: 100px">
-      <FTooltip text="tooltip test test test test test test test test test test test test test test tip test test test" v-model="dialog" v-bind="args">
+      <FTooltip text="The annual percentage yield (APY) is the real rate of return earned on an investment" v-model="dialog" v-bind="args">
         <template #activator="{props}">
           <FButton color="primary" v-bind="props">
             Tooltip

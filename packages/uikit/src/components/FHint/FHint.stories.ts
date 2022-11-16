@@ -34,7 +34,7 @@ Text.args = { location: "top", openOnHover: false, openOnClick: true };
 export const Href = Template.bind({});
 Href.args = {
   location: "bottom",
-  href: "https://www.google.com",
+  href: "https://pando.im/",
   openOnHover: false,
   openOnClick: true,
 };
