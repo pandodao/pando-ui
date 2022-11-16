@@ -1,5 +1,5 @@
 import { defineComponent, ref } from "vue";
-import { VTextField } from "vuetify/components/VTextField";
+import { VTextField } from "vuetify/components";
 import { numberInput } from "../../utils";
 
 import "./FInput.scss";

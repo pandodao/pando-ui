@@ -8,20 +8,19 @@
   "scripts": {
     "dev": "start-storybook -p 6006",
     "doc": "build-storybook",
-    "build": "yarn build:dist && yarn build:lib && yarn build:types",
+    "build": "yarn build:lib && yarn build:types",
     "build:dist": "rm -rf dist && rollup --config config/rollup.config.mjs",
-    "build:lib-2": "babel src --out-dir lib --extensions \".ts\",\".tsx\"",
     "build:lib": "rm -rf lib && gulp --gulpfile config/gulp.config.js",
     "build:types": "tsc --pretty --emitDeclarationOnly -p tsconfig.lib.json"
   },
   "dependencies": {
+    "@foxone/utils": "^0.2.26",
     "qrcode": "^1.5.1",
     "tsconfig": "^7.0.0"
   },
   "exports": {
     ".": {
-      "import": "./lib/index.js",
-      "require": "./dist/index.js"
+      "import": "./lib/index.js"
     },
     "./sass/main": "./src/styles/_main.scss",
     "./sass/setting": "./src/styles/_settings.scss",

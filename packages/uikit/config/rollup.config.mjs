@@ -22,7 +22,15 @@ export default {
       sourcemap: true,
     },
   ],
-  external: ["vue", /^vuetify/, "@foxone/icons"],
+  external: [
+    "vue",
+    /^vuetify/,
+    /^@foxone\/util/,
+    "@foxone/icons",
+    "axios",
+    "qrcode",
+    "bignumber.js",
+  ],
   plugins: [
     nodeResolve({ extensions }),
     babel({
