@@ -1,0 +1,24 @@
+.f-switch.v-switch {
+  &.f-switch--outlined {
+    .v-selection-control--dirty {
+      .v-switch__track {
+        background: rgb(var(--v-theme-greyscale_1));
+        border: none;
+      }
+
+      .v-switch__thumb {
+        color: rgb(var(--v-theme-greyscale_7)) !important;
+      }
+    }
+
+    .v-switch__thumb {
+      color: rgb(var(--v-theme-greyscale_1));
+    }
+
+    .v-switch__track {
+      background: transparent;
+      border: 2px solid currentColor;
+      opacity: 1;
+    }
+  }
+}

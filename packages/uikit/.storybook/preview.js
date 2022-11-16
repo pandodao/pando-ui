@@ -1,15 +1,15 @@
 import { app } from "@storybook/vue3";
-import { defineComponent } from "vue";
-import { createVuetify } from "vuetify";
+import { defineComponent, watchEffect } from "vue";
+import { createVuetify, useTheme } from "vuetify";
 import * as components from "vuetify/components";
 import * as directives from "vuetify/directives";
 import { themes } from "@storybook/theming";
 import ficons from "./ficons";
 
 import "vuetify/styles";
-import "../src/styles/index.scss";
 
 import { usePresets } from "../src/presets";
+import UIKit from "../src/index";
 
 export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },
@@ -47,6 +47,7 @@ const options = usePresets({
 const vuetify = createVuetify(options);
 
 app.use(vuetify);
+app.use(UIKit);
 
 export const decorators = [
   (story, context) => {
@@ -56,7 +57,7 @@ export const decorators = [
       name: "StoryBookWrap",
       components: { WrappedComponent },
       template: `
-        <v-app :theme="theme">
+        <v-app>
           <v-main>
             <v-container fluid>
               <wrapped-component />
@@ -65,9 +66,13 @@ export const decorators = [
         </v-app>
       `,
       setup() {
-        const theme = context.globals.theme;
+        watchEffect(() => {
+          const theme = useTheme();
 
-        return { theme, context };
+          theme.global.name.value = context.globals.theme;
+        });
+
+        return { context };
       },
     });
   },

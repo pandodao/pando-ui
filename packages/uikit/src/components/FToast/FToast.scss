@@ -1,0 +1,47 @@
+.v-snackbar.f-toast {
+  --v-theme-surface-variant: var(--v-theme-greyscale_7);
+  --v-theme-on-surface-variant: var(--v-theme-greyscale_1);
+
+  .v-snackbar__content {
+    font-weight: 500;
+    font-size: 0.875rem;
+    line-height: 1.0625rem;
+    padding: 16px;
+  }
+
+  .v-snackbar__actions {
+    font-weight: 500;
+    font-size: 0.875rem;
+    align-self: stretch;
+    display: flex;
+    align-items: stretch;
+  }
+
+  .f-toast__action {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+  }
+}
+
+.v-theme--dark.f-toast {
+  &.f-toast--success {
+    --v-theme-surface-variant: var(--v-theme-success_bg);
+  }
+
+  &.f-toast--error {
+    --v-theme-surface-variant: var(--v-theme-error_bg);
+  }
+
+  &.f-toast--warning {
+    --v-theme-surface-variant: var(--v-theme-warning_bg);
+  }
+}
+
+
+.v-theme--light.f-toast  {
+  .v-snackbar__wrapper {
+    box-shadow: 0px 8px 32px rgba(0, 0, 0, 0.1); 
+  }
+}

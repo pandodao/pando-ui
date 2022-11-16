@@ -21,4 +21,4 @@ const Template: StoryFn<typeof FDivider> = (args) => ({
 });
 
 export const Default = Template.bind({});
-Default.args = { size: 8, color: "greyscale_6" };
+Default.args = { thickness: 8, color: "greyscale_6" };

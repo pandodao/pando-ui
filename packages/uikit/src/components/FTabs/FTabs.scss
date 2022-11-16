@@ -1,0 +1,26 @@
+.f-tabs.v-tabs {
+  &.f-tabs--narrow {
+    .v-slide-group__content {
+      gap: 16px;
+
+      .v-tab {
+        padding: 0;
+        min-width: auto;
+      }
+    }
+  }
+
+  .v-tab {
+    font-weight: 500;
+    font-size: 1rem;
+    line-height: 1.1875rem;
+
+    .v-btn__overlay {
+      display: none;
+    }
+  }
+
+  .v-tab__slider {
+    border-radius: 2px;
+  }
+}

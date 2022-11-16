@@ -34,6 +34,11 @@ $body-font-family: Inter;
   // overlay
   $overlay-opacity: 10%,
 
+  // switch
+  $switch-inset-track-height: 24px, 
+  $switch-thumb-height: 16px,
+  $switch-thumb-width: 16px,
+
   // typography
   $typography: (
     'h6': (

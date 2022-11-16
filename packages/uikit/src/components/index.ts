@@ -19,3 +19,6 @@ export * from "./FQRCode";
 export * from "./FSearchInput";
 export * from "./FSegmentControl";
 export * from "./FSlider";
+export * from "./FSwitch";
+export * from "./FTabs";
+export * from "./FToast";

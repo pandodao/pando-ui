@@ -18,6 +18,7 @@ import {
   FIconAlert4P,
   FIconLink4PBold,
   FIconHorn4P,
+  FIconArrowRight4P,
 } from "@foxone/icons";
 
 export const icons = {
@@ -40,4 +41,5 @@ export const icons = {
   alert: FIconAlert4P,
   link_bold: FIconLink4PBold,
   horn: FIconHorn4P,
+  arrow_right: FIconArrowRight4P,
 };
