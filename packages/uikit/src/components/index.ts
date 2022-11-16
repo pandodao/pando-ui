@@ -28,5 +28,4 @@ export * from "./FSwitch";
 export * from "./FTabs";
 export * from "./FTextarea";
 export * from "./FToast";
-export * from "./FTextarea";
 export * from "./FTooltip";
