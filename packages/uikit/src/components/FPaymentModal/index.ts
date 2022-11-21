@@ -1,0 +1,1 @@
+export { FPaymentModal } from "./FPaymentModal"

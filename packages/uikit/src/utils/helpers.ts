@@ -29,3 +29,17 @@ export function filterAssets(assets: Asset[], filter: string) {
     return name.startsWith(filter) || symbol.includes(filter);
   });
 }
+
+export function getBrowser() {
+  const ua = navigator.userAgent.toLowerCase();
+
+  if (ua.indexOf("firefox") > -1) {
+    return "firefox";
+  }
+
+  if (ua.indexOf("chrome") > -1) {
+    return "chrome";
+  }
+
+  return "others";
+}

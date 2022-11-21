@@ -22,7 +22,7 @@ const Template: StoryFn<typeof FLoading> = (args) => ({
   },
   template: `
     <div>
-      <FLoading v-model="loading" v-bind="args" />  
+      <FLoading v-model="loading" v-bind="args" />
 
       <FButton color="primary" @click="show">Show</FButton>
     </div>

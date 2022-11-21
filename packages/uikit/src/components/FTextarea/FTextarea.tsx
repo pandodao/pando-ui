@@ -4,7 +4,7 @@ import { VTextarea } from "vuetify/components";
 import "./FTextarea.scss";
 
 export const FTextarea = defineComponent({
-  name: "FTextArea",
+  name: "FTextarea",
 
   setup() {
     const presets = { color: "primary" };

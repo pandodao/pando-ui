@@ -1,0 +1,1 @@
+export { FPayingModal } from "./FPayingModal"

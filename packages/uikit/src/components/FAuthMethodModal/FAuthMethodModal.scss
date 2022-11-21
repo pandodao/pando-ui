@@ -1,0 +1,182 @@
+.f-auth-methods__wrapper {
+  position: relative;
+}
+
+.f-auth-methods {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+
+  &--mobile {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  &__title {
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 22px;
+    padding-top: 32px;
+    padding-bottom: 16px;
+  }
+
+  &__subtitle {
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 17px;
+  }
+}
+
+.f-auth-method {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  text-align: center;
+  border-radius: 8px;
+  padding: 20px;
+
+  &__icon {
+    transition: all 0.3s ease-in;
+    height: 68px;
+    width: 88px;
+    background-color: rgb(var(--v-greyscale_1));
+    border-radius: 44px;
+  }
+
+  &__label {
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 19px;
+    color: rgb(var(--v-theme-greyscale_1));
+  }
+}
+
+.f-auth-hint {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 15px;
+  color: rgb(var(--v-theme-greyscale_3));
+  display: flex;
+  a {
+    text-decoration-line: none;
+    color: rgb(var(--v-theme-greyscale_1));
+  }
+}
+
+.f-auth-step2 {
+  display: flex;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  overflow: hidden;
+
+  &--small {
+    display: block;
+
+    .f-auth-step2__right {
+      padding-top: 40px !important;
+    }
+  }
+
+  &__left {
+    min-width: 314px;
+    min-height: 324px;
+    background-position: center center;
+    background-size: cover;
+    box-shadow: 0px 0px 32px rgba(181, 183, 189, 0.08);
+    z-index: -1;
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  &__right {
+    min-width: 314px;
+    padding: 40px;
+    padding-top: 60px;
+  }
+
+  &__qr-wrapper {
+    position: relative;
+  }
+
+  &__qr-code {
+    margin-top: 112px;
+    padding: 11px;
+    border: none !important;
+  }
+
+  &__qr-logo {
+    margin: auto;
+    z-index: 999;
+    position: absolute;
+    top: 188px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 8px;
+    background-color: #ffffff;
+  }
+
+  &__loading {
+    position: absolute;
+    top: 188px;
+  }
+
+  &__title {
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 21px;
+  }
+
+  &__subtitle {
+    margin-top: 20px;
+    margin-bottom: 24px;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 150%;
+    color: rgb(var(--v-theme-greyscale_3));
+  }
+
+  &__link {
+    display: inline-flex;
+    align-items: center;
+    column-gap: 4px;
+    text-decoration: none;
+    color: rgb(var(--v-theme-link)) !important;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 150%;
+  }
+
+  &__actions {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  &__back {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    z-index: 11;
+    display: flex;
+  }
+}
+
+.f-auth-mixin .f-auth-step2__left {
+  background-image: url("https://static.fox.one/image/bg_mixin_auth_2.png");
+}
+
+.f-auth-fennec .f-auth-step2__left {
+  background-image: url("https://static.fox.one/image/bg_fennec_install_2.png");
+}
+
+.f-auth-metamask .f-auth-step2__left {
+  background-image: url("https://static.fox.one/image/bg_metamask_install_2.png");
+}
+
+.f-auth-metamask .f-auth-metamask--mobile {
+  .f-auth-step2__left {
+    background-image: url("https://static.fox.one/image/bg_metamask_install_3.png");
+  }
+}
