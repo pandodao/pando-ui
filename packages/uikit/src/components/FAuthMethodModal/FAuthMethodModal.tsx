@@ -46,15 +46,6 @@ export const FAuthMethodModal = defineComponent({
     },
   },
 
-  // data() {
-  //   return {
-  //     step: 1,
-  //     client: null,
-  //     selelct: "",
-  //     // authorize
-  //   }
-  // },
-
   emits: {
     "update:step": (v) => v,
     "update:client": (v) => v,
@@ -62,17 +53,10 @@ export const FAuthMethodModal = defineComponent({
   },
 
   setup(props, { slots, attrs }) {
-    // const presets = { color: "primary" };
     const { t } = useLocale();
     const step = ref(1);
     const client = ref(null);
     const select = ref("");
-
-    // const meta = computed(() => {
-    //   return {
-    //     isDesktop: mdAndUp.value,
-    //   };
-    // });
 
     const content = () => (
       <div class="f-auth-methods__wrapper">
@@ -81,7 +65,6 @@ export const FAuthMethodModal = defineComponent({
             {...props}
             v-model:step={step.value}
             v-model:select={select.value}
-            // v-model:client={client.value}
           />
         ) : (
           <FAuthStep2
