@@ -12,7 +12,5 @@ module.exports = {
     ],
     "@babel/preset-typescript",
   ],
-  plugins: [
-    ["@vue/babel-plugin-jsx", { optimize: false, enableObjectSlots: false }],
-  ],
+  plugins: [["@vue/babel-plugin-jsx", { optimize: false }]],
 };

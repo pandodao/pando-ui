@@ -6,13 +6,19 @@ export const FFiatDivision = defineComponent({
 
   props: {
     parts: {
-      type: Array as PropType<{ type: string; value: string }[]>,
+      type: [Array, String] as PropType<
+        string | { type: string; value: string }[]
+      >,
       default: () => [],
     },
   },
 
   setup(props) {
-    const html = props.parts?.reduce((str, part) => {
+    if (typeof props.parts === "string") {
+      return () => <div class="f-fiat-division">{props.parts as string}</div>;
+    }
+
+    const html = props.parts.reduce((str, part) => {
       if (part.type === "currency") {
         return `${str}<span class="f-fiat-division__symbol">${part.value}</span>`;
       }

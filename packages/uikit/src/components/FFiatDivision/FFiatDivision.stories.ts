@@ -9,15 +9,18 @@ export default {
 const Template: StoryFn<typeof FFiatDivision> = (args) => ({
   components: { FFiatDivision },
   setup() {
-    const parts = new Intl.NumberFormat("en", {
-      currency: "USD",
-      style: "currency",
-    }).formatToParts(121212);
-
-    return { args, parts };
+    return { args };
   },
-  template: `<FFiatDivision :parts="parts" v-bind="args"></FFiatDivision>`,
+  template: `<FFiatDivision v-bind="args"></FFiatDivision>`,
 });
 
+const parts = new Intl.NumberFormat("en", {
+  currency: "USD",
+  style: "currency",
+}).formatToParts(121212);
+
 export const Default = Template.bind({});
-Default.args = {};
+Default.args = { parts };
+
+export const String = Template.bind({});
+String.args = { parts: "0" };

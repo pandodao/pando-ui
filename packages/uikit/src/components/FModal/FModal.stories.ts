@@ -25,7 +25,11 @@ const Template: StoryFn<typeof FModal> = (args) => ({
         <FButton color="primary" v-bind="props">Active</FButton>
       </template>
 
-      <span>Dialog Content</span>
+      <v-list>
+        <v-list-item title="Item1"></v-list-item>
+        <v-list-item title="Item2"></v-list-item>
+        <v-list-item title="Item3"></v-list-item>
+      </v-list>
     </FModal>
   `,
 });
@@ -34,4 +38,4 @@ export const Default = Template.bind({});
 Default.args = { title: "Title" };
 
 export const Menu = Template.bind({});
-Menu.args = { title: "Title", desktop: "menu" };
+Menu.args = { title: "Title", desktop: "menu", persistent: false };

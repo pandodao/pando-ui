@@ -16,8 +16,9 @@ export const FModal = defineComponent({
   name: "FModal",
 
   props: {
+    hideClose: Boolean,
     title: {
-      type: [String],
+      type: String,
       default: "",
     },
     desktop: {
@@ -38,7 +39,8 @@ export const FModal = defineComponent({
 
       return {
         isMenu,
-        elevation: isMenu ? 2 : 0,
+        hasTitle: !isMenu && (props.title || slots.title),
+        hasClose: props.hideClose || attrs.persistent || isMenu,
         wrapper: isMenu ? VMenu : VDialog,
         presets: smAndDown.value
           ? { transition: "dialog-bottom-transition" }
@@ -56,8 +58,8 @@ export const FModal = defineComponent({
 
     const content = () => {
       return (
-        <VCard elevation={meta.value.elevation} class="f-modal__content">
-          {!meta.value.isMenu && (
+        <VCard class="f-modal__content">
+          {!meta.value.hasClose && (
             <FButton
               icon
               size="24"
@@ -67,7 +69,11 @@ export const FModal = defineComponent({
               <VIcon>$close</VIcon>
             </FButton>
           )}
-          <VCardTitle class="f-modal__title">{props.title}</VCardTitle>
+          {meta.value.hasTitle && (
+            <VCardTitle class="f-modal__title">
+              {props.title || slots.title?.()}
+            </VCardTitle>
+          )}
           <VCardText class="f-modal__text">{slots.default?.()}</VCardText>
         </VCard>
       );
