@@ -3,7 +3,7 @@ import { useDisplay, useLocale } from "vuetify";
 import { isMixin } from "@foxone/utils/mixin";
 import axios from "axios";
 
-import type { PaymentOptions } from "../../types";
+import type { PaymentOptions } from "../../plugins/payment";
 
 import { FModal } from "../FModal";
 import { FPayingModal } from "../FPayingModal";
@@ -16,7 +16,11 @@ import "./FPaymentModal.scss";
 export const FPaymentModal = defineComponent({
   name: "FPaymentModal",
 
-  setup(props) {
+  emits: {
+    destroy: () => true,
+  },
+
+  setup(_, { expose }) {
     const dialog = ref(false);
     const asset = ref<any>(null);
     const checking = ref(false);
@@ -52,7 +56,7 @@ export const FPaymentModal = defineComponent({
           reject(new Error("Cancelled"));
         }
 
-        timer.value && clearTimeout(timer.value);
+        timer.value && clearTimeout(timer.valupropse);
         checking.value = false;
         channel.value = "";
         scheme.value = "";
@@ -131,9 +135,11 @@ export const FPaymentModal = defineComponent({
       }
     };
 
+    expose({ show });
+
     return () => (
       <div>
-        <FModal modelValue={dialog.value} maxWidth="780">
+        <FModal modelValue={dialog.value} maxWidth="780" onClose={cancel}>
           <div
             class={`f-payment-modal__content ${
               !mdAndUp.value && "f-payment-modal__content--mobile"

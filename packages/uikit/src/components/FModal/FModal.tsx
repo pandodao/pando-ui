@@ -29,6 +29,7 @@ export const FModal = defineComponent({
 
   emits: {
     "update:modelValue": (value: boolean) => true,
+    close: (v) => v,
   },
 
   setup(props, { slots, emit, attrs }) {
@@ -64,7 +65,10 @@ export const FModal = defineComponent({
               icon
               size="24"
               class="f-modal__close"
-              onClick={() => emit("update:modelValue", false)}
+              onClick={(e) => {
+                emit("close", e);
+                emit("update:modelValue", false);
+              }}
             >
               <VIcon>$close</VIcon>
             </FButton>

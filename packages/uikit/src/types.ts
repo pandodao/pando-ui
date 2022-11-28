@@ -7,17 +7,3 @@ export interface Asset {
   chainLogo?: string;
   label?: string;
 }
-
-export interface PaymentOptions {
-  assetId: string;
-  amount: string;
-  scheme: string;
-  channel: "mixin" | "fennec" | "metamask" | "walletconnect";
-  hideCheckingModal?: boolean;
-  actions: {
-    mixin?: () => void;
-    fennec?: () => Promise<boolean>;
-    mvm?: () => Promise<boolean>;
-  };
-  checker: () => Promise<boolean>;
-}

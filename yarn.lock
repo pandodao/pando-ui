@@ -1556,9 +1556,9 @@
     yargs "^16.2.0"
 
 "@foxone/utils@^0.2.26":
-  version "0.2.22"
-  resolved "https://registry.npmmirror.com/@foxone/utils/-/utils-0.2.22.tgz#c9089aab73a87e35476f59c8e42341587eede5c1"
-  integrity sha512-JmW+v7VKyqXuemci7S5cUvAKWg+vKz9LTpKA1pr7Ja9HRZmhWvyJt723jXZqB77OcKPwGNxd0ET3LjdcFbOZiA==
+  version "0.2.27"
+  resolved "https://registry.npmmirror.com/@foxone/utils/-/utils-0.2.27.tgz#dcd5dbf1c01f3f27508f9736ce1ab854ca469d4b"
+  integrity sha512-R6EoJDaGHxl53GFraksmt9+G7bQIwRUxAEMOwOwMb2TtudR1STk7ivDSppqav3z/QiS3O3bZKnEdIuYwnjaSfw==
   dependencies:
     axios "^0.21.1"
     bignumber.js "^9.0.1"
@@ -6155,6 +6155,11 @@ crypto-browserify@^3.11.0:
     public-encrypt "^4.0.0"
     randombytes "^2.0.0"
     randomfill "^1.0.3"
+
+crypto-js@^4.1.1:
+  version "4.1.1"
+  resolved "https://registry.npmmirror.com/crypto-js/-/crypto-js-4.1.1.tgz#9e485bcf03521041bd85844786b83fb7619736cf"
+  integrity sha512-o2JlM7ydqd3Qk9CA0L4NL6mTzU2sdx96a+oOfPu8Mkl/PK51vSyoi8/rQ8NknZtk44vq15lmhAj9CIAGwgeWKw==
 
 crypto-random-string@^2.0.0:
   version "2.0.0"
@@ -14100,6 +14105,11 @@ rechoir@^0.6.2:
   dependencies:
     resolve "^1.1.6"
 
+reconnecting-websocket@^4.4.0:
+  version "4.4.0"
+  resolved "https://registry.npmmirror.com/reconnecting-websocket/-/reconnecting-websocket-4.4.0.tgz#3b0e5b96ef119e78a03135865b8bb0af1b948783"
+  integrity sha512-D2E33ceRPga0NvTDhJmphEgJ7FUYF0v4lr1ki0csq06OdlxKfugGzN0dSkxM/NfqCxYELK4KcaTOUOjTV6Dcng==
+
 redent@^1.0.0:
   version "1.0.0"
   resolved "https://registry.npmmirror.com/redent/-/redent-1.0.0.tgz#cf916ab1fd5f1f16dfb20822dd6ec7f730c2afde"
@@ -16270,11 +16280,6 @@ typescript@^4.2.4, typescript@^4.8.4:
   version "4.8.4"
   resolved "https://registry.npmmirror.com/typescript/-/typescript-4.8.4.tgz#c464abca159669597be5f96b8943500b238e60e6"
   integrity sha512-QCh+85mCy+h0IGff8r5XWzOVSbBO+KfeYrMQh7NJ58QujwcE22u+NUSmUxqF+un70P9GXKxa2HCNiTTMJknyjQ==
-
-typescript@^4.9.3:
-  version "4.9.3"
-  resolved "https://registry.npmjs.org/typescript/-/typescript-4.9.3.tgz#3aea307c1746b8c384435d8ac36b8a2e580d85db"
-  integrity sha512-CIfGzTelbKNEnLpLdGFgdyKhG23CKdKgQPOBc+OUNrkJ2vr+KSzsSV5kq5iWhEQbok+quxgGzrAtGWCyU7tHnA==
 
 uglify-js@^3.1.4:
   version "3.17.4"

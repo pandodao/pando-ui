@@ -111,7 +111,6 @@ export default function authorize(
 
     // open oauth modal or show qrcode
     if (isMixin()) {
-      console.log("asfdasfas");
       if (opened) return false;
 
       window.location.href = "mixin://codes/" + data.code_id;

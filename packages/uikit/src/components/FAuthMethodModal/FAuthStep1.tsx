@@ -7,13 +7,6 @@ import "./FAuthMethodModal.scss";
 export const FAuthStep1 = defineComponent({
   name: "FAuthStep1",
 
-  // props: {
-    // title: {
-    //   type: String,
-    //   default: "",
-    // },
-  // },
-
   setup(_, { attrs, emit }) {
     const { t } = useLocale();
     const { mdAndUp } = useDisplay();
@@ -57,24 +50,29 @@ export const FAuthStep1 = defineComponent({
       },
     ];
 
-    const getWallets = () => attrs.wallets
-      .map((name: string) => walletList.find((x) => x.value === name))
-      .filter((v: string) => !!v);
+    const getWallets = () =>
+      attrs.wallets
+        .map((name: string) => walletList.find((x) => x.value === name))
+        .filter((v: string) => !!v);
 
     const handleAuth = (item) => {
       if (!item.needNextStep) {
         emit("close");
         emit("auth", { type: item.value });
       } else {
-        emit("update:select", item.value)
-        emit("update:step", 2)
+        emit("update:select", item.value);
+        emit("update:step", 2);
       }
-    }
+    };
 
     return () => (
       <div class="f-auth-step1">
         <div class="pa-6 pt-2">
-          <div class={`f-auth-methods ${!mdAndUp.value && "f-auth-methods--mobile"}`}>
+          <div
+            class={`f-auth-methods ${
+              !mdAndUp.value && "f-auth-methods--mobile"
+            }`}
+          >
             {getWallets().map((item) => (
               <div
                 key={item.value}

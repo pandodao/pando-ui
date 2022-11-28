@@ -28,29 +28,28 @@ export const FAuthMixinMessenger = defineComponent({
     };
 
     const handleOpenInApp = () => {
-      console.log("open in app");
       window.location.href = qrUrl.value;
     };
 
-    // onMounted(() => {
-    //   client.value = authorize(
-    //     { clientId: attrs.clientId, scope: attrs.scope, pkce: attrs.pkce },
-    //     attrs.isFirebox,
-    //     attrs.hosts,
-    //     {
-    //       onShowUrl: (url) => (qrUrl.value = url),
-    //       onError: (error) => emit("error", error),
-    //       onSuccess: (data) => {
-    //         emit("close");
-    //         if (attrs.pkce) {
-    //           emit("auth", { type: "mixin", token: data });
-    //         } else {
-    //           emit("auth", { type: "mixin", code: data });
-    //         }
-    //       },
-    //     }
-    //   );
-    // });
+    onMounted(() => {
+      client.value = authorize(
+        { clientId: attrs.clientId, scope: attrs.scope, pkce: attrs.pkce },
+        attrs.isFirebox,
+        attrs.hosts,
+        {
+          onShowUrl: (url) => (qrUrl.value = url),
+          onError: (error) => emit("error", error),
+          onSuccess: (data) => {
+            emit("close");
+            if (attrs.pkce) {
+              emit("auth", { type: "mixin", token: data });
+            } else {
+              emit("auth", { type: "mixin", code: data });
+            }
+          },
+        }
+      );
+    });
 
     return () => (
       <div
