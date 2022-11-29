@@ -117,7 +117,7 @@ export const FMessageModal = defineComponent({
     const content = () => (
       <VCard class="f-msg-modal__body" variant="flat">
         {props.title && (
-          <VCardTitle class="pt-0 pb-6">
+          <VCardTitle class="pt-8 pb-6">
             {props.type === "warning" && (
               <VIcon class="mr-2" color="error">
                 $warning
@@ -132,7 +132,7 @@ export const FMessageModal = defineComponent({
     );
 
     return () => (
-      <FModal class="f-msg-modal" closable={false} modelValue={dialog.value}>
+      <FModal class="f-msg-modal" hideClose modelValue={dialog.value}>
         {{
           default: () => content(),
         }}
