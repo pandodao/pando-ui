@@ -19,4 +19,8 @@ declare module "@vue/runtime-core" {
   export interface ComponentCustomProperties {
     $uikit: UIKit;
   }
+
+  export interface GlobalComponents {
+    // @generate-components
+  }
 }

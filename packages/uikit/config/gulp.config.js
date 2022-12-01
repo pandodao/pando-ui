@@ -6,6 +6,7 @@ const babel = require("gulp-babel");
 const sass = require("gulp-sass")(require("sass"));
 const tildeImporter = require("node-sass-tilde-importer");
 const autoprefixer = require("gulp-autoprefixer");
+const { readFileSync, writeFileSync } = require("fs");
 
 const srcDir = path.resolve(__dirname, "../src");
 const destDir = path.resolve(__dirname, "../lib");

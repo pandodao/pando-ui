@@ -1,0 +1,45 @@
+name: Doc
+
+on:
+  push:
+    branches:
+      - main
+    tags:
+      - *
+    
+jobs:
+  docs:
+    name: Docs
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v2
+        with:
+          token: ${{ secrets.GH_PAT }}
+      
+      - uses: actions/cache@v2
+        with:
+          path: |
+            .yarn/cache
+            node_modules
+            **/node_modules
+          key: ${{ runner.os }}-${{ hashFiles('./yarn.lock') }}
+      
+      - name: Setup Node.js 16
+        uses: actions/setup-node@v2
+        with:
+          node-version: "16.17.1"
+          cache: "yarn"
+      
+      - name: Install Dependencies
+        run: yarn --immutable
+      
+      - name: Build Docs
+        run: yarn docs
+
+      - name: Deploy with gh-pages
+        run: |
+          git remote set-url origin https://git:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
+          npx gh-pages --dist packages/uikit/storybook-static --dest . -u "github-actions-bot <support+actions@github.com>"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -16,6 +16,7 @@ export * from "./FLoading";
 export * from "./FModal";
 export * from "./FPhoneInput";
 export * from "./FQRCode";
+export * from "./FRender";
 export * from "./FSearchInput";
 export * from "./FSegmentControl";
 export * from "./FSlider";

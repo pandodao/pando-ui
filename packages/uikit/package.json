@@ -7,16 +7,20 @@
   "license": "MIT",
   "scripts": {
     "dev": "start-storybook -p 6006",
-    "doc": "build-storybook",
+    "docs": "build-storybook",
     "build": "yarn build:lib && yarn build:types",
     "build:dist": "rm -rf dist && rollup --config config/rollup.config.mjs",
     "build:lib": "rm -rf lib && gulp --gulpfile config/gulp.config.js",
-    "build:types": "tsc --pretty --emitDeclarationOnly -p tsconfig.lib.json"
+    "build:types": "tsc --pretty --emitDeclarationOnly -p tsconfig.lib.json && node config/gendts.js"
   },
   "dependencies": {
     "@foxone/utils": "^0.2.26",
     "qrcode": "^1.5.1",
     "tsconfig": "^7.0.0"
+  },
+  "peerDependencies": {
+    "vue": "^3.2.40",
+    "vuetify": "^3.0.0-beta.13"
   },
   "exports": {
     ".": {
@@ -28,9 +32,19 @@
     "./components/*": "./lib/components/*/index.js",
     "./*": "./*"
   },
-  "peerDependencies": {
-    "vue": "^3.2.40",
-    "vuetify": "^3.0.0-beta.13"
+  "typesVersions": {
+    "*": {
+      "lib/index.js": [
+        "lib/index.d.ts",
+        "lib/shim.d.ts"
+      ],
+      "*": [
+        "*",
+        "lib/*",
+        "lib/*.d.ts",
+        "lib/*/index.d.ts"
+      ]
+    }
   },
   "devDependencies": {
     "@babel/cli": "^7.17.10",
@@ -59,6 +73,7 @@
     "babel-loader": "^8.2.5",
     "cssnano": "^5.1.13",
     "eslint-utils": "^3.0.0",
+    "glob": "^8.0.3",
     "gulp": "^4.0.2",
     "gulp-autoprefixer": "^8.0.0",
     "gulp-babel": "^8.0.0",
@@ -81,6 +96,7 @@
     "rollup-plugin-sourcemaps": "^0.6.3",
     "rollup-plugin-terser": "^7.0.2",
     "sass": "^1.55.0",
+    "typescript": "^4.9.3",
     "vite": "^3.1.7",
     "vite-plugin-vuetify": "^1.0.0",
     "vue": "^3.2.40",

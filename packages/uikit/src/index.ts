@@ -21,3 +21,4 @@ export default function install(app: App, options: UIKitOptions = {}) {
 }
 
 export * from "./presets";
+export * from "./plugins";

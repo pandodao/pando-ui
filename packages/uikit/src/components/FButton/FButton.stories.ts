@@ -50,3 +50,17 @@ export const Sizes: StoryFn<typeof FButton> = () => ({
     </div>
   `,
 });
+
+export const Icons: StoryFn<typeof FButton> = () => ({
+  components: { FButton },
+  template: `
+    <div style="display: flex; gap: 16px;">
+      <FButton icon size="32">
+        <VIcon>$FIconUpRightBold</VIcon>
+      </FButton>
+      <FButton icon disabled size="32">
+        <VIcon>$FIconUpRightBold</VIcon>
+      </FButton>
+    </div>
+  `,
+});

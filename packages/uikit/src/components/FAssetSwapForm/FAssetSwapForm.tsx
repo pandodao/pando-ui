@@ -11,7 +11,11 @@ export const FAssetSwapForm = defineComponent({
     loading: Boolean,
   },
 
-  setup(props, { slots }) {
+  emits: {
+    switch: () => true,
+  },
+
+  setup(props, { slots, emit }) {
     return () => (
       <VForm class="f-asset-swap-form">
         {slots.input?.()}
@@ -22,6 +26,7 @@ export const FAssetSwapForm = defineComponent({
             size="32"
             color="greyscale_5"
             class="f-asset-swap-form__swap"
+            onClick={() => emit("switch")}
           >
             <VIcon>$swap</VIcon>
           </FButton>
