@@ -1,5 +1,11 @@
 # @foxone/uikit
 
+## 4.0.5
+
+### Patch Changes
+
+- 316c3f3: fix component issues
+
 ## 4.0.4
 
 ### Patch Changes
