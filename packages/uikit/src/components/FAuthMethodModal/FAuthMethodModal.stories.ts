@@ -4,6 +4,8 @@ import { ref } from "vue";
 import { Meta, StoryFn } from "@storybook/vue3";
 import { useAuth } from "../../plugins/auth";
 
+import { usePassport } from "../../../../passport/src/index"
+
 export default {
   name: "FAuthMethodModal",
   component: { FAuthMethodModal },
@@ -59,3 +61,27 @@ const Template2: StoryFn<typeof FAuthMethodModal> = (args) => ({
 
 export const Functional = Template2.bind({});
 Functional.args = {};
+
+const Template3: StoryFn = () => ({
+  setup() {
+    const passport = usePassport();
+
+    const openAuth = async () => {
+      try {
+        const { channel, token } = await passport.auth();
+        alert(channel + token)
+      } catch (error: any) {
+        alert(error);
+      }
+    }
+
+    return { openAuth }
+  },
+
+  template: `
+    <FButton color="primary" @click="openAuth">Auth</FButton>
+  `
+})
+
+export const Passport = Template3.bind({});
+Passport.args = {};

@@ -17,6 +17,7 @@ export interface AuthMethodGlobalOptions {
 export interface AuthMethodOptions {
   checkFennec?: () => boolean;
   checkMetamask?: () => boolean;
+  checkOnekey?: () => boolean;
   handleAuth?: (...args: any) => void;
   handleError?: (...args: any) => void;
 }
@@ -25,7 +26,7 @@ export type Keys = "show";
 
 export type AuthMethods = Record<
   Keys,
-  (options?: AuthMethodGlobalOptions) => void
+  (options?: AuthMethodGlobalOptions | AuthMethodOptions) => void
 >;
 
 export function useAuth() {

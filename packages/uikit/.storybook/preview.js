@@ -10,6 +10,7 @@ import "vuetify/styles";
 
 import { usePresets } from "../src/presets";
 import UIKit from "../src/index";
+import Passport from "../../passport/src/index";
 
 export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },
@@ -48,6 +49,14 @@ const vuetify = createVuetify(options);
 
 app.use(vuetify);
 app.use(UIKit);
+app.use(Passport, {
+  origin: "",
+  config: { infuraId: "a018fa2f735a435f9a7917f0d429c61a" },
+  JWTPayload: { from: "pando-lake" },
+  onDisconnect: () => {
+    app.$utils.account.logout({ $store: app.store });
+  },
+});
 
 export const decorators = [
   (story, context) => {

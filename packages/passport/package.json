@@ -1,0 +1,20 @@
+{
+  "name": "@foxone/mixin-passport",
+  "version": "1.0.0",
+  "description": "Vue plugin of multi auth and payment helps for Mixin Network",
+  "main": "index.ts",
+  "bugs": "https://github.com/fox-one/fe-tools-mixin/issues",
+  "homepage": "https://github.com/fox-one/uikit-next",
+  "author": "Fox.ONE",
+  "license": "GPL 3.0",
+  "types": "index.d.ts",
+  "dependencies": {
+    "@foxone/fennec-dapp": "^0.5.8",
+    "@foxone/mixin-api": "0.1.26",
+    "@foxone/mvm": "0.1.26",
+    "@foxone/utils": "^0.2.27"
+  },
+  "devDependencies": {
+    "vue": "^3.2.40"
+  }
+}
