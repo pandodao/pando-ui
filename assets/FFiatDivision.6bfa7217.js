@@ -1,2 +1,0 @@
-import{A as a,b as s,a as r}from"./vue.esm-bundler.03d0f9c2.js";const u=a({name:"FFiatDivision",props:{parts:{type:[Array,String],default:()=>[]}},setup(i){const n=s(()=>typeof i.parts=="string"?i.parts:i.parts.reduce((e,t)=>t.type==="currency"?`${e}<span class="f-fiat-division__symbol">${t.value}</span>`:`${e}${t.value}`,""));return()=>r("div",{innerHTML:n.value,class:"f-fiat-division"},null)}});export{u as F};
-//# sourceMappingURL=FFiatDivision.6bfa7217.js.map

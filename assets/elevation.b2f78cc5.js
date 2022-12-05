@@ -1,0 +1,2 @@
+var o=Object.defineProperty;var n=(e,t)=>o(e,"name",{value:t,configurable:!0});import{b as r,C as i}from"./vue.esm-bundler.0d7c29ee.js";import{a as l}from"./useRender.9e1e1323.js";const m=l({elevation:{type:[Number,String],validator(e){const t=parseInt(e);return!isNaN(t)&&t>=0&&t<=24}}},"elevation");function p(e){return{elevationClasses:r(()=>{const s=i(e)?e.value:e.elevation,a=[];return s==null||a.push(`elevation-${s}`),a})}}n(p,"useElevation");export{m,p as u};
+//# sourceMappingURL=elevation.b2f78cc5.js.map
