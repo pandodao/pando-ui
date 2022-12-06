@@ -1,4 +1,4 @@
-const { dest, series, src } = require("gulp");
+const { dest, series, src, task } = require("gulp");
 const path = require("path");
 const ts = require("gulp-typescript");
 const replace = require("gulp-replace-path");
@@ -6,7 +6,7 @@ const babel = require("gulp-babel");
 const sass = require("gulp-sass")(require("sass"));
 const tildeImporter = require("node-sass-tilde-importer");
 const autoprefixer = require("gulp-autoprefixer");
-const { readFileSync, writeFileSync } = require("fs");
+const { readFileSync, writeFileSync, watch } = require("fs");
 
 const srcDir = path.resolve(__dirname, "../src");
 const destDir = path.resolve(__dirname, "../lib");

@@ -20,13 +20,24 @@ const Template: StoryFn<typeof FToast> = (args) => ({
   template: `
     <div>
       <FButton color="primary" @click="open">Open</FButton>
-      <FToast v-model="toast" v-bind="args">This is a toast</FToast>
+      <FToast v-model="toast" v-bind="args">{{args.message}}</FToast>
     </div>
   `,
 });
 
 export const Default = Template.bind({});
-Default.args = { type: "success", action: { text: "Detail" } };
+Default.args = {
+  type: "success",
+  message: "This is toast",
+  action: { text: "Detail" },
+};
+
+export const LongText = Template.bind({});
+LongText.args = {
+  ...Default.args,
+  message:
+    "This is a loooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooog toast",
+};
 
 const Template2: StoryFn<typeof FToast> = (args) => ({
   setup() {

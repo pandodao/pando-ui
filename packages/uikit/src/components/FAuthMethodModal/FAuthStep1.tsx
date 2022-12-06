@@ -1,13 +1,41 @@
-import { defineComponent, computed } from "vue";
+import { defineComponent, computed, PropType } from "vue";
 import { VImg, VIcon } from "vuetify/components";
 import { useLocale, useTheme, useDisplay } from "vuetify";
 
-import "./FAuthMethodModal.scss";
+import type { AuthData, AuthMethod, AuthMethodState } from "../../types";
 
 export const FAuthStep1 = defineComponent({
   name: "FAuthStep1",
 
-  setup(_, { attrs, emit }) {
+  inheritAttrs: false,
+
+  props: {
+    step: {
+      type: Number,
+      default: 1,
+    },
+    method: {
+      type: String as PropType<AuthMethod>,
+      default: "",
+    },
+    authMethods: {
+      type: Array as PropType<AuthMethod[]>,
+      default: () => ["mixin"],
+    },
+    authMethodState: {
+      type: Object as PropType<AuthMethodState>,
+      default: () => ({}),
+    },
+  },
+
+  emits: {
+    close: () => true,
+    auth: (v: AuthData) => true,
+    "update:method": (v: AuthMethod) => true,
+    "update:step": (v: number) => true,
+  },
+
+  setup(props, { emit }) {
     const { t } = useLocale();
     const { mdAndUp } = useDisplay();
     const theme = useTheme();
@@ -17,9 +45,9 @@ export const FAuthStep1 = defineComponent({
       return theme.name.value === "dark";
     });
 
-    const walletList = [
+    const authMethodsMeta = [
       {
-        needNextStep: !attrs.metamask,
+        needNextStep: !props.authMethodState["metamask"],
         value: "metamask",
         title: "MetaMask",
         bg: isDark.value ? grey : "#FFEEDD",
@@ -33,7 +61,7 @@ export const FAuthStep1 = defineComponent({
         logo: "https://static.fox.one/image/logo_mixin@40x40.png",
       },
       {
-        needNextStep: !attrs.fennec,
+        needNextStep: !props.authMethodState["fennec"],
         value: "fennec",
         title: "Fennec",
         bg: isDark.value ? grey : "#E6E7FD",
@@ -48,19 +76,26 @@ export const FAuthStep1 = defineComponent({
           ? "https://static.fox.one/image/logo_walletconnect_dark@40x40.png"
           : "https://static.fox.one/image/logo_walletconnect@40x40.png",
       },
+      {
+        needNextStep: !props.authMethodState["onekey"],
+        value: "onekey",
+        title: "OneKey",
+        bg: isDark.value ? grey : "#E9FEE6",
+        logo: "https://static.fox.one/image/logo_onekey@40x40.png",
+      },
     ];
 
-    const getWallets = () =>
-      attrs.wallets
-        .map((name: string) => walletList.find((x) => x.value === name))
-        .filter((v: string) => !!v);
+    const getAuthMethodsMeta = () =>
+      props.authMethods
+        .map((name: string) => authMethodsMeta.find((x) => x.value === name))
+        .filter((v) => !!v);
 
     const handleAuth = (item) => {
       if (!item.needNextStep) {
         emit("close");
         emit("auth", { type: item.value });
       } else {
-        emit("update:select", item.value);
+        emit("update:method", item.value);
         emit("update:step", 2);
       }
     };
@@ -69,22 +104,23 @@ export const FAuthStep1 = defineComponent({
       <div class="f-auth-step1">
         <div class="pa-6 pt-2">
           <div
-            class={`f-auth-methods ${
-              !mdAndUp.value && "f-auth-methods--mobile"
-            }`}
+            class={[
+              "f-auth-methods",
+              { "f-auth-methods--mobile": !mdAndUp.value },
+            ]}
           >
-            {getWallets().map((item) => (
+            {getAuthMethodsMeta().map((item) => (
               <div
-                key={item.value}
-                style={{ backgroundColor: item.bg }}
+                key={item!.value}
+                style={{ backgroundColor: item!.bg }}
                 class="f-auth-method"
                 onClick={() => handleAuth(item)}
               >
                 <span class="mb-3">
-                  <VImg width="40" height="40" src={item.logo} />
+                  <VImg width="40" height="40" src={item!.logo} />
                 </span>
 
-                <span class="f-auth-method__label">{item.title}</span>
+                <span class="f-auth-method__label">{item!.title}</span>
               </div>
             ))}
           </div>

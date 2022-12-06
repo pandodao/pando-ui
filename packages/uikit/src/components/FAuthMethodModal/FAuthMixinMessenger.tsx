@@ -1,28 +1,55 @@
-import { defineComponent, onMounted, ref } from "vue";
+import { defineComponent, onMounted, ref, PropType } from "vue";
 import { useDisplay, useLocale } from "vuetify";
-import { getBrowser } from "../../utils";
 import authorize from "../../utils/authorize";
 
 import { VImg, VProgressCircular } from "vuetify/components";
 import { FButton } from "../FButton";
 import { FQRCode } from "../FQRCode";
 
-import "./FAuthMethodModal.scss";
+import type { AuthData } from "../../types";
 
 export const FAuthMixinMessenger = defineComponent({
   name: "FAuthMixinMessenger",
 
-  setup(_, { attrs, emit }) {
+  inheritAttrs: false,
+
+  props: {
+    clientId: {
+      type: String,
+      default: "",
+    },
+    scope: {
+      type: String,
+      default: "",
+    },
+    pkce: {
+      type: Boolean,
+      default: false,
+    },
+    isFiresbox: {
+      type: Boolean,
+      default: false,
+    },
+    hosts: {
+      type: Array as PropType<Array<string>>,
+      default: () => [],
+    },
+  },
+
+  emits: {
+    auth: (v: AuthData) => true,
+    error: (v) => true,
+    close: () => true,
+  },
+
+  setup(props, { attrs, emit }) {
     const { smAndDown } = useDisplay();
     const { t } = useLocale();
     const qrUrl = ref("");
-    const client = ref(null);
+    const client = ref<any>(null);
 
     const handleInstall = () => {
-      const url =
-        getBrowser() === "firefox"
-          ? "https://addons.mozilla.org/firefox/addon/fox_fennec"
-          : "https://chrome.google.com/webstore/detail/fennec/eincngenkhohbbfpkohipekcmnkfamjp";
+      const url = "https://mixin.one/mm";
 
       window.open(url);
     };
@@ -33,15 +60,18 @@ export const FAuthMixinMessenger = defineComponent({
 
     onMounted(() => {
       client.value = authorize(
-        { clientId: attrs.clientId, scope: attrs.scope, pkce: attrs.pkce },
-        attrs.isFirebox,
-        attrs.hosts,
+        { clientId: props.clientId, scope: props.scope, pkce: props.pkce },
+        props.isFiresbox,
+        props.hosts,
         {
           onShowUrl: (url) => (qrUrl.value = url),
           onError: (error) => emit("error", error),
           onSuccess: (data) => {
             emit("close");
-            if (attrs.pkce) {
+
+            client.value?.disconnect();
+
+            if (props.pkce) {
               emit("auth", { type: "mixin", token: data });
             } else {
               emit("auth", { type: "mixin", code: data });
@@ -60,7 +90,11 @@ export const FAuthMixinMessenger = defineComponent({
         <div class="f-auth-step2__left">
           {qrUrl.value ? (
             <div class="f-auth-step2__qr-wrapper">
-              <FQRCode class="f-auth-step2__qr-code" text={qrUrl.value} size={182} />
+              <FQRCode
+                class="f-auth-step2__qr-code"
+                text={qrUrl.value}
+                size={182}
+              />
               <VImg
                 class="f-auth-step2__qr-logo"
                 height="32"

@@ -38,7 +38,7 @@ export function useAuth() {
 function install(app: App, globalOptions: AuthMethodGlobalOptions) {
   let instance: VNode | null = null;
 
-  const show = (options: AuthMethodOptions) => {
+  const show = (options: AuthMethodOptions & AuthMethodGlobalOptions) => {
     if (instance) {
       instance.component!.exposed!.close();
     }

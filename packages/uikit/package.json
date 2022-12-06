@@ -9,13 +9,13 @@
     "dev": "start-storybook -p 6006",
     "docs": "build-storybook",
     "build": "yarn build:lib && yarn build:types",
-    "build:dist": "rm -rf dist && rollup --config config/rollup.config.mjs",
     "build:lib": "rm -rf lib && gulp --gulpfile config/gulp.config.js",
-    "build:types": "tsc --pretty --emitDeclarationOnly -p tsconfig.lib.json && node config/gendts.js"
+    "build:types": "foxone-exec-tsc --pretty --emitDeclarationOnly -p tsconfig.lib.json && node config/gendts.js"
   },
   "dependencies": {
     "@foxone/utils": "^0.2.26",
     "crypto-js": "^4.1.1",
+    "jose": "^4.11.1",
     "qrcode": "^1.5.1",
     "reconnecting-websocket": "^4.4.0",
     "tsconfig": "^7.0.0"
@@ -53,6 +53,8 @@
     "@babel/core": "^7.19.3",
     "@babel/preset-env": "^7.18.2",
     "@babel/preset-typescript": "^7.17.12",
+    "@esbuild-plugins/node-globals-polyfill": "^0.1.1",
+    "@esbuild-plugins/node-modules-polyfill": "^0.1.4",
     "@foxone/icons": "*",
     "@foxone/utils": "^0.2.26",
     "@rollup/plugin-alias": "^4.0.0",
@@ -73,6 +75,7 @@
     "@vue/babel-plugin-jsx": "^1.1.1",
     "autoprefixer": "^10.4.12",
     "babel-loader": "^8.2.5",
+    "cross-env": "^7.0.3",
     "cssnano": "^5.1.13",
     "eslint-utils": "^3.0.0",
     "glob": "^8.0.3",
@@ -93,6 +96,7 @@
     "rimraf": "^3.0.2",
     "rollup": "^3.1.0",
     "rollup-plugin-dts": "^4.2.2",
+    "rollup-plugin-polyfill-node": "^0.11.0",
     "rollup-plugin-sass": "^1.2.12",
     "rollup-plugin-scss": "^3.0.0",
     "rollup-plugin-sourcemaps": "^0.6.3",

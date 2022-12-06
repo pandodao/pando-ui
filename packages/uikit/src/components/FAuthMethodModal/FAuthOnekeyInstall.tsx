@@ -4,8 +4,8 @@ import { isDesktop } from "@foxone/utils/helper";
 
 import { FButton } from "../FButton";
 
-export const FAuthMetamaskInstall = defineComponent({
-  name: "FAuthMetamaskInstall",
+export const FAuthOnekeyInstall = defineComponent({
+  name: "FAuthOnekeyInstall",
 
   inheritAttrs: false,
 
@@ -14,7 +14,7 @@ export const FAuthMetamaskInstall = defineComponent({
     const { t } = useLocale();
 
     const handleInstall = () => {
-      const url = "https://metamask.io/download/";
+      const url = "https://onekey.so/download?client=browserExtension";
 
       window.open(url);
     };
@@ -22,42 +22,36 @@ export const FAuthMetamaskInstall = defineComponent({
     return () => (
       <div
         class={[
-          "f-auth-metamask",
+          "f-auth-onekey",
           "f-auth-step2",
           {
             "f-auth-step2--small": smAndDown.value,
-            "f-auth-metamask--mobile": !isDesktop(),
+            "f-auth-onekey--mobile": !isDesktop,
           },
         ]}
       >
         <div class="f-auth-step2__left"></div>
-
         <div class="f-auth-step2__right">
           <div
             class="f-auth-step2__title"
             innerHTML={
               isDesktop()
-                ? t("$vuetify.uikit.metamask_not_installed")
-                : t("$vuetify.uikit.metamask_not_installed_2")
+                ? t("$vuetify.uikit.onekey_not_installed")
+                : t("$vuetify.uikit.onekey_not_installed_2")
             }
           />
           <div
             class="f-auth-step2__subtitle"
             innerHTML={
               isDesktop()
-                ? t("$vuetify.uikit.metamask_introduction")
-                : t("$vuetify.uikit.metamask_introduction_2")
+                ? t("$vuetify.uikit.onekey_introduction")
+                : t("$vuetify.uikit.onekey_introduction_2")
             }
           />
-          <FButton
-            color="greyscale_1"
-            onClick={handleInstall}
-            innerHTML={
-              isDesktop()
-                ? t("$vuetify.uikit.install")
-                : t("$vuetify.uikit.open_in_mixin")
-            }
-          />
+
+          <FButton color="greyscale_1" onClick={handleInstall}>
+            {t("$vuetify.uikit.install")}
+          </FButton>
         </div>
       </div>
     );

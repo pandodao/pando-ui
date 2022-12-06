@@ -23,6 +23,12 @@
     align-items: center;
     cursor: pointer;
   }
+
+  .f-toast__message {
+    display: flex;
+    align-items: center;
+    word-break: break-all;
+  }
 }
 
 .v-theme--dark.f-toast {
@@ -39,9 +45,8 @@
   }
 }
 
-
-.v-theme--light.f-toast  {
+.v-theme--light.f-toast {
   .v-snackbar__wrapper {
-    box-shadow: 0px 8px 32px rgba(0, 0, 0, 0.1); 
+    box-shadow: 0px 8px 32px rgba(0, 0, 0, 0.1);
   }
 }

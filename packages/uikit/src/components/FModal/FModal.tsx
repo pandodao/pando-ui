@@ -63,7 +63,7 @@ export const FModal = defineComponent({
           {!meta.value.hasClose && (
             <FButton
               icon
-              size="24"
+              size="32"
               class="f-modal__close"
               onClick={(e) => {
                 emit("close", e);

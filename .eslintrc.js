@@ -11,7 +11,7 @@ module.exports = {
     parser: "@typescript-eslint/parser",
     project: "./tsconfig.eslint.json",
   },
-  extends: ["plugin:vue/vue3-recommended", "@vue/standard"],
+  extends: ["plugin:vue/vue3-recommended"],
   plugins: ["@typescript-eslint", "react"],
   rules: {
     "vue/require-default-prop": "off",

@@ -8,8 +8,7 @@ import ficons from "./ficons";
 
 import "vuetify/styles";
 
-import { usePresets } from "../src/presets";
-import UIKit from "../src/index";
+import UIKit, { usePresets } from "../src";
 import Passport from "../../passport/src/index";
 
 export const parameters = {
@@ -48,13 +47,17 @@ const options = usePresets({
 const vuetify = createVuetify(options);
 
 app.use(vuetify);
-app.use(UIKit);
+app.use(UIKit, {
+  auth: {
+    clientId: "61504be8-a9da-477d-9e18-448ac3780919",
+    scope: "PROFILE:READ",
+  },
+});
 app.use(Passport, {
   origin: "",
   config: { infuraId: "a018fa2f735a435f9a7917f0d429c61a" },
-  JWTPayload: { from: "pando-lake" },
   onDisconnect: () => {
-    app.$utils.account.logout({ $store: app.store });
+    console.log("disconnect");
   },
 });
 

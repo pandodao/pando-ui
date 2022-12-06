@@ -1,30 +1,28 @@
-import { defineComponent, ref, PropType, watch, ReactiveEffect } from "vue";
+import "./FAuthMethodModal.scss";
+
+import { defineComponent, ref, PropType, watch } from "vue";
 import { useLocale } from "vuetify";
 import { isMixin } from "@foxone/utils/mixin";
 
 import { FModal } from "../FModal";
-
 import { FAuthStep1 } from "./FAuthStep1";
 import { FAuthStep2 } from "./FAuthStep2";
 
-import "./FAuthMethodModal.scss";
 import authorize from "../../utils/authorize";
+
+import { AuthData, AuthMethod, AuthMethodState } from "../../types";
 
 export const FAuthMethodModal = defineComponent({
   name: "FAuthMethodModal",
 
   props: {
-    fennec: {
-      type: Boolean,
-      default: false,
+    authMethods: {
+      type: Array as PropType<AuthMethod[]>,
+      default: () => ["mixin"],
     },
-    metamask: {
-      type: Boolean,
-      default: false,
-    },
-    wallets: {
-      type: Array as PropType<Array<string>>,
-      default: () => ["fennec", "mixin"],
+    authMethodState: {
+      type: Object as PropType<AuthMethodState>,
+      default: () => ({}),
     },
     clientId: {
       type: String,
@@ -49,20 +47,17 @@ export const FAuthMethodModal = defineComponent({
   },
 
   emits: {
-    "update:step": (v) => v,
-    "update:client": (v) => v,
-    "update:select": (v) => v,
-    auth: (v) => v,
-    error: (v) => v,
+    auth: (v: AuthData) => true,
+    error: (v) => true,
     destroy: () => true,
   },
 
-  setup(props, { slots, emit, expose }) {
+  setup(props, { emit, expose }) {
     const { t } = useLocale();
     const dialog = ref(false);
     const step = ref(1);
-    const client = ref(null);
-    const select = ref("");
+    const client = ref<any>(null);
+    const method = ref<AuthMethod | "">("");
 
     const content = () => (
       <div class="f-auth-methods__wrapper">
@@ -70,19 +65,18 @@ export const FAuthMethodModal = defineComponent({
           <FAuthStep1
             {...props}
             v-model:step={step.value}
-            v-model:select={select.value}
+            v-model:method={method.value}
             onClose={close}
-            onAuth={(e) => emit("auth", e)}
+            onAuth={(v: AuthData) => emit("auth", v)}
             onError={(e) => emit("error", e)}
           />
         ) : (
           <FAuthStep2
             {...props}
             v-model:step={step.value}
-            v-model:select={select.value}
-            v-model:client={client.value}
+            v-model:method={method.value}
             onClose={close}
-            onAuth={(e) => emit("auth", e)}
+            onAuth={(v: AuthData) => emit("auth", v)}
             onError={(e) => emit("error", e)}
           />
         )}
@@ -91,12 +85,13 @@ export const FAuthMethodModal = defineComponent({
 
     const close = () => {
       dialog.value = false;
+      client.value?.disconnect();
     };
 
-    const handleDialogChange = (val) => {
-      if (!val) {
+    const handleDialogChange = (value) => {
+      if (!value) {
         step.value = 1;
-        select.value = "";
+        method.value = "";
         dialog.value = false;
       }
     };
@@ -129,9 +124,10 @@ export const FAuthMethodModal = defineComponent({
 
     return () => (
       <FModal
-        title={t("$vuetify.uikit.connect_wallet")}
+        title={step.value === 1 ? t("$vuetify.uikit.connect_wallet") : ""}
         modelValue={dialog.value}
         onClose={close}
+        max-width="628"
       >
         {{
           default: () => content(),

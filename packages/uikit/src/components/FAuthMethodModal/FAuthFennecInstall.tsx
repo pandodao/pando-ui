@@ -4,10 +4,10 @@ import { getBrowser } from "../../utils";
 
 import { FButton } from "../FButton";
 
-import "./FAuthMethodModal.scss";
-
 export const FAuthFennecInstall = defineComponent({
   name: "FAuthFennecInstall",
+
+  inheritAttrs: false,
 
   setup() {
     const { smAndDown } = useDisplay();
@@ -24,9 +24,11 @@ export const FAuthFennecInstall = defineComponent({
 
     return () => (
       <div
-        class={`f-auth-fennec f-auth-step2 ${
-          smAndDown.value && "f-auth-step2--small"
-        }`}
+        class={[
+          "f-auth-fennec",
+          "f-auth-step2",
+          { "f-auth-step2--small": smAndDown.value },
+        ]}
       >
         <div class="f-auth-step2__left"></div>
 

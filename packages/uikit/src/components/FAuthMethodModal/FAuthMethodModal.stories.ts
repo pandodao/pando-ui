@@ -3,8 +3,9 @@ import { FButton } from "../FButton";
 import { ref } from "vue";
 import { Meta, StoryFn } from "@storybook/vue3";
 import { useAuth } from "../../plugins/auth";
+import { useToast } from "../../plugins/toast";
 
-import { usePassport } from "../../../../passport/src/index"
+import { usePassport } from "../../../../passport/src/index";
 
 export default {
   name: "FAuthMethodModal",
@@ -14,40 +15,63 @@ export default {
 const Template: StoryFn<typeof FAuthMethodModal> = (args) => ({
   components: { FAuthMethodModal, FButton },
   setup() {
-    const authModal = ref(null);
+    const authModal = ref();
+    const toast = useToast();
 
     const open = () => {
       authModal.value.show();
     };
 
-    return { args, open, authModal };
+    const handleAuth = (data) => {
+      toast.success({ message: JSON.stringify(data) });
+    };
+
+    const handleError = (error) => {
+      toast.error({ message: error });
+    };
+
+    return { args, open, authModal, handleAuth, handleError };
   },
   template: `
     <FButton color="primary" @click="open">Auth</FButton>
 
-    <FAuthMethodModal ref="authModal" v-bind="args" />
+    <FAuthMethodModal ref="authModal" v-bind="args" @auth="handleAuth" @error="handleError" />
   `,
 });
 
 export const Default = Template.bind({});
 Default.args = {
-  wallets: ["fennec", "mixin", "metamask", "walletconnect"],
+  authMethods: ["fennec", "mixin", "metamask", "walletconnect", "onekey"],
   scope: "PROFILE:READ",
   clientId: "fbd26bc6-3d04-4964-a7fe-a540432b16e2",
+};
+
+export const InstallState = Template.bind({});
+InstallState.args = {
+  ...Default.args,
+  authMethodState: { fennec: true, metamask: true, onekey: true },
+};
+
+export const PKCE = Template.bind({});
+PKCE.args = {
+  ...Default.args,
   pkce: true,
 };
 
 const Template2: StoryFn<typeof FAuthMethodModal> = (args) => ({
   setup() {
     const auth = useAuth();
+    const toast = useToast();
 
     const open = () => {
       auth.show({
-        wallets: ["fennec", "mixin", "metamask", "walletconnect"],
-        scope: "PROFILE:READ",
-        clientId: "fbd26bc6-3d04-4964-a7fe-a540432b16e2",
-        pkce: true,
-        ...args,
+        wallets: ["mixin"],
+        handleAuth: (data) => {
+          toast.success({ message: JSON.stringify(data) });
+        },
+        handleError: (error) => {
+          toast.error(error);
+        },
       });
     };
 
@@ -64,24 +88,24 @@ Functional.args = {};
 
 const Template3: StoryFn = () => ({
   setup() {
+    const toast = useToast();
     const passport = usePassport();
-
     const openAuth = async () => {
       try {
         const { channel, token } = await passport.auth();
-        alert(channel + token)
-      } catch (error: any) {
-        alert(error);
-      }
-    }
 
-    return { openAuth }
+        toast.success({ message: `Auth success: ${channel} - ${token}` });
+      } catch (error: any) {
+        toast.error(error);
+      }
+    };
+    return { openAuth };
   },
 
   template: `
     <FButton color="primary" @click="openAuth">Auth</FButton>
-  `
-})
+  `,
+});
 
 export const Passport = Template3.bind({});
 Passport.args = {};
