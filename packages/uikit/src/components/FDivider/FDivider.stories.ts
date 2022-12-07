@@ -2,7 +2,7 @@ import { FDivider } from "./FDivider";
 import { Meta, StoryFn } from "@storybook/vue3";
 
 export default {
-  name: "FDivider",
+  title: "Components/FDivider",
   component: FDivider,
 } as Meta<typeof FDivider>;
 

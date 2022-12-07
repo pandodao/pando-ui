@@ -5,7 +5,7 @@ import { FButton } from "../FButton";
 import { Meta, StoryFn } from "@storybook/vue3";
 
 export default {
-  name: "FTooltip",
+  title: "Components/FTooltip",
   component: FTooltip,
 } as Meta<typeof FTooltip>;
 

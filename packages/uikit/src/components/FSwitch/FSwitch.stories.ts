@@ -3,7 +3,7 @@ import { FSwitch } from "./FSwitch";
 import { Meta, StoryFn } from "@storybook/vue3";
 
 export default {
-  name: "FSwitch",
+  title: "Components/FSwitch",
   component: FSwitch,
 } as Meta<typeof FSwitch>;
 

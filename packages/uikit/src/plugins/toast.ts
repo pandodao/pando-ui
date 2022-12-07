@@ -21,7 +21,7 @@ export type ToastHandler = {
 
 export type Keys = "show" | "success" | "error" | "warning" | "clear";
 
-export type ToastMethods = Record<Keys, (options?: ToastProps) => void>;
+export type ToastPlugin = Record<Keys, (options?: ToastProps) => void>;
 
 export function useToast() {
   const instance = getCurrentInstance()!;
@@ -74,7 +74,7 @@ function install(app: App, globalOptions: ToastGlobalOptions) {
   });
 
   properties.$uikit = properties.$uikit || {};
-  properties.$uikit.toast = toast as ToastMethods;
+  properties.$uikit.toast = toast as ToastPlugin;
 }
 
 export function Toast() {}

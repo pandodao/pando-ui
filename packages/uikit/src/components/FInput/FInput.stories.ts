@@ -4,7 +4,7 @@ import { Meta, StoryFn } from "@storybook/vue3";
 import { ref } from "vue";
 
 export default {
-  name: "FInput",
+  title: "Components/FInput",
   component: FInput,
 } as Meta<typeof FInput>;
 

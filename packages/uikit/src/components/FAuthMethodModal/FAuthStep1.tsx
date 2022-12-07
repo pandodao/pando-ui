@@ -127,7 +127,7 @@ export const FAuthStep1 = defineComponent({
 
           <div class="f-auth-hint mt-6">
             <VIcon size="16" color="warning" class="mr-2">
-              $FIconHorn4P
+              $horn
             </VIcon>
             <span innerHTML={t("$vuetify.uikit.gas_fee_hint")}></span>
           </div>

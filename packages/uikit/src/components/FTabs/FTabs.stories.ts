@@ -3,7 +3,7 @@ import { VTab } from "vuetify/components";
 import { Meta, StoryFn } from "@storybook/vue3";
 
 export default {
-  name: "FTabs",
+  title: "Components/FTabs",
   component: FTabs,
 } as Meta<typeof FTabs>;
 

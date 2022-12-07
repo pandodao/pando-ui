@@ -1,11 +1,11 @@
 import { createVNode, nextTick, render, getCurrentInstance } from "vue";
-
-import type { App, VNode } from "vue";
-
 import { FAuthMethodModal } from "../components";
 
+import type { App, VNode } from "vue";
+import type { AuthMethod } from "../types";
+
 export interface AuthMethodGlobalOptions {
-  wallets?: string[];
+  authMethods?: AuthMethod[];
   // Mixin oauth params
   clientId?: string;
   scope?: string;
@@ -24,7 +24,7 @@ export interface AuthMethodOptions {
 
 export type Keys = "show";
 
-export type AuthMethods = Record<
+export type AuthPlugin = Record<
   Keys,
   (options?: AuthMethodGlobalOptions | AuthMethodOptions) => void
 >;
@@ -74,7 +74,7 @@ function install(app: App, globalOptions: AuthMethodGlobalOptions) {
   const properties = app.config.globalProperties;
 
   properties.$uikit = properties.$uikit || {};
-  properties.$uikit.auth = auth as AuthMethods;
+  properties.$uikit.auth = auth as AuthPlugin;
 }
 
 export function Auth() {}

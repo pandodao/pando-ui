@@ -5,7 +5,7 @@ import { FButton } from "../FButton";
 import { Meta, StoryFn } from "@storybook/vue3";
 
 export default {
-  name: "FPayingModal",
+  title: "Components/FPayingModal",
   component: FPayingModal,
 } as Meta<typeof FPayingModal>;
 

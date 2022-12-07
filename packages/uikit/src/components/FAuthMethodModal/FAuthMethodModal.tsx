@@ -85,7 +85,6 @@ export const FAuthMethodModal = defineComponent({
 
     const close = () => {
       dialog.value = false;
-      client.value?.disconnect();
     };
 
     const handleDialogChange = (value) => {
@@ -93,6 +92,9 @@ export const FAuthMethodModal = defineComponent({
         step.value = 1;
         method.value = "";
         dialog.value = false;
+        close();
+        emit("destroy");
+        client.value?.disconnect();
       }
     };
 
@@ -124,9 +126,8 @@ export const FAuthMethodModal = defineComponent({
 
     return () => (
       <FModal
+        v-model={dialog.value}
         title={step.value === 1 ? t("$vuetify.uikit.connect_wallet") : ""}
-        modelValue={dialog.value}
-        onClose={close}
         max-width="628"
       >
         {{

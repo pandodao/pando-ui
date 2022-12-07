@@ -7,7 +7,7 @@ import assets from "../../data/assets.json";
 import { convertMixinAsset } from "../../utils";
 
 export default {
-  name: "FAssetSwapForm",
+  title: "Components/FAssetSwapForm",
   component: FAssetSwapForm,
 } as Meta<typeof FAssetSwapForm>;
 

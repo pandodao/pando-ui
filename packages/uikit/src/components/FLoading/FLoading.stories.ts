@@ -4,7 +4,7 @@ import { FButton } from "../FButton";
 import { Meta, StoryFn } from "@storybook/vue3";
 
 export default {
-  name: "FLoading",
+  title: "Components/FLoading",
   component: FLoading,
 } as Meta<typeof FLoading>;
 

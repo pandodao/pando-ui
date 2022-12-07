@@ -3,7 +3,7 @@ import { FRender } from "./FRender";
 import { Meta, StoryFn } from "@storybook/vue3";
 
 export default {
-  name: "FRender",
+  title: "Components/FRender",
   component: FRender,
 } as Meta<typeof FRender>;
 

@@ -2,6 +2,7 @@
   "extends": "@foxone/dev/config/tsconfig.base.json",
   "compilerOptions": {
     "outDir": "lib",
-    "jsx": "preserve"
+    "jsx": "preserve",
+    "skipLibCheck": true
   }
 }

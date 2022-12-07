@@ -3,7 +3,7 @@ import { Meta, StoryFn } from "@storybook/vue3";
 import { ref } from "vue";
 
 export default {
-  name: "FPhoneInput",
+  title: "Components/FPhoneInput",
   component: FPhoneInput,
 } as Meta<typeof FPhoneInput>;
 

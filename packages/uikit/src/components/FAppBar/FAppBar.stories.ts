@@ -3,7 +3,7 @@ import { FButton } from "../FButton";
 import { Meta, StoryFn } from "@storybook/vue3";
 
 export default {
-  name: "FAppBar",
+  title: "Components/FAppBar",
   component: FAppBar,
 } as Meta<typeof FAppBar>;
 
@@ -22,7 +22,7 @@ const Template: StoryFn<typeof FAppBar> = (args) => ({
 });
 
 export const Default = Template.bind({});
-Default.args = { center: true, back: true, immersive: false, elevation: 1 };
+Default.args = { center: true, back: true, immersive: false };
 
 const Template2: StoryFn<typeof FAppBar> = (args) => ({
   components: { FAppBar, FButton },
@@ -60,4 +60,4 @@ const Template2: StoryFn<typeof FAppBar> = (args) => ({
 });
 
 export const Custom = Template2.bind({});
-Custom.args = { center: true, back: false, immersive: false, elevation: 1 };
+Custom.args = { center: true, back: false, immersive: false };

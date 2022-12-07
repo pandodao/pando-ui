@@ -6,18 +6,18 @@ import { Meta, StoryFn } from "@storybook/vue3";
 import { useModal } from "../../plugins/modal";
 
 export default {
-  name: "FMessageModal",
+  title: "Components/FMessageModal",
   component: { FMessageModal },
 } as Meta<typeof FMessageModal>;
 
 const Template: StoryFn<typeof FMessageModal> = (args) => ({
   components: { FMessageModal, FButton },
   setup() {
-    const modal = ref(null);
+    const modal = ref();
 
     const open = () => {
-      modal.value.show()
-    }
+      modal.value.show();
+    };
 
     return { args, modal, open };
   },
@@ -40,13 +40,8 @@ Default.args = {
 
 export const Warning = Template.bind({});
 Warning.args = {
+  ...Default.args,
   type: "warning",
-  title: "Warning",
-  text: "Once the transaction is executed, it is irrevocable, please pay after confirmation carefully",
-  confirm: {
-    props: { color: "error" },
-    text: "confirm",
-  },
 };
 
 const Template2: StoryFn<typeof FMessageModal> = (args) => ({

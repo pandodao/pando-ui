@@ -1,42 +1,64 @@
 import { ref } from "vue";
-
+import { VSelect } from "vuetify/components";
 import { FPaymentModal } from "./FPaymentModal";
 import { FButton } from "../FButton";
 import { Meta, StoryFn } from "@storybook/vue3";
-
-import { usePayment } from "../../plugins/payment";
+import { useToast } from "../../plugins/toast";
 
 export default {
-  name: "FPaymentModal",
+  title: "Components/FPaymentModal",
   component: FPaymentModal,
 } as Meta<typeof FPaymentModal>;
 
 const Template: StoryFn<typeof FPaymentModal> = (args) => ({
-  components: { FPaymentModal, FButton },
+  components: { FPaymentModal, FButton, VSelect },
 
   setup() {
-    const dialog = ref(false);
+    const dialog = ref();
+    const toast = useToast();
+    const channel = ref("mixin");
 
-    const open = () => {
-      dialog.value.show({
-        assetId: "c6d0c728-2624-429b-8e0d-d9d19b6592fa",
-        scheme: "string-scheme",
-        amount: "0.5",
-        channel: "mixin",
-        hideCheckingModal: false,
-        actions: {
-          mixin: () => {},
-        },
-        checker: () => {},
-      });
+    const channels = ["mixin", "metamask", "fenenc"];
+
+    const open = async () => {
+      try {
+        await dialog.value.show({
+          assetId: "965e5c6e-434c-3fa9-b780-c50f43cd955c",
+          scheme: "mixin://mock-payment-scheme",
+          amount: "1",
+          channel: channel.value,
+          hideCheckingModal: false,
+          actions: {
+            fennec: () => {
+              console.log("fennec payment called");
+            },
+            mvm: () => {
+              console.log("mvm payment called");
+            },
+          },
+          checker: () => {
+            return new Promise((resolve, reject) => {
+              setTimeout(() => {
+                resolve(true);
+              }, 5000);
+            });
+          },
+        });
+
+        toast.success({ message: "payment checked" });
+      } catch (error) {
+        toast.error({ message: "" + error });
+      }
     };
 
-    return { args, dialog, open };
+    return { args, channel, channels, dialog, open };
   },
 
   template: `
     <div>
-      <FButton color="primary" @click="open">Payment</FButton>
+      <VSelect v-model="channel" :items="channels" class="mb-8" />
+
+      <FButton color="primary" @click="open">Mock Payment</FButton>
 
       <FPaymentModal ref="dialog" v-bind="args" />
     </div>
@@ -45,33 +67,3 @@ const Template: StoryFn<typeof FPaymentModal> = (args) => ({
 
 export const Default = Template.bind({});
 Default.args = {};
-
-const Template2: StoryFn<typeof FPaymentModal> = (args) => ({
-  setup() {
-    const payment = usePayment();
-
-    const open = () => {
-      payment.show({
-        assetId: "c6d0c728-2624-429b-8e0d-d9d19b6592fa",
-        scheme: "string-scheme",
-        amount: "0.5",
-        channel: "mixin",
-        hideCheckingModal: false,
-        actions: {
-          mixin: () => {},
-        },
-        checker: () => {},
-        ...args,
-      });
-    };
-
-    return { open, args };
-  },
-
-  template: `
-    <FButton color="primary" @click="open">Payment</FButton>
-  `,
-});
-
-export const Functional = Template2.bind({});
-Functional.args = {};

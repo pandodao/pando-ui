@@ -18,7 +18,7 @@ export const FModal = defineComponent({
   props: {
     hideClose: Boolean,
     title: {
-      type: String,
+      type: [String, Object],
       default: "",
     },
     desktop: {
@@ -29,7 +29,6 @@ export const FModal = defineComponent({
 
   emits: {
     "update:modelValue": (value: boolean) => true,
-    close: (v) => v,
   },
 
   setup(props, { slots, emit, attrs }) {
@@ -66,7 +65,6 @@ export const FModal = defineComponent({
               size="32"
               class="f-modal__close"
               onClick={(e) => {
-                emit("close", e);
                 emit("update:modelValue", false);
               }}
             >
