@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="../dist/style.css" rel="stylesheet" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">afd</div>
+
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vuetify@3.0.3/dist/vuetify.min.js"></script> -->
+
+    <script src="./mvm.min.js"></script>
+    <script src="../dist/index.umd.js"></script>
+
+    <script>
+      // const { createApp } = Vue;
+      // const app = createApp();
+
+      // app.use(MixinPassport).mount("#app");
+      MixinPassport.auth({ authMethods: ["mixin", "fennec", "metamask"] });
+    </script>
+  </body>
+</html>

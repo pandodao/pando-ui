@@ -1,6 +1,6 @@
 import { computed, defineComponent, ref, watchEffect } from "vue";
 import { convertToUnit } from "vuetify/lib/util/helpers.mjs";
-import QRCode from "qrcode";
+import QRious from "qrious";
 
 import "./FQRCode.scss";
 
@@ -22,12 +22,10 @@ export const FQRCode = defineComponent({
       };
     });
 
+    const qr = new QRious({ size: props.size });
+
     watchEffect(() => {
-      props.text &&
-        QRCode.toCanvas(canvasRef.value, props.text, {
-          width: props.size,
-          margin: 1,
-        });
+      qr.value = props.text;
     });
 
     return () => (

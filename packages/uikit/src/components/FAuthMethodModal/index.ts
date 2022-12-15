@@ -1,1 +1,1 @@
-export { FAuthMethodModal } from "./FAuthMethodModal"
+export { FAuthMethodModal } from "./FAuthMethodModal";

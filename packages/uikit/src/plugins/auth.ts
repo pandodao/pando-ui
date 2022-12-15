@@ -1,5 +1,5 @@
 import { createVNode, nextTick, render, getCurrentInstance } from "vue";
-import { FAuthMethodModal } from "../components";
+import { FAuthMethodModal } from "../components/FAuthMethodModal";
 
 import type { App, VNode } from "vue";
 import type { AuthMethod } from "../types";

@@ -7,7 +7,7 @@
   "scripts": {
     "generate": "rm -rf src && node scripts/build.js && yarn format",
     "format": "prettier --write src",
-    "build": "babel src --out-dir lib --extensions \".ts\",\".tsx\" && foxone-exec-tsc --pretty --emitDeclarationOnly",
+    "build": "babel src --out-dir lib --extensions \".ts\",\".tsx\" && tsc --pretty --emitDeclarationOnly",
     "dev": "yarn build --watch"
   },
   "files": [

@@ -3,7 +3,7 @@ import { genPaymentUrl } from "@foxone/utils/mixin";
 
 import type { App, VNode } from "vue";
 
-import { FPaymentModal } from "../components";
+import { FPaymentModal } from "../components/FPaymentModal";
 
 export interface PaymentOptions {
   assetId: string;

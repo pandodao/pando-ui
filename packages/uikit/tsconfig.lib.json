@@ -3,7 +3,8 @@
   "compilerOptions": {
     "declaration": true,
     "outDir": "lib",
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "allowJs": true
   },
   "exclude": ["**/*.stories.*"]
 }

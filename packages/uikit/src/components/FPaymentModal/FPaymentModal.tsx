@@ -1,7 +1,6 @@
 import { defineComponent, ref, watch } from "vue";
 import { useDisplay, useLocale } from "vuetify";
 import { isMixin } from "@foxone/utils/mixin";
-import axios from "axios";
 
 import type { PaymentOptions } from "../../plugins/payment";
 
@@ -114,11 +113,11 @@ export const FPaymentModal = defineComponent({
     };
 
     const requestAsset = async () => {
-      const res = await axios.get(
+      const response = await fetch(
         `https://api.mixin.one/network/assets/${assetId.value}`
       );
 
-      asset.value = res.data.data;
+      asset.value = (await response.json()).data;
     };
 
     const polling = async (resolve, reject, checker) => {

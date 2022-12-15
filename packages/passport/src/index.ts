@@ -1,103 +1,84 @@
-import { getCurrentInstance } from "vue";
+import { createVuetify } from "vuetify";
+import { usePresets } from "@foxone/uikit/presets";
+import { Auth } from "@foxone/uikit/plugins/auth";
+import { Payment } from "@foxone/uikit/plugins/payment";
+import { Toast } from "@foxone/uikit/plugins/toast";
+import MixinAPI from "./mixin-apis";
 import Fennec from "@foxone/fennec-dapp";
-import MixinAPI from "@foxone/mixin-api";
-import MVM, { Config } from "@foxone/mvm";
 import createAuthAction from "./auth";
-import createAssetsAction from "./assets";
-import createAssetAction from "./asste";
 import createPaymentAction from "./payment";
+import createAssetsAction from "./assets";
+import createAssetAction from "./asset";
 import createSyncAction from "./sync";
-import createHelper from "./helper";
+import { useAuth, usePayment, useToast, usePassport } from "./helper";
+
+import "vuetify/styles";
 
 import type { App } from "vue";
+import type { VuetifyOptions } from "vuetify";
+import type { AuthMethod } from "@foxone/uikit/types";
+import type { AuthOptions, PaymentOptions, SyncOptions, State } from "./types";
 
-export interface PassportOptions {
-  origin: string;
-  config: Config;
-  JWTPayload?: any;
-  onDisconnect?: () => void;
-  getTokenByCode?: (code: string) => Promise<string>;
+function vuetifyInstalled(app: App) {
+  return app?._context.mixins.some((x) => x.computed.$vuetify);
 }
 
-export type Channel =
-  | "fennec"
-  | "mixin"
-  | "metamask"
-  | "walletconnect"
-  | "onekey"
-  | "";
-
-export type PassportMethods = {
-  auth: ReturnType<typeof createAuthAction>;
-  fennec: Fennec;
-  getAssets: ReturnType<typeof createAssetsAction>;
-  getAsset: ReturnType<typeof createAssetAction>;
-  mvm: MVM;
-  payment: ReturnType<typeof createPaymentAction>;
-  sync: ReturnType<typeof createSyncAction>;
-  helper: ReturnType<typeof createHelper>;
-};
-
-export type State = {
-  channel: Channel;
-  fennec: Fennec;
-  mixin: MixinAPI;
-  mvm: MVM;
-  token: string;
-};
-
-export function isMVM(channel: Channel) {
-  return (
-    channel === "metamask" ||
-    channel === "walletconnect" ||
-    channel === "onekey"
-  );
-}
-
-export function usePassport() {
-  const instance = getCurrentInstance()!;
-
-  return instance.appContext.config.globalProperties.$passport;
-}
-
-function install(app: App, options: PassportOptions) {
+function install(
+  app: App,
+  options: {
+    vuetifyOptions?: VuetifyOptions;
+    container?: string;
+    infuraId?: string;
+  } = {}
+) {
+  const vuetifyOptions = options.vuetifyOptions || usePresets({});
+  const container = options.container || "body";
   const state: State = {
-    channel: "",
+    channel: "" as AuthMethod,
     fennec: new Fennec(),
     mixin: new MixinAPI(),
-    mvm: new MVM(options.config),
+    mvm: null,
     token: "",
   };
 
-  state.mixin.provider.instance.interceptors.request.use((config) => {
-    config.headers = {
-      ...config.headers,
-      Authorization: `Bearer ${state.token}`,
-    };
+  if (typeof MVM !== undefined) {
+    state.mvm = new MVM({ infuraId: options.infuraId });
+  }
 
-    return config;
-  });
+  if (!app?._instance?.isMounted) {
+    app?.mount(container);
+  }
 
-  state.mvm.on("disconnect", () => {
-    options.onDisconnect?.();
-  });
+  if (!vuetifyInstalled(app)) {
+    app.use(createVuetify(vuetifyOptions));
+  }
+
+  if (!useAuth(app)) {
+    app.use(Auth);
+  }
+
+  if (!useToast(app)) {
+    app.use(Toast);
+  }
+
+  if (!usePayment(app)) {
+    app.use(Payment);
+  }
 
   const passport = {
-    auth: createAuthAction(app, options, state),
-    fennec: state.fennec,
-    getAsset: createAssetAction(state),
-    getAssets: createAssetsAction(state),
-    helper: createHelper(state),
-    mvm: state.mvm,
-    payment: createPaymentAction(app, state),
-    sync: createSyncAction(options, state),
+    auth: (options: AuthOptions) => createAuthAction(app, options, state),
+    payment: (options: PaymentOptions) =>
+      createPaymentAction(app, options, state),
+    getAsset: (id: string) => createAssetAction(id, state),
+    getAssets: () => createAssetsAction(state),
+    sync: (options: SyncOptions) => createSyncAction(options, state),
   };
-
   const properties = app.config.globalProperties;
 
-  properties.$passport = passport as PassportMethods;
+  properties.$passport = passport;
 }
 
-export default function Passport() {}
-
-Passport.install = install;
+export default {
+  install,
+  passport: (app: App) => usePassport(app),
+};

@@ -5,8 +5,6 @@ import EncBase64 from "crypto-js/enc-base64";
 import { isMixin } from "@foxone/utils/mixin";
 import Base64 from "@foxone/utils/base64";
 
-import axios from "axios";
-
 export interface AuthParams {
   clientId: string;
   scope: string;
@@ -78,24 +76,22 @@ export default function authorize(
     // give code or token on success handler
     if (data.authorization_code.length > 16) {
       if (params.pkce) {
-        axios
-          .post(
-            "/oauth/token",
-            {
-              client_id: params.clientId,
-              code_verifier: verifier,
-              code: data.authorization_code
-            },
-            { baseURL: http }
-          )
+        fetch(http + "/oauth/token", {
+          body: JSON.stringify({
+            client_id: params.clientId,
+            code_verifier: verifier,
+            code: data.authorization_code,
+          }),
+        })
+          .then((response) => response.json())
           .then((data) => {
-            const token = data?.data?.data?.access_token;
+            const token = data?.data?.access_token;
 
             if (token) {
               callbacks.onSuccess?.(token);
             } else {
               callbacks.onError?.({
-                description: "Get PKCE access token error"
+                description: "Get PKCE access token error",
               });
             }
           })
