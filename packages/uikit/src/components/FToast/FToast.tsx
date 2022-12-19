@@ -51,7 +51,7 @@ export const FToast = defineComponent({
     const renderMessage = () => (
       <div class="f-toast__message">
         {icon.value && (
-          <VIcon size="16" color={props.type} class="mr-4">
+          <VIcon size="16" color={props.type} class="f-toast__icon">
             {icon.value}
           </VIcon>
         )}
@@ -62,7 +62,7 @@ export const FToast = defineComponent({
     const renderActions = () =>
       props.action && (
         <div class="f-toast__action" onClick={() => props.action?.callback?.()}>
-          <VDivider vertical class="mr-2" />
+          <VDivider vertical class="f-toast__action-divider" />
           <span>{props.action.text}</span>
           <VIcon size="14">$arrow_right</VIcon>
         </div>

@@ -42,5 +42,9 @@ export default {
       "您有两种方法可以连接到 Metamask。<br>1：复制 dApp 地址并在 Metamask 的内置浏览器中打开它。<br>2：在桌面浏览器中打开它。",
     open_in_mixin: "在 Mixin 中打开",
     open_in_links: "在 Links 中打开",
+    onekey_not_installed: "沒有安裝",
+    onekey_not_installed_2: "沒有安裝",
+    onekey_introduction: "多合一加密钱包。数以百万计的信任。",
+    onekey_introduction_2: "多合一加密钱包。数以百万计的信任。",
   },
 };

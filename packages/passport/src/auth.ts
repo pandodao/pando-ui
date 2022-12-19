@@ -1,10 +1,10 @@
-import type { PassportOptions } from "./index";
+import { isMVM } from "./helper";
+import { useAuth } from "./helper";
+
 import type { App } from "vue";
+import type { AuthData, AuthOptions, State } from "./types";
 
-import { isMVM, State } from "./index";
-import { AuthData } from "./sync";
-
-export default function (app: App, options: PassportOptions, state: State) {
+export default function (app: App, options: AuthOptions, state: State) {
   const connectFennec = async () => {
     await state.fennec.connect(options.origin);
     state.token =
@@ -14,8 +14,11 @@ export default function (app: App, options: PassportOptions, state: State) {
   };
 
   const connectMVM = async (type) => {
-    await state.mvm.connenct(type);
-    state.token = state.mvm.getAuthToken();
+    console.log(state);
+    if (!state.mvm) throw new Error("MVM is not used");
+
+    await state.mvm?.connenct(type);
+    state.token = state.mvm?.getAuthToken() ?? "";
   };
 
   const handleAuth = async (data, resolve, reject) => {
@@ -46,23 +49,24 @@ export default function (app: App, options: PassportOptions, state: State) {
     }
   };
 
-  return (): Promise<AuthData> => {
-    return new Promise((resolve, reject) => {
-      app.config.globalProperties.$uikit.auth.show({
-        checkFennec: () => state.fennec.isAvailable(),
-        checkMetamask: () => Boolean((window as any)?.ethereum?.isMetaMask),
-        checkOnekey: () => Boolean((window as any).$onekey),
-        handleAuth: async (data) => {
-          try {
-            await handleAuth(data, resolve, reject);
-          } catch (error) {
-            reject(error);
-          }
-        },
-        handleError(error) {
+  return new Promise<AuthData>((resolve, reject) => {
+    useAuth(app)?.show({
+      ...options,
+      authMethodState: {
+        fennec: state.fennec.isAvailable(),
+        metamask: Boolean((window as any)?.ethereum?.isMetaMask),
+        onekey: Boolean((window as any).$onekey),
+      },
+      handleAuth: async (data) => {
+        try {
+          await handleAuth(data, resolve, reject);
+        } catch (error) {
           reject(error);
-        },
-      });
+        }
+      },
+      handleError: (error) => {
+        reject(error);
+      },
     });
-  };
+  });
 }

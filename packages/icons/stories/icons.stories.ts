@@ -3,7 +3,7 @@ import { StoryFn } from "@storybook/vue3";
 import { FIcons } from "./FIcons";
 
 export default {
-  name: "FIcons",
+  title: "Icons/FIcons",
   component: FIcons,
 };
 
@@ -18,15 +18,13 @@ const Template: StoryFn<typeof FIcons> = (args) => ({
   `,
 });
 
-const outlines = meta.outline.map((icon) => "$" + icon.componentName);
-
 export const Fill = Template.bind({});
-Fill.args = { icons: meta.fill.map((icon) => "$" + icon.componentName) };
+Fill.args = { icons: meta.fill.map((icon) => icon.componentName) };
 
 export const Outline = Template.bind({});
-Outline.args = { icons: outlines };
+Outline.args = { icons: meta.outline.map((icon) => icon.componentName) };
 
 export const Colorful = Template.bind({});
 Colorful.args = {
-  icons: meta.colorful.map((icon) => "$" + icon.componentName),
+  icons: meta.colorful.map((icon) => icon.componentName),
 };

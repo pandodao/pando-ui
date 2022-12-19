@@ -4,7 +4,7 @@ import { VIcon } from "vuetify/components";
 import { StoryFn, Meta } from "@storybook/vue3";
 
 export default {
-  name: "FActionBar",
+  title: "Components/FActionBar",
   component: FActionBar,
 } as Meta<typeof FActionBar>;
 

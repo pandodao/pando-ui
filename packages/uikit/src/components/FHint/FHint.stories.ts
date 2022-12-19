@@ -5,7 +5,7 @@ import { FButton } from "../FButton";
 import { Meta, StoryFn } from "@storybook/vue3";
 
 export default {
-  name: "FHint",
+  title: "Components/FHint",
   component: FHint,
 } as Meta<typeof FHint>;
 

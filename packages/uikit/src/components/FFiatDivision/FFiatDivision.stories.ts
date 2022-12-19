@@ -2,7 +2,7 @@ import { FFiatDivision } from "./FFiatDivision";
 import { Meta, StoryFn } from "@storybook/vue3";
 
 export default {
-  name: "FFiatDivision",
+  title: "Components/FFiatDivision",
   component: FFiatDivision,
 } as Meta<typeof FFiatDivision>;
 

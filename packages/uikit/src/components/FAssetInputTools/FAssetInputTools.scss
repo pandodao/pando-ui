@@ -3,8 +3,16 @@
   font-size: 12px;
   font-weight: 500;
   color: rgb(var(--v-theme-greyscale_3));
-  
+
   .f-asset-input-tools__left {
+    .f-asset-input-tools__connect-btn {
+      padding: 0;
+    }
+
+    .f-asset-input-tools__connect-icon {
+      margin-left: 4px;
+    }
+
     .f-asset-input-tools__balance {
       font-size: 12px;
       display: flex;

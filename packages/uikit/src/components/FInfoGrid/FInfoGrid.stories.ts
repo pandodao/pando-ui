@@ -3,7 +3,7 @@ import { FInfoGridItem } from "./FInfoGridItem";
 import { Meta, StoryFn } from "@storybook/vue3";
 
 export default {
-  name: "FInfoGrid",
+  title: "Components/FInfoGrid",
   component: FInfoGrid,
 } as Meta<typeof FInfoGrid>;
 

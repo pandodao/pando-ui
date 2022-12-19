@@ -7,3 +7,18 @@ export interface Asset {
   chainLogo?: string;
   label?: string;
 }
+
+export type AuthMethod =
+  | "mixin"
+  | "fennec"
+  | "metamask"
+  | "onekey"
+  | "walletconnect";
+
+export type AuthMethodState = Record<AuthMethod, boolean>;
+
+export interface AuthData {
+  type: AuthMethod;
+  token?: string;
+  code?: string;
+}

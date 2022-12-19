@@ -1,19 +1,19 @@
-import { isMVM, State } from "./index";
+import { isMVM } from "./helper";
 
-export default function (state: State) {
-  return async () => {
-    if (state.channel === "mixin") {
-      return await state.mixin.endpoints.getAssets();
-    }
+import type { State } from "./types";
 
-    if (state.channel === "fennec") {
-      return (await state.fennec.ctx?.wallet.getAssets()) ?? [];
-    }
+export default async function (state: State) {
+  if (state.channel === "mixin") {
+    return await state.mixin.getAssets();
+  }
 
-    if (isMVM(state.channel)) {
-      return await state.mvm.getAssets();
-    }
+  if (state.channel === "fennec") {
+    return (await state.fennec.ctx?.wallet.getAssets()) ?? [];
+  }
 
-    return [];
-  };
+  if (isMVM(state.channel)) {
+    return await state.mvm?.getAssets();
+  }
+
+  return [];
 }

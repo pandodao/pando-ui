@@ -49,7 +49,9 @@ export const FCountryCodeSelect = defineComponent({
             return (
               <div class="f-country-code-select__field" onClick={onClick}>
                 {props.code ? (
-                  <span class="mr-1">{props.code || "code"}</span>
+                  <span class="f-country-code-select__code">
+                    {props.code || "code"}
+                  </span>
                 ) : (
                   <VIcon>$question</VIcon>
                 )}
@@ -59,7 +61,7 @@ export const FCountryCodeSelect = defineComponent({
           },
           default: () => (
             <div class="f-country-code-select">
-              <div class="px-4 mb-2">
+              <div class="f-country-code-select__search">
                 <FSearchInput v-model={filter.value} />
               </div>
 

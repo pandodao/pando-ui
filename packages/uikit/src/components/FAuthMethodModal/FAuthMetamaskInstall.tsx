@@ -4,10 +4,10 @@ import { isDesktop } from "@foxone/utils/helper";
 
 import { FButton } from "../FButton";
 
-import "./FAuthMethodModal.scss";
-
 export const FAuthMetamaskInstall = defineComponent({
   name: "FAuthMetamaskInstall",
+
+  inheritAttrs: false,
 
   setup() {
     const { smAndDown } = useDisplay();
@@ -21,9 +21,14 @@ export const FAuthMetamaskInstall = defineComponent({
 
     return () => (
       <div
-        class={`f-auth-metamask f-auth-step2 ${
-          smAndDown.value && "f-auth-step2--small"
-        } ${!isDesktop() && "f-auth-metamask--mobile"}`}
+        class={[
+          "f-auth-metamask",
+          "f-auth-step2",
+          {
+            "f-auth-step2--small": smAndDown.value,
+            "f-auth-metamask--mobile": !isDesktop(),
+          },
+        ]}
       >
         <div class="f-auth-step2__left"></div>
 

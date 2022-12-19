@@ -1,4 +1,5 @@
 import "./styles/index.scss";
+
 import * as allcomponents from "./components";
 import { Toast, Auth, Modal, Payment } from "./plugins";
 
@@ -28,6 +29,3 @@ export default function install(app: App, options: UIKitOptions = {}) {
   app.use(Modal, options.modal);
   app.use(Payment, options.payment);
 }
-
-export * from "./presets";
-export * from "./plugins";

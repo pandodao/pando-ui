@@ -1,6 +1,6 @@
 $body-font-family: Inter;
 
-@forward "vuetify/_settings" with (
+@forward "vuetify/_settings.scss" with (
   $color-pack: false !default,
   $border-radius-root: 8px !default,
   $body-font-family: $body-font-family !default,

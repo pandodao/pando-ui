@@ -3,7 +3,7 @@ import { genPaymentUrl } from "@foxone/utils/mixin";
 
 import type { App, VNode } from "vue";
 
-import { FPaymentModal } from "../components";
+import { FPaymentModal } from "../components/FPaymentModal";
 
 export interface PaymentOptions {
   assetId: string;
@@ -37,7 +37,7 @@ export function usePayment() {
 
 export type Keys = "show" | "mixin";
 
-export type PaymentMethods = Record<
+export type PaymentPlugin = Record<
   Keys,
   (options?: PaymentOptions | MixinPaymentOptions) => void
 >;
@@ -87,7 +87,7 @@ function install(app: App) {
   const properties = app.config.globalProperties;
 
   properties.$uikit = properties.$uikit || {};
-  properties.$uikit.payment = payment as PaymentMethods;
+  properties.$uikit.payment = payment as PaymentPlugin;
 }
 
 export function Payment() {}

@@ -9,15 +9,20 @@ export const FLoading = defineComponent({
   props: {
     fullscreen: Boolean,
     text: String,
+    processProps: { type: Object, default: () => ({}) },
   },
 
-  setup(props, { slots, attrs }) {
+  setup(props, { slots }) {
     const presets = { persistent: true };
 
     return () => (
       <VOverlay class="f-loading" {...presets}>
         <div class="f-loading__content">
-          <VProgressCircular width={3} indeterminate={true} {...attrs} />
+          <VProgressCircular
+            width={3}
+            indeterminate={true}
+            {...props.processProps}
+          />
           <span class="f-loading__text">{slots.text?.() ?? props.text}</span>
         </div>
       </VOverlay>

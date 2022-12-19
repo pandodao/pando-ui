@@ -2,7 +2,7 @@ import { FAssetInputTools } from "./FAssetInputTools";
 import { Meta, StoryFn } from "@storybook/vue3";
 
 export default {
-  name: "FAssetInputTools",
+  title: "Components/FAssetInputTools",
   component: FAssetInputTools,
 } as Meta<typeof FAssetInputTools>;
 

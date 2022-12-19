@@ -1,8 +1,8 @@
 import type { VNode } from "vue";
-import { ToastMethods } from "./plugins/toast";
-import { AuthMethods } from "./plugins/auth";
-import { ModalMethods } from "./plugins/modal";
-import { PaymentMethods } from "./plugins/payment";
+import { ToastPlugin } from "./plugins/toast";
+import { AuthPlugin } from "./plugins/auth";
+import { ModalPlugin } from "./plugins/modal";
+import { PaymentPlugin } from "./plugins/payment";
 
 declare global {
   namespace JSX {
@@ -16,10 +16,10 @@ declare global {
 
 declare module "@vue/runtime-core" {
   interface UIKit {
-    toast: ToastMethods;
-    auth: AuthMethods;
-    modal: ModalMethods;
-    payment: PaymentMethods;
+    toast: ToastPlugin;
+    auth: AuthPlugin;
+    modal: ModalPlugin;
+    payment: PaymentPlugin;
   }
 
   export interface ComponentCustomProperties {

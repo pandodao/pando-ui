@@ -3,7 +3,7 @@ import { FBottomNav } from "./FBottomNav";
 import { Meta, StoryFn } from "@storybook/vue3";
 
 export default {
-  name: "FBottomNav",
+  title: "Components/FBottomNav",
   component: FBottomNav,
 } as Meta<typeof FBottomNav>;
 

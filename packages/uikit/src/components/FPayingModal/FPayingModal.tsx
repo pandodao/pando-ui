@@ -11,7 +11,7 @@ export const FPayingModal = defineComponent({
   name: "FPayingModal",
 
   props: {
-    show: {
+    modelValue: {
       type: Boolean,
       default: false,
     },
@@ -22,36 +22,37 @@ export const FPayingModal = defineComponent({
   },
 
   emits: {
-    cancel: (v) => v,
+    "update:modelValue": (v: boolean) => true,
+    cancel: () => true,
   },
 
-  setup(props, { attrs, emit }) {
+  setup(props, { emit }) {
     const { t } = useLocale();
     const timer: Ref<null | any> = ref(null);
     const lasting = ref(false);
 
-    const handleModalChange = (val) => {
+    const handleModalChange = (value) => {
       lasting.value = false;
 
       if (timer.value) {
         clearTimeout(timer.value);
       }
 
-      if (val) {
+      if (value) {
         timer.value = setTimeout(() => {
           lasting.value = true;
         }, 30000);
       }
     };
 
-    watch(() => props.show, handleModalChange);
+    watch(() => props.modelValue, handleModalChange);
 
     return () => (
       <VOverlay
+        modelValue={props.modelValue}
         class="f-payment-loading d-flex align-center justify-center"
         persistent
-        modelValue={props.show}
-        {...attrs}
+        onUpdate:modelValue={(v) => emit("update:modelValue", v)}
       >
         <div class="f-spinner__wrapper">
           {Array.from({ length: 4 }).map(() => (
@@ -59,7 +60,7 @@ export const FPayingModal = defineComponent({
           ))}
         </div>
 
-        <div class="f-payment__hint text-center text-subtitle-2 pa-5">
+        <div class="f-payment__hint text-center text-subtitle-2">
           {lasting.value
             ? t("$vuetify.uikit.lasting_tip")
             : props.text || t("$vuetify.uikit.checking_payment")}
@@ -70,7 +71,7 @@ export const FPayingModal = defineComponent({
             rounded="pill"
             variant="outlined"
             color="greyscale_7"
-            onClick={(e) => emit("cancel", e)}
+            onClick={() => emit("cancel")}
           >
             {t("$vuetify.uikit.cancel")}
           </VBtn>

@@ -1,7 +1,6 @@
 import { defineComponent, ref, watch } from "vue";
 import { useDisplay, useLocale } from "vuetify";
 import { isMixin } from "@foxone/utils/mixin";
-import axios from "axios";
 
 import type { PaymentOptions } from "../../plugins/payment";
 
@@ -16,11 +15,13 @@ import "./FPaymentModal.scss";
 export const FPaymentModal = defineComponent({
   name: "FPaymentModal",
 
+  inheritAttrs: false,
+
   emits: {
     destroy: () => true,
   },
 
-  setup(_, { expose }) {
+  setup(_, { expose, emit }) {
     const dialog = ref(false);
     const asset = ref<any>(null);
     const checking = ref(false);
@@ -33,7 +34,7 @@ export const FPaymentModal = defineComponent({
     const amount = ref("");
     const scheme = ref("");
     const channel = ref("");
-    const hideCheckingModal = ref<boolean | undefined>(false);
+    const hideCheckingModal = ref(false);
 
     const { mdAndUp } = useDisplay();
     const { t } = useLocale();
@@ -43,29 +44,35 @@ export const FPaymentModal = defineComponent({
     };
 
     const handlePaid = () => {
-      checking.value = false;
+      checking.value = true;
     };
 
     const handleOpenInApp = () => {
       window.location.href = scheme.value;
     };
 
-    const handleModalChange = (val) => {
-      if (!val) {
+    const handleModalChange = (value) => {
+      if (!value) {
         if (reject.value && typeof reject.value === "function") {
-          reject(new Error("Cancelled"));
+          reject.value(new Error("Cancelled"));
         }
 
-        timer.value && clearTimeout(timer.valupropse);
+        timer.value && clearTimeout(timer.value);
         checking.value = false;
         channel.value = "";
         scheme.value = "";
+        qr.value = false;
         asset.value = null;
         reject.value = null;
       }
+
+      if (!dialog.value) {
+        emit("destroy");
+      }
     };
 
-    watch(() => [checking.value, dialog.value], handleModalChange);
+    watch(() => checking.value, handleModalChange);
+    watch(() => dialog.value, handleModalChange);
 
     const show = async (options: PaymentOptions) => {
       const { actions, checker } = options;
@@ -74,7 +81,7 @@ export const FPaymentModal = defineComponent({
       channel.value = options.channel;
       assetId.value = options.assetId;
       amount.value = options.amount;
-      hideCheckingModal.value = options.hideCheckingModal;
+      hideCheckingModal.value = options.hideCheckingModal || false;
 
       const showChecking = () => (checking.value = true);
 
@@ -106,11 +113,11 @@ export const FPaymentModal = defineComponent({
     };
 
     const requestAsset = async () => {
-      const res = await axios.get(
+      const response = await fetch(
         `https://api.mixin.one/network/assets/${assetId.value}`
       );
 
-      asset.value = res.data.data;
+      asset.value = (await response.json()).data;
     };
 
     const polling = async (resolve, reject, checker) => {
@@ -139,7 +146,7 @@ export const FPaymentModal = defineComponent({
 
     return () => (
       <div>
-        <FModal modelValue={dialog.value} maxWidth="780" onClose={cancel}>
+        <FModal v-model={dialog.value} maxWidth="780">
           <div
             class={`f-payment-modal__content ${
               !mdAndUp.value && "f-payment-modal__content--mobile"
@@ -199,9 +206,10 @@ export const FPaymentModal = defineComponent({
           </div>
         </FModal>
 
-        {!qr.value && !hideCheckingModal.value && (
-          <FPayingModal show={checking.value} onCancel={cancel} />
-        )}
+        <FPayingModal
+          modelValue={!qr.value && !hideCheckingModal.value && checking.value}
+          onCancel={cancel}
+        />
       </div>
     );
   },

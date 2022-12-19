@@ -4,7 +4,7 @@ import { FButton } from "../FButton";
 import { StoryFn, Meta } from "@storybook/vue3";
 
 export default {
-  name: "FSegmentControl",
+  title: "Components/FSegmentControl",
   component: FSegmentControl,
 } as Meta<typeof FSegmentControl>;
 

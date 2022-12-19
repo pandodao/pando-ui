@@ -1,6 +1,6 @@
 const path = require("path");
 const glob = require("glob");
-const { readFileSync, writeFileSync, readdirSync, fstat } = require("fs");
+const { readFileSync, writeFileSync } = require("fs");
 const srcDir = path.resolve(__dirname, "../src");
 const destDir = path.resolve(__dirname, "../lib");
 

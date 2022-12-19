@@ -4,7 +4,7 @@ import { FButton } from "../FButton";
 import { Meta, StoryFn } from "@storybook/vue3";
 
 export default {
-  name: "FLoading",
+  title: "Components/FLoading",
   component: FLoading,
 } as Meta<typeof FLoading>;
 
@@ -31,3 +31,10 @@ const Template: StoryFn<typeof FLoading> = (args) => ({
 
 export const Default = Template.bind({});
 Default.args = { fullscreen: true, text: "Please Wait" };
+
+export const ProcessProps = Template.bind({});
+ProcessProps.args = {
+  fullscreen: true,
+  text: "loading",
+  processProps: { size: 40, color: "success" },
+};

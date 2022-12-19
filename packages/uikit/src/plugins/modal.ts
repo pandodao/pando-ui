@@ -1,7 +1,10 @@
 import { createVNode, nextTick, render, getCurrentInstance } from "vue";
 
 import type { App, VNode } from "vue";
-import { FMessageModal, ModalAction } from "../components/FMessageModal/FMessageModal";
+import {
+  FMessageModal,
+  ModalAction,
+} from "../components/FMessageModal/FMessageModal";
 
 export interface MessageModalProps {
   title?: string | VNode;
@@ -21,10 +24,7 @@ export function useModal() {
 
 export type Keys = "warning" | "show" | "clear";
 
-export type ModalMethods = Record<
-  Keys,
-  (options?: MessageModalProps) => void
->;
+export type ModalPlugin = Record<Keys, (options?: MessageModalProps) => void>;
 
 function install(app: App) {
   let instance: VNode | null = null;
@@ -66,7 +66,7 @@ function install(app: App) {
   const properties = app.config.globalProperties;
 
   properties.$uikit = properties.$uikit || {};
-  properties.$uikit.modal = modal as ModalMethods;
+  properties.$uikit.modal = modal as ModalPlugin;
 }
 
 export function Modal() {}

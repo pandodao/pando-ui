@@ -2,7 +2,7 @@ import { FSlider } from "./FSlider";
 import { Meta, StoryFn } from "@storybook/vue3";
 
 export default {
-  name: "FSlider",
+  title: "Components/FSlider",
   component: { FSlider },
 } as Meta<typeof FSlider>;
 

@@ -17,8 +17,8 @@ import {
   FIconImport4PBold,
   FIconAlert4P,
   FIconLink4PBold,
-  FIconHorn4P,
   FIconArrowRight4P,
+  FIconHorn4P,
 } from "@foxone/icons";
 
 export const icons = {

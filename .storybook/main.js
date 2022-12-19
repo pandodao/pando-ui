@@ -1,5 +1,12 @@
+const jsx = require("@vitejs/plugin-vue-jsx");
+const vuetify = require("vite-plugin-vuetify");
+
 module.exports = {
-  stories: ["../src/**/*.stories.mdx", "../src/**/*.stories.@(js|jsx|ts|tsx)"],
+  stories: [
+    "../packages/uikit/src/**/*.stories.@(ts|tsx|mdx)",
+    "../packages/icons/stories/**/*.stories.@(ts|tsx|mdx)",
+    "../packages/passport/stories/**/*.stories.@(ts|tsx|mdx)",
+  ],
   addons: [
     "@storybook/addon-links",
     "@storybook/addon-essentials",
@@ -23,11 +30,11 @@ module.exports = {
           Array.isArray(plugin) && plugin[0].name === "vite:react-babel"
         );
       }),
-      require("@vitejs/plugin-vue-jsx")({
+      jsx({
         exclude: [/\.stories\.(t|j)sx?$/, /node_modules/],
       }),
-      require("vite-plugin-vuetify")({
-        styles: { configFile: "./src/styles/_settings.scss" },
+      vuetify({
+        styles: { configFile: "packages/uikit/src/styles/_settings.scss" },
       }),
     ];
 

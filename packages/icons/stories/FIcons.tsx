@@ -1,6 +1,7 @@
 import "./FIcons.scss";
 import { defineComponent, PropType } from "vue";
-import { VIcon, VTooltip } from "vuetify/components";
+import { VTooltip } from "vuetify/components";
+import * as components from "@foxone/icons";
 
 export const FIcons = defineComponent({
   name: "FIcons",
@@ -16,10 +17,17 @@ export const FIcons = defineComponent({
     return () => (
       <div class="f-icons">
         {props.icons.map((icon) => {
+          // @ts-ignore
+          const wrapper = components[icon];
+
           return (
             <VTooltip>
               {{
-                activator: ({ props }) => <VIcon {...props}>{icon}</VIcon>,
+                activator: ({ props }) => (
+                  <div class="f-icons-wrap">
+                    <wrapper {...props} />
+                  </div>
+                ),
                 default: () => <span>{icon}</span>,
               }}
             </VTooltip>

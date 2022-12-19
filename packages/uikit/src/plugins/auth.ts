@@ -1,11 +1,12 @@
 import { createVNode, nextTick, render, getCurrentInstance } from "vue";
+import { FAuthMethodModal } from "../components/FAuthMethodModal";
 
 import type { App, VNode } from "vue";
-
-import { FAuthMethodModal } from "../components";
+import type { AuthMethod } from "../types";
 
 export interface AuthMethodGlobalOptions {
-  wallets?: string[];
+  authMethods?: AuthMethod[];
+  authMethodState?: Record<AuthMethod, boolean>;
   // Mixin oauth params
   clientId?: string;
   scope?: string;
@@ -15,16 +16,13 @@ export interface AuthMethodGlobalOptions {
 }
 
 export interface AuthMethodOptions {
-  checkFennec?: () => boolean;
-  checkMetamask?: () => boolean;
-  checkOnekey?: () => boolean;
   handleAuth?: (...args: any) => void;
   handleError?: (...args: any) => void;
 }
 
 export type Keys = "show";
 
-export type AuthMethods = Record<
+export type AuthPlugin = Record<
   Keys,
   (options?: AuthMethodGlobalOptions | AuthMethodOptions) => void
 >;
@@ -38,7 +36,7 @@ export function useAuth() {
 function install(app: App, globalOptions: AuthMethodGlobalOptions) {
   let instance: VNode | null = null;
 
-  const show = (options: AuthMethodOptions) => {
+  const show = (options: AuthMethodOptions & AuthMethodGlobalOptions) => {
     if (instance) {
       instance.component!.exposed!.close();
     }
@@ -49,8 +47,6 @@ function install(app: App, globalOptions: AuthMethodGlobalOptions) {
       const vnode = createVNode(FAuthMethodModal, {
         ...globalOptions,
         ...options,
-        fennec: options?.checkFennec?.(),
-        metamask: options?.checkMetamask?.(),
         attach: container,
         onAuth: options.handleAuth,
         onError: options.handleError,
@@ -74,7 +70,7 @@ function install(app: App, globalOptions: AuthMethodGlobalOptions) {
   const properties = app.config.globalProperties;
 
   properties.$uikit = properties.$uikit || {};
-  properties.$uikit.auth = auth as AuthMethods;
+  properties.$uikit.auth = auth as AuthPlugin;
 }
 
 export function Auth() {}

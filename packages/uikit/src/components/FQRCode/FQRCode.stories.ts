@@ -2,7 +2,7 @@ import { FQRCode } from "./FQRCode";
 import { Meta, StoryFn } from "@storybook/vue3";
 
 export default {
-  name: "FQRCode",
+  title: "Components/FQRCode",
   component: FQRCode,
 } as Meta<typeof FQRCode>;
 

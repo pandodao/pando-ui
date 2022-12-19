@@ -6,11 +6,23 @@ import "./FButton.scss";
 export const FButton = defineComponent({
   name: "FButton",
 
+  props: {
+    icon: { type: Boolean, default: false },
+  },
+
   setup(props, { slots }) {
-    const presets = { elevation: 0, rounded: true, ripple: false };
+    const presets: Record<string, any> = {
+      variant: "flat",
+      rounded: true,
+      ripple: false,
+    };
+
+    if (props.icon) {
+      presets.variant = "text";
+    }
 
     return () => (
-      <VBtn class="f-button" {...presets}>
+      <VBtn class="f-button" {...props} {...presets}>
         {slots.default?.()}
       </VBtn>
     );

@@ -1,6 +1,5 @@
 import { defineComponent } from "vue";
 import { useLocale } from "vuetify";
-import { VIcon } from "vuetify/components";
 
 export const FHintLink = defineComponent({
   name: "FHintLink",

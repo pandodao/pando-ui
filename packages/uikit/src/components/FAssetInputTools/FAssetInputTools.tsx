@@ -51,13 +51,13 @@ export const FAssetInputTools = defineComponent({
           <div class="f-asset-input-tools__left">
             {!props.connected ? (
               <FButton
-                class="pa-0"
                 type="text"
                 size="x-small"
                 onClick={handleConnect}
+                class="f-asset-input-tools__connect-btn"
               >
                 <span>{t("$vuetify.uikit.connect_wallet")}</span>
-                <VIcon class="ml-1" size="12">
+                <VIcon size="12" class="f-asset-input-tools__connect-icon">
                   $connect
                 </VIcon>
               </FButton>
