@@ -1,4 +1,4 @@
-import { computed, defineComponent, ref, watchEffect } from "vue";
+import { computed, defineComponent, onMounted, ref, watchEffect } from "vue";
 import { convertToUnit } from "vuetify/lib/util/helpers.mjs";
 import QRious from "qrious";
 
@@ -14,6 +14,7 @@ export const FQRCode = defineComponent({
 
   setup(props) {
     const canvasRef = ref();
+    const qr = ref<any>();
 
     const styles = computed(() => {
       return {
@@ -22,10 +23,15 @@ export const FQRCode = defineComponent({
       };
     });
 
-    const qr = new QRious({ size: props.size });
+    onMounted(() => {
+      qr.value = new QRious({
+        size: props.size,
+        element: canvasRef.value,
+      });
+    });
 
     watchEffect(() => {
-      qr.value = props.text;
+      qr.value?.set({ value: props.text });
     });
 
     return () => (

@@ -24,7 +24,7 @@ const Template: StoryFn<typeof FAuthMethodModal> = (args) => ({
     };
 
     const handleError = (error) => {
-      toast.error({ message: error });
+      toast.error({ message: JSON.stringify(error) });
     };
 
     return { args, open, authModal, handleAuth, handleError };

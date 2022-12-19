@@ -1,16 +1,16 @@
 {
   "$schema": "https://turborepo.org/schema.json",
   "pipeline": {
+    "dev": {
+      "dependsOn": ["^dev"],
+      "cache": false
+    },
     "build": {
       "dependsOn": ["^build"],
       "outputs": ["dist/**", ".next/**", "lib/**"]
     },
     "lint": {
       "outputs": []
-    },
-    "dev": {
-      "dependsOn": ["^dev"],
-      "cache": false
     }
   }
 }

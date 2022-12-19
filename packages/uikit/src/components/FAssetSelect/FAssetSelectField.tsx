@@ -43,19 +43,17 @@ export const FAssetSelectField = defineComponent({
           <VIcon>$question</VIcon>
         )}
 
-        <div class="flex-grow-1 ml-2">
-          <div class="f-asset-field__symbol text-subtitle-1">
-            {props.asset?.symbol}
-          </div>
+        <div class="f-asset-field__right">
+          <div class="f-asset-field__symbol">{props.asset?.symbol}</div>
           {props.showName && (
-            <div class="f-asset-field__name text-caption text-greyscale_3">
+            <div class="f-asset-field__name text-greyscale_3">
               {props.asset?.name}
             </div>
           )}
         </div>
 
         {props.selectable && (
-          <VIcon size="16" class="ml-1">
+          <VIcon size="16" class="f-asset-field__expend">
             $expand
           </VIcon>
         )}

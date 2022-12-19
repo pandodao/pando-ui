@@ -1,10 +1,7 @@
 {
   "extends": "@foxone/dev/config/tsconfig.base.json",
   "compilerOptions": {
-    "rootDir": "src",
-    "outDir": "lib",
-    "jsx": "preserve",
-    "skipLibCheck": true
-  },
-  "include": ["src/"]
+    "declaration": false,
+    "composite": false
+  }
 }

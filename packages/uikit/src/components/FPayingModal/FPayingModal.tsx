@@ -60,7 +60,7 @@ export const FPayingModal = defineComponent({
           ))}
         </div>
 
-        <div class="f-payment__hint text-center text-subtitle-2 pa-5">
+        <div class="f-payment__hint text-center text-subtitle-2">
           {lasting.value
             ? t("$vuetify.uikit.lasting_tip")
             : props.text || t("$vuetify.uikit.checking_payment")}

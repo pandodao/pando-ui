@@ -14,6 +14,7 @@ export default function (app: App, options: AuthOptions, state: State) {
   };
 
   const connectMVM = async (type) => {
+    console.log(state);
     if (!state.mvm) throw new Error("MVM is not used");
 
     await state.mvm?.connenct(type);
@@ -51,9 +52,11 @@ export default function (app: App, options: AuthOptions, state: State) {
   return new Promise<AuthData>((resolve, reject) => {
     useAuth(app)?.show({
       ...options,
-      checkFennec: () => state.fennec.isAvailable(),
-      checkMetamask: () => Boolean((window as any)?.ethereum?.isMetaMask),
-      checkOnekey: () => Boolean((window as any).$onekey),
+      authMethodState: {
+        fennec: state.fennec.isAvailable(),
+        metamask: Boolean((window as any)?.ethereum?.isMetaMask),
+        onekey: Boolean((window as any).$onekey),
+      },
       handleAuth: async (data) => {
         try {
           await handleAuth(data, resolve, reject);

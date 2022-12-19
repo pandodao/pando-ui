@@ -18,6 +18,7 @@ const Template: StoryFn<typeof FPayingModal> = (args) => ({
     const open = () => {
       dialog.value = true;
     };
+
     const close = () => {
       dialog.value = false;
     };
@@ -27,11 +28,11 @@ const Template: StoryFn<typeof FPayingModal> = (args) => ({
 
   template: `
     <div>
-      <FButton variant="outlined" block color="primary" v-bind="args" @click="open">
+      <FButton color="primary" v-bind="args" @click="open">
         Pay
       </FButton>
 
-      <FPayingModal :show="dialog" @cancel="close" />
+      <FPayingModal v-model="dialog" @cancel="close" />
     </div>
   `,
 });

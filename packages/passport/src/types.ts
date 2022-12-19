@@ -6,7 +6,6 @@ export interface AuthOptions {
   origin: string;
   config?: { infuraId?: string };
   JWTPayload?: any;
-  onDisconnect?: () => void;
   getTokenByCode?: (code: string) => Promise<string>;
 
   authMethods?: AuthMethod[];
@@ -54,4 +53,10 @@ export interface AuthData {
 
 export interface Passport {
   auth: (options: AuthOptions) => Promise<AuthData>;
+  payment: (options: PaymentOptions) => Promise<void>;
+  sync: (options: SyncOptions) => Promise<AuthData>;
+  // TODO: Add Mixin Asset type
+  getAsset: (id: string) => Promise<any>;
+  getAssets: () => Promise<any>;
+  getProfile: () => Promise<any>;
 }

@@ -5,6 +5,7 @@ module.exports = {
   stories: [
     "../packages/uikit/src/**/*.stories.@(ts|tsx|mdx)",
     "../packages/icons/stories/**/*.stories.@(ts|tsx|mdx)",
+    "../packages/passport/stories/**/*.stories.@(ts|tsx|mdx)",
   ],
   addons: [
     "@storybook/addon-links",

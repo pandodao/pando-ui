@@ -1,3 +1,4 @@
+import { createApp } from "vue";
 import { createVuetify } from "vuetify";
 import { usePresets } from "@foxone/uikit/presets";
 import { Auth } from "@foxone/uikit/plugins/auth";
@@ -10,7 +11,7 @@ import createPaymentAction from "./payment";
 import createAssetsAction from "./assets";
 import createAssetAction from "./asset";
 import createSyncAction from "./sync";
-import { useAuth, usePayment, useToast, usePassport } from "./helper";
+import { usePassport } from "./helper";
 
 import "vuetify/styles";
 
@@ -19,51 +20,32 @@ import type { VuetifyOptions } from "vuetify";
 import type { AuthMethod } from "@foxone/uikit/types";
 import type { AuthOptions, PaymentOptions, SyncOptions, State } from "./types";
 
-function vuetifyInstalled(app: App) {
-  return app?._context.mixins.some((x) => x.computed.$vuetify);
-}
-
 function install(
   app: App,
   options: {
-    vuetifyOptions?: VuetifyOptions;
-    container?: string;
     infuraId?: string;
+    onDisconnect?: () => void;
   } = {}
 ) {
-  const vuetifyOptions = options.vuetifyOptions || usePresets({});
-  const container = options.container || "body";
   const state: State = {
+    token: "",
     channel: "" as AuthMethod,
     fennec: new Fennec(),
     mixin: new MixinAPI(),
     mvm: null,
-    token: "",
   };
 
-  if (typeof MVM !== undefined) {
+  if (typeof MVM !== "undefined") {
     state.mvm = new MVM({ infuraId: options.infuraId });
+    state.mvm.on("disconnect", () => {
+      options.onDisconnect?.();
+    });
   }
 
-  if (!app?._instance?.isMounted) {
-    app?.mount(container);
-  }
-
-  if (!vuetifyInstalled(app)) {
-    app.use(createVuetify(vuetifyOptions));
-  }
-
-  if (!useAuth(app)) {
-    app.use(Auth);
-  }
-
-  if (!useToast(app)) {
-    app.use(Toast);
-  }
-
-  if (!usePayment(app)) {
-    app.use(Payment);
-  }
+  state.mixin.use((options) => ({
+    ...options,
+    headers: { ...options.headers, Authorization: `Bearer ${state.token}` },
+  }));
 
   const passport = {
     auth: (options: AuthOptions) => createAuthAction(app, options, state),
@@ -71,6 +53,7 @@ function install(
       createPaymentAction(app, options, state),
     getAsset: (id: string) => createAssetAction(id, state),
     getAssets: () => createAssetsAction(state),
+    getProfile: () => state.mixin.getProfile(),
     sync: (options: SyncOptions) => createSyncAction(options, state),
   };
   const properties = app.config.globalProperties;
@@ -78,7 +61,29 @@ function install(
   properties.$passport = passport;
 }
 
-export default {
+const Passport: any = {
   install,
-  passport: (app: App) => usePassport(app),
+  init,
 };
+
+function init(
+  options: {
+    vuetifyOptions?: VuetifyOptions;
+    container?: string;
+  } = {}
+) {
+  const app = createApp({});
+  const vuetifyOptions = options.vuetifyOptions || usePresets({});
+
+  app.use(createVuetify(vuetifyOptions));
+  app.use(Auth);
+  app.use(Toast);
+  app.use(Payment);
+  app.use(Passport);
+
+  app.mount(options.container || "body");
+
+  return usePassport(app);
+}
+
+export default Passport;

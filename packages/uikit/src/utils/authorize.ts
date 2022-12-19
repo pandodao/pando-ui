@@ -77,6 +77,11 @@ export default function authorize(
     if (data.authorization_code.length > 16) {
       if (params.pkce) {
         fetch(http + "/oauth/token", {
+          method: "post",
+          mode: "cors",
+          headers: {
+            "Content-Type": "application/json",
+          },
           body: JSON.stringify({
             client_id: params.clientId,
             code_verifier: verifier,

@@ -10,20 +10,6 @@
   &--mobile {
     grid-template-columns: repeat(2, 1fr);
   }
-
-  &__title {
-    font-weight: 600;
-    font-size: 18px;
-    line-height: 22px;
-    padding-top: 32px;
-    padding-bottom: 16px;
-  }
-
-  &__subtitle {
-    font-weight: 500;
-    font-size: 14px;
-    line-height: 17px;
-  }
 }
 
 .f-auth-method {
@@ -36,12 +22,8 @@
   border-radius: 8px;
   padding: 20px;
 
-  &__icon {
-    transition: all 0.3s ease-in;
-    height: 68px;
-    width: 88px;
-    background-color: rgb(var(--v-greyscale_1));
-    border-radius: 44px;
+  &__logo {
+    margin-bottom: 12px;
   }
 
   &__label {
@@ -58,9 +40,23 @@
   line-height: 15px;
   color: rgb(var(--v-theme-greyscale_3));
   display: flex;
+
+  .f-auth-hint__horn {
+    margin-right: 8px;
+  }
+
   a {
     text-decoration-line: none;
     color: rgb(var(--v-theme-greyscale_1));
+  }
+}
+
+.f-auth-step1 {
+  padding: 24px;
+  padding-top: 8px;
+
+  .f-auth-hint {
+    margin-top: 24px;
   }
 }
 
@@ -94,6 +90,7 @@
     min-width: 314px;
     padding: 40px;
     padding-top: 60px;
+    box-sizing: border-box;
   }
 
   &__qr-wrapper {

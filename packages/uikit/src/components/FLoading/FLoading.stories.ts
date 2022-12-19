@@ -31,3 +31,10 @@ const Template: StoryFn<typeof FLoading> = (args) => ({
 
 export const Default = Template.bind({});
 Default.args = { fullscreen: true, text: "Please Wait" };
+
+export const ProcessProps = Template.bind({});
+ProcessProps.args = {
+  fullscreen: true,
+  text: "loading",
+  processProps: { size: 40, color: "success" },
+};

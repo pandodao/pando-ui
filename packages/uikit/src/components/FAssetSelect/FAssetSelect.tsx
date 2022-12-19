@@ -58,7 +58,7 @@ export const FAssetSelect = defineComponent({
           ),
           default: () => (
             <div class="f-asset-select">
-              <div class="px-4 mb-2">
+              <div class="f-asset-select__search">
                 <FSearchInput v-model={filter.value} />
               </div>
               <FAssetList

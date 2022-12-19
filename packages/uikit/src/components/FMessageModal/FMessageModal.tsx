@@ -73,7 +73,7 @@ export const FMessageModal = defineComponent({
     const title = (
       <div class="f-msg-modal__title">
         {props.type === "warning" && (
-          <VIcon class="mr-2" color="error">
+          <VIcon class="f-msg-modal__icon" color="error">
             $warning
           </VIcon>
         )}

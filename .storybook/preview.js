@@ -4,7 +4,9 @@ import { defineComponent, watchEffect } from "vue";
 import { createVuetify, useTheme } from "vuetify";
 import * as components from "vuetify/components";
 import * as directives from "vuetify/directives";
-import UIKit, { usePresets } from "@foxone/uikit/src/index.ts";
+import UIKit from "@foxone/uikit";
+import Passport from "@foxone/mixin-passport";
+import { usePresets } from "@foxone/uikit/presets";
 import icons from "./icons";
 
 import "vuetify/styles";
@@ -51,6 +53,7 @@ app.use(UIKit, {
     scope: "PROFILE:READ",
   },
 });
+app.use(Passport);
 
 export const decorators = [
   (story, context) => {

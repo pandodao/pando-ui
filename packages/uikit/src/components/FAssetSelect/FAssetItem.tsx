@@ -22,10 +22,15 @@ export const FAssetItem = defineComponent({
           title={props.asset.symbol}
           subtitle={props.asset.name}
           value={props.asset.id}
+          class="f-asset-item"
         >
           {{
             prepend: () => (
-              <FAssetLogo asset={props.asset} size="28" class="mr-2" />
+              <FAssetLogo
+                asset={props.asset}
+                size="28"
+                class="f-asset-item__logo"
+              />
             ),
           }}
         </FListItem>

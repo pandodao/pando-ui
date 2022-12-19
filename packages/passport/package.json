@@ -4,15 +4,16 @@
   "description": "Vue plugin of multi auth and payment helps for Mixin Network",
   "license": "MIT",
   "main": "lib/index.js",
-  "module": "lib/index.mjs",
+  "module": "lib/index.js",
   "jsdelivr": "dist/index.umd.js",
   "unpkg": "dist/index.umd.js",
   "types": "lib/index.d.ts",
   "scripts": {
-    "dev": "yarn build:lib --watch",
+    "dev": "concurrently \"yarn build:lib --watch\" \"yarn build:types --watch\"",
     "build": "yarn build:lib && yarn build:dist",
     "build:dist": "vite build",
-    "build:lib": "babel src --out-dir lib --extensions \".ts\" && tsc --pretty --emitDeclarationOnly"
+    "build:lib": "babel src --out-dir lib --extensions \".ts\"",
+    "build:types": "foxone-exec-tsc --pretty --emitDeclarationOnly --p tsconfig.lib.json"
   },
   "dependencies": {
     "@foxone/fennec-dapp": "^0.5.8",
@@ -30,6 +31,7 @@
     "@rollup/plugin-node-resolve": "^15.0.0",
     "@vitejs/plugin-vue-jsx": "^3.0.0",
     "@vue/babel-plugin-jsx": "^1.1.1",
+    "concurrently": "^7.6.0",
     "css-loader": "^6.7.2",
     "node-polyfill-webpack-plugin": "^2.0.1",
     "rollup": "^3.1.0",

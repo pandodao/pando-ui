@@ -2,6 +2,7 @@ import { getCurrentInstance } from "vue";
 
 import type { App } from "vue";
 import type { AuthMethod } from "@foxone/uikit/types";
+import type { Passport } from "./types";
 
 export function isMVM(channel: AuthMethod) {
   return (
@@ -23,14 +24,14 @@ export function usePayment(app: App) {
   return app?._context.config.globalProperties.$uikit?.payment;
 }
 
-export function usePassport();
-export function usePassport(app: App);
-export function usePassport(app?: App | undefined) {
+export function usePassport(): Passport;
+export function usePassport(app: App): Passport;
+export function usePassport(app?: App | undefined): Passport {
   if (app) {
     return app?._context.config.globalProperties.$passport;
   } else {
     const instance = getCurrentInstance()!;
 
-    return instance.appContext.config.globalProperties.$uikit.auth;
+    return instance.appContext.config.globalProperties.$passport;
   }
 }

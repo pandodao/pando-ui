@@ -102,35 +102,33 @@ export const FAuthStep1 = defineComponent({
 
     return () => (
       <div class="f-auth-step1">
-        <div class="pa-6 pt-2">
-          <div
-            class={[
-              "f-auth-methods",
-              { "f-auth-methods--mobile": !mdAndUp.value },
-            ]}
-          >
-            {getAuthMethodsMeta().map((item) => (
-              <div
-                key={item!.value}
-                style={{ backgroundColor: item!.bg }}
-                class="f-auth-method"
-                onClick={() => handleAuth(item)}
-              >
-                <span class="mb-3">
-                  <VImg width="40" height="40" src={item!.logo} />
-                </span>
+        <div
+          class={[
+            "f-auth-methods",
+            { "f-auth-methods--mobile": !mdAndUp.value },
+          ]}
+        >
+          {getAuthMethodsMeta().map((item) => (
+            <div
+              key={item!.value}
+              style={{ backgroundColor: item!.bg }}
+              class="f-auth-method"
+              onClick={() => handleAuth(item)}
+            >
+              <span class="f-auth-method__logo">
+                <VImg width="40" height="40" src={item!.logo} />
+              </span>
 
-                <span class="f-auth-method__label">{item!.title}</span>
-              </div>
-            ))}
-          </div>
+              <span class="f-auth-method__label">{item!.title}</span>
+            </div>
+          ))}
+        </div>
 
-          <div class="f-auth-hint mt-6">
-            <VIcon size="16" color="warning" class="mr-2">
-              $horn
-            </VIcon>
-            <span innerHTML={t("$vuetify.uikit.gas_fee_hint")}></span>
-          </div>
+        <div class="f-auth-hint">
+          <VIcon size="16" color="warning" class="f-auth-hint__horn">
+            $horn
+          </VIcon>
+          <span innerHTML={t("$vuetify.uikit.gas_fee_hint")}></span>
         </div>
       </div>
     );

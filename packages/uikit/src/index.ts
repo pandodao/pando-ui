@@ -1,4 +1,5 @@
 import "./styles/index.scss";
+
 import * as allcomponents from "./components";
 import { Toast, Auth, Modal, Payment } from "./plugins";
 

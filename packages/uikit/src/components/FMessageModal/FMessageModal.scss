@@ -1,6 +1,10 @@
 .f-msg-modal {
   .f-modal__title {
     padding: 32px;
+
+    .f-msg-modal__icon {
+      margin-right: 8px;
+    }
   }
 
   .f-msg-modal__body {

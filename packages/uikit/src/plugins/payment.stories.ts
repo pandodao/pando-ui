@@ -17,11 +17,9 @@ const Template: StoryFn = (args) => ({
         hideCheckingModal: false,
         actions: {
           fennec: () => {
-            console.log("fennec payment called");
             return Promise.resolve(true);
           },
           mvm: () => {
-            console.log("mvm payment called");
             return Promise.resolve(true);
           },
         },

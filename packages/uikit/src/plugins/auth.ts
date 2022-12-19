@@ -6,6 +6,7 @@ import type { AuthMethod } from "../types";
 
 export interface AuthMethodGlobalOptions {
   authMethods?: AuthMethod[];
+  authMethodState?: Record<AuthMethod, boolean>;
   // Mixin oauth params
   clientId?: string;
   scope?: string;
@@ -15,9 +16,6 @@ export interface AuthMethodGlobalOptions {
 }
 
 export interface AuthMethodOptions {
-  checkFennec?: () => boolean;
-  checkMetamask?: () => boolean;
-  checkOnekey?: () => boolean;
   handleAuth?: (...args: any) => void;
   handleError?: (...args: any) => void;
 }
@@ -49,8 +47,6 @@ function install(app: App, globalOptions: AuthMethodGlobalOptions) {
       const vnode = createVNode(FAuthMethodModal, {
         ...globalOptions,
         ...options,
-        fennec: options?.checkFennec?.(),
-        metamask: options?.checkMetamask?.(),
         attach: container,
         onAuth: options.handleAuth,
         onError: options.handleError,

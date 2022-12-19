@@ -29,6 +29,14 @@
     align-items: center;
     word-break: break-all;
   }
+
+  .f-toast__icon {
+    margin-right: 16px;
+  }
+
+  .f-toast__action-divider {
+    margin-right: 8px;
+  }
 }
 
 .v-theme--dark.f-toast {
