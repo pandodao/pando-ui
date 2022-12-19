@@ -1,5 +1,15 @@
 # @foxone/uikit
 
+## 4.1.0
+
+### Minor Changes
+
+- 4be9720: update build scripts
+
+### Patch Changes
+
+- 9b53918: more components
+
 ## 4.0.5
 
 ### Patch Changes
