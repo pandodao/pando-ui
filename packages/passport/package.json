@@ -51,5 +51,8 @@
     "vite-plugin-vuetify": "^1.0.0",
     "vue": "^3.2.40",
     "vuetify": "^3.0.3"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
