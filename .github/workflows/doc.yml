@@ -3,7 +3,7 @@ name: Doc
 on:
   push:
     tags:
-      - "*"
+      - "**"
 
 jobs:
   docs:
@@ -32,11 +32,8 @@ jobs:
       - name: Install Dependencies
         run: yarn --immutable
 
-      - name: Build
-        run: yarn build
-
       - name: Build Docs
-        run: yarn docs
+        run: yarn build && yarn docs
 
       - name: Deploy with gh-pages
         run: |
