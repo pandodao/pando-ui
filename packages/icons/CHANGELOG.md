@@ -1,5 +1,11 @@
 # @foxone/icons
 
+## 4.1.0
+
+### Minor Changes
+
+- 4be9720: update build scripts
+
 ## 4.0.2
 
 ### Patch Changes
