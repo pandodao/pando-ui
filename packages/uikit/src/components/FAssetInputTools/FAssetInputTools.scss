@@ -5,8 +5,12 @@
   color: rgb(var(--v-theme-greyscale_3));
 
   .f-asset-input-tools__left {
+    height: 16px;
+
     .f-asset-input-tools__connect-btn {
       padding: 0;
+      color: rgb(var(--v-theme-greyscale_1));
+      height: 16px;
     }
 
     .f-asset-input-tools__connect-icon {

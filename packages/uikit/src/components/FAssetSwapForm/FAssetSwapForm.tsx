@@ -24,7 +24,6 @@ export const FAssetSwapForm = defineComponent({
           <FButton
             icon
             size="32"
-            color="greyscale_5"
             class="f-asset-swap-form__swap"
             onClick={() => emit("switch")}
           >

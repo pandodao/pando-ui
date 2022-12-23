@@ -5,7 +5,7 @@ export default {
     connect_wallet_subtitle:
       "Connect with one of our available wallet providers.",
     search: "Search",
-    select_asset: "Select asset",
+    select_asset: "Select Asset",
     select_phone_code: "Select Phone Code",
     phone_number: "Phone Number",
     cancel: "Cancel",

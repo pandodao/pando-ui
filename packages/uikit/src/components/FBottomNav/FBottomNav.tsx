@@ -5,7 +5,7 @@ import { FButton } from "../FButton";
 import "./FBottomNav.scss";
 
 export interface NavItem {
-  text: string;
+  text?: string;
   icon: string;
   value: string;
 }

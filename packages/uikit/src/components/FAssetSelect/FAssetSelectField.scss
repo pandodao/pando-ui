@@ -13,6 +13,12 @@
     cursor: pointer;
   }
 
+  &__placeholder {
+    display: inline-block;
+    white-space: nowrap;
+    text-transform: capitalize;
+  }
+
   &__right {
     flex: 1;
     margin-left: 8px;

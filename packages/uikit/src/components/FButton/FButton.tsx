@@ -22,7 +22,7 @@ export const FButton = defineComponent({
     }
 
     return () => (
-      <VBtn class="f-button" {...props} {...presets}>
+      <VBtn class="f-button" {...presets} {...props}>
         {slots.default?.()}
       </VBtn>
     );

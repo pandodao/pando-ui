@@ -14,7 +14,6 @@ export default function (app: App, options: AuthOptions, state: State) {
   };
 
   const connectMVM = async (type) => {
-    console.log(state);
     if (!state.mvm) throw new Error("MVM is not used");
 
     await state.mvm?.connenct(type);

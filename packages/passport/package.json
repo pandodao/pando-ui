@@ -10,7 +10,7 @@
   "types": "lib/index.d.ts",
   "scripts": {
     "dev": "concurrently \"yarn build:lib --watch\" \"yarn build:types --watch\"",
-    "build": "yarn build:lib && yarn build:dist",
+    "build": "yarn build:lib && yarn build:dist && yarn build:types",
     "build:dist": "vite build",
     "build:lib": "babel src --out-dir lib --extensions \".ts\"",
     "build:types": "foxone-exec-tsc --pretty --emitDeclarationOnly --p tsconfig.lib.json"

@@ -4,7 +4,6 @@ import {
   FIconClose,
   FIconClear3PFill,
   FIconChevronDown4P,
-  FIconArrowDown,
   FIconConnect3PFill,
   FIconUpRight3PFill,
   FIconInformation3PFill,
@@ -19,6 +18,7 @@ import {
   FIconLink4PBold,
   FIconArrowRight4P,
   FIconHorn4P,
+  FIconArrowDown4PBold,
 } from "@foxone/icons";
 
 export const icons = {
@@ -27,7 +27,7 @@ export const icons = {
   close: FIconClose,
   clear: FIconClear3PFill,
   expand: FIconChevronDown4P,
-  swap: FIconArrowDown,
+  swap: FIconArrowDown4PBold,
   connect: FIconConnect3PFill,
   fill: FIconUpRight3PFill,
   help: FIconInformation3PFill,

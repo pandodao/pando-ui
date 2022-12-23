@@ -51,7 +51,7 @@ export const FAssetInputTools = defineComponent({
           <div class="f-asset-input-tools__left">
             {!props.connected ? (
               <FButton
-                type="text"
+                variant="text"
                 size="x-small"
                 onClick={handleConnect}
                 class="f-asset-input-tools__connect-btn"

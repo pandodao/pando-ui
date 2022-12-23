@@ -61,11 +61,6 @@ function install(
   properties.$passport = passport;
 }
 
-const Passport: any = {
-  install,
-  init,
-};
-
 function init(
   options: {
     vuetifyOptions?: VuetifyOptions;
@@ -85,5 +80,10 @@ function init(
 
   return usePassport(app);
 }
+
+const Passport = {
+  install,
+  init,
+};
 
 export default Passport;

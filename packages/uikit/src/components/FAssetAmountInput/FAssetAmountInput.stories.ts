@@ -40,9 +40,9 @@ const Template2: StoryFn<typeof FAssetAmountInput> = (args) => ({
     };
   },
   template: `
-    <FAssetAmountInput v-model:asset="asset" v-model:amount="amount" v-bind="args" :assets="assets">
+    <FAssetAmountInput v-model:asset="asset" v-model:amount="amount" v-bind="args" :assets="assets" placeholder="Amount">
       <template #tools>
-        <FAssetInputTools :connected="true" balance="1,213" fiatAmount="$5,000" :messages="args.errorMessages" />
+        <FAssetInputTools :connected="args.connected" balance="1,213" fiatAmount="$5,000" :messages="args.errorMessages" />
       </template>
     </FAssetAmountInput>
   `,
@@ -60,6 +60,7 @@ WithRules.args = {
 export const WithTools = Template2.bind({});
 WithTools.args = {
   fullfilled: false,
+  connected: false,
 };
 
 export const WithError = Template2.bind({});

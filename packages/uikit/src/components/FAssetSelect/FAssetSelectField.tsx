@@ -1,5 +1,6 @@
 import { computed, defineComponent, PropType } from "vue";
 import { VIcon } from "vuetify/components";
+import { useLocale } from "vuetify";
 import { FAssetLogo } from "../FAssetLogo";
 
 import "./FAssetSelectField.scss";
@@ -27,6 +28,7 @@ export const FAssetSelectField = defineComponent({
   },
 
   setup(props) {
+    const { t } = useLocale();
     const classes = computed(() => {
       return {
         "f-asset-field": true,
@@ -40,7 +42,9 @@ export const FAssetSelectField = defineComponent({
         {props.asset ? (
           <FAssetLogo size="24" chainSize="8" asset={props.asset} />
         ) : (
-          <VIcon>$question</VIcon>
+          <span class="f-asset-field__placeholder">
+            {t("$vuetify.uikit.select_asset")}
+          </span>
         )}
 
         <div class="f-asset-field__right">
