@@ -6,6 +6,7 @@ export function convertMixinAsset(asset): Asset {
     symbol: asset.symbol,
     logo: asset.icon_url,
     name: asset.name,
+    chainLogo: asset.icon_url,
   };
 }
 

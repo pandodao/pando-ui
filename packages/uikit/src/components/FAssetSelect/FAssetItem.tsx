@@ -29,6 +29,7 @@ export const FAssetItem = defineComponent({
               <FAssetLogo
                 asset={props.asset}
                 size="28"
+                chainSize="12"
                 class="f-asset-item__logo"
               />
             ),
