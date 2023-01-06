@@ -32,15 +32,14 @@ export const FMessageModal = defineComponent({
     },
     cancel: {
       type: Object as PropType<ModalAction>,
-      default: () => {},
+      default: () => ({}),
     },
     confirm: {
       type: Object as PropType<ModalAction>,
-      default: () => {},
+      default: () => ({}),
     },
     actions: {
-      type: Object as PropType<ModalAction[]>,
-      default: () => {},
+      type: Object as PropType<VNode>,
     },
     type: {
       type: String,
@@ -102,8 +101,8 @@ export const FMessageModal = defineComponent({
 
     return () => (
       <FModal
+        v-model={dialog.value}
         title={title}
-        modelValue={dialog.value}
         hideClose
         maxWidth="420"
         class="f-msg-modal"
@@ -111,22 +110,20 @@ export const FMessageModal = defineComponent({
         <div class="f-msg-modal__body">
           <FRender content={props.text}></FRender>
           <div class="f-msg-modal__actions">
-            {props.actions?.length
-              ? props.actions.map((action) => genAction(action))
-              : [
-                  genAction({
-                    show: true,
-                    text: t("$vuetify.uikit.cancel"),
-                    props: { variant: "plain" },
-                    ...(props?.cancel || {}),
-                  }),
-                  genAction({
-                    show: true,
-                    text: t("$vuetify.uikit.continue"),
-                    props: { color: "greyscale_1" },
-                    ...(props?.confirm || {}),
-                  }),
-                ]}
+            {props.actions || [
+              genAction({
+                show: true,
+                text: t("$vuetify.uikit.cancel"),
+                props: { variant: "plain" },
+                ...(props?.cancel || {}),
+              }),
+              genAction({
+                show: true,
+                text: t("$vuetify.uikit.continue"),
+                props: { color: "greyscale_1" },
+                ...(props?.confirm || {}),
+              }),
+            ]}
           </div>
         </div>
       </FModal>

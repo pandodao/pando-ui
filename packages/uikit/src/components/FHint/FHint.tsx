@@ -1,4 +1,4 @@
-import { defineComponent, computed } from "vue";
+import { defineComponent, computed, ref } from "vue";
 
 import { FTooltip } from "../FTooltip";
 import { FModal } from "../FModal";
@@ -23,9 +23,10 @@ export const FHint = defineComponent({
     },
   },
 
-  setup(props) {
+  setup(props, { slots }) {
     const { mdAndUp } = useDisplay();
     const { t } = useLocale();
+    const dialog = ref(false);
 
     const meta = computed(() => {
       const isTooltip = mdAndUp.value;
@@ -49,9 +50,11 @@ export const FHint = defineComponent({
       );
 
     return () => (
-      <meta.value.wrapper {...meta.value.presets}>
+      <meta.value.wrapper v-model={dialog.value} {...meta.value.presets}>
         {{
-          activator: ({ props: _props }) => <FHintActivator {..._props} />,
+          activator: slots.activator
+            ? slots.activator
+            : (params) => <FHintActivator {...params.props} />,
           default: () => content(),
         }}
       </meta.value.wrapper>

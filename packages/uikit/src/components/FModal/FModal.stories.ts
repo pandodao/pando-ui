@@ -13,7 +13,6 @@ const Template: StoryFn<typeof FModal> = (args) => ({
   setup() {
     const dialog = ref(false);
     const close = () => {
-      console.log("close");
       dialog.value = false;
     };
 

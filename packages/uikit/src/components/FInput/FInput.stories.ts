@@ -59,3 +59,13 @@ export const WithTools: StoryFn<typeof FInput> = () => ({
     </FInput>
   `,
 });
+
+export const Slots: StoryFn<typeof FInput> = () => ({
+  components: { FInput },
+  setup() {},
+  template: `
+    <FInput filled hide-details="auto" placeholder="Placeholder">
+      <template #append-inner> % </template>
+    </FInput>
+  `,
+});

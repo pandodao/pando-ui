@@ -16,15 +16,7 @@ const Template: StoryFn<typeof FButton> = (args) => ({
 
 // color
 export const Color = Template.bind({});
-Color.args = { color: "primary" };
-
-// disabled
-export const Disabled = Template.bind({});
-Disabled.args = { disabled: true, color: "primary" };
-
-// loading
-export const Loading = Template.bind({});
-Loading.args = { loading: true, color: "primary" };
+Color.args = { color: "primary", disabled: false, loading: false };
 
 // style
 export const Text: StoryFn<typeof FButton> = () => ({
@@ -56,10 +48,10 @@ export const Icons: StoryFn<typeof FButton> = () => ({
   template: `
     <div style="display: flex; gap: 16px;">
       <FButton icon size="32">
-        <VIcon>$FIconUpRightBold</VIcon>
+        <VIcon>$back</VIcon>
       </FButton>
       <FButton icon disabled size="32">
-        <VIcon>$FIconUpRightBold</VIcon>
+        <VIcon>$back</VIcon>
       </FButton>
     </div>
   `,

@@ -12,7 +12,7 @@ export interface MessageModalProps {
   props?: Record<string, any>;
   cancel?: ModalAction;
   confirm?: ModalAction;
-  actions?: ModalAction[];
+  actions?: VNode;
   type?: string;
 }
 

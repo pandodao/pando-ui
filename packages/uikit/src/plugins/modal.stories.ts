@@ -1,4 +1,6 @@
+import { h } from "vue";
 import { StoryFn } from "@storybook/vue3";
+import { FButton } from "../components/FButton";
 import { useModal } from "./modal";
 
 export default {
@@ -16,6 +18,7 @@ const Template: StoryFn = (args) => ({
           props: { color: "error" },
           text: "confirm",
         },
+        ...args,
       });
     };
 
@@ -28,3 +31,8 @@ const Template: StoryFn = (args) => ({
 
 export const Default = Template.bind({});
 Default.args = {};
+
+export const CustomAction = Template.bind({});
+CustomAction.args = {
+  actions: h(FButton, { block: true, color: "primary" }, ["Custom Action"]),
+};

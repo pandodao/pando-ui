@@ -53,13 +53,13 @@ export const FInput = defineComponent({
       >
         {{
           ...slots,
-          details: (slotProps) => {
-            return (
-              slots.tools && (
-                <div class="f-input__tools">{slots.tools?.(slotProps)}</div>
-              )
-            );
-          },
+          details: slots.tools
+            ? (slotProps) => {
+                return (
+                  <div class="f-input__tools">{slots.tools?.(slotProps)}</div>
+                );
+              }
+            : slots.details,
         }}
       </VTextField>
     );

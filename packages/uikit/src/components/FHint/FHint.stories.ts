@@ -17,13 +17,17 @@ const Template: StoryFn<typeof FHint> = (args) => ({
     return { args, dialog };
   },
   template: `
-    <div style="text-align: center; padding: 100px">
-      APY
+    <div style="padding-top: 100px;">
       <FHint
-        v-model="dialog"
         hint="The annual percentage yield (APY) is the real rate of return earned on an investment"
         v-bind="args"
-      />
+      >
+      <template #activator="{props}">
+        <FButton color="primary" v-bind="props">
+          Hint
+        </FButton>
+      </template>
+      </FHint>
     </div>
   `,
 });
@@ -33,7 +37,7 @@ Text.args = { location: "top", openOnHover: false, openOnClick: true };
 
 export const Href = Template.bind({});
 Href.args = {
-  location: "bottom",
+  // location: "bottom",
   href: "https://pando.im/",
   openOnHover: false,
   openOnClick: true,

@@ -1,7 +1,6 @@
 @use "../../styles/_variables.scss" as *;
 
 .f-input.v-input {
-
   .v-field {
     font-size: 1.125rem;
     font-weight: 600;
@@ -12,14 +11,15 @@
       border-bottom-left-radius: $border-radius-root;
       border-bottom-right-radius: $border-radius-root;
 
-
       .v-field__overlay {
         opacity: 1;
         background: rgb(var(--v-theme-greyscale_6));
+        z-index: -1;
       }
-      
+
       .v-field__outline {
-        &::before, &::after {
+        &::before,
+        &::after {
           display: none;
         }
       }
