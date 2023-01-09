@@ -1,5 +1,11 @@
 # @foxone/icons
 
+## 4.1.1
+
+### Patch Changes
+
+- 9d4059d: update ui
+
 ## 4.1.0
 
 ### Minor Changes
