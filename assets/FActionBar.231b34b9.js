@@ -1,2 +1,0 @@
-import{z as e,t as n,a as c}from"./vue.esm-bundler.0d7c29ee.js";import{a as i,b as l,g as u}from"./VBtn.aebc80dd.js";import{a as m}from"./color.a1d36358.js";const d=e({name:"FActionBar",props:{color:String,...i()},setup(o,{slots:s}){const{positionClasses:a}=l(o),{backgroundColorClasses:r,backgroundColorStyles:t}=m(n(o,"color"));return()=>c(u,{class:["f-action-bar",a.value,r.value],style:[t.value]},s)}});export{d as F};
-//# sourceMappingURL=FActionBar.231b34b9.js.map
