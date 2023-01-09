@@ -3,7 +3,6 @@ import { useLocale } from "vuetify";
 
 import type { VNode } from "vue";
 
-import { VIcon } from "vuetify/components";
 import { FModal } from "../FModal";
 import { FButton } from "../FButton";
 import { FRender } from "../FRender";
@@ -41,10 +40,6 @@ export const FMessageModal = defineComponent({
     actions: {
       type: Object as PropType<VNode>,
     },
-    type: {
-      type: String,
-      default: "",
-    },
   },
 
   emits: {
@@ -69,17 +64,6 @@ export const FMessageModal = defineComponent({
 
     expose({ show, close });
 
-    const title = (
-      <div class="f-msg-modal__title">
-        {props.type === "warning" && (
-          <VIcon class="f-msg-modal__icon" color="error">
-            $warning
-          </VIcon>
-        )}
-        <FRender content={props.title} />
-      </div>
-    );
-
     const genAction = (action: ModalAction) => {
       if (!action.show) {
         return null;
@@ -102,7 +86,11 @@ export const FMessageModal = defineComponent({
     return () => (
       <FModal
         v-model={dialog.value}
-        title={title}
+        title={
+          <div class="f-msg-modal__title">
+            <FRender content={props.title} />
+          </div>
+        }
         hideClose
         maxWidth="420"
         class="f-msg-modal"

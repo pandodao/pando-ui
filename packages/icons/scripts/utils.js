@@ -5,15 +5,18 @@ const prefix = "FIcon";
 
 const parseName = (name, style) => {
   const cleanName = name.replace(/\//g, "-");
+
+  if (style === "untitle") {
+    return upperFirst(camelCase(cleanName));
+  }
+
   let baseName = prefix + upperFirst(camelCase(cleanName));
 
   if (style === "fill") {
     baseName += upperFirst(style);
   }
 
-  return {
-    componentName: baseName
-  };
+  return { componentName: baseName };
 };
 
 module.exports = { parseName };

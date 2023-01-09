@@ -1,5 +1,6 @@
 import { ref } from "vue";
 import { FLoading } from "./FLoading";
+import { FFullscreenLoading } from "./FFullscreenLoading";
 import { FButton } from "../FButton";
 import { Meta, StoryFn } from "@storybook/vue3";
 
@@ -10,6 +11,27 @@ export default {
 
 const Template: StoryFn<typeof FLoading> = (args) => ({
   components: { FLoading, FButton },
+  setup() {
+    return { args };
+  },
+  template: `
+    <div style="padding: 60px;">
+      <FLoading v-bind="args" />
+    </div>
+  `,
+});
+
+export const Default = Template.bind({});
+Default.args = { text: "Please Wait" };
+
+export const ProcessProps = Template.bind({});
+ProcessProps.args = {
+  text: "loading",
+  processProps: { size: 40, color: "success" },
+};
+
+const Template2: StoryFn<typeof FLoading> = (args) => ({
+  components: { FFullscreenLoading, FButton },
   setup() {
     const loading = ref(false);
     const show = () => {
@@ -22,19 +44,14 @@ const Template: StoryFn<typeof FLoading> = (args) => ({
   },
   template: `
     <div>
-      <FLoading v-model="loading" v-bind="args" />
+      <FFullscreenLoading v-model="loading" v-bind="args" />
 
       <FButton color="primary" @click="show">Show</FButton>
     </div>
   `,
 });
 
-export const Default = Template.bind({});
-Default.args = { fullscreen: true, text: "Please Wait" };
-
-export const ProcessProps = Template.bind({});
-ProcessProps.args = {
-  fullscreen: true,
-  text: "loading",
-  processProps: { size: 40, color: "success" },
+export const Fullscreen = Template2.bind({});
+Fullscreen.args = {
+  text: "Please wait",
 };

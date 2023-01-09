@@ -4,7 +4,7 @@ const rimraf = require("rimraf");
 const { parseName } = require("./utils");
 const { getElementCode } = require("./template");
 
-const styles = ["outline", "fill", "colorful"];
+const styles = ["outline", "fill", "colorful", "untitle"];
 
 const rootDir = path.join(__dirname, "../");
 const srcDir = path.join(rootDir, "./");

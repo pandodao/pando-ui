@@ -1,8 +1,8 @@
 import { defineComponent } from "vue";
+import { FTooltip } from "../FTooltip";
 
 import "./FInfoGridItem.scss";
 
-// TODO: Finish Hint
 export const FInfoGridItem = defineComponent({
   name: "FInfoGridItem",
 
@@ -18,7 +18,7 @@ export const FInfoGridItem = defineComponent({
       <div class="f-info-grid-item">
         <div class="f-info-grid-item__title">
           {slots.title?.() ?? props.title}
-          {/* <FToolTip hint={props.hint} /> */}
+          <FTooltip hint={props.hint} />
         </div>
         <div class="f-info-grid-item__value">
           <span>{slots.value?.() ?? props.value}</span>

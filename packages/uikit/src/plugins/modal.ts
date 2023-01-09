@@ -22,7 +22,7 @@ export function useModal() {
   return instance.appContext.config.globalProperties.$uikit.modal;
 }
 
-export type Keys = "warning" | "show" | "clear";
+export type Keys = "show" | "clear";
 
 export type ModalPlugin = Record<Keys, (options?: MessageModalProps) => void>;
 
