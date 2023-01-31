@@ -5,7 +5,7 @@ export default {
     connect_wallet_subtitle:
       "利用可能なウォレットプロバイダーの1つに接続します。",
     search: "検索する",
-    select_asset: "通貨を選んでください",
+    select_asset: "選択する",
     select_phone_code: "市外局番を選択してください",
     phone_number: "電話番号",
     cancel: "キャンセル",

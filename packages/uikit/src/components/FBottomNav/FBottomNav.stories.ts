@@ -29,3 +29,23 @@ Default.args = {
     { text: "Me", icon: "$FIconPersonAFill", value: "me" },
   ],
 };
+
+export const NoText = Template.bind({});
+NoText.args = {
+  items: [
+    { icon: "$FIconHomeFill", value: "home" },
+    { icon: "$FIconMarketFill", value: "market" },
+    { icon: "$FIconSwapFill", value: "swap" },
+    { icon: "$FIconPersonAFill", value: "me" },
+  ],
+};
+
+export const Href = Template.bind({});
+Href.args = {
+  items: [
+    { icon: "$FIconHomeFill", href: "/" },
+    { icon: "$FIconMarketFill", href: "/market" },
+    { icon: "$FIconSwapFill", value: "/swap" },
+    { icon: "$FIconPersonAFill", value: "/me" },
+  ],
+};

@@ -40,7 +40,7 @@ export const FAssetSelectField = defineComponent({
     return () => (
       <div class={classes.value}>
         {props.asset ? (
-          <FAssetLogo size="24" chainSize="8" asset={props.asset} />
+          <FAssetLogo size="22" chainSize="10" asset={props.asset} />
         ) : (
           <span class="f-asset-field__placeholder">
             {t("$vuetify.uikit.select_asset")}

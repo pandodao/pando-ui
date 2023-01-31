@@ -4,6 +4,7 @@ const vuetify = require("vite-plugin-vuetify");
 module.exports = {
   stories: [
     "../packages/uikit/src/**/*.stories.@(ts|tsx|mdx)",
+    "../packages/talkee/**/*.stories.@(ts|tsx|mdx)",
     "../packages/icons/stories/**/*.stories.@(ts|tsx|mdx)",
     "../packages/passport/stories/**/*.stories.@(ts|tsx|mdx)",
   ],

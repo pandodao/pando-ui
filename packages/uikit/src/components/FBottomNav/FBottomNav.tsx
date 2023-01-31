@@ -7,7 +7,9 @@ import "./FBottomNav.scss";
 export interface NavItem {
   text?: string;
   icon: string;
-  value: string;
+  value?: string;
+  to?: string;
+  exact?: string;
 }
 
 export const FBottomNav = defineComponent({
@@ -26,9 +28,14 @@ export const FBottomNav = defineComponent({
     const content = () => (
       <>
         {props.items.map((item) => (
-          <FButton value={item.value} class="f-bottom-nav__item">
+          <FButton
+            value={item.value}
+            to={item.to}
+            exact={item.exact}
+            class="f-bottom-nav__item"
+          >
             <VIcon class="f-bottom-nav__icon">{item.icon}</VIcon>
-            <span class="f-bottom-nav__text">{item.text}</span>
+            {item.text && <span class="f-bottom-nav__text">{item.text}</span>}
           </FButton>
         ))}
       </>

@@ -1,0 +1,24 @@
+{
+  "name": "@foxone/talkee",
+  "version": "1.0.0",
+  "description": "Talkee components",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vite build --watch",
+    "build": "vite build"
+  },
+  "license": "MIT",
+  "peerDependencies": {
+    "@foxone/uikit": "^4.1.2",
+    "@foxone/mixin-passport": "^1.1.1",
+    "vuetify": "^3.1.2"
+  },
+  "devDependencies": {
+    "@foxone/uikit": "*",
+    "@foxone/mixin-passport": "*"
+  },
+  "dependencies": {
+    "dompurify": "^2.4.3",
+    "marked": "^4.2.12"
+  }
+}

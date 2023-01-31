@@ -22,11 +22,11 @@ export const FMessageModal = defineComponent({
 
   props: {
     title: {
-      type: String as PropType<String | VNode>,
+      type: [String, Object] as PropType<String | VNode>,
       default: "",
     },
     text: {
-      type: String as PropType<String | VNode>,
+      type: [String, Object] as PropType<String | VNode>,
       default: "",
     },
     cancel: {
@@ -91,12 +91,11 @@ export const FMessageModal = defineComponent({
             <FRender content={props.title} />
           </div>
         }
-        hideClose
         maxWidth="420"
         class="f-msg-modal"
       >
         <div class="f-msg-modal__body">
-          <FRender content={props.text}></FRender>
+          <FRender content={props.text} />
           <div class="f-msg-modal__actions">
             {props.actions || [
               genAction({

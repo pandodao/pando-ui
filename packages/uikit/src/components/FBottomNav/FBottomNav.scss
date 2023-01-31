@@ -2,6 +2,10 @@
   .v-bottom-navigation__content {
     justify-content: space-evenly;
 
+    .v-btn .v-btn__overlay {
+      display: none;
+    }
+
     .f-bottom-nav__item:not(.v-btn--active) {
       color: rgb(var(--v-theme-greyscale_4));
     }
@@ -10,7 +14,7 @@
       font-weight: 500;
       font-size: 12px;
       line-height: 14px;
-      font-family: 'SF Pro Text';
+      font-family: "SF Pro Text";
       margin-top: 8px;
     }
   }

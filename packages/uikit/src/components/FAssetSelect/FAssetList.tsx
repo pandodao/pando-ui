@@ -20,7 +20,7 @@ export const FAssetList = defineComponent({
 
   setup(props, { emit }) {
     return () => (
-      <VList>
+      <VList class={["f-asset-select__list"]}>
         {props.assets.map((asset) => (
           <FAssetItem
             asset={asset}

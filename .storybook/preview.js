@@ -6,6 +6,7 @@ import * as components from "vuetify/components";
 import * as directives from "vuetify/directives";
 import UIKit from "@foxone/uikit";
 import Passport from "@foxone/mixin-passport";
+import Talkee from "@foxone/talkee";
 import { usePresets } from "@foxone/uikit/presets";
 import icons from "./icons";
 
@@ -54,6 +55,7 @@ app.use(UIKit, {
   },
 });
 app.use(Passport);
+app.use(Talkee);
 
 export const decorators = [
   (story, context) => {

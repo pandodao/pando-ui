@@ -50,11 +50,17 @@ export const FAssetSelect = defineComponent({
       <FModal
         title={t("$vuetify.uikit.select_asset")}
         modelValue={props.dialog}
+        desktop="menu"
         onUpdate:modelValue={(v) => emit("update:dialog", v)}
       >
         {{
-          activator: ({ props: _props }) => (
-            <FAssetSelectField asset={props.asset} {..._props} {...attrs} />
+          activator: ({ isActive, props: _props }) => (
+            <FAssetSelectField
+              class={[{ "f-asset-field--active": isActive }]}
+              asset={props.asset}
+              {..._props}
+              {...attrs}
+            />
           ),
           default: () => (
             <div class="f-asset-select">
@@ -62,7 +68,6 @@ export const FAssetSelect = defineComponent({
                 <FSearchInput v-model={filter.value} />
               </div>
               <FAssetList
-                class="f-asset-select__list"
                 assets={filteredAssets.value}
                 onSelect={handleSelect}
               />
