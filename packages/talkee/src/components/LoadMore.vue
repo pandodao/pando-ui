@@ -1,7 +1,9 @@
 <template>
   <FLoading v-if="loading" size="18" class="comments-loading" />
-  <div v-else-if="hasNext" class="load-more" @click="emits('more')">
-    Load More
+  <div v-else-if="hasNext" class="load-more">
+    <FButton size="xs" variant="text" @click="emits('more')">
+      Load More
+    </FButton>
   </div>
 </template>
 
@@ -13,7 +15,7 @@ export default {
 
 <script lang="ts" setup>
 import { defineEmits } from "vue";
-import { FLoading } from "@foxone/uikit/components";
+import { FLoading, FButton } from "@foxone/uikit/components";
 
 defineProps({
   hasNext: { type: Boolean, default: false },
@@ -29,5 +31,6 @@ const emits = defineEmits({
 .load-more {
   font-size: 12px;
   color: rgb(var(--v-theme-info));
+  text-align: center;
 }
 </style>

@@ -1,13 +1,18 @@
 <template>
   <div class="comments">
     <CommentItem
-      v-for="(item, index) in comments"
+      v-for="(item, index) in commentsList"
       :key="index"
       :comment="item"
+      :profile="profile"
       @update="handleUpdate"
     />
 
-    <load-more :loading="globals.loading" :has-next="hasNext" />
+    <LoadMore
+      :loading="globals.loading"
+      :has-next="hasNext"
+      @more="loadComments"
+    />
 
     <div v-if="error" class="comment-error">Something Error Happend</div>
   </div>
@@ -20,11 +25,15 @@ export default {
 </script>
 
 <script lang="ts" setup>
-import { ref, watch, onMounted } from "vue";
+import { ref, watch, onMounted, computed } from "vue";
 import CommentItem from "./CommentItem.vue";
 import LoadMore from "./LoadMore.vue";
 import { useGlobals } from "../composables";
 import { getComments } from "../services";
+
+defineProps({
+  profile: { type: Object },
+});
 
 const globals = useGlobals();
 const page = ref(1);
@@ -32,24 +41,47 @@ const hasNext = ref(false);
 const comments = ref<any[]>([]);
 const error = ref(false);
 
-watch(() => [globals.sort.value], loadComments);
+watch(
+  () => [globals.sort.value],
+  () => loadComments(true)
+);
 
 onMounted(() => {
-  loadComments();
+  loadComments(true);
 });
 
-async function loadComments() {
+const commentsList = computed(() => [
+  ...globals.topComments.value,
+  ...comments.value,
+]);
+
+async function loadComments(reload = false) {
+  if (globals.loading) return;
+
+  if (reload) {
+    comments.value = [];
+    globals.topComments.value = [];
+    page.value = 1;
+    hasNext.value = true;
+  }
+
   globals.loading = true;
 
   try {
     const resp = await getComments(globals.sort.value, page.value);
 
     globals.total.value = resp.total;
-    comments.value = resp.comments;
     hasNext.value = resp.ipp <= resp.comments?.length;
+    page.value = resp.page + 1;
+
+    comments.value = [
+      ...comments.value,
+      ...resp.comments.filter(
+        (x) => !globals.topComments.value.find((y) => y.id === x.id)
+      ),
+    ];
   } catch (e) {
     error.value = true;
-
     console.error("Get Comments Error", e);
   }
 
@@ -57,10 +89,18 @@ async function loadComments() {
 }
 
 async function handleUpdate(comment) {
-  const index = comments.value.findIndex((x) => x.id === comment.id);
+  const index1 = comments.value.findIndex((x) => x.id === comment.id);
 
-  if (index > -1) {
-    comments.value.splice(index, 1, comment);
+  if (index1 > -1) {
+    comments.value.splice(index1, 1, comment);
+  }
+
+  const index2 = globals.topComments.value.findIndex(
+    (x) => x.id === comment.id
+  );
+
+  if (index2 > -1) {
+    globals.topComments.value.splice(index2, 1, comment);
   }
 }
 </script>

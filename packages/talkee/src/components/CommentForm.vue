@@ -6,6 +6,7 @@
 
     <div class="form-right">
       <VTextarea
+        v-model="content"
         persistent-counter
         auto-grow
         variant="outlined"
@@ -15,7 +16,23 @@
       />
 
       <div class="submit-action">
-        <FButton color="primary">Submit</FButton>
+        <FButton
+          :disabled="!valid"
+          :loading="loading"
+          color="primary"
+          @click="handleSubmit"
+        >
+          Submit
+        </FButton>
+
+        <FButton
+          variant="outlined"
+          color="greyscale_3"
+          class="logout-action"
+          @click="handleLogout"
+        >
+          Logout
+        </FButton>
       </div>
     </div>
   </VForm>
@@ -28,17 +45,57 @@ export default {
 </script>
 
 <script lang="ts" setup>
-import { VForm, VTextarea } from "vuetify/components";
+import { ref, computed } from "vue";
+import { VForm, VTextarea, VImg, VAvatar } from "vuetify/components";
 import { FButton } from "@foxone/uikit/components";
+import { useToast } from "@foxone/uikit/plugins/toast";
+import { postComment } from "../services";
+import { useGlobals } from "../composables";
 
-defineProps({
+const props = defineProps({
   profile: { type: Object },
 });
+
+const toast = useToast();
+const content = ref("");
+const loading = ref(false);
+const valid = computed(
+  () => content.value.length <= 512 && content.value.length > 0
+);
+const globals = useGlobals();
+
+async function handleSubmit() {
+  loading.value = true;
+
+  try {
+    const resp = await postComment(globals.slug, content.value.trim());
+
+    globals.topComments.value.unshift({
+      ...resp,
+      creator: props.profile,
+    });
+    globals.total.value++;
+    content.value = "";
+  } catch (error: any) {
+    toast.error({ message: error?.message ?? "Submit Comment Error" });
+    console.error("Submit Error", error);
+  }
+
+  loading.value = false;
+}
+
+function handleLogout() {
+  globals.logout();
+}
 </script>
 
 <style lang="scss" scoped>
 .comment-form {
   display: flex;
+
+  .logout-action {
+    margin-left: 16px;
+  }
 
   .form-right {
     flex: 1;

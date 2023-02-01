@@ -8,7 +8,7 @@
     <CommentForm v-if="globals.logged.value" :profile="profile" />
     <LoginAction v-else />
 
-    <Comments />
+    <Comments :profile="profile" />
   </div>
 </template>
 
@@ -19,7 +19,7 @@ export default {
 </script>
 
 <script lang="ts" setup>
-import { watch, ref } from "vue";
+import { watch, ref, defineProps, onBeforeMount } from "vue";
 import SortMethods from "./SortMethods.vue";
 import CommentCount from "./CommentCount.vue";
 import CommentForm from "./CommentForm.vue";
@@ -28,9 +28,23 @@ import LoginAction from "./LoginAction.vue";
 import { useGlobals } from "../composables";
 import { getMe } from "../services";
 
+const props = defineProps({
+  siteId: { type: String, default: "" },
+  slug: { type: String, default: "" },
+  apiBase: { type: String, default: "" },
+  clientId: { type: String, default: "" },
+});
+
 const globals = useGlobals();
 
 const profile = ref<any>(null);
+
+onBeforeMount(() => {
+  globals.siteId.value = props.siteId || "";
+  globals.slug.value = props.slug || "";
+  globals.apiBase.value = props.apiBase || "";
+  globals.clientId.value = props.clientId || "";
+});
 
 watch(
   () => [globals.token.value],

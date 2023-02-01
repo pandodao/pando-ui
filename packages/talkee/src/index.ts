@@ -2,9 +2,8 @@ import { createApp } from "vue";
 import { createVuetify } from "vuetify";
 import { VApp } from "vuetify/components";
 import { usePresets } from "@foxone/uikit/presets";
-import { Auth } from "@foxone/uikit/plugins";
+import { Auth, Toast } from "@foxone/uikit/plugins";
 import { locales } from "./locales";
-import { useGlobals } from "./composables";
 import Passport from "@foxone/mixin-passport";
 
 import Talkee from "./components/Talkee.vue";
@@ -28,7 +27,17 @@ function show(
 ) {
   const app = createApp({
     components: { VApp },
-    template: "<VApp><Talkee /></VApp>",
+    setup() {
+      const globals = {
+        siteId: options.siteId || "",
+        slug: options.slug || "",
+        apiBase: options.apiBase || "",
+        clientId: options.clientId || "",
+      };
+
+      return { globals };
+    },
+    template: "<VApp><Talkee v-bind='globals' /></VApp>",
   });
 
   const vuetifyOptions =
@@ -37,16 +46,9 @@ function show(
   app.use(createVuetify(vuetifyOptions));
   app.use(Passport);
   app.use(Auth);
+  app.use(Toast);
 
   install(app);
-
-  // set globals
-  const globals = useGlobals();
-
-  globals.siteId.value = options.siteId || "";
-  globals.slug.value = options.slug || "";
-  globals.apiBase.value = options.apiBase || "";
-  globals.clientId.value = options.clientId || "";
 
   app.mount(options.container || "body");
 }
@@ -54,4 +56,5 @@ function show(
 export default {
   install,
   show,
+  locales,
 };

@@ -5,7 +5,6 @@
     font-size: 1.125rem;
     font-weight: 600;
     line-height: 1.5rem;
-    overflow: hidden;
 
     &.v-field--variant-filled {
       border-bottom-left-radius: $border-radius-root;
@@ -35,6 +34,15 @@
           background: rgb(var(--v-theme-error_bg));
         }
       }
+    }
+  }
+
+  .v-field--variant-outlined,
+  .v-field--variant-filled,
+  .v-field--variant-solo {
+    .v-field__loader {
+      padding: 0 8px;
+      border-radius: 8px;
     }
   }
 

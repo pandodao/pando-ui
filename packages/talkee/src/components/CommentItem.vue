@@ -13,16 +13,26 @@
 
       <div class="info">
         <div class="time">{{ formatTime(comment?.created_at) }}</div>
-        <span>reply</span>
+
+        <FButton size="xs" variant="text" @click="handleToggleReply">
+          reply
+        </FButton>
 
         <VSpacer />
 
-        <MessageAction :comment="comment" />
+        <MessageAction :comment="comment" @toggle="handleToggleReply" />
 
         <FavAction :comment="comment" @refresh="handleRefresh" />
       </div>
 
-      <sub-comments v-if="comment?.reply_count > 0" :id="comment?.id" />
+      <ReplyForm
+        v-if="showReply"
+        :comment="comment"
+        :profile="profile"
+        @replied="handleToggleReply"
+      />
+
+      <SubComments v-if="comment?.reply_count > 0" :id="comment?.id" />
     </div>
   </div>
 </template>
@@ -34,23 +44,28 @@ export default {
 </script>
 
 <script lang="ts" setup>
-import { defineEmits, defineProps, computed } from "vue";
+import { defineEmits, defineProps, computed, ref } from "vue";
 import { marked } from "marked";
 import DOMPurify from "dompurify";
 import { formatTime, urlify } from "../utils/helper";
 import { VAvatar, VImg, VSpacer } from "vuetify/components";
+import { FButton } from "@foxone/uikit/components";
 import SubComments from "./SubComments.vue";
 import FavAction from "./FavAction.vue";
 import MessageAction from "./MessageAction.vue";
+import ReplyForm from "./ReplyForm.vue";
 import { getComment } from "../services";
 
 const props = defineProps({
   comment: { type: Object },
+  profile: { type: Object },
 });
 
 const emits = defineEmits({
   update: (v: any) => true,
 });
+
+const showReply = ref(false);
 
 const content = computed(() => {
   const md = marked(DOMPurify.sanitize(props.comment?.content ?? ""));
@@ -62,6 +77,10 @@ async function handleRefresh() {
   const comment = await getComment(props.comment?.id);
 
   emits("update", comment);
+}
+
+function handleToggleReply() {
+  showReply.value = !showReply.value;
 }
 </script>
 
@@ -97,6 +116,7 @@ async function handleRefresh() {
     color: rgb(var(--v-theme-greyscale_3));
     align-items: center;
     font-size: 12px;
+    line-height: 1;
   }
 }
 </style>

@@ -44,6 +44,9 @@ const vuetify = createVuetify(
     components,
     directives,
     icons: { aliases: icons },
+    locale: {
+      messages: { ...Talkee.locales },
+    },
   })
 );
 

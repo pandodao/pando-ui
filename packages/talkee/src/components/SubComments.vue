@@ -1,12 +1,12 @@
 <template>
   <div v-if="comments.length" class="subcomments">
     <SubCommentItem
-      v-for="(item, index) in comments"
+      v-for="(item, index) in commentsList"
       :key="index"
       :comment="item"
     />
 
-    <load-more :loading="loading" :has-next="hasNext" />
+    <LoadMore :loading="loading" :has-next="hasNext" @more="loadSubComments" />
   </div>
 </template>
 
@@ -17,7 +17,7 @@ export default {
 </script>
 
 <script lang="ts" setup>
-import { onMounted, ref, watch } from "vue";
+import { onMounted, ref, watch, computed } from "vue";
 import { getSubComments } from "../services";
 import { useGlobals } from "../composables";
 import SubCommentItem from "./SubCommentItem.vue";
@@ -34,13 +34,30 @@ const page = ref(1);
 const hasNext = ref(true);
 const loading = ref(false);
 
+const commentsList = computed(() => [
+  ...globals.topSubComments.value,
+  ...comments.value,
+]);
+
 onMounted(() => {
-  loadSubComments();
+  loadSubComments(true);
 });
 
-watch(() => [globals.sort], loadSubComments);
+watch(
+  () => [globals.sort],
+  () => loadSubComments(true)
+);
 
-async function loadSubComments() {
+async function loadSubComments(reload = false) {
+  if (loading.value) return;
+
+  if (reload) {
+    globals.topSubComments.value = [];
+    comments.value = [];
+    page.value = 1;
+    hasNext.value = true;
+  }
+
   loading.value = true;
 
   try {
@@ -52,7 +69,13 @@ async function loadSubComments() {
     );
 
     hasNext.value = resp.replies.length >= resp.ipp;
-    comments.value = [...comments.value, ...resp.replies];
+    page.value = resp.page + 1;
+    comments.value = [
+      ...comments.value,
+      ...resp.replies.filter(
+        (x) => !globals.topSubComments.value.find((y) => y.id === x.id)
+      ),
+    ];
   } catch (error) {
     console.error("Get Sub Comments Error", error);
   }

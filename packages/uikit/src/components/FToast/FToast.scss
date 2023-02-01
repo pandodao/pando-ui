@@ -1,6 +1,8 @@
 .v-snackbar.f-toast {
-  --v-theme-surface-variant: var(--v-theme-greyscale_7);
-  --v-theme-on-surface-variant: var(--v-theme-greyscale_1);
+  .v-snackbar__wrapper {
+    --v-theme-surface-variant: var(--v-theme-greyscale_7);
+    --v-theme-on-surface-variant: var(--v-theme-greyscale_1);
+  }
 
   .v-snackbar__content {
     font-weight: 500;
@@ -41,15 +43,21 @@
 
 .v-theme--dark.f-toast {
   &.f-toast--success {
-    --v-theme-surface-variant: var(--v-theme-success_bg);
+    .v-snackbar__wrapper {
+      --v-theme-surface-variant: var(--v-theme-success_bg);
+    }
   }
 
   &.f-toast--error {
-    --v-theme-surface-variant: var(--v-theme-error_bg);
+    .v-snackbar__wrapper {
+      --v-theme-surface-variant: var(--v-theme-error_bg);
+    }
   }
 
   &.f-toast--warning {
-    --v-theme-surface-variant: var(--v-theme-warning_bg);
+    .v-snackbar__wrapper {
+      --v-theme-surface-variant: var(--v-theme-warning_bg);
+    }
   }
 }
 

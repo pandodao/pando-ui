@@ -1,10 +1,16 @@
 <template>
-  <div class="fav-action" :class="{ 'fav-action--active': isFavor }">
+  <FButton
+    icon
+    size="16"
+    class="fav-action"
+    :loading="loading"
+    :class="{ 'fav-action--active': isFavor }"
+  >
     <VIcon size="16" @click="handleToggleFav">
       <IconHeart />
     </VIcon>
     <span class="action-text">{{ comment?.favor_count }}</span>
-  </div>
+  </FButton>
 </template>
 
 <script lang="ts">
@@ -19,6 +25,7 @@ import { useGlobals } from "../composables";
 import { putFavor, putUnfavor } from "../services";
 import { IconHeart } from "./icons";
 import { VIcon } from "vuetify/components";
+import { FButton } from "@foxone/uikit/components";
 
 const props = defineProps({
   comment: { type: Object },

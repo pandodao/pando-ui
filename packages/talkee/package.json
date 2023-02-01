@@ -2,7 +2,10 @@
   "name": "@foxone/talkee",
   "version": "1.0.0",
   "description": "Talkee components",
-  "main": "index.js",
+  "main": "dist/index.mjs",
+  "module": "dist/index.mjs",
+  "jsdelivr": "dist/index.umd.js",
+  "unpkg": "dist/index.umd.js",
   "scripts": {
     "dev": "vite build --watch",
     "build": "vite build"

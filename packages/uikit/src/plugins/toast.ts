@@ -13,6 +13,7 @@ export interface ToastGlobalOptions {
   location: any;
   timeout: number;
   [key: string]: any;
+  container?: string;
 }
 
 export type ToastHandler = {
@@ -38,7 +39,7 @@ function install(app: App, globalOptions: ToastGlobalOptions) {
     }
 
     nextTick(() => {
-      const appendTo = document.querySelector("[data-v-app]");
+      const appendTo = document.querySelector(".v-application");
       const container = document.createElement("div");
       const vnode = createVNode(FToast, {
         ...globalOptions,

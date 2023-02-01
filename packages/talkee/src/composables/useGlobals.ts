@@ -10,6 +10,8 @@ const sort = ref("favor_count");
 const total = ref(0);
 const profile = ref<any>(null);
 const loading = false;
+const topComments = ref<any[]>([]);
+const topSubComments = ref<any[]>([]);
 
 const logged = computed(() => Boolean(token.value));
 
@@ -35,6 +37,8 @@ export function useGlobals() {
     total,
     loading,
     profile,
+    topComments,
+    topSubComments,
 
     loggin,
     logout,

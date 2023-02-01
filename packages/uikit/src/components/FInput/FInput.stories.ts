@@ -8,25 +8,61 @@ export default {
   component: FInput,
 } as Meta<typeof FInput>;
 
-const Template: StoryFn<typeof FInput> = (args) => ({
+export const Default: StoryFn<typeof FInput> = (args) => ({
   components: { FInput },
-  template: `
-    <div style="display: grid; gap: 16px;">
-      <FInput v-model="text" placeholder="Placeholder" :rules="rules" v-bind="args" />
-    </div>
-  `,
   setup() {
-    const text = ref("Default");
+    const text = ref("");
     const rules = [(v) => !!v || "Field is required"];
 
-    return { rules, args, text };
+    return { attrs: { ...args, rules }, text };
   },
+  template: `
+    <FInput v-model="text" v-bind="attrs" variant="underlined">
+      <template #append>
+        <VIcon>$close</VIcon>
+      </template>
+      <template #append-inner>
+        <VIcon>$close</VIcon>
+      </template>
+    </FInput>
+    <FInput v-model="text" v-bind="attrs" variant="outlined">
+      <template #append>
+        <VIcon>$close</VIcon>
+      </template>
+      <template #append-inner>
+        <VIcon>$close</VIcon>
+      </template>
+    </FInput>
+    <FInput v-model="text" v-bind="attrs" variant="filled">
+      <template #append>
+        <VIcon>$close</VIcon>
+      </template>
+      <template #append-inner>
+        <VIcon>$close</VIcon>
+      </template>
+    </FInput>
+    <FInput v-model="text" v-bind="attrs" variant="solo">
+      <template #append>
+        <VIcon>$close</VIcon>
+      </template>
+      <template #append-inner>
+        <VIcon>$close</VIcon>
+      </template>
+    </FInput>
+    <FInput v-model="text" v-bind="attrs" variant="plain">
+      <template #append>
+        <VIcon>$close</VIcon>
+      </template>
+      <template #append-inner>
+        <VIcon>$close</VIcon>
+      </template>
+    </FInput>
+  `,
 });
 
-export const Default = Template.bind({});
 Default.args = {
   loading: false,
-  singleLine: true,
+  singleLine: false,
   disabled: false,
   label: "Label",
 };
