@@ -1,5 +1,11 @@
 # @foxone/mixin-passport
 
+## 1.1.2
+
+### Patch Changes
+
+- cb231dd: add talkee
+
 ## 1.1.1
 
 ### Patch Changes

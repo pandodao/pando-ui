@@ -1,5 +1,11 @@
 # @foxone/uikit
 
+## 4.1.3
+
+### Patch Changes
+
+- cb231dd: add talkee
+
 ## 4.1.2
 
 ### Patch Changes
