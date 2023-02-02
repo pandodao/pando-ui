@@ -1,7 +1,14 @@
 export default {
   talkee: {
-    sort_newest: "Newest",
-    sort_oldest: "Oldest",
-    sort_score: "Score",
+    sort_newest: "最新",
+    sort_oldest: "最旧",
+    sort_score: "点赞数",
+    logout: "退出登录",
+    login: "登录",
+    submit: "提交",
+    comment_placeholder: "留下你的评论",
+    reply: "回复",
+    error_hint: "出错了",
+    load_more: "查看更多",
   },
 };

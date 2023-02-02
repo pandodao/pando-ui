@@ -25,6 +25,7 @@ export default {
 </script>
 
 <script lang="ts" setup>
+import { computed } from "vue";
 import { IconFilter } from "./icons";
 import { VIcon } from "vuetify/components";
 import { useLocale } from "vuetify";
@@ -34,7 +35,7 @@ const { t } = useLocale();
 
 const globals = useGlobals();
 
-const sortItems = [
+const sortItems = computed(() => [
   {
     text: t("$vuetify.talkee.sort_score"),
     value: "favor_count",
@@ -47,7 +48,7 @@ const sortItems = [
     text: t("$vuetify.talkee.sort_oldest"),
     value: "id-asc",
   },
-];
+]);
 
 function handleSortChange(item) {
   globals.sort.value = item.value;

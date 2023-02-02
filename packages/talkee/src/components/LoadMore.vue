@@ -2,7 +2,7 @@
   <FLoading v-if="loading" size="18" class="comments-loading" />
   <div v-else-if="hasNext" class="load-more">
     <FButton size="xs" variant="text" @click="emits('more')">
-      Load More
+      {{ t("$vuetify.talkee.load_more") }}
     </FButton>
   </div>
 </template>
@@ -15,7 +15,10 @@ export default {
 
 <script lang="ts" setup>
 import { defineEmits } from "vue";
+import { useLocale } from "vuetify";
 import { FLoading, FButton } from "@foxone/uikit/components";
+
+const { t } = useLocale();
 
 defineProps({
   hasNext: { type: Boolean, default: false },

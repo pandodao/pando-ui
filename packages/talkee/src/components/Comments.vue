@@ -14,7 +14,9 @@
       @more="loadComments"
     />
 
-    <div v-if="error" class="comment-error">Something Error Happend</div>
+    <div v-if="error" class="comment-error">
+      {{ t("$vuetify.talkee.error_hint") }}
+    </div>
   </div>
 </template>
 
@@ -26,6 +28,7 @@ export default {
 
 <script lang="ts" setup>
 import { ref, watch, onMounted, computed } from "vue";
+import { useLocale } from "vuetify";
 import CommentItem from "./CommentItem.vue";
 import LoadMore from "./LoadMore.vue";
 import { useGlobals } from "../composables";
@@ -35,6 +38,7 @@ defineProps({
   profile: { type: Object },
 });
 
+const { t } = useLocale();
 const globals = useGlobals();
 const page = ref(1);
 const hasNext = ref(false);

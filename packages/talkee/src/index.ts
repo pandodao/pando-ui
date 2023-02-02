@@ -1,5 +1,5 @@
-import { createApp } from "vue";
-import { createVuetify } from "vuetify";
+import { createApp, onMounted } from "vue";
+import { createVuetify, useLocale } from "vuetify";
 import { VApp } from "vuetify/components";
 import { usePresets } from "@foxone/uikit/presets";
 import { Auth, Toast } from "@foxone/uikit/plugins";
@@ -23,6 +23,7 @@ function show(
     clientId?: string;
     vuetifyOptions?: VuetifyOptions;
     container?: string;
+    locale?: string;
   } = {}
 ) {
   const app = createApp({
@@ -34,8 +35,13 @@ function show(
         apiBase: options.apiBase || "",
         clientId: options.clientId || "",
       };
+      const { current } = useLocale();
 
-      return { globals };
+      onMounted(() => {
+        current.value = options.locale || "zhHans";
+      });
+
+      return { globals, changeLocale: (locale) => (current.value = locale) };
     },
     template: "<VApp><Talkee v-bind='globals' /></VApp>",
   });
@@ -51,6 +57,10 @@ function show(
   install(app);
 
   app.mount(options.container || "body");
+
+  console.log(app);
+
+  return app;
 }
 
 export default {

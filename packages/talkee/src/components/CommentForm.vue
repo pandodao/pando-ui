@@ -12,7 +12,7 @@
         variant="outlined"
         rows="4"
         counter="512"
-        placeholder="Leave your comment"
+        :placeholder="t('$vuetify.talkee.comment_placeholder')"
       />
 
       <div class="submit-action">
@@ -22,7 +22,7 @@
           color="primary"
           @click="handleSubmit"
         >
-          Submit
+          {{ t("$vuetify.talkee.submit") }}
         </FButton>
 
         <FButton
@@ -31,7 +31,7 @@
           class="logout-action"
           @click="handleLogout"
         >
-          Logout
+          {{ t("$vuetify.talkee.logout") }}
         </FButton>
       </div>
     </div>
@@ -47,6 +47,7 @@ export default {
 <script lang="ts" setup>
 import { ref, computed } from "vue";
 import { VForm, VTextarea, VImg, VAvatar } from "vuetify/components";
+import { useLocale } from "vuetify";
 import { FButton } from "@foxone/uikit/components";
 import { useToast } from "@foxone/uikit/plugins/toast";
 import { postComment } from "../services";
@@ -63,6 +64,7 @@ const valid = computed(
   () => content.value.length <= 512 && content.value.length > 0
 );
 const globals = useGlobals();
+const { t } = useLocale();
 
 async function handleSubmit() {
   loading.value = true;

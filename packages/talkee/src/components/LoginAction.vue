@@ -1,6 +1,8 @@
 <template>
   <div class="login-action">
-    <FButton color="primary" @click="handleLoggin">Login</FButton>
+    <FButton color="primary" @click="handleLoggin">
+      {{ t("$vuetify.talkee.login") }}
+    </FButton>
   </div>
 </template>
 
@@ -12,34 +14,41 @@ export default {
 
 <script lang="ts" setup>
 import { ref } from "vue";
+import { useLocale } from "vuetify";
 import { FButton } from "@foxone/uikit/components";
 import { usePassport } from "@foxone/mixin-passport/lib/helper";
+import { useToast } from "@foxone/uikit/plugins/toast";
 import { useGlobals } from "../composables";
 import { auth } from "../services";
 
 const passport = usePassport();
 const globals = useGlobals();
+const toast = useToast();
+const { t } = useLocale();
 
 const loading = ref(false);
 
 async function handleLoggin() {
   loading.value = true;
 
-  console.log("handle login", passport);
-
   try {
     const data = await passport.auth({
       authMethods: ["mixin", "fennec", "metamask"],
       clientId: globals.clientId.value,
       scope: "PROFILE:READ PHONE:READ",
-      getTokenByCode: async (code) => (await auth(code)).token,
+      getTokenByCode: async (code) => (await auth({ code })).token,
       origin: "Talkee",
     });
 
-    globals.loggin(data.token);
-  } catch (error) {
-    console.log(error);
-    alert("Login Error");
+    let token = data.token;
+
+    if (data.channel !== "mixin") {
+      token = (await auth({ token })).token;
+    }
+
+    globals.loggin(token);
+  } catch (error: any) {
+    toast.error({ message: error?.message ?? "" });
   }
 
   loading.value = false;

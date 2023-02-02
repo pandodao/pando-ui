@@ -13,6 +13,8 @@
     padding: 0 !important;
     max-height: 80vh;
     overflow: auto;
+    padding-bottom: constant(safe-area-inset-bottom) !important;
+    padding-bottom: env(safe-area-inset-bottom) !important;
   }
 
   .f-modal__content {

@@ -1,7 +1,14 @@
 export default {
   talkee: {
-    sort_newest: "Newest",
-    sort_oldest: "Oldest",
-    sort_score: "Score",
+    sort_newest: "最新",
+    sort_oldest: "最も古い",
+    sort_score: "スコア",
+    logout: "ログアウト",
+    login: "ログイン",
+    submit: "送信",
+    comment_placeholder: "コメントを残す",
+    reply: "返事",
+    error_hint: "エラーが発生しました",
+    load_more: "もっと読み込む",
   },
 };

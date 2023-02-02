@@ -4,7 +4,7 @@
       v-model="content"
       hide-details
       variant="outlined"
-      placeholder="Leave your comment"
+      :placeholder="t('$vuetify.talkee.comment_placeholder')"
     >
       <template #append-inner>
         <FButton
@@ -31,6 +31,7 @@ export default {
 
 <script lang="ts" setup>
 import { ref, defineProps, computed } from "vue";
+import { useLocale } from "vuetify";
 import { VForm, VIcon } from "vuetify/components";
 import { FButton, FInput } from "@foxone/uikit/components";
 import { IconSend } from "./icons";
@@ -46,6 +47,7 @@ const emits = defineEmits({
   replied: () => true,
 });
 
+const { t } = useLocale();
 const content = ref("");
 const loading = ref(false);
 const globals = useGlobals();

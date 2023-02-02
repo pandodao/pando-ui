@@ -4,8 +4,8 @@ export function getMe() {
   return http.get("/me");
 }
 
-export function auth(code: string) {
-  return http.post("/auth", { data: { code } });
+export function auth(data) {
+  return http.post("/auth", { data });
 }
 
 export function getComment(id: string) {

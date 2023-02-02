@@ -15,7 +15,7 @@
         <div class="time">{{ formatTime(comment?.created_at) }}</div>
 
         <FButton size="xs" variant="text" @click="handleToggleReply">
-          reply
+          {{ t("$vuetify.talkee.reply") }}
         </FButton>
 
         <VSpacer />
@@ -49,6 +49,7 @@ import { marked } from "marked";
 import DOMPurify from "dompurify";
 import { formatTime, urlify } from "../utils/helper";
 import { VAvatar, VImg, VSpacer } from "vuetify/components";
+import { useLocale } from "vuetify";
 import { FButton } from "@foxone/uikit/components";
 import SubComments from "./SubComments.vue";
 import FavAction from "./FavAction.vue";
@@ -66,6 +67,7 @@ const emits = defineEmits({
 });
 
 const showReply = ref(false);
+const { t } = useLocale();
 
 const content = computed(() => {
   const md = marked(DOMPurify.sanitize(props.comment?.content ?? ""));
