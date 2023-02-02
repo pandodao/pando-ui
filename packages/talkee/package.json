@@ -23,5 +23,8 @@
   "dependencies": {
     "dompurify": "^2.4.3",
     "marked": "^4.2.12"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
