@@ -11,6 +11,7 @@ import type { PaymentOptions } from "./plugins/payment";
 
 export interface UIKitOptions {
   components?: Record<string, any>;
+  container?: string;
   toast?: ToastGlobalOptions;
   auth?: AuthMethodGlobalOptions;
   modal?: MessageModalProps;
@@ -24,8 +25,8 @@ export default function install(app: App, options: UIKitOptions = {}) {
     app.component(key, components[key]);
   }
 
-  app.use(Toast, options.toast);
-  app.use(Auth, options.auth);
-  app.use(Modal, options.modal);
-  app.use(Payment, options.payment);
+  app.use(Toast, { container: options.container, ...options.toast });
+  app.use(Auth, { container: options.container, ...options.auth });
+  app.use(Modal, { container: options.container, ...options.modal });
+  app.use(Payment, { container: options.container, ...options.payment });
 }

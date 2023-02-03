@@ -9,6 +9,9 @@ import Passport from "@foxone/mixin-passport";
 import Talkee from "./components/Talkee.vue";
 
 import type { VuetifyOptions } from "vuetify";
+import type { PassportOptions } from "@foxone/mixin-passport/lib/types";
+import type { AuthMethodGlobalOptions } from "@foxone/uikit/lib/plugins/auth";
+import type { ToastGlobalOptions } from "@foxone/uikit/lib/plugins/toast";
 import type { App } from "vue";
 
 function install(app: App) {
@@ -17,19 +20,29 @@ function install(app: App) {
 
 function show(
   options: {
+    showLink?: boolean;
     apiBase?: string;
     slug?: string;
     siteId?: string;
     clientId?: string;
     vuetifyOptions?: VuetifyOptions;
-    container?: string;
+    container: string;
     locale?: string;
-  } = {}
+    passport?: PassportOptions;
+    auth?: AuthMethodGlobalOptions;
+    toast?: ToastGlobalOptions;
+  } = {
+    container: "body",
+    auth: {
+      authMethods: ["mixin", "fennec", "metamask"],
+    },
+  }
 ) {
   const app = createApp({
     components: { VApp },
     setup() {
       const globals = {
+        showLink: options.showLink,
         siteId: options.siteId || "",
         slug: options.slug || "",
         apiBase: options.apiBase || "",
@@ -50,15 +63,13 @@ function show(
     options.vuetifyOptions || usePresets({ locale: { messages: locales } });
 
   app.use(createVuetify(vuetifyOptions));
-  app.use(Passport);
-  app.use(Auth);
-  app.use(Toast);
+  app.use(Passport, options.passport);
+  app.use(Auth, { container: options.container, ...options.auth });
+  app.use(Toast, { container: options.container, ...options.toast });
 
   install(app);
 
-  app.mount(options.container || "body");
-
-  console.log(app);
+  app.mount(options.container);
 
   return app;
 }

@@ -14,6 +14,7 @@ export interface MessageModalProps {
   confirm?: ModalAction;
   actions?: VNode;
   type?: string;
+  container?: string;
 }
 
 export function useModal() {
@@ -35,7 +36,9 @@ function install(app: App) {
     }
 
     nextTick(() => {
-      const appendTo = document.querySelector("[data-v-app]");
+      const appendTo = document.querySelector(
+        options.container || "[data-v-app]"
+      );
       const container = document.createElement("div");
       const vnode = createVNode(FMessageModal, {
         ...options,

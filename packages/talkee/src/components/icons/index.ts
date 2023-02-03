@@ -3,3 +3,4 @@ export * from "./IconMessage";
 export * from "./IconMessageDot";
 export * from "./IconHeart";
 export * from "./IconSend";
+export * from "./IconHash";

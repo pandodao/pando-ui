@@ -9,7 +9,11 @@
         {{ comment?.creator?.full_name }}
       </div>
 
-      <div class="comment-content" v-html="content" />
+      <CommentContent
+        :content="comment?.content"
+        :show-link="globals.showLink.value"
+        :href="comment?.arweave_tx_hash"
+      />
 
       <div class="info">
         <div class="time">{{ formatTime(comment?.created_at) }}</div>
@@ -26,7 +30,7 @@
       </div>
 
       <ReplyForm
-        v-if="showReply"
+        v-if="globals.logged.value && showReply"
         :comment="comment"
         :profile="profile"
         @replied="handleToggleReply"
@@ -44,18 +48,18 @@ export default {
 </script>
 
 <script lang="ts" setup>
-import { defineEmits, defineProps, computed, ref } from "vue";
-import { marked } from "marked";
-import DOMPurify from "dompurify";
-import { formatTime, urlify } from "../utils/helper";
+import { ref } from "vue";
+import { formatTime } from "../utils/helper";
 import { VAvatar, VImg, VSpacer } from "vuetify/components";
 import { useLocale } from "vuetify";
 import { FButton } from "@foxone/uikit/components";
+import { getComment } from "../services";
+import { useGlobals } from "../composables";
 import SubComments from "./SubComments.vue";
 import FavAction from "./FavAction.vue";
 import MessageAction from "./MessageAction.vue";
 import ReplyForm from "./ReplyForm.vue";
-import { getComment } from "../services";
+import CommentContent from "./CommentContent.vue";
 
 const props = defineProps({
   comment: { type: Object },
@@ -64,16 +68,12 @@ const props = defineProps({
 
 const emits = defineEmits({
   update: (v: any) => true,
+  login: () => true,
 });
 
+const globals = useGlobals();
 const showReply = ref(false);
 const { t } = useLocale();
-
-const content = computed(() => {
-  const md = marked(DOMPurify.sanitize(props.comment?.content ?? ""));
-
-  return urlify(md.substring(0, md.length - 2));
-});
 
 async function handleRefresh() {
   const comment = await getComment(props.comment?.id);
@@ -82,7 +82,11 @@ async function handleRefresh() {
 }
 
 function handleToggleReply() {
-  showReply.value = !showReply.value;
+  if (globals.logged.value) {
+    showReply.value = !showReply.value;
+  } else {
+    emits("login");
+  }
 }
 </script>
 
@@ -119,17 +123,6 @@ function handleToggleReply() {
     align-items: center;
     font-size: 12px;
     line-height: 1;
-  }
-}
-</style>
-
-<style lang="scss">
-.talkee .comment-content {
-  font-size: 14px;
-  margin-top: 8px;
-
-  p {
-    margin: 0;
   }
 }
 </style>

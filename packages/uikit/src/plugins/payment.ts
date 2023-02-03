@@ -17,6 +17,7 @@ export interface PaymentOptions {
     mvm?: () => Promise<boolean>;
   };
   checker: () => Promise<boolean>;
+  container?: string;
 }
 
 export interface MixinPaymentOptions {
@@ -51,7 +52,9 @@ function install(app: App) {
     }
 
     nextTick(() => {
-      const appendTo = document.querySelector("[data-v-app]");
+      const appendTo = document.querySelector(
+        options.container || "[data-v-app]"
+      );
       const container = document.createElement("div");
       const vnode = createVNode(FPaymentModal, {
         ...options,

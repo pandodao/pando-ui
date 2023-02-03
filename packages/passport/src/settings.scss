@@ -1,1 +1,3 @@
-@use "@foxone/uikit/sass/setting";
+@use "@foxone/uikit/sass/setting" with (
+  $utilities: false
+);

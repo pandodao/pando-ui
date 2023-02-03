@@ -98,6 +98,11 @@ export const FAuthMethodModal = defineComponent({
       }
     };
 
+    const handleModalValueChange = (value) => {
+      dialog.value = value;
+      emit("error", new Error("Cancelled"));
+    };
+
     watch(() => dialog.value, handleDialogChange);
 
     const show = () => {
@@ -126,9 +131,10 @@ export const FAuthMethodModal = defineComponent({
 
     return () => (
       <FModal
-        v-model={dialog.value}
+        modelValue={dialog.value}
         title={step.value === 1 ? t("$vuetify.uikit.connect_wallet") : ""}
         max-width="628"
+        onUpdate:modelValue={handleModalValueChange}
       >
         {{
           default: () => content(),

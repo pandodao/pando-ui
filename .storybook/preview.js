@@ -52,6 +52,7 @@ const vuetify = createVuetify(
 
 app.use(vuetify);
 app.use(UIKit, {
+  container: "#storybook-app",
   auth: {
     clientId: "61504be8-a9da-477d-9e18-448ac3780919",
     scope: "PROFILE:READ",
@@ -68,7 +69,7 @@ export const decorators = [
       name: "StoryBookWrap",
       components: { WrappedComponent },
       template: `
-        <v-app>
+        <v-app id="storybook-app">
           <v-main>
             <v-container fluid>
               <wrapped-component />

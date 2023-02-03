@@ -24,7 +24,7 @@ import SubCommentItem from "./SubCommentItem.vue";
 import LoadMore from "./LoadMore.vue";
 
 const props = defineProps({
-  id: { type: String, default: "" },
+  id: { type: [String, Number], default: "" },
 });
 
 const globals = useGlobals();

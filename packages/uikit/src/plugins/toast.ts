@@ -10,10 +10,10 @@ export interface ToastProps {
 }
 
 export interface ToastGlobalOptions {
-  location: any;
-  timeout: number;
-  [key: string]: any;
+  location?: any;
+  timeout?: number;
   container?: string;
+  [key: string]: any;
 }
 
 export type ToastHandler = {
@@ -39,11 +39,13 @@ function install(app: App, globalOptions: ToastGlobalOptions) {
     }
 
     nextTick(() => {
-      const appendTo = document.querySelector(".v-application");
+      const mergedOptions = { ...globalOptions, ...options };
+      const appendTo = document.querySelector(
+        mergedOptions.container || "[data-v-app]"
+      );
       const container = document.createElement("div");
       const vnode = createVNode(FToast, {
-        ...globalOptions,
-        ...options,
+        ...mergedOptions,
         attach: container,
         onDestroy: () => {
           render(null, container);

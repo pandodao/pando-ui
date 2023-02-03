@@ -13,6 +13,7 @@ export interface AuthMethodGlobalOptions {
   isFiresbox?: boolean;
   pkce?: boolean;
   hosts?: string[];
+  container?: string;
 }
 
 export interface AuthMethodOptions {
@@ -42,11 +43,13 @@ function install(app: App, globalOptions: AuthMethodGlobalOptions) {
     }
 
     nextTick(() => {
-      const appendTo = document.querySelector("[data-v-app]");
+      const mergedOptions = { ...globalOptions, ...options };
+      const appendTo = document.querySelector(
+        mergedOptions.container || "[data-v-app]"
+      );
       const container = document.createElement("div");
       const vnode = createVNode(FAuthMethodModal, {
-        ...globalOptions,
-        ...options,
+        ...mergedOptions,
         attach: container,
         onAuth: options.handleAuth,
         onError: options.handleError,

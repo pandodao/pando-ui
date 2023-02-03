@@ -2,6 +2,11 @@ import type { AuthMethod } from "@foxone/uikit/types";
 import Fennec from "@foxone/fennec-dapp";
 import MixinAPI from "./mixin-apis";
 
+export interface PassportOptions {
+  infuraId?: string;
+  onDisconnect?: () => void;
+}
+
 export interface AuthOptions {
   origin: string;
   config?: { infuraId?: string };

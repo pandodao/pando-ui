@@ -6,10 +6,11 @@
       :comment="item"
       :profile="profile"
       @update="handleUpdate"
+      @login="$emit('login')"
     />
 
     <LoadMore
-      :loading="globals.loading"
+      :loading="globals.loading.value"
       :has-next="hasNext"
       @more="loadComments"
     />
@@ -38,12 +39,16 @@ defineProps({
   profile: { type: Object },
 });
 
+defineEmits({
+  login: () => true,
+});
+
 const { t } = useLocale();
 const globals = useGlobals();
 const page = ref(1);
 const hasNext = ref(false);
-const comments = ref<any[]>([]);
 const error = ref(false);
+const comments = ref<any[]>([]);
 
 watch(
   () => [globals.sort.value],
@@ -60,7 +65,7 @@ const commentsList = computed(() => [
 ]);
 
 async function loadComments(reload = false) {
-  if (globals.loading) return;
+  if (globals.loading.value) return;
 
   if (reload) {
     comments.value = [];
@@ -69,7 +74,7 @@ async function loadComments(reload = false) {
     hasNext.value = true;
   }
 
-  globals.loading = true;
+  globals.loading.value = true;
 
   try {
     const resp = await getComments(globals.sort.value, page.value);
@@ -89,7 +94,7 @@ async function loadComments(reload = false) {
     console.error("Get Comments Error", e);
   }
 
-  globals.loading = false;
+  globals.loading.value = false;
 }
 
 async function handleUpdate(comment) {

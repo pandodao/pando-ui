@@ -1,6 +1,7 @@
 <template>
   <div class="subcomment-item">
     <span class="name">{{ comment?.creator.full_name }}:</span>
+
     <span class="content">{{ comment?.content }}</span>
   </div>
 </template>
@@ -12,8 +13,22 @@ export default {
 </script>
 
 <script lang="ts" setup>
-defineProps({
+import { computed } from "vue";
+import { TextParser } from "@foxone/utils/text-parser";
+
+const props = defineProps({
   comment: { type: Object },
+});
+
+const content = computed(() => {
+  let text = content;
+  try {
+    text = new TextParser().parse(props.comment?.content ?? "");
+  } catch (error) {
+    // ignore
+  }
+
+  return text;
 });
 </script>
 

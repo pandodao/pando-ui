@@ -9,7 +9,9 @@ const slug = ref("");
 const sort = ref("favor_count");
 const total = ref(0);
 const profile = ref<any>(null);
-const loading = false;
+const loading = ref(false);
+const logging = ref(false);
+const showLink = ref(false);
 const topComments = ref<any[]>([]);
 const topSubComments = ref<any[]>([]);
 
@@ -36,7 +38,9 @@ export function useGlobals() {
     sort,
     total,
     loading,
+    logging,
     profile,
+    showLink,
     topComments,
     topSubComments,
 
