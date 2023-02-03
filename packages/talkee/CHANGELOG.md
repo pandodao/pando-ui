@@ -1,5 +1,17 @@
 # @foxone/talkee
 
+## 2.0.0
+
+### Minor Changes
+
+- 3866e8d: update talkee
+
+### Patch Changes
+
+- Updated dependencies [3866e8d]
+  - @foxone/mixin-passport@1.2.0
+  - @foxone/uikit@4.2.0
+
 ## 1.0.1
 
 ### Patch Changes

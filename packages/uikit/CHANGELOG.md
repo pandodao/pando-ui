@@ -1,5 +1,11 @@
 # @foxone/uikit
 
+## 4.2.0
+
+### Minor Changes
+
+- 3866e8d: update talkee
+
 ## 4.1.3
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @foxone/mixin-passport
 
+## 1.2.0
+
+### Minor Changes
+
+- 3866e8d: update talkee
+
 ## 1.1.2
 
 ### Patch Changes
