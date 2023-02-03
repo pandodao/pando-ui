@@ -1,8 +1,6 @@
 <template>
   <VForm class="comment-form">
-    <VAvatar class="avatar">
-      <VImg :src="profile?.avatar_url" />
-    </VAvatar>
+    <Avatar :url="profile?.avatar_url" class="avatar" />
 
     <div class="form-right">
       <VTextarea
@@ -46,12 +44,13 @@ export default {
 
 <script lang="ts" setup>
 import { ref, computed } from "vue";
-import { VForm, VTextarea, VImg, VAvatar } from "vuetify/components";
+import { VForm, VTextarea } from "vuetify/components";
 import { useLocale } from "vuetify";
 import { FButton } from "@foxone/uikit/components";
 import { useToast } from "@foxone/uikit/plugins/toast";
 import { postComment } from "../services";
 import { useGlobals } from "../composables";
+import Avatar from "./Avatar.vue";
 
 const props = defineProps({
   profile: { type: Object },
@@ -80,7 +79,6 @@ async function handleSubmit() {
     content.value = "";
   } catch (error: any) {
     toast.error({ message: error?.message ?? "Submit Comment Error" });
-    console.error("Submit Error", error);
   }
 
   loading.value = false;

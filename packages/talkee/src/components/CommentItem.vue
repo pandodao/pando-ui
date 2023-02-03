@@ -1,8 +1,6 @@
 <template>
   <div class="comment-item">
-    <VAvatar size="24" class="avatar">
-      <VImg :src="comment?.creator?.avatar_url" />
-    </VAvatar>
+    <Avatar :url="comment?.creator?.avatar_url" size="24" class="avatar" />
 
     <div class="comment-details">
       <div class="name">
@@ -50,7 +48,6 @@ export default {
 <script lang="ts" setup>
 import { ref } from "vue";
 import { formatTime } from "../utils/helper";
-import { VAvatar, VImg } from "vuetify/components";
 import { useLocale } from "vuetify";
 import { FButton } from "@foxone/uikit/components";
 import { getComment } from "../services";
@@ -60,6 +57,7 @@ import FavAction from "./FavAction.vue";
 import MessageAction from "./MessageAction.vue";
 import ReplyForm from "./ReplyForm.vue";
 import CommentContent from "./CommentContent.vue";
+import Avatar from "./Avatar.vue";
 
 const props = defineProps({
   comment: { type: Object },
