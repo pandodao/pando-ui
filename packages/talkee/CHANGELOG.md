@@ -1,5 +1,12 @@
 # @foxone/talkee
 
+## 2.0.1
+
+### Patch Changes
+
+- fcdcf9f: update style
+- 00e24ab: update styles
+
 ## 2.0.0
 
 ### Minor Changes
