@@ -5,7 +5,6 @@
       v-if="showLink && href"
       class="icon-hash"
       size="14"
-      color="info"
       @click="handleToHash"
     >
       <IconHash />
@@ -54,16 +53,20 @@ function handleToHash() {
   font-size: 14px;
   margin-top: 8px;
   display: inline-block;
-  line-height: 1;
+  line-height: 1.6;
 
   .content {
-    line-height: 1;
     vertical-align: middle;
   }
 
   .icon-hash {
     vertical-align: middle;
     cursor: pointer;
+    color: white;
+    background: rgb(var(--v-theme-greyscale_4));
+    padding: 2px;
+    border-radius: 4px;
+    margin-left: 0.4rem;
   }
 }
 </style>

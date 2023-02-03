@@ -5,6 +5,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="../dist/style.css" rel="stylesheet" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/ress@4.0.0/dist/ress.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="https://static.fox.one/font/inter/style.css" />
     <title>Talkee UMD Demo</title>
   </head>
   <body>
@@ -17,6 +22,11 @@
         slug: "7000103488-course-2367",
         siteId: "2",
         clientId: "61504be8-a9da-477d-9e18-448ac3780919",
+        container: "body",
+        locale: "en",
+        auth: {
+          authMethods: ["mixin", "fennec", "metamask"],
+        },
       });
     </script>
   </body>

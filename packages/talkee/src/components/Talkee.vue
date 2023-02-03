@@ -90,6 +90,7 @@ async function handleLoggin() {
 
 <style lang="scss" scoped>
 .talkee {
+  --v-theme-overlay-multiplier: 1;
   padding: 16px;
 
   .topbar {

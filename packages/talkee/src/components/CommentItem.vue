@@ -22,7 +22,7 @@
           {{ t("$vuetify.talkee.reply") }}
         </FButton>
 
-        <VSpacer />
+        <div class="spacer" />
 
         <MessageAction :comment="comment" @toggle="handleToggleReply" />
 
@@ -50,7 +50,7 @@ export default {
 <script lang="ts" setup>
 import { ref } from "vue";
 import { formatTime } from "../utils/helper";
-import { VAvatar, VImg, VSpacer } from "vuetify/components";
+import { VAvatar, VImg } from "vuetify/components";
 import { useLocale } from "vuetify";
 import { FButton } from "@foxone/uikit/components";
 import { getComment } from "../services";
@@ -113,6 +113,10 @@ function handleToggleReply() {
 
   .comment-content {
     margin-top: 8px;
+  }
+
+  .spacer {
+    flex-grow: 1;
   }
 
   .info {
