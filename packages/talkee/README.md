@@ -69,7 +69,7 @@ const args = {
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- insert styles -->
     <link
-      href="https://cdn.jsdelivr.net/npm/talkee@1.0.1/dist/dist/style.css"
+      href="https://cdn.jsdelivr.net/npm/@foxone/talkee@2.0.0/dist/style.css"
       rel="stylesheet"
     />
     <title>Talkee UMD Demo</title>
@@ -77,7 +77,7 @@ const args = {
   <body>
     <!-- insert scripts -->
     <script src="https://cdn.jsdelivr.net/npm/vue@3.2.45/dist/vue.global.prod.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/talkee@1.0.1/dist/index.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@foxone/talkee@2.0.0/dist/index.umd.js"></script>
 
     <script>
       /**
