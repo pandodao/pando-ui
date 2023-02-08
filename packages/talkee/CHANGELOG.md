@@ -1,5 +1,11 @@
 # @foxone/talkee
 
+## 2.0.2
+
+### Patch Changes
+
+- 1d87f11: update talkee apis
+
 ## 2.0.1
 
 ### Patch Changes
