@@ -47,6 +47,7 @@ function show(
         slug: options.slug || "",
         apiBase: options.apiBase || "https://talkee-api.mixin.fan/api",
         clientId: options.clientId || "61504be8-a9da-477d-9e18-448ac3780919",
+        authMethods: options.auth?.authMethods,
       };
       const { current } = useLocale();
 
@@ -56,7 +57,7 @@ function show(
 
       return { globals, changeLocale: (locale) => (current.value = locale) };
     },
-    template: "<VApp><Talkee v-bind='globals' /></VApp>",
+    template: "<VApp class='talkee-app'><Talkee v-bind='globals' /></VApp>",
   });
 
   const vuetifyOptions =

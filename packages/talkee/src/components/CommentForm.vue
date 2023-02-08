@@ -69,7 +69,7 @@ async function handleSubmit() {
   loading.value = true;
 
   try {
-    const resp = await postComment(globals.slug, content.value.trim());
+    const resp = await postComment(content.value.trim());
 
     globals.topComments.value.unshift({
       ...resp,

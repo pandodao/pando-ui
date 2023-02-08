@@ -15,12 +15,15 @@ export default {
 </script>
 
 <script lang="ts" setup>
+import { PropType } from "vue";
 import { IconMessageDot } from "./icons";
 import { VIcon } from "vuetify/components";
 import { FButton } from "@foxone/uikit/components";
 
+import type { Comment } from "../types";
+
 defineProps({
-  comment: { type: Object },
+  comment: { type: Object as PropType<Comment> },
 });
 
 const emits = defineEmits({

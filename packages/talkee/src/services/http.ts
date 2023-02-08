@@ -7,22 +7,11 @@ function requestInterceptors() {
 
   return [
     (config: AxiosRequestConfig) => {
-      const siteId = globals.siteId.value;
-      const slug = globals.slug.value;
-      const clientId = globals.clientId.value;
-
       config.baseURL = globals.apiBase.value;
 
       config.headers.Authorization = "Bearer " + globals.token.value;
-      config.headers["X-LINKS-SITE-ID"] = globals.siteId.value;
-      config.headers["X-LINKS-SLUG"] = globals.slug.value;
-
-      config.params = {
-        ...config.params,
-        slug,
-        site_id: siteId,
-        client_id: clientId,
-      };
+      config.headers["X-TALKEE-SITE-ID"] = globals.siteId.value;
+      config.headers["X-TALKEE-SITE-SLUG"] = globals.slug.value;
 
       return config;
     },
@@ -32,11 +21,11 @@ function requestInterceptors() {
 function responseInterceptors() {
   return [
     (resp: AxiosResponse) => {
-      if (resp.status == 401) {
+      if (resp.status == 401 || resp.data?.data?.code === 401) {
         useGlobals().logout();
       }
 
-      return resp.data;
+      return resp.data.data;
     },
   ];
 }

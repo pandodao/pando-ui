@@ -22,7 +22,7 @@ export default {
 <script lang="ts" setup>
 import { defineProps, defineEmits, ref, computed } from "vue";
 import { useGlobals } from "../composables";
-import { putFavor, putUnfavor } from "../services";
+import { putFavor, putUnfavor, getComment } from "../services";
 import { IconHeart } from "./icons";
 import { VIcon } from "vuetify/components";
 import { FButton } from "@foxone/uikit/components";
@@ -32,7 +32,7 @@ const props = defineProps({
 });
 
 const emits = defineEmits({
-  refresh: () => true,
+  refresh: (v: any) => true,
 });
 
 const globals = useGlobals();
@@ -49,12 +49,13 @@ async function handleToggleFav() {
   try {
     if (globals.logged.value) {
       if (!isFavor.value) {
-        await putFavor("comment", props.comment?.id);
+        await putFavor(props.comment?.id);
       } else {
         await putUnfavor(props.comment?.favor_id);
       }
 
-      emits("refresh");
+      const comment = await getComment(props.comment?.id ?? "");
+      emits("refresh", comment);
     }
   } catch (error) {
     console.error("Toggle Fav Error", error);

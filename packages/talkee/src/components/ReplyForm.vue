@@ -35,7 +35,7 @@ import { useLocale } from "vuetify";
 import { VForm, VIcon } from "vuetify/components";
 import { FButton, FInput } from "@foxone/uikit/components";
 import { IconSend } from "./icons";
-import { postSubComment } from "../services";
+import { postSubComment, getComment } from "../services";
 import { useGlobals } from "../composables";
 
 const props = defineProps({
@@ -45,6 +45,7 @@ const props = defineProps({
 
 const emits = defineEmits({
   replied: () => true,
+  refresh: (v: any) => true,
 });
 
 const { t } = useLocale();
@@ -62,13 +63,12 @@ async function handleReply() {
   try {
     const resp = await postSubComment(props.comment?.id, content.value.trim());
 
-    globals.topSubComments.value.unshift({
-      ...resp,
-      creator: props.profile,
-    });
-
+    globals.topSubComments.value.unshift(resp);
     content.value = "";
 
+    const comment = await getComment(props.comment?.id ?? "");
+
+    emits("refresh", comment);
     emits("replied");
   } catch (error: any) {
     if (error?.message) {

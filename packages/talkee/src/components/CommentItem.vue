@@ -31,10 +31,11 @@
         v-if="globals.logged.value && showReply"
         :comment="comment"
         :profile="profile"
+        @refresh="handleRefresh"
         @replied="handleToggleReply"
       />
 
-      <SubComments v-if="comment?.reply_count > 0" :id="comment?.id" />
+      <SubComments v-if="(comment?.reply_count ?? 0) > 0" :id="comment?.id" />
     </div>
   </div>
 </template>
@@ -46,11 +47,10 @@ export default {
 </script>
 
 <script lang="ts" setup>
-import { ref } from "vue";
+import { ref, PropType } from "vue";
 import { formatTime } from "../utils/helper";
 import { useLocale } from "vuetify";
 import { FButton } from "@foxone/uikit/components";
-import { getComment } from "../services";
 import { useGlobals } from "../composables";
 import SubComments from "./SubComments.vue";
 import FavAction from "./FavAction.vue";
@@ -59,8 +59,10 @@ import ReplyForm from "./ReplyForm.vue";
 import CommentContent from "./CommentContent.vue";
 import Avatar from "./Avatar.vue";
 
-const props = defineProps({
-  comment: { type: Object },
+import type { Comment } from "../types";
+
+defineProps({
+  comment: { type: Object as PropType<Comment> },
   profile: { type: Object },
 });
 
@@ -73,9 +75,7 @@ const globals = useGlobals();
 const showReply = ref(false);
 const { t } = useLocale();
 
-async function handleRefresh() {
-  const comment = await getComment(props.comment?.id);
-
+async function handleRefresh(comment: Comment) {
   emits("update", comment);
 }
 

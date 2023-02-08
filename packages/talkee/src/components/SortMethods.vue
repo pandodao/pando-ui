@@ -30,6 +30,7 @@ import { IconFilter } from "./icons";
 import { VIcon } from "vuetify/components";
 import { useLocale } from "vuetify";
 import { useGlobals } from "../composables";
+import { SortMethod } from "../types";
 
 const { t } = useLocale();
 
@@ -38,15 +39,15 @@ const globals = useGlobals();
 const sortItems = computed(() => [
   {
     text: t("$vuetify.talkee.sort_score"),
-    value: "favor_count",
+    value: SortMethod.FavorCount,
   },
   {
     text: t("$vuetify.talkee.sort_newest"),
-    value: "id",
+    value: SortMethod.CreateAt,
   },
   {
     text: t("$vuetify.talkee.sort_oldest"),
-    value: "id-asc",
+    value: SortMethod.CreateAsc,
   },
 ]);
 

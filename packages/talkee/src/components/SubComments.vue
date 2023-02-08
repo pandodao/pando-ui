@@ -30,7 +30,6 @@ const props = defineProps({
 const globals = useGlobals();
 
 const comments = ref<any[]>([]);
-const page = ref(1);
 const hasNext = ref(true);
 const loading = ref(false);
 
@@ -54,22 +53,19 @@ async function loadSubComments(reload = false) {
   if (reload) {
     globals.topSubComments.value = [];
     comments.value = [];
-    page.value = 1;
     hasNext.value = true;
   }
 
   loading.value = true;
 
   try {
-    const resp = await getSubComments(
-      props.id,
-      globals.sort.value,
-      page.value,
-      15
-    );
+    const resp = await getSubComments({
+      limit: globals.limit,
+      comment_id: "" + props.id,
+      offset: comments.value.length,
+    });
 
-    hasNext.value = resp.replies.length >= resp.ipp;
-    page.value = resp.page + 1;
+    hasNext.value = resp.replies.length >= globals.limit;
     comments.value = [
       ...comments.value,
       ...resp.replies.filter(

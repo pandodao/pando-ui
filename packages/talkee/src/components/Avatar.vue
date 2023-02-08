@@ -15,7 +15,7 @@ export default {
 
 <script lang="ts" setup>
 import { computed } from "vue";
-import { VImg, VAvatar } from "vuetify/components";
+import { VImg, VAvatar, VIcon } from "vuetify/components";
 import { IconFace } from "./icons";
 
 const props = defineProps({

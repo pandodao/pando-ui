@@ -1,39 +1,52 @@
 import { http } from "./http";
+import {
+  AuthParams,
+  AuthResponse,
+  User,
+  Comment,
+  PaginationParams,
+} from "../types";
 
-export function getMe() {
+export function getMe(): Promise<User> {
   return http.get("/me");
 }
 
-export function auth(data) {
-  return http.post("/auth", { data });
+export function auth(data: AuthParams): Promise<AuthResponse> {
+  return http.post("/auth/login", { data });
 }
 
-export function getComment(id: string) {
-  return http.get(`/comment/${id}`);
+export function getComments(
+  params: PaginationParams & { order_by?: string }
+): Promise<{ total: number; comments: Comment[] }> {
+  return http.get("/comments", { params });
 }
 
-export function getComments(order, page) {
-  return http.get("/comments", { params: { order_key: order, page } });
+export function getComment(id: string): Promise<Comment> {
+  return http.get(`/comments/${id}`);
 }
 
-export function postComment(slug, content) {
-  return http.post("/comments", { data: { slug, content } });
+export function postComment(content: string): Promise<Comment> {
+  return http.post("/comments", { data: { content } });
 }
 
-export function putFavor(type: string, id: number) {
-  return http.post("/favor/", { data: { type, id } });
+export function putFavor(comment_id: number) {
+  return http.put(`/comments/${comment_id}/fav`);
 }
 
-export function putUnfavor(id) {
-  return http.delete(`/favor/${id}`);
+export function putUnfavor(comment_id: number) {
+  return http.put(`/comments/${comment_id}/unfav`);
 }
 
-export function postSubComment(commentId, content) {
-  return http.post("/replies", { data: { comment_id: commentId, content } });
+export function postSubComment(comment_id: number, content: string) {
+  return http.post(`/comments/${comment_id}/replies`, {
+    data: { comment_id, content },
+  });
 }
 
-export function getSubComments(comment_id, order, page, ipp) {
-  return http.get("/replies", {
-    params: { comment_id, order_key: order, page, ipp },
+export function getSubComments(
+  params: PaginationParams & { comment_id: string }
+): Promise<{ total: number; replies: Comment[] }> {
+  return http.get(`/comments/${params.comment_id}/replies`, {
+    params,
   });
 }

@@ -13,11 +13,13 @@ export default {
 </script>
 
 <script lang="ts" setup>
-import { computed } from "vue";
+import { computed, PropType } from "vue";
 import { TextParser } from "@foxone/utils/text-parser";
 
+import type { Comment } from "../types";
+
 const props = defineProps({
-  comment: { type: Object },
+  comment: { type: Object as PropType<Comment> },
 });
 
 const content = computed(() => {

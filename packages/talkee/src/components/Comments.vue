@@ -28,15 +28,17 @@ export default {
 </script>
 
 <script lang="ts" setup>
-import { ref, watch, onMounted, computed } from "vue";
+import { ref, watch, onMounted, computed, PropType } from "vue";
 import { useLocale } from "vuetify";
 import CommentItem from "./CommentItem.vue";
 import LoadMore from "./LoadMore.vue";
 import { useGlobals } from "../composables";
 import { getComments } from "../services";
 
+import type { User } from "../types";
+
 defineProps({
-  profile: { type: Object },
+  profile: { type: Object as PropType<User> },
 });
 
 defineEmits({
@@ -45,7 +47,6 @@ defineEmits({
 
 const { t } = useLocale();
 const globals = useGlobals();
-const page = ref(1);
 const hasNext = ref(false);
 const error = ref(false);
 const comments = ref<any[]>([]);
@@ -70,18 +71,20 @@ async function loadComments(reload = false) {
   if (reload) {
     comments.value = [];
     globals.topComments.value = [];
-    page.value = 1;
     hasNext.value = true;
   }
 
   globals.loading.value = true;
 
   try {
-    const resp = await getComments(globals.sort.value, page.value);
+    const resp = await getComments({
+      order_by: globals.sort.value,
+      limit: globals.limit,
+      offset: comments.value.length,
+    });
 
+    hasNext.value = resp.comments.length >= globals.limit;
     globals.total.value = resp.total;
-    hasNext.value = resp.ipp <= resp.comments?.length;
-    page.value = resp.page + 1;
 
     comments.value = [
       ...comments.value,
@@ -91,7 +94,6 @@ async function loadComments(reload = false) {
     ];
   } catch (e) {
     error.value = true;
-    console.error("Get Comments Error", e);
   }
 
   globals.loading.value = false;

@@ -29,6 +29,7 @@ import Comments from "./Comments.vue";
 import LoginAction from "./LoginAction.vue";
 import { useGlobals } from "../composables";
 import { getMe, auth } from "../services";
+import { AuthMethod } from "../types";
 
 const props = defineProps({
   siteId: { type: String, default: "" },
@@ -36,6 +37,7 @@ const props = defineProps({
   apiBase: { type: String, default: "" },
   clientId: { type: String, default: "" },
   showLink: { type: Boolean, default: true },
+  authMethods: { type: Array, default: () => ["mixin"] },
 });
 
 const passport = usePassport();
@@ -68,15 +70,25 @@ async function handleLoggin() {
   try {
     const data = await passport.auth({
       clientId: globals.clientId.value,
+      authMethods: props.authMethods as any[],
       scope: "PROFILE:READ PHONE:READ",
-      getTokenByCode: async (code) => (await auth({ code })).token,
+      getTokenByCode: async (code) =>
+        (
+          await auth({ method: AuthMethod.MixinOAuth, mixin_oauth_code: code })
+        ).access_token,
       origin: "Talkee",
     });
 
     let token = data.token;
 
+    if (data.channel === "fennec") {
+      token = (
+        await auth({ method: AuthMethod.MixinToken, mixin_token: token })
+      ).access_token;
+    }
+
     if (data.channel !== "mixin") {
-      token = (await auth({ token })).token;
+      // token = await auth({ method: AuthMethod.mvm,  });
     }
 
     globals.loggin(token);
@@ -97,6 +109,14 @@ async function handleLoggin() {
     display: flex;
     justify-content: space-between;
     margin-bottom: 32px;
+  }
+}
+</style>
+
+<style lang="scss">
+.talkee-app {
+  .v-application__wrap {
+    min-height: auto;
   }
 }
 </style>
