@@ -72,16 +72,13 @@ async function handleLoggin() {
       clientId: globals.clientId.value,
       authMethods: props.authMethods as any[],
       scope: "PROFILE:READ PHONE:READ",
-      getTokenByCode: async (code) =>
-        (
-          await auth({ method: AuthMethod.MixinOAuth, mixin_oauth_code: code })
-        ).access_token,
       origin: "Talkee",
+      pkce: true,
     });
 
     let token = data.token;
 
-    if (data.channel === "fennec") {
+    if (data.channel === "fennec" || data.channel === "mixin") {
       token = (
         await auth({ method: AuthMethod.MixinToken, mixin_token: token })
       ).access_token;

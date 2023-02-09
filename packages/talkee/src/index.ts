@@ -45,7 +45,7 @@ function show(
         showLink: options.showLink,
         siteId: options.siteId || "",
         slug: options.slug || "",
-        apiBase: options.apiBase || "https://talkee-api.mixin.fan/api",
+        apiBase: options.apiBase || "https://talkee-api.pando.im/api",
         clientId: options.clientId || "61504be8-a9da-477d-9e18-448ac3780919",
         authMethods: options.auth?.authMethods,
       };
