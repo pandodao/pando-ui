@@ -1,5 +1,11 @@
 # @foxone/talkee
 
+## 2.0.3
+
+### Patch Changes
+
+- 2b95f82: update talkee host
+
 ## 2.0.2
 
 ### Patch Changes
