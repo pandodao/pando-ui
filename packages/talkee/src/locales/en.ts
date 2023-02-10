@@ -9,6 +9,7 @@ export default {
     comment_placeholder: "Leave your comment",
     reply: "Reply",
     error_hint: "Something Error Happend",
-    load_more: "Load More",
+    load_more: "Show More",
+    no_more_comments: "No More Comments",
   },
 };

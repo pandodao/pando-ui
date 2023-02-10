@@ -4,12 +4,14 @@ export interface Comment {
   site_id: number;
   slug: string;
   favor_count: number;
+  fav_id: number;
   reply_count: number;
   arweave_tx_hash: string;
   content: string;
   created_at: string;
   updated_at: string;
   creator: User;
+  reward?: Reward;
 }
 
 export interface Rely {
@@ -74,4 +76,30 @@ export interface AuthParams {
 export interface AuthResponse {
   access_token: string;
   user: User;
+}
+
+export interface Asset {
+  asset_id: string;
+  created_at: string;
+  icon_url: string;
+  name: string;
+  order: number;
+  price_usd: string;
+  symbol: string;
+  updated_at: string;
+}
+
+export interface Reward {
+  amount: string;
+  asset_id: string;
+  created_at: string;
+  id: number;
+  object_id: number;
+  object_type: string;
+  recipient_id: string;
+  site_id: number;
+  snapshot_id: string;
+  status: string;
+  trace_id: string;
+  updated_at: string;
 }

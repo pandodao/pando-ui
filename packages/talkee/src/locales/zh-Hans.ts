@@ -10,5 +10,6 @@ export default {
     reply: "回复",
     error_hint: "出错了",
     load_more: "查看更多",
+    no_more_comments: "没有更多评论",
   },
 };

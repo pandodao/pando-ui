@@ -23,7 +23,8 @@
   "dependencies": {
     "@foxone/utils": "^0.2.27",
     "dompurify": "^2.4.3",
-    "marked": "^4.2.12"
+    "marked": "^4.2.12",
+    "v3-infinite-loading": "^1.2.2"
   },
   "publishConfig": {
     "access": "public"

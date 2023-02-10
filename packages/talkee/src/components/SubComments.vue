@@ -1,7 +1,7 @@
 <template>
   <div v-if="comments.length" class="subcomments">
     <SubCommentItem
-      v-for="(item, index) in commentsList"
+      v-for="(item, index) in comments"
       :key="index"
       :comment="item"
     />
@@ -17,7 +17,7 @@ export default {
 </script>
 
 <script lang="ts" setup>
-import { onMounted, ref, watch, computed } from "vue";
+import { onMounted, ref, watch } from "vue";
 import { getSubComments } from "../services";
 import { useGlobals } from "../composables";
 import SubCommentItem from "./SubCommentItem.vue";
@@ -33,11 +33,6 @@ const comments = ref<any[]>([]);
 const hasNext = ref(true);
 const loading = ref(false);
 
-const commentsList = computed(() => [
-  ...globals.topSubComments.value,
-  ...comments.value,
-]);
-
 onMounted(() => {
   loadSubComments(true);
 });
@@ -50,34 +45,27 @@ watch(
 async function loadSubComments(reload = false) {
   if (loading.value) return;
 
-  if (reload) {
-    globals.topSubComments.value = [];
-    comments.value = [];
-    hasNext.value = true;
-  }
-
   loading.value = true;
 
   try {
     const resp = await getSubComments({
       limit: globals.limit,
       comment_id: "" + props.id,
-      offset: comments.value.length,
+      offset: reload ? 0 : comments.value.length,
     });
 
     hasNext.value = resp.replies.length >= globals.limit;
-    comments.value = [
-      ...comments.value,
-      ...resp.replies.filter(
-        (x) => !globals.topSubComments.value.find((y) => y.id === x.id)
-      ),
-    ];
+    comments.value = reload
+      ? resp.replies
+      : [...comments.value, ...resp.replies];
   } catch (error) {
     console.error("Get Sub Comments Error", error);
   }
 
   loading.value = false;
 }
+
+defineExpose({ loadSubComments });
 </script>
 
 <style lang="scss" scoped>
@@ -86,5 +74,9 @@ async function loadSubComments(reload = false) {
   padding: 8px;
   border-radius: 8px;
   margin-top: 16px;
+
+  .load-more {
+    text-align: left;
+  }
 }
 </style>

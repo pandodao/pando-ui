@@ -11,6 +11,7 @@
         :content="comment?.content"
         :show-link="globals.showLink.value"
         :href="comment?.arweave_tx_hash"
+        :reward="comment?.reward"
       />
 
       <div class="info">
@@ -24,7 +25,11 @@
 
         <MessageAction :comment="comment" @toggle="handleToggleReply" />
 
-        <FavAction :comment="comment" @refresh="handleRefresh" />
+        <FavAction
+          :comment="comment"
+          @login="$emit('login')"
+          @refresh="handleRefresh"
+        />
       </div>
 
       <ReplyForm
@@ -32,10 +37,14 @@
         :comment="comment"
         :profile="profile"
         @refresh="handleRefresh"
-        @replied="handleToggleReply"
+        @replied="handleReplied"
       />
 
-      <SubComments v-if="(comment?.reply_count ?? 0) > 0" :id="comment?.id" />
+      <SubComments
+        v-if="(comment?.reply_count ?? 0) > 0"
+        :id="comment?.id"
+        ref="subComments"
+      />
     </div>
   </div>
 </template>
@@ -48,9 +57,8 @@ export default {
 
 <script lang="ts" setup>
 import { ref, PropType } from "vue";
-import { formatTime } from "../utils/helper";
 import { useLocale } from "vuetify";
-import { FButton } from "@foxone/uikit/components";
+import { formatTime } from "../utils/helper";
 import { useGlobals } from "../composables";
 import SubComments from "./SubComments.vue";
 import FavAction from "./FavAction.vue";
@@ -71,12 +79,18 @@ const emits = defineEmits({
   login: () => true,
 });
 
+const { t } = useLocale();
 const globals = useGlobals();
 const showReply = ref(false);
-const { t } = useLocale();
+const subComments = ref<InstanceType<typeof SubComments> | null>(null);
 
 async function handleRefresh(comment: Comment) {
   emits("update", comment);
+}
+
+function handleReplied() {
+  handleToggleReply();
+  subComments.value?.loadSubComments(true);
 }
 
 function handleToggleReply() {

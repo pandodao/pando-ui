@@ -9,11 +9,7 @@
       @login="$emit('login')"
     />
 
-    <LoadMore
-      :loading="globals.loading.value"
-      :has-next="hasNext"
-      @more="loadComments"
-    />
+    <InfiniteLoad @infinite="(state) => loadComments(false, state)" />
 
     <div v-if="error" class="comment-error">
       {{ t("$vuetify.talkee.error_hint") }}
@@ -31,7 +27,7 @@ export default {
 import { ref, watch, onMounted, computed, PropType } from "vue";
 import { useLocale } from "vuetify";
 import CommentItem from "./CommentItem.vue";
-import LoadMore from "./LoadMore.vue";
+import InfiniteLoad from "./InfiniteLoad.vue";
 import { useGlobals } from "../composables";
 import { getComments } from "../services";
 
@@ -65,7 +61,7 @@ const commentsList = computed(() => [
   ...comments.value,
 ]);
 
-async function loadComments(reload = false) {
+async function loadComments(reload = false, state: any = null) {
   if (globals.loading.value) return;
 
   if (reload) {
@@ -86,6 +82,12 @@ async function loadComments(reload = false) {
     hasNext.value = resp.comments.length >= globals.limit;
     globals.total.value = resp.total;
 
+    state?.loaded();
+
+    if (!hasNext.value) {
+      state?.complete();
+    }
+
     comments.value = [
       ...comments.value,
       ...resp.comments.filter(
@@ -94,6 +96,7 @@ async function loadComments(reload = false) {
     ];
   } catch (e) {
     error.value = true;
+    state?.error();
   }
 
   globals.loading.value = false;

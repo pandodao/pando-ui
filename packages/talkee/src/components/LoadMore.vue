@@ -1,7 +1,7 @@
 <template>
   <FLoading v-if="loading" size="18" class="comments-loading" />
   <div v-else-if="hasNext" class="load-more">
-    <FButton size="xs" variant="text" @click="emits('more')">
+    <FButton size="sm" variant="text" @click="emits('more')">
       {{ t("$vuetify.talkee.load_more") }}
     </FButton>
   </div>

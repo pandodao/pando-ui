@@ -50,3 +50,11 @@ export function getSubComments(
     params,
   });
 }
+
+export function getAssets() {
+  return http.get("/assets");
+}
+
+export function getAsset(id: string) {
+  return http.get(`/assets/${id}`);
+}

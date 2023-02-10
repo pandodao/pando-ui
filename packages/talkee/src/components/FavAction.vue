@@ -33,13 +33,14 @@ const props = defineProps({
 
 const emits = defineEmits({
   refresh: (v: any) => true,
+  login: () => true,
 });
 
 const globals = useGlobals();
 
 const loading = ref(false);
 
-const isFavor = computed(() => !!props.comment?.favor_id);
+const isFavor = computed(() => !!props.comment?.fav_id);
 
 async function handleToggleFav() {
   if (loading.value) return;
@@ -51,11 +52,13 @@ async function handleToggleFav() {
       if (!isFavor.value) {
         await putFavor(props.comment?.id);
       } else {
-        await putUnfavor(props.comment?.favor_id);
+        await putUnfavor(props.comment?.id);
       }
 
       const comment = await getComment(props.comment?.id ?? "");
       emits("refresh", comment);
+    } else {
+      emits("login");
     }
   } catch (error) {
     console.error("Toggle Fav Error", error);
@@ -68,6 +71,8 @@ async function handleToggleFav() {
 <style lang="scss" scoped>
 .fav-action {
   margin-right: 4px;
+  line-height: 1;
+  font-size: 12px;
 }
 
 .fav-action--active {

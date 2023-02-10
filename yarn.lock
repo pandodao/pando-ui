@@ -1590,16 +1590,7 @@
   dependencies:
     "@foxone/fennec-base" "0.5.8"
 
-"@foxone/utils@^0.2.26":
-  version "0.2.27"
-  resolved "https://registry.npmmirror.com/@foxone/utils/-/utils-0.2.27.tgz#dcd5dbf1c01f3f27508f9736ce1ab854ca469d4b"
-  integrity sha512-R6EoJDaGHxl53GFraksmt9+G7bQIwRUxAEMOwOwMb2TtudR1STk7ivDSppqav3z/QiS3O3bZKnEdIuYwnjaSfw==
-  dependencies:
-    axios "^0.21.1"
-    bignumber.js "^9.0.1"
-    dayjs "^1.10.4"
-
-"@foxone/utils@^0.2.27":
+"@foxone/utils@^0.2.26", "@foxone/utils@^0.2.27":
   version "0.2.27"
   resolved "https://registry.npmjs.org/@foxone/utils/-/utils-0.2.27.tgz#dcd5dbf1c01f3f27508f9736ce1ab854ca469d4b"
   integrity sha512-R6EoJDaGHxl53GFraksmt9+G7bQIwRUxAEMOwOwMb2TtudR1STk7ivDSppqav3z/QiS3O3bZKnEdIuYwnjaSfw==
@@ -18033,6 +18024,11 @@ uuid@^8.3.0:
   version "8.3.2"
   resolved "https://registry.npmmirror.com/uuid/-/uuid-8.3.2.tgz#80d5b5ced271bb9af6c445f21a1a04c606cefbe2"
   integrity sha512-+NYs2QeMWy+GWFOEm9xnn6HCDp0l7QBD7ml8zLUmJ+93Q5NF0NocErnwkTkXVFNiX3/fpC6afS8Dhb/gz7R7eg==
+
+v3-infinite-loading@^1.2.2:
+  version "1.2.2"
+  resolved "https://registry.npmjs.org/v3-infinite-loading/-/v3-infinite-loading-1.2.2.tgz#19565772cc255bd87369b3ad46090cb621a42d3b"
+  integrity sha512-MWJc6yChnqeUasBFJ3Enu8IGPcQgRMSTrAEtT1MsHBEx+QjwvNTaY8o+8V9DgVt1MVhQSl3MC55hsaWLJmpRMw==
 
 v8-compile-cache@^2.0.3:
   version "2.3.0"

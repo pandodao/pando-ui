@@ -1,10 +1,11 @@
 <template>
-  <VForm class="reply-form">
+  <div class="reply-form">
     <FInput
       v-model="content"
       hide-details
       variant="outlined"
       :placeholder="t('$vuetify.talkee.comment_placeholder')"
+      @keyup.enter="handleReply"
     >
       <template #append-inner>
         <FButton
@@ -20,7 +21,7 @@
         </FButton>
       </template>
     </FInput>
-  </VForm>
+  </div>
 </template>
 
 <script lang="ts">
@@ -32,11 +33,11 @@ export default {
 <script lang="ts" setup>
 import { ref, defineProps, computed } from "vue";
 import { useLocale } from "vuetify";
-import { VForm, VIcon } from "vuetify/components";
+import { VIcon } from "vuetify/components";
 import { FButton, FInput } from "@foxone/uikit/components";
+import { useToast } from "@foxone/uikit/plugins/toast";
 import { IconSend } from "./icons";
 import { postSubComment, getComment } from "../services";
-import { useGlobals } from "../composables";
 
 const props = defineProps({
   comment: { type: Object },
@@ -50,8 +51,8 @@ const emits = defineEmits({
 
 const { t } = useLocale();
 const content = ref("");
+const toast = useToast();
 const loading = ref(false);
-const globals = useGlobals();
 
 const valid = computed(
   () => content.value.length <= 512 && content.value.length > 0
@@ -61,9 +62,8 @@ async function handleReply() {
   loading.value = true;
 
   try {
-    const resp = await postSubComment(props.comment?.id, content.value.trim());
+    await postSubComment(props.comment?.id, content.value.trim());
 
-    globals.topSubComments.value.unshift(resp);
     content.value = "";
 
     const comment = await getComment(props.comment?.id ?? "");
@@ -71,11 +71,7 @@ async function handleReply() {
     emits("refresh", comment);
     emits("replied");
   } catch (error: any) {
-    if (error?.message) {
-      alert(error.message);
-    }
-
-    console.log("Handle Reply Error", error);
+    toast.error({ message: error?.message ?? "Submit Reply Error" });
   }
 
   loading.value = false;

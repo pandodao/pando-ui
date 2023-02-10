@@ -1,6 +1,6 @@
 import { ref, computed } from "vue";
 import { getToken, setToken } from "../utils/helper";
-import { SortMethod } from "../types";
+import { SortMethod, Asset } from "../types";
 
 const token = ref(getToken());
 const apiBase = ref("");
@@ -15,7 +15,7 @@ const loading = ref(false);
 const logging = ref(false);
 const showLink = ref(false);
 const topComments = ref<any[]>([]);
-const topSubComments = ref<any[]>([]);
+const assets = ref<Asset[]>([]);
 
 const logged = computed(() => Boolean(token.value));
 
@@ -44,8 +44,8 @@ export function useGlobals() {
     profile,
     showLink,
     topComments,
-    topSubComments,
     limit,
+    assets,
 
     loggin,
     logout,

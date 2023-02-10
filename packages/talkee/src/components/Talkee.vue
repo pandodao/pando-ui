@@ -19,7 +19,7 @@ export default {
 </script>
 
 <script lang="ts" setup>
-import { watch, ref, defineProps, onBeforeMount } from "vue";
+import { watch, ref, defineProps, onBeforeMount, onMounted } from "vue";
 import { usePassport } from "@foxone/mixin-passport/lib/helper";
 import { useToast } from "@foxone/uikit/plugins/toast";
 import SortMethods from "./SortMethods.vue";
@@ -28,7 +28,7 @@ import CommentForm from "./CommentForm.vue";
 import Comments from "./Comments.vue";
 import LoginAction from "./LoginAction.vue";
 import { useGlobals } from "../composables";
-import { getMe, auth } from "../services";
+import { getMe, auth, getAssets } from "../services";
 import { AuthMethod } from "../types";
 
 const props = defineProps({
@@ -52,6 +52,10 @@ onBeforeMount(() => {
   globals.apiBase.value = props.apiBase || "";
   globals.clientId.value = props.clientId || "";
   globals.showLink.value = props.showLink;
+});
+
+onMounted(async () => {
+  globals.assets.value = await getAssets();
 });
 
 watch(

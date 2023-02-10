@@ -1,10 +1,12 @@
 <template>
-  <FButton icon size="16" class="message-action" @click="emits('toggle')">
+  <FButton height="16" class="message-action" @click="emits('toggle')">
     <VIcon size="16">
       <IconMessageDot />
     </VIcon>
 
-    <span class="action-text">{{ comment?.reply_count }}</span>
+    <span class="action-text">
+      {{ comment?.reply_count }}
+    </span>
   </FButton>
 </template>
 
@@ -34,6 +36,10 @@ const emits = defineEmits({
 <style lang="scss" scoped>
 .message-action {
   margin-right: 8px;
+  padding: 0;
+  min-width: auto;
+  line-height: 1;
+  font-size: 12px;
 }
 
 .action-text {

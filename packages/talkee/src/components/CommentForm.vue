@@ -1,5 +1,5 @@
 <template>
-  <VForm class="comment-form">
+  <VForm class="comment-form" @submit="handleSubmit">
     <Avatar :url="profile?.avatar_url" class="avatar" />
 
     <div class="form-right">

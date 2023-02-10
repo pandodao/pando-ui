@@ -1,6 +1,7 @@
 <template>
   <div class="comment-content">
     <span class="content" v-html="content" />
+
     <VIcon
       v-if="showLink && href"
       class="icon-hash"
@@ -9,6 +10,14 @@
     >
       <IconHash />
     </VIcon>
+
+    <div v-if="reward" class="reward-info">
+      <VIcon class="icon-gift" size="14">
+        <IconGift />
+      </VIcon>
+
+      <span class="reward-text">{{ rewardText }}</span>
+    </div>
   </div>
 </template>
 
@@ -21,14 +30,18 @@ export default {
 <script lang="ts" setup>
 import { computed } from "vue";
 import { TextParser } from "@foxone/utils/text-parser";
-import { IconHash } from "./icons";
+import { IconHash, IconGift } from "./icons";
 import { VIcon } from "vuetify/components";
+import { useGlobals } from "../composables";
 
 const props = defineProps({
   content: { type: String, default: "" },
   href: { type: String, default: "" },
   showLink: { type: Boolean, default: false },
+  reward: { type: Object },
 });
+
+const globals = useGlobals();
 
 const content = computed(() => {
   let text = content;
@@ -39,6 +52,17 @@ const content = computed(() => {
   }
 
   return text;
+});
+
+const rewardText = computed(() => {
+  const assetId = props.reward?.asset_id;
+  const asset = globals.assets.value.find((x) => x.asset_id === assetId);
+
+  if (asset) {
+    return `${props.reward?.amount} ${asset.symbol}`;
+  }
+
+  return "";
 });
 
 function handleToHash() {
@@ -59,14 +83,30 @@ function handleToHash() {
     vertical-align: middle;
   }
 
-  .icon-hash {
+  .reward-info {
+    display: inline;
+
+    .reward-text {
+      font-size: 12px;
+      color: rgb(var(--v-theme-greyscale_3));
+      vertical-align: middle;
+      margin-left: 4px;
+    }
+  }
+
+  .icon-hash,
+  .icon-gift {
     vertical-align: middle;
     cursor: pointer;
-    color: white;
-    background: rgb(var(--v-theme-greyscale_4));
     padding: 2px;
     border-radius: 4px;
     margin-left: 0.4rem;
+    color: white;
+    background: rgb(var(--v-theme-greyscale_4));
+
+    &:hover {
+      background: rgb(var(--v-theme-info));
+    }
   }
 }
 </style>
