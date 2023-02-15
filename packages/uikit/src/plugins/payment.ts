@@ -46,12 +46,12 @@ export type PaymentPlugin = Record<
 function install(app: App) {
   let instance: VNode | null = null;
 
-  const show = (options: PaymentOptions) => {
+  const show = async (options: PaymentOptions) => {
     if (instance) {
-      instance.component!.exposed!.show(options);
+      await instance.component!.exposed!.show(options);
     }
 
-    nextTick(() => {
+    await nextTick(async () => {
       const appendTo = document.querySelector(
         options.container || "[data-v-app]"
       );
@@ -71,7 +71,7 @@ function install(app: App) {
       appendTo?.appendChild(container);
       instance = vnode;
 
-      instance.component!.exposed!.show(options);
+      await instance.component!.exposed!.show(options);
     });
   };
 
