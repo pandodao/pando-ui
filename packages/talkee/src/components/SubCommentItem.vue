@@ -38,6 +38,7 @@ const content = computed(() => {
 .subcomment-item {
   font-size: 12px;
   word-break: break-all;
+  line-height: 2;
 
   .name {
     font-weight: 500;

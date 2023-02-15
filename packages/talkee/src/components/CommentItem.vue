@@ -8,14 +8,14 @@
           {{ comment?.creator?.full_name }}
         </div>
         <VSpacer />
-        <CommentReward
-          :show-link="globals.showLink.value"
-          :href="comment?.arweave_tx_hash"
-          :reward="comment?.reward"
-        />
+        <CommentReward :reward="comment?.reward" />
       </div>
 
-      <CommentContent :content="comment?.content" />
+      <CommentContent
+        :content="comment?.content"
+        :show-link="globals.showLink.value"
+        :href="comment?.arweave_tx_hash"
+      />
 
       <ReplyForm
         v-if="globals.logged.value && showReply"

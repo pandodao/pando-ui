@@ -1,6 +1,15 @@
 <template>
   <div class="comment-content">
     <span class="content" v-html="content" />
+
+    <VIcon
+      v-if="showLink && href"
+      class="icon-hash"
+      size="14"
+      @click="handleToHash"
+    >
+      <IconHash />
+    </VIcon>
   </div>
 </template>
 
@@ -13,9 +22,12 @@ export default {
 <script lang="ts" setup>
 import { computed } from "vue";
 import { TextParser } from "@foxone/utils/text-parser";
+import { IconHash } from "./icons";
 
 const props = defineProps({
   content: { type: String, default: "" },
+  href: { type: String, default: "" },
+  showLink: { type: Boolean, default: false },
 });
 
 const content = computed(() => {
@@ -28,6 +40,12 @@ const content = computed(() => {
 
   return text;
 });
+
+function handleToHash() {
+  const link = " https://viewblock.io/arweave/tx/" + props.href;
+
+  window.open(link, "_blank");
+}
 </script>
 
 <style lang="scss" scoped>
@@ -39,6 +57,20 @@ const content = computed(() => {
 
   .content {
     vertical-align: middle;
+  }
+
+  .icon-hash {
+    vertical-align: middle;
+    cursor: pointer;
+    padding: 2px;
+    border-radius: 4px;
+    margin-left: 0.4rem;
+    color: white;
+    background: rgb(var(--v-theme-greyscale_4));
+
+    &:hover {
+      background: rgb(var(--v-theme-info));
+    }
   }
 }
 </style>

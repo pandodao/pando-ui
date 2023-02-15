@@ -1,14 +1,5 @@
 <template>
   <div class="comment-reward">
-    <VIcon
-      v-if="showLink && href"
-      class="icon-hash"
-      size="14"
-      @click="handleToHash"
-    >
-      <IconHash />
-    </VIcon>
-
     <div v-if="reward" class="reward-info">
       <VIcon class="icon-gift" size="14">
         <IconGift />
@@ -27,13 +18,11 @@ export default {
 
 <script lang="ts" setup>
 import { computed } from "vue";
-import { IconHash, IconGift } from "./icons";
+import { IconGift } from "./icons";
 import { VIcon } from "vuetify/components";
 import { useGlobals } from "../composables";
 
 const props = defineProps({
-  href: { type: String, default: "" },
-  showLink: { type: Boolean, default: false },
   reward: { type: Object },
 });
 
@@ -49,12 +38,6 @@ const rewardText = computed(() => {
 
   return "";
 });
-
-function handleToHash() {
-  const link = " https://viewblock.io/arweave/tx/" + props.href;
-
-  window.open(link, "_blank");
-}
 </script>
 
 <style lang="scss" scoped>
@@ -70,7 +53,6 @@ function handleToHash() {
     }
   }
 
-  .icon-hash,
   .icon-gift {
     vertical-align: middle;
     cursor: pointer;
