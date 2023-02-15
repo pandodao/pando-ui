@@ -3,34 +3,19 @@
     <Avatar :url="comment?.creator?.avatar_url" size="24" class="avatar" />
 
     <div class="comment-details">
-      <div class="name">
-        {{ comment?.creator?.full_name }}
-      </div>
-
-      <CommentContent
-        :content="comment?.content"
-        :show-link="globals.showLink.value"
-        :href="comment?.arweave_tx_hash"
-        :reward="comment?.reward"
-      />
-
-      <div class="info">
-        <div class="time">{{ formatTime(comment?.created_at) }}</div>
-
-        <FButton size="xs" variant="text" @click="handleToggleReply">
-          {{ t("$vuetify.talkee.reply") }}
-        </FButton>
-
-        <div class="spacer" />
-
-        <MessageAction :comment="comment" @toggle="handleToggleReply" />
-
-        <FavAction
-          :comment="comment"
-          @login="$emit('login')"
-          @refresh="handleRefresh"
+      <div class="d-flex align-center">
+        <div class="name">
+          {{ comment?.creator?.full_name }}
+        </div>
+        <VSpacer />
+        <CommentReward
+          :show-link="globals.showLink.value"
+          :href="comment?.arweave_tx_hash"
+          :reward="comment?.reward"
         />
       </div>
+
+      <CommentContent :content="comment?.content" />
 
       <ReplyForm
         v-if="globals.logged.value && showReply"
@@ -45,6 +30,21 @@
         :id="comment?.id"
         ref="subComments"
       />
+
+      <div class="info">
+        <div>
+          <MessageAction :comment="comment" @toggle="handleToggleReply" />
+          <FavAction
+            :comment="comment"
+            @login="$emit('login')"
+            @refresh="handleRefresh"
+          />
+        </div>
+        <VSpacer />
+        <div class="time">
+          {{ formatTime(comment?.created_at) }}
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -57,7 +57,6 @@ export default {
 
 <script lang="ts" setup>
 import { ref, PropType } from "vue";
-import { useLocale } from "vuetify";
 import { formatTime } from "../utils/helper";
 import { useGlobals } from "../composables";
 import SubComments from "./SubComments.vue";
@@ -65,6 +64,7 @@ import FavAction from "./FavAction.vue";
 import MessageAction from "./MessageAction.vue";
 import ReplyForm from "./ReplyForm.vue";
 import CommentContent from "./CommentContent.vue";
+import CommentReward from "./CommentReward.vue";
 import Avatar from "./Avatar.vue";
 
 import type { Comment } from "../types";
@@ -79,7 +79,6 @@ const emits = defineEmits({
   login: () => true,
 });
 
-const { t } = useLocale();
 const globals = useGlobals();
 const showReply = ref(false);
 const subComments = ref<InstanceType<typeof SubComments> | null>(null);
@@ -123,22 +122,19 @@ function handleToggleReply() {
     flex-direction: column;
   }
 
-  .comment-content {
-    margin-top: 8px;
-  }
-
-  .spacer {
-    flex-grow: 1;
-  }
-
   .info {
-    margin-top: 8px;
     display: flex;
-    gap: 8px;
-    color: rgb(var(--v-theme-greyscale_3));
     align-items: center;
+    color: rgb(var(--v-theme-greyscale_3));
     font-size: 12px;
     line-height: 1;
+    margin-top: 8px;
+  }
+
+  .time {
+    line-height: 1;
+    font-size: 12px;
+    color: rgb(var(--v-theme-greyscale_3));
   }
 }
 </style>

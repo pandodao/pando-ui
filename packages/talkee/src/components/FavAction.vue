@@ -1,7 +1,7 @@
 <template>
   <FButton
     icon
-    size="16"
+    size="x-small"
     class="fav-action"
     :loading="loading"
     :class="{ 'fav-action--active': isFavor }"
