@@ -9,10 +9,12 @@
   "scripts": {
     "build": "turbo run build",
     "dev": "turbo run dev --parallel",
+    "dev:legacy": "export NODE_OPTIONS=--openssl-legacy-provider && turbo run dev --parallel",
     "lint": "turbo run lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "publish-packages": "turbo run build lint && changeset version && changeset publish",
     "storybook": "start-storybook -p 6006",
+    "storybook:legacy": "export NODE_OPTIONS=--openssl-legacy-provider && start-storybook -p 6006",
     "docs": "build-storybook"
   },
   "devDependencies": {
