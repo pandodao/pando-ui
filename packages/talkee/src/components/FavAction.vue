@@ -1,12 +1,14 @@
 <template>
   <FButton
-    icon
+    variant="plain"
     size="x-small"
+    color="greyscale_3"
     class="fav-action"
     :loading="loading"
     :class="{ 'fav-action--active': isFavor }"
+    @click="handleToggleFav"
   >
-    <VIcon size="16" @click="handleToggleFav">
+    <VIcon size="16">
       <IconHeart />
     </VIcon>
     <span class="action-text">{{ comment?.favor_count }}</span>

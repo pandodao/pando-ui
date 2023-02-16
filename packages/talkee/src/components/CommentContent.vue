@@ -57,6 +57,7 @@ function handleToHash() {
 
   .content {
     vertical-align: middle;
+    word-break: break-word;
   }
 
   .icon-hash {

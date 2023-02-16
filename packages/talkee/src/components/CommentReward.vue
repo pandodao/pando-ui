@@ -1,12 +1,10 @@
 <template>
-  <div class="comment-reward">
-    <div v-if="reward" class="reward-info">
-      <VIcon class="icon-gift" size="14">
-        <IconGift />
-      </VIcon>
+  <div v-if="reward" class="comment-reward">
+    <span class="reward-text">{{ rewardText }}</span>
 
-      <span class="reward-text">{{ rewardText }}</span>
-    </div>
+    <VIcon>
+      <IconGift />
+    </VIcon>
   </div>
 </template>
 
@@ -42,29 +40,15 @@ const rewardText = computed(() => {
 
 <style lang="scss" scoped>
 .comment-reward {
-  .reward-info {
-    display: inline;
+  padding: 0 4px;
+  font-size: 12px;
+  color: #c5a70b;
+  background-color: #faf6e1;
+  border-radius: 4px;
 
-    .reward-text {
-      font-size: 12px;
-      color: rgb(var(--v-theme-greyscale_3));
-      vertical-align: middle;
-      margin-left: 4px;
-    }
-  }
-
-  .icon-gift {
-    vertical-align: middle;
-    cursor: pointer;
-    padding: 2px;
-    border-radius: 4px;
-    margin-left: 0.4rem;
-    color: white;
-    background: rgb(var(--v-theme-greyscale_4));
-
-    &:hover {
-      background: rgb(var(--v-theme-info));
-    }
+  .reward-text {
+    font-weight: 500;
+    margin-right: 4px;
   }
 }
 </style>

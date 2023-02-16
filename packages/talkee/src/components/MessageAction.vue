@@ -1,5 +1,11 @@
 <template>
-  <FButton size="x-small" class="message-action" @click="emits('toggle')">
+  <FButton
+    variant="plain"
+    size="x-small"
+    color="greyscale_3"
+    class="message-action"
+    @click="emits('toggle')"
+  >
     <VIcon size="16">
       <IconMessageDot />
     </VIcon>

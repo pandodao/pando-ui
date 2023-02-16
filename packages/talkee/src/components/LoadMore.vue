@@ -1,6 +1,6 @@
 <template>
   <FLoading v-if="loading" size="18" class="comments-loading" />
-  <div v-else-if="!hasNext" class="load-more">
+  <div v-else-if="hasNext" class="load-more">
     <FButton size="x-small" variant="text" @click="emits('more')">
       {{ t("$vuetify.talkee.load_more") }}
     </FButton>
@@ -34,6 +34,6 @@ const emits = defineEmits({
 .load-more {
   font-size: 12px;
   color: rgb(var(--v-theme-info));
-  text-align: center;
+  text-align: center !important;
 }
 </style>
