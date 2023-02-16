@@ -42,7 +42,9 @@ const globals = useGlobals();
 
 const loading = ref(false);
 
-const isFavor = computed(() => !!props.comment?.fav_id);
+const favStatus = ref(false);
+
+const isFavor = computed(() => !!props.comment?.fav_id || favStatus.value);
 
 async function handleToggleFav() {
   if (loading.value) return;
@@ -53,8 +55,10 @@ async function handleToggleFav() {
     if (globals.logged.value) {
       if (!isFavor.value) {
         await putFavor(props.comment?.id);
+        favStatus.value = true;
       } else {
         await putUnfavor(props.comment?.id);
+        favStatus.value = false;
       }
 
       const comment = await getComment(props.comment?.id ?? "");
@@ -75,10 +79,15 @@ async function handleToggleFav() {
   margin-right: 4px;
   line-height: 1;
   font-size: 12px;
+
+}
+
+.v-btn--variant-plain {
+  opacity: 1;
 }
 
 .fav-action--active {
-  color: rgb(var(--v-theme-greyscale_1));
+  color: rgb(var(--v-theme-greyscale_1)) !important;
 }
 
 .action-text {

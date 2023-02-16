@@ -48,6 +48,10 @@ const emits = defineEmits({
   font-size: 12px;
 }
 
+.v-btn--variant-plain {
+  opacity: 1;
+}
+
 .action-text {
   margin-left: 2px;
 }
