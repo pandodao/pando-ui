@@ -42,9 +42,8 @@ const globals = useGlobals();
 
 const loading = ref(false);
 
-const favStatus = ref(false);
 
-const isFavor = computed(() => !!props.comment?.fav_id || favStatus.value);
+const isFavor = computed(() => !!props.comment?.fav_id);
 
 async function handleToggleFav() {
   if (loading.value) return;
@@ -55,10 +54,8 @@ async function handleToggleFav() {
     if (globals.logged.value) {
       if (!isFavor.value) {
         await putFavor(props.comment?.id);
-        favStatus.value = true;
       } else {
         await putUnfavor(props.comment?.id);
-        favStatus.value = false;
       }
 
       const comment = await getComment(props.comment?.id ?? "");
