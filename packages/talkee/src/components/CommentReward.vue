@@ -2,7 +2,7 @@
   <div v-if="reward" class="comment-reward">
     <span class="reward-text">{{ rewardText }}</span>
 
-    <VIcon>
+    <VIcon size="12">
       <IconGift />
     </VIcon>
   </div>
@@ -42,9 +42,12 @@ const rewardText = computed(() => {
 .comment-reward {
   padding: 0 4px;
   font-size: 12px;
+  height: 18px;
   color: #c5a70b;
   background-color: #faf6e1;
   border-radius: 4px;
+  display: flex;
+  align-items: center;
 
   .reward-text {
     font-weight: 500;
