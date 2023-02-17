@@ -24,7 +24,7 @@ export default {
 </script>
 
 <script lang="ts" setup>
-import { ref, watch, onMounted, computed, PropType } from "vue";
+import { ref, watch, computed, PropType } from "vue";
 import { useLocale } from "vuetify";
 import CommentItem from "./CommentItem.vue";
 import InfiniteLoad from "./InfiniteLoad.vue";
@@ -51,10 +51,6 @@ watch(
   () => [globals.sort.value],
   () => loadComments(true)
 );
-
-onMounted(() => {
-  loadComments(true);
-});
 
 const commentsList = computed(() => [
   ...globals.topComments.value,

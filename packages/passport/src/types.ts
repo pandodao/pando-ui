@@ -4,14 +4,34 @@ import MixinAPI from "./mixin-apis";
 
 export interface PassportOptions {
   infuraId?: string;
+  chainId?: number;
   onDisconnect?: () => void;
+}
+
+export interface SignMessageParams {
+  domain?: string;
+  statement?: string;
+  uri?: string;
+  version?: string;
+  chainId?: number;
+  expirationTime?: string;
+  notBefore?: string;
+  resources?: Array<string>;
 }
 
 export interface AuthOptions {
   origin: string;
   config?: { infuraId?: string };
   JWTPayload?: any;
-  getTokenByCode?: (code: string) => Promise<string>;
+  hooks?: {
+    afterOAuthCodeLoad?: (code: string) => Promise<string>;
+    beforeSignMessage?: () => Promise<SignMessageParams>;
+    afterSignMessage?: (params: {
+      message: string;
+      signature: string;
+    }) => Promise<string>;
+    afterFennecTokenLoad?: (token: string) => Promise<string>;
+  };
 
   authMethods?: AuthMethod[];
   // Mixin oauth params

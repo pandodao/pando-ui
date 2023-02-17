@@ -47,7 +47,7 @@ export interface User {
 export enum AuthMethod {
   MixinOAuth = "mixin_oauth",
   MixinToken = "mixin_token",
-  mvm = "mvm",
+  MVM = "mvm",
 }
 
 export enum SortMethod {
@@ -70,6 +70,8 @@ export interface AuthParams {
   method: AuthMethod;
   mixin_oauth_code?: string;
   mixin_token?: string;
+  signed_message?: string;
+  signature?: string;
   lang?: string;
 }
 

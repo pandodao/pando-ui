@@ -34,7 +34,10 @@ function install(app: App, options: PassportOptions = {}) {
   };
 
   if (typeof MVM !== "undefined") {
-    state.mvm = new MVM({ infuraId: options.infuraId });
+    state.mvm = new MVM({
+      infuraId: options.infuraId,
+      chainId: options.chainId,
+    });
     state.mvm.on("disconnect", () => {
       options.onDisconnect?.();
     });

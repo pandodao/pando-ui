@@ -78,7 +78,23 @@ async function handleLoggin() {
       scope: "PROFILE:READ PHONE:READ",
       origin: "Talkee",
       pkce: true,
+      hooks: {
+        beforeSignMessage: async () => {
+          return { statement: "This is statement" };
+        },
+        afterSignMessage: async ({ message, signature }) => {
+          return (
+            await auth({
+              method: AuthMethod.MVM,
+              signed_message: message,
+              signature,
+            })
+          ).access_token;
+        },
+      },
     });
+
+    console.log(data);
 
     let token = data.token;
 

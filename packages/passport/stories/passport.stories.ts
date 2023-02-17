@@ -27,6 +27,13 @@ Default.args = {
     clientId: "fbd26bc6-3d04-4964-a7fe-a540432b16e2",
     scope: "PROFILE:READ ASSETS:READ SNAPSHOTS:READ",
     pkce: true,
+    hooks: {
+      beforeSignMessage: () => ({ statement: "This is statement" }),
+      afterSignMessage: (data) => {
+        console.log(data);
+        return "asdfasfdas";
+      },
+    },
   },
   paymentOptions: {
     assetId: "965e5c6e-434c-3fa9-b780-c50f43cd955c",
