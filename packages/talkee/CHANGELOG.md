@@ -1,5 +1,13 @@
 # @foxone/talkee
 
+## 2.0.4
+
+### Patch Changes
+
+- 8cf7a13: add mvm
+- Updated dependencies [4b23dc5]
+  - @foxone/mixin-passport@1.2.1
+
 ## 2.0.3
 
 ### Patch Changes

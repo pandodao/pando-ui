@@ -1,5 +1,11 @@
 # @foxone/mixin-passport
 
+## 1.2.1
+
+### Patch Changes
+
+- 4b23dc5: add mvm
+
 ## 1.2.0
 
 ### Minor Changes
