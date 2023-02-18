@@ -40,8 +40,6 @@ export default function (app: App, options: AuthOptions, state: State) {
       reject("Need afterSignMessage hook to process signed message to token");
     }
 
-    console.log(resp);
-
     state.token = resp;
   };
 

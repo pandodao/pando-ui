@@ -1,4 +1,4 @@
-import { computed, defineComponent, PropType, ref, watch } from "vue";
+import { computed, defineComponent, PropType, ref } from "vue";
 import { VSnackbar, VIcon, VDivider } from "vuetify/components";
 
 import "./FToast.scss";
@@ -78,13 +78,6 @@ export const FToast = defineComponent({
     const update = (v) => (v ? show() : close());
 
     expose({ show, close });
-
-    watch(
-      () => props.message,
-      () => {
-        console.log(props);
-      }
-    );
 
     return () => (
       <VSnackbar
