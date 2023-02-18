@@ -1,8 +1,9 @@
 import { ref, computed } from "vue";
 import { getToken, setToken } from "../utils/helper";
-import { SortMethod, Asset } from "../types";
+import { SortMethod, Asset, StoreData } from "../types";
 
-const token = ref(getToken());
+const token = ref(getToken().token);
+const channel = ref(getToken().channel);
 const apiBase = ref("");
 const clientId = ref("");
 const siteId = ref("");
@@ -20,18 +21,19 @@ const assets = ref<Asset[]>([]);
 const logged = computed(() => Boolean(token.value));
 
 export function useGlobals() {
-  const loggin = function (_token: string) {
-    token.value = _token;
-    setToken(_token);
+  const loggin = function (params: StoreData) {
+    token.value = params.token;
+    setToken(params);
   };
 
   const logout = function () {
     token.value = "";
-    setToken("");
+    setToken({ channel: "", token: "" });
   };
 
   return {
     token,
+    channel,
     logged,
     siteId,
     clientId,

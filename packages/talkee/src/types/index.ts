@@ -105,3 +105,8 @@ export interface Reward {
   trace_id: string;
   updated_at: string;
 }
+
+export interface StoreData {
+  token: string;
+  channel: string;
+}

@@ -3,11 +3,8 @@
     <Avatar :url="comment?.creator?.avatar_url" size="24" class="avatar" />
 
     <div class="comment-details">
-      <div class="d-flex align-center">
-        <div class="name">
-          {{ comment?.creator?.full_name }}
-        </div>
-        <VSpacer />
+      <div class="comment-top">
+        <Username :name="comment?.creator?.full_name" />
         <CommentReward :reward="comment?.reward" />
       </div>
 
@@ -66,6 +63,7 @@ import ReplyForm from "./ReplyForm.vue";
 import CommentContent from "./CommentContent.vue";
 import CommentReward from "./CommentReward.vue";
 import Avatar from "./Avatar.vue";
+import Username from "./Username.vue";
 
 import type { Comment } from "../types";
 
@@ -106,6 +104,11 @@ function handleToggleReply() {
   margin: 16px 0;
   display: flex;
 
+  .comment-top {
+    display: flex;
+    align-items: center;
+  }
+
   .avatar {
     margin-right: 8px;
   }
@@ -113,6 +116,7 @@ function handleToggleReply() {
   .name {
     font-size: 14px;
     font-weight: 500;
+    flex: 1;
     color: rgb(var(--v-theme-greyscale_3));
   }
 

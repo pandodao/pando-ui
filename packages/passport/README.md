@@ -36,6 +36,7 @@ Vue.use(Passport, {
 ```ts
 interface PassportOptions {
   infuraId?: string; // Needed by WalletConnect for MVM connection
+  chainId?: number; //
   onDisconnect?: () => void; // callback for wallet disconnect. eg: Metamask chain changed
 }
 ```

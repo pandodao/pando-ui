@@ -1,6 +1,6 @@
 <template>
   <div class="subcomment-item">
-    <span class="name">{{ comment?.creator.full_name }}:</span>
+    <Username :name="comment?.creator.full_name" />
 
     <span class="content">{{ comment?.content }}</span>
   </div>
@@ -15,6 +15,7 @@ export default {
 <script lang="ts" setup>
 import { computed, PropType } from "vue";
 import { TextParser } from "@foxone/utils/text-parser";
+import Username from "./Username.vue";
 
 import type { Comment } from "../types";
 

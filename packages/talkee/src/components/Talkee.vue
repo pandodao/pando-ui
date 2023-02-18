@@ -80,7 +80,12 @@ async function handleLoggin() {
       pkce: true,
       hooks: {
         beforeSignMessage: async () => {
-          return { statement: "This is statement" };
+          return {
+            statement: "You'll login to Talkee by the signature",
+            expirationTime: new Date(
+              new Date().getTime() + 1000 * 60 * 3
+            ).toISOString(),
+          };
         },
         afterSignMessage: async ({ message, signature }) => {
           return (
@@ -94,7 +99,7 @@ async function handleLoggin() {
       },
     });
 
-    console.log(data);
+    const channel = data.channel;
 
     let token = data.token;
 
@@ -104,11 +109,7 @@ async function handleLoggin() {
       ).access_token;
     }
 
-    if (data.channel !== "mixin") {
-      // token = await auth({ method: AuthMethod.mvm,  });
-    }
-
-    globals.loggin(token);
+    globals.loggin({ token, channel });
   } catch (error: any) {
     toast.error({ message: error?.message ?? "" });
   }
