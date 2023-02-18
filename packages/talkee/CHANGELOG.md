@@ -1,5 +1,11 @@
 # @foxone/talkee
 
+## 2.0.5
+
+### Patch Changes
+
+- fb1b841: update ui
+
 ## 2.0.4
 
 ### Patch Changes
