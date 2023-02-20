@@ -1,6 +1,8 @@
 <template>
   <div class="subcomment-item">
-    <Username :name="comment?.creator.full_name" />
+    <Username :name="comment?.creator.full_name">
+      <span>:</span>
+    </Username>
 
     <span class="content">{{ comment?.content }}</span>
   </div>

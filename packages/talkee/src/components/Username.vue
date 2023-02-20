@@ -1,5 +1,8 @@
 <template>
-  <span class="name">{{ displayName }}</span>
+  <span class="name">
+    {{ displayName }}
+    <slot />
+  </span>
 </template>
 
 <script lang="ts">

@@ -29,7 +29,7 @@
       />
 
       <div class="info">
-        <div>
+        <div class="comment-actions">
           <MessageAction :comment="comment" @toggle="handleToggleReply" />
           <FavAction
             :comment="comment"
@@ -37,7 +37,6 @@
             @refresh="handleRefresh"
           />
         </div>
-        <VSpacer />
         <div class="time">
           {{ formatTime(comment?.created_at) }}
         </div>
@@ -133,6 +132,10 @@ function handleToggleReply() {
     font-size: 12px;
     line-height: 1;
     margin-top: 8px;
+  }
+
+  .comment-actions {
+    flex-grow: 1;
   }
 
   .time {
