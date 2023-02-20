@@ -117,7 +117,7 @@ export default function authorize(
       window.location.href = "mixin://codes/" + data.code_id;
       opened = true;
     } else {
-      callbacks.onShowUrl?.("https://mixin.one/codes/" + data.code_id);
+      callbacks.onShowUrl?.("mixin://codes/" + data.code_id);
     }
 
     return false;

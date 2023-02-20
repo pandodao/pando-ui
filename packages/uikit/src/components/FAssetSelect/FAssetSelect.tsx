@@ -51,6 +51,7 @@ export const FAssetSelect = defineComponent({
         title={t("$vuetify.uikit.select_asset")}
         modelValue={props.dialog}
         desktop="menu"
+        close-on-content-click={false}
         onUpdate:modelValue={(v) => emit("update:dialog", v)}
       >
         {{
@@ -65,7 +66,7 @@ export const FAssetSelect = defineComponent({
           default: () => (
             <div class="f-asset-select">
               <div class="f-asset-select__search">
-                <FSearchInput v-model={filter.value} />
+                <FSearchInput v-model={filter.value} variant="outlined" />
               </div>
               <FAssetList
                 assets={filteredAssets.value}

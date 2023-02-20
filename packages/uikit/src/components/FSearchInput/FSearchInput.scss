@@ -1,8 +1,14 @@
 .f-input.f-search-input {
+  .v-field__prepend-inner {
+    opacity: 1;
+    width: 24px;
+    transition: ease 0.2s;
+  }
+
   .v-field--focused {
     .v-field__prepend-inner {
       opacity: 0;
       width: 0;
-    } 
+    }
   }
 }

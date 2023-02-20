@@ -46,6 +46,11 @@ const emits = defineEmits({
   min-width: auto;
   line-height: 1;
   font-size: 12px;
+
+  :deep(.v-progress-circular) {
+    width: 16px !important;
+    height: 16px !important;
+  }
 }
 
 .v-btn--variant-plain {

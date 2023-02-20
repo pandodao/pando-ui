@@ -24,12 +24,12 @@ export const FHint = defineComponent({
   },
 
   setup(props, { slots }) {
-    const { mdAndUp } = useDisplay();
+    const { smAndUp } = useDisplay();
     const { t } = useLocale();
     const dialog = ref(false);
 
     const meta = computed(() => {
-      const isTooltip = mdAndUp.value;
+      const isTooltip = smAndUp.value;
       return {
         isTooltip,
         wrapper: isTooltip ? FTooltip : FModal,

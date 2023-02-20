@@ -33,7 +33,7 @@ export const Text: StoryFn<typeof FButton> = () => ({
 export const Sizes: StoryFn<typeof FButton> = () => ({
   components: { FButton },
   template: `
-    <div style="display: flex; gap: 16px;">
+    <div>
       <FButton color="primary" size="x-small">x-small</FButton>
       <FButton color="primary" size="small">small</FButton>
       <FButton color="primary" size="default">default</FButton>

@@ -23,9 +23,12 @@ const Template: StoryFn<typeof FAssetSelect> = (args) => ({
     };
   },
   template: `
-    <FAssetSelect v-model:dialog="dialog" v-model:asset="asset" :assets="assets"></FAssetSelect>
+    <FAssetSelect v-model:dialog="dialog" v-model:asset="asset" :assets="assets" v-bind="args"></FAssetSelect>
   `,
 });
 
 export const Default = Template.bind({});
-Default.args = {};
+
+Default.args = {
+  showName: false,
+};

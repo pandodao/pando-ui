@@ -1,10 +1,14 @@
 <template>
-  <FLoading v-if="loading" size="18" class="comments-loading" />
-  <div v-else-if="hasNext" class="load-more">
-    <FButton size="x-small" variant="text" @click="emits('more')">
-      {{ t("$vuetify.talkee.load_more") }}
-    </FButton>
-  </div>
+  <FButton
+    v-if="hasNext"
+    size="x-small"
+    variant="text"
+    class="load-more"
+    :loading="loading"
+    @click="emits('more')"
+  >
+    {{ t("$vuetify.talkee.load_more") }}
+  </FButton>
 </template>
 
 <script lang="ts">
@@ -16,7 +20,7 @@ export default {
 <script lang="ts" setup>
 import { defineEmits } from "vue";
 import { useLocale } from "vuetify";
-import { FLoading, FButton } from "@foxone/uikit/components";
+import { FButton } from "@foxone/uikit/components";
 
 const { t } = useLocale();
 
@@ -35,5 +39,10 @@ const emits = defineEmits({
   font-size: 12px;
   color: rgb(var(--v-theme-info));
   text-align: center !important;
+
+  :deep(.v-progress-circular) {
+    width: 16px !important;
+    height: 16px !important;
+  }
 }
 </style>

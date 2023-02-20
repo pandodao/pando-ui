@@ -14,8 +14,11 @@ const Template: StoryFn<typeof FSearchInput> = (args) => ({
 
     return { args, text };
   },
-  template: `<FSearchInput v-model="text" />`,
+  template: `<FSearchInput v-model="text" v-bind="args" />`,
 });
 
 export const Default = Template.bind({});
-Default.args = {};
+
+Default.args = {
+  variant: "outlined",
+};

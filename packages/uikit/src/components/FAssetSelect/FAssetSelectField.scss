@@ -3,6 +3,7 @@
   align-items: center;
   padding: 4px 16px;
   border-radius: 8px;
+  min-height: 52px;
 
   &--outlined {
     border: 1px solid rgb(var(--v-theme-greyscale_5));
@@ -16,6 +17,9 @@
     display: inline-block;
     white-space: nowrap;
     text-transform: capitalize;
+    font-size: 18px;
+    font-weight: 600;
+    color: rgb(var(--v-theme-greyscale_2));
   }
 
   &__right {
@@ -24,9 +28,10 @@
   }
 
   &__symbol {
-    font-size: 1.125rem !important;
     font-weight: 600;
-    line-height: 1.375rem;
+    font-size: 18px;
+    height: 22px;
+    line-height: 22px;
   }
 
   &__name {

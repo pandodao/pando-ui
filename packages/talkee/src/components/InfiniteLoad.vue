@@ -1,7 +1,7 @@
 <template>
   <InfiniteLoading>
     <template #spinner>
-      <FLoading size="18" />
+      <FLoading size="16" />
     </template>
     <template #complete>
       <div class="no-more-text">

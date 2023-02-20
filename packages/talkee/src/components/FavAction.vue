@@ -42,7 +42,6 @@ const globals = useGlobals();
 
 const loading = ref(false);
 
-
 const isFavor = computed(() => !!props.comment?.fav_id);
 
 async function handleToggleFav() {
@@ -77,6 +76,10 @@ async function handleToggleFav() {
   line-height: 1;
   font-size: 12px;
 
+  :deep(.v-progress-circular) {
+    width: 16px !important;
+    height: 16px !important;
+  }
 }
 
 .v-btn--variant-plain {
