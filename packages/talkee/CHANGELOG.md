@@ -1,5 +1,13 @@
 # @foxone/talkee
 
+## 2.0.7
+
+### Patch Changes
+
+- 2f661f4: update ui
+- Updated dependencies [2f661f4]
+  - @foxone/uikit@4.2.1
+
 ## 2.0.6
 
 ### Patch Changes
