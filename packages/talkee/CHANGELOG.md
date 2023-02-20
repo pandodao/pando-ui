@@ -1,5 +1,11 @@
 # @foxone/talkee
 
+## 2.0.6
+
+### Patch Changes
+
+- 14132f2: fix talkee ui
+
 ## 2.0.5
 
 ### Patch Changes
