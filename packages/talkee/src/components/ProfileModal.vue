@@ -1,17 +1,16 @@
 <template>
   <FModal
-      v-model="modal"
-      desktop="dialog"
-      offset="16"
-      :title="'User'"
-    >
+    v-model="modal"
+    desktop="dialog"
+    offset="16"
+    :title="t('$vuetify.talkee.user_info')"
+  >
     <template #activator="{ props: modalProps }">
       <slot name="activator" :props="modalProps"></slot>
     </template>
 
     <div class="talkee-profile-dialog-inner">
       <div class="talkee-profile-dialog-info">
-
         <VAvatar v-if="dialogMeta.avatar" :size="48">
           <VImg :src="dialogMeta.avatar" />
         </VAvatar>
@@ -27,21 +26,21 @@
       <div class="talkee-profile-dialog-control">
         <template v-if="isMvm">
           <FButton
-          color="primary"
-          class="view-action"
-          block
-          @click="handleViewInExplorer"
+            color="primary"
+            class="view-action"
+            block
+            @click="handleViewInExplorer"
           >
             {{ t("$vuetify.talkee.view_in_explorer") }}
           </FButton>
         </template>
         <template v-if="isMe">
           <FButton
-          variant="outlined"
-          color="error"
-          class="logout-action"
-          @click="handleLogout"
-          block
+            variant="outlined"
+            color="error"
+            class="logout-action"
+            @click="handleLogout"
+            block
           >
             {{ t("$vuetify.talkee.logout") }}
           </FButton>
@@ -92,7 +91,7 @@ const dialogMeta = computed(() => {
     };
   }
 
-  let uid = props.user.mixin_identity_number ;
+  let uid = props.user.mixin_identity_number;
   if (props.user.mvm_public_key !== "") {
     uid = props.user.mvm_public_key;
   }
