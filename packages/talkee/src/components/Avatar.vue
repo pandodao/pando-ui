@@ -1,7 +1,6 @@
 <template>
   <div class="talkee-avatar-wrapper">
-
-    <VAvatar v-if="url" :size="size" @click="showProfileDialog = true">
+    <VAvatar v-if="url" :size="size">
       <VImg :src="url" />
     </VAvatar>
 
@@ -18,7 +17,7 @@ export default {
 </script>
 
 <script lang="ts" setup>
-import { computed, ref } from "vue";
+import { computed } from "vue";
 import { VImg, VAvatar, VIcon } from "vuetify/components";
 import { IconFace } from "./icons";
 import { colorize } from "../utils/helper";
@@ -29,14 +28,9 @@ const props = defineProps({
   userId: { type: Number, default: 0 },
 });
 
-const showProfileDialog = ref(false);
-
 const color = computed(() => {
   return colorize(props.userId);
 });
-
 </script>
 
-<style lang="scss" scoped>
-
-</style>
+<style lang="scss" scoped></style>

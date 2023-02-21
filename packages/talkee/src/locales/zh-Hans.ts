@@ -12,5 +12,6 @@ export default {
     load_more: "查看更多",
     no_more_comments: "没有更多评论",
     view_in_explorer: "在区块浏览器中查看",
+    user_info: "用户信息",
   },
 };
