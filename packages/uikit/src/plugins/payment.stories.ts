@@ -1,5 +1,6 @@
 import { StoryFn } from "@storybook/vue3";
 import { usePayment } from "./payment";
+import { useToast } from "./toast";
 
 export default {
   title: "Plugin/Payment",
@@ -7,9 +8,10 @@ export default {
 
 const Template: StoryFn = (args) => ({
   setup() {
+    const toast = useToast();
     const payment = usePayment();
-    const open = () => {
-      payment.show({
+    const open = async () => {
+      await payment.show({
         assetId: "965e5c6e-434c-3fa9-b780-c50f43cd955c",
         scheme: "mixin://mock-payment-scheme",
         amount: "1",
@@ -31,6 +33,8 @@ const Template: StoryFn = (args) => ({
           });
         },
       });
+
+      toast.success({ message: "check payment success" });
     };
 
     return { open };
