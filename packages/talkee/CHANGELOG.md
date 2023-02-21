@@ -1,5 +1,11 @@
 # @foxone/talkee
 
+## 3.0.0
+
+### Major Changes
+
+- ec329f7: add profile dialog and share to twitter button
+
 ## 2.0.7
 
 ### Patch Changes
