@@ -1,2 +1,0 @@
-import{A as a,a as e,e as o}from"./vue.esm-bundler.06cbf4f3.js";import{F as s}from"./FInput.15987765.js";import{a as n}from"./locale.7c7f5def.js";import{V as p}from"./VIcon.4e22765d.js";const f=a({name:"FSearchInput",setup(c,{slots:t}){const{t:r}=n();return()=>e(s,{"hide-details":!0,class:"f-search-input",placeholder:r("$vuetify.uikit.search")},{...t,"prepend-inner":()=>e(p,{size:24},{default:()=>[o("$search")]})})}});export{f as F};
-//# sourceMappingURL=FSearchInput.b5b40896.js.map
