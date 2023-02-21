@@ -11,5 +11,6 @@ export default {
     error_hint: "出錯了",
     load_more: "查看更多",
     no_more_comments: "沒有更多評論",
+    view_in_explorer: "在區塊瀏覽器中查看",
   },
 };

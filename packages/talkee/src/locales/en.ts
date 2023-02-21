@@ -11,5 +11,6 @@ export default {
     error_hint: "Something Error Happend",
     load_more: "Show More",
     no_more_comments: "No More Comments",
+    view_in_explorer: "View in Explorer",
   },
 };

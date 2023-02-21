@@ -6,3 +6,4 @@ export * from "./IconSend";
 export * from "./IconHash";
 export * from "./IconFace";
 export * from "./IconGift";
+export * from "./IconShare";

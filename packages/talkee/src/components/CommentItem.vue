@@ -1,6 +1,13 @@
 <template>
   <div class="comment-item">
-    <Avatar :url="comment?.creator?.avatar_url" size="24" class="avatar" />
+    <ProfileModal
+      :user="comment?.creator"
+      :profile="profile"
+    >
+      <template #activator="{ props: { onClick } }">
+        <Avatar :url="comment?.creator?.avatar_url" size="24" :user-id="comment?.creator?.id"  class="avatar" @click="onClick"/>
+      </template>
+    </ProfileModal>
 
     <div class="comment-details">
       <div class="comment-top">
@@ -36,6 +43,9 @@
             @login="$emit('login')"
             @refresh="handleRefresh"
           />
+          <ShareAction
+            :comment="comment"
+          />
         </div>
         <div class="time">
           {{ formatTime(comment?.created_at) }}
@@ -57,12 +67,14 @@ import { formatTime } from "../utils/helper";
 import { useGlobals } from "../composables";
 import SubComments from "./SubComments.vue";
 import FavAction from "./FavAction.vue";
+import ShareAction from "./ShareAction.vue";
 import MessageAction from "./MessageAction.vue";
 import ReplyForm from "./ReplyForm.vue";
 import CommentContent from "./CommentContent.vue";
 import CommentReward from "./CommentReward.vue";
 import Avatar from "./Avatar.vue";
 import Username from "./Username.vue";
+import ProfileModal from "./ProfileModal.vue";
 
 import type { Comment } from "../types";
 

@@ -10,6 +10,7 @@ export default {
     reply: "返事",
     error_hint: "エラーが発生しました",
     load_more: "もっと読み込む",
-    no_more_comments: "No More Comments",
+    no_more_comments: "コメントはもうありません",
+    view_in_explorer: "エクスプローラーで表示",
   },
 };
