@@ -1,5 +1,11 @@
 # @foxone/uikit
 
+## 4.2.2
+
+### Patch Changes
+
+- 416b261: update payment
+
 ## 4.2.1
 
 ### Patch Changes
