@@ -22,3 +22,25 @@ export function urlify(text: string) {
 
   return text;
 }
+
+export function colorize(userId) {
+  const colors = [
+    "#3683FB", // light blue
+    "#5252FF", // blue
+    "#FFA500", // orange
+    "#009A50", // green
+    "#38A3A5", // light blue
+    "#22577A", // dark blue
+    "#812DD3", // purple
+    "#FF7455", // red
+    "#1B1B1B", // black
+    "#2F5D62", // dark teal
+    "#222831", // dark gray
+    "#FA7D35", // light orange
+    "#D63D3D", // red
+    "#F23CA9", // pink
+  ];
+
+  const pos = userId % colors.length;
+  return colors[pos];
+}

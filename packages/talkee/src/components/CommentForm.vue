@@ -1,6 +1,13 @@
 <template>
   <VForm class="comment-form" @submit="handleSubmit">
-    <Avatar :url="profile?.avatar_url" class="avatar" />
+    <ProfileModal
+      :user="profile"
+      :profile="profile"
+    >
+      <template #activator="{ props: { onClick } }">
+        <Avatar :url="profile?.avatar_url" class="avatar" :user-id="profile?.id" @click="onClick"/>
+      </template>
+    </ProfileModal>
 
     <div class="form-right">
       <VTextarea
@@ -23,14 +30,6 @@
           {{ t("$vuetify.talkee.submit") }}
         </FButton>
 
-        <FButton
-          variant="outlined"
-          color="greyscale_3"
-          class="logout-action"
-          @click="handleLogout"
-        >
-          {{ t("$vuetify.talkee.logout") }}
-        </FButton>
       </div>
     </div>
   </VForm>
@@ -51,6 +50,7 @@ import { useToast } from "@foxone/uikit/plugins/toast";
 import { postComment } from "../services";
 import { useGlobals } from "../composables";
 import Avatar from "./Avatar.vue";
+import ProfileModal from "./ProfileModal.vue";
 
 const props = defineProps({
   profile: { type: Object },
@@ -84,9 +84,6 @@ async function handleSubmit() {
   loading.value = false;
 }
 
-function handleLogout() {
-  globals.logout();
-}
 </script>
 
 <style lang="scss" scoped>

@@ -72,9 +72,9 @@ async function handleToggleFav() {
 
 <style lang="scss" scoped>
 .fav-action {
-  margin-right: 4px;
   line-height: 1;
   font-size: 12px;
+  padding: 0 8px;
 
   :deep(.v-progress-circular) {
     width: 16px !important;

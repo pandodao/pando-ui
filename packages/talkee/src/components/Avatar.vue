@@ -1,10 +1,14 @@
 <template>
-  <VAvatar v-if="url" :size="size">
-    <VImg :src="url" />
-  </VAvatar>
-  <VIcon v-else :size="size" :color="color">
-    <IconFace />
-  </VIcon>
+  <div class="talkee-avatar-wrapper">
+
+    <VAvatar v-if="url" :size="size" @click="showProfileDialog = true">
+      <VImg :src="url" />
+    </VAvatar>
+
+    <VIcon v-else :size="size" :color="color">
+      <IconFace />
+    </VIcon>
+  </div>
 </template>
 
 <script lang="ts">
@@ -14,37 +18,25 @@ export default {
 </script>
 
 <script lang="ts" setup>
-import { computed } from "vue";
+import { computed, ref } from "vue";
 import { VImg, VAvatar, VIcon } from "vuetify/components";
 import { IconFace } from "./icons";
+import { colorize } from "../utils/helper";
 
 const props = defineProps({
   url: { type: String, default: "" },
   size: { type: [String, Number], default: 40 },
+  userId: { type: Number, default: 0 },
 });
+
+const showProfileDialog = ref(false);
 
 const color = computed(() => {
-  if (props.url) return "";
-
-  const colors = [
-    "#3683FB", // light blue
-    "#5252FF", // blue
-    "#FFA500", // orange
-    "#009A50", // green
-    "#38A3A5", // light blue
-    "#22577A", // dark blue
-    "#812DD3", // purple
-    "#FF7455", // red
-    "#1B1B1B", // black
-    "#2F5D62", // dark teal
-    "#222831", // dark gray
-    "#FA7D35", // light orange
-    "#D63D3D", // red
-    "#F23CA9", // pink
-  ];
-
-  return colors[Math.floor(Math.random() * colors.length)];
+  return colorize(props.userId);
 });
+
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+
+</style>
