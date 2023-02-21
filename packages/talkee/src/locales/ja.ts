@@ -12,6 +12,6 @@ export default {
     load_more: "もっと読み込む",
     no_more_comments: "コメントはもうありません",
     view_in_explorer: "エクスプローラーで表示",
-    user_info: "User Info",
+    user_info: "ユーザー情報",
   },
 };
