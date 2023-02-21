@@ -12,5 +12,6 @@ export default {
     load_more: "Show More",
     no_more_comments: "No More Comments",
     view_in_explorer: "View in Explorer",
+    user_info: "User Info",
   },
 };

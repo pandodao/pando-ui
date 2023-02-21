@@ -1,11 +1,14 @@
 <template>
   <div class="comment-item">
-    <ProfileModal
-      :user="comment?.creator"
-      :profile="profile"
-    >
+    <ProfileModal :user="comment?.creator" :profile="profile">
       <template #activator="{ props: { onClick } }">
-        <Avatar :url="comment?.creator?.avatar_url" size="24" :user-id="comment?.creator?.id"  class="avatar" @click="onClick"/>
+        <Avatar
+          :url="comment?.creator?.avatar_url"
+          size="24"
+          :user-id="comment?.creator?.id"
+          class="avatar"
+          @click="onClick"
+        />
       </template>
     </ProfileModal>
 
@@ -43,9 +46,7 @@
             @login="$emit('login')"
             @refresh="handleRefresh"
           />
-          <ShareAction
-            :comment="comment"
-          />
+          <ShareAction :comment="comment" />
         </div>
         <div class="time">
           {{ formatTime(comment?.created_at) }}
@@ -122,6 +123,7 @@ function handleToggleReply() {
 
   .avatar {
     margin-right: 8px;
+    cursor: pointer;
   }
 
   .name {
