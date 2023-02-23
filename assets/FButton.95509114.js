@@ -1,0 +1,2 @@
+import{z as o,a as r,m as f}from"./vue.esm-bundler.57aa1454.js";import{V as u}from"./VBtn.ab71924f.js";const m=o({name:"FButton",props:{icon:{type:Boolean,default:!1}},setup(e,{slots:t}){const a={variant:"flat",rounded:!0,ripple:!1};return e.icon&&(a.variant="text"),()=>r(u,f({class:"f-button"},a,e),{default:()=>{var n;return[(n=t.default)==null?void 0:n.call(t)]}})}});export{m as F};
+//# sourceMappingURL=FButton.95509114.js.map
