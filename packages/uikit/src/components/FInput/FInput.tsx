@@ -19,6 +19,7 @@ export const FInput = defineComponent({
 
   setup(props, { attrs, emit, slots }) {
     const inputRef = ref<typeof VTextField>();
+    const focused = ref(false);
 
     const handleChange = (value) => {
       if (attrs.type === "number" && props.precision) {
@@ -42,10 +43,11 @@ export const FInput = defineComponent({
     return () => (
       <VTextField
         ref={inputRef}
+        v-model:focused={focused.value}
         class={[
           "f-input",
           { "f-input--hide-default-messages": props.hideDefaultMessages },
-          { "f-input--focused": inputRef?.value?.focused },
+          { "f-input--focused": focused.value },
         ]}
         modelValue={props.modelValue}
         onUpdate:modelValue={handleChange}

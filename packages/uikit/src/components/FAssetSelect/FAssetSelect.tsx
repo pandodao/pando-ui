@@ -1,4 +1,4 @@
-import { computed, defineComponent, PropType, ref } from "vue";
+import { computed, defineComponent, PropType, ref, withModifiers } from "vue";
 import { useLocale } from "vuetify";
 import { FModal } from "../FModal";
 import { FAssetList } from "./FAssetList";
@@ -55,11 +55,12 @@ export const FAssetSelect = defineComponent({
         onUpdate:modelValue={(v) => emit("update:dialog", v)}
       >
         {{
-          activator: ({ isActive, props: _props }) => (
+          activator: ({ isActive, props: { onClick } }) => (
             <FAssetSelectField
               class={[{ "f-asset-field--active": isActive }]}
               asset={props.asset}
-              {..._props}
+              onClick={withModifiers(onClick, ["stop"])}
+              onMousedown={withModifiers(() => {}, ["stop"])}
               {...attrs}
             />
           ),

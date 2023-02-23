@@ -18305,10 +18305,10 @@ vue@^3.2.40:
     "@vue/server-renderer" "3.2.45"
     "@vue/shared" "3.2.45"
 
-vuetify@^3.1.4:
-  version "3.1.4"
-  resolved "https://registry.npmjs.org/vuetify/-/vuetify-3.1.4.tgz#ce4a3ba5fa35184c3d92147b9603ac56158243e1"
-  integrity sha512-6ERm2a0bJyMLjmRKTifN501o3MsCVp9agtoZsORw1b3X29ycTdXOJdRMEADaDSv59dBWwUVv3WqHcWzCG4Gwfw==
+vuetify@^3.1.6:
+  version "3.1.6"
+  resolved "https://registry.npmjs.org/vuetify/-/vuetify-3.1.6.tgz#9ba513ac7b3ca9b0c7817dc63a8c18079eea9e49"
+  integrity sha512-4We27L5ksy8esNKfUPWPucEU+M7XJDO2o66zXL5qiBVbALwshcK2CAobLQMx+ALtkLENXAYNH3RzvfAYjTi3Aw==
 
 w3c-hr-time@^1.0.2:
   version "1.0.2"

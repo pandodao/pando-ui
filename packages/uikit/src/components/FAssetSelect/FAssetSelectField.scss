@@ -32,6 +32,11 @@
     font-size: 18px;
     height: 22px;
     line-height: 22px;
+    white-space: nowrap;
+
+    &--sm {
+      font-size: 14px;
+    }
   }
 
   &__name {

@@ -71,7 +71,7 @@ export const NumberInput: StoryFn<typeof FInput> = () => ({
   components: { FInput },
   setup() {
     const num = ref("");
-    const rules = [(v) => !v || "Field is required"];
+    const rules = [(v) => !!v || "Field is required"];
 
     return { num, rules };
   },
