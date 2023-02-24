@@ -26,21 +26,25 @@ export default function (app: App, options: AuthOptions, state: State) {
 
     await state.mvm?.connenct(type);
 
-    let params: SignMessageParams = {};
-
-    if (options.hooks?.beforeSignMessage) {
-      params = await options.hooks.beforeSignMessage();
-    }
-
-    let resp = await state.mvm.signMessage(params);
-
-    if (options.hooks?.afterSignMessage) {
-      resp = await options.hooks.afterSignMessage(resp);
+    if (options.mvmAuthType === "MixinToken") {
+      state.token = state.mvm.getAuthToken();
     } else {
-      reject("Need afterSignMessage hook to process signed message to token");
-    }
+      let params: SignMessageParams = {};
 
-    state.token = resp;
+      if (options.hooks?.beforeSignMessage) {
+        params = await options.hooks.beforeSignMessage();
+      }
+
+      let resp = await state.mvm.signMessage(params);
+
+      if (options.hooks?.afterSignMessage) {
+        resp = await options.hooks.afterSignMessage(resp);
+      } else {
+        reject("Need afterSignMessage hook to process signed message to token");
+      }
+
+      state.token = resp;
+    }
   };
 
   const connectMixin = async (data, reject) => {

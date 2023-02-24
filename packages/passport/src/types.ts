@@ -23,6 +23,7 @@ export interface AuthOptions {
   origin: string;
   config?: { infuraId?: string };
   JWTPayload?: any;
+  mvmAuthType: "SignedMessage" | "MixinToken";
   hooks?: {
     afterOAuthCodeLoad?: (code: string) => Promise<string>;
     beforeSignMessage?: () => Promise<SignMessageParams>;
