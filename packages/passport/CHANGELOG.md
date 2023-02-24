@@ -1,5 +1,11 @@
 # @foxone/mixin-passport
 
+## 1.2.2
+
+### Patch Changes
+
+- 645a54e: add mvm auth type
+
 ## 1.2.1
 
 ### Patch Changes
