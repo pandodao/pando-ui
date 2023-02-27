@@ -27,6 +27,7 @@ Default.args = {
     clientId: "fbd26bc6-3d04-4964-a7fe-a540432b16e2",
     scope: "PROFILE:READ ASSETS:READ SNAPSHOTS:READ",
     pkce: true,
+    mvmAuthType: "MixinToken",
     hooks: {
       beforeSignMessage: () => ({ statement: "This is statement" }),
       afterSignMessage: (data) => {

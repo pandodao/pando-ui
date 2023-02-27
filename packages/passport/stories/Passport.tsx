@@ -23,17 +23,22 @@ export const Passport = defineComponent({
     const assets = ref<any>([]);
     const passport = usePassport();
     const toast = useToast();
+    const loading = ref(false);
 
     const connected = computed(() => Boolean(token.value && channel.value));
 
     async function handleConnect() {
-      const data = await passport.auth(props.authOptions as any);
+      try {
+        const data = await passport.auth(props.authOptions as any);
 
-      token.value = data.token;
-      channel.value = data.channel;
+        token.value = data.token;
+        channel.value = data.channel;
 
-      localStorage.setItem("token", data.token);
-      localStorage.setItem("channel", data.channel);
+        localStorage.setItem("token", data.token);
+        localStorage.setItem("channel", data.channel);
+      } catch (error) {
+        console.log(error);
+      }
     }
 
     async function handleDisconnect() {
@@ -82,27 +87,46 @@ export const Passport = defineComponent({
       }
     );
 
-    onMounted(() => {
-      token.value = localStorage.getItem("token") || "";
-      channel.value = localStorage.getItem("channel") || "";
+    onMounted(async () => {
+      try {
+        loading.value = true;
 
-      passport.sync({ token: token.value, channel: channel.value as any });
+        const localeToken = localStorage.getItem("token") || "";
+        const localeChannel = localStorage.getItem("channel") || "";
+
+        const data = await passport.sync({
+          token: localeToken,
+          channel: localeChannel as any,
+          refreshToken: true,
+        });
+
+        console.log("after sync");
+
+        token.value = data.token;
+        channel.value = data.channel;
+
+        loading.value = false;
+      } catch (error) {
+        console.log(error);
+      }
     });
 
     return () => (
       <div class="passport-overvie-container">
-        <div class="passport-overview">
-          {connected.value ? (
-            <Connected
-              profile={profile.value}
-              assets={assets.value}
-              onDisconnect={() => handleDisconnect()}
-              onPayment={() => handlePayment()}
-            />
-          ) : (
-            <Disconnected onConnect={() => handleConnect()} />
-          )}
-        </div>
+        {loading.value || (
+          <div class="passport-overview">
+            {connected.value ? (
+              <Connected
+                profile={profile.value}
+                assets={assets.value}
+                onDisconnect={() => handleDisconnect()}
+                onPayment={() => handlePayment()}
+              />
+            ) : (
+              <Disconnected onConnect={() => handleConnect()} />
+            )}
+          </div>
+        )}
       </div>
     );
   },

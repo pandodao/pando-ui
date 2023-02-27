@@ -70,6 +70,9 @@ export interface SyncOptions {
   token: string;
   channel: AuthMethod;
   origin?: string;
+  // true means that client use /me token after auth with MVM and Fennec, need refresh token everytime user access since expire time is short.
+  // ƒalse means that client use third part token, need not refresh by default, but need provide both Fennec and MVM hooks.
+  refreshToken?: boolean;
 }
 
 export interface AuthData {
