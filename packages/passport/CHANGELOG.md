@@ -1,5 +1,11 @@
 # @foxone/mixin-passport
 
+## 1.2.3
+
+### Patch Changes
+
+- c1e5ed2: fix sync issue
+
 ## 1.2.2
 
 ### Patch Changes
