@@ -6,6 +6,7 @@ export default {
       "Connect with one of our available wallet providers.",
     search: "Search",
     select_asset: "Select",
+    no_results: "No Results",
     select_phone_code: "Select Phone Code",
     phone_number: "Phone Number",
     cancel: "Cancel",

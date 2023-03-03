@@ -5,6 +5,7 @@ export default {
     connect_wallet_subtitle: "使用以下的方式連接錢包",
     search: "搜索",
     select_asset: "選擇",
+    no_results: "無結果",
     select_phone_code: "選擇地區號碼",
     phone_number: "手機號",
     cancel: "取消",

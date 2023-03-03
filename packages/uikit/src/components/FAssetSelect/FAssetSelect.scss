@@ -10,6 +10,26 @@
     padding-bottom: 8px;
   }
 
+  .f-asset-select__search--empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-width: 340px;
+    height: 420px;
+
+    > img {
+      width: 56px !important;
+      margin-bottom: 16px;
+    }
+
+    > p {
+      font-size: 14px;
+      color: rgb(var(--v-theme-greyscale_4));
+      font-weight: 500;
+    }
+  }
+
   .f-asset-item__logo {
     margin-right: 8px;
   }
