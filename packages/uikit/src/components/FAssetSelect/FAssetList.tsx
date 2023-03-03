@@ -1,4 +1,4 @@
-import { defineComponent, PropType } from "vue";
+import { defineComponent, PropType, computed } from "vue";
 import { FAssetItem } from "./FAssetItem";
 import { VList } from "vuetify/components";
 
@@ -8,6 +8,10 @@ export const FAssetList = defineComponent({
   name: "FAssetList",
 
   props: {
+    asset: {
+      type: Object as PropType<Asset | null>,
+      default: null,
+    },
     assets: {
       type: Array as PropType<Asset[]>,
       default: () => [],
@@ -19,8 +23,10 @@ export const FAssetList = defineComponent({
   },
 
   setup(props, { emit }) {
+    const current = computed(() => [props?.asset?.id] ?? undefined);
+
     return () => (
-      <VList class={["f-asset-select__list"]}>
+      <VList selected={current.value} class={["f-asset-select__list"]}>
         {props.assets.map((asset) => (
           <FAssetItem
             asset={asset}

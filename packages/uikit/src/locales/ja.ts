@@ -6,6 +6,7 @@ export default {
       "利用可能なウォレットプロバイダーの1つに接続します。",
     search: "検索する",
     select_asset: "選択する",
+    no_results: "結果がありません",
     select_phone_code: "市外局番を選択してください",
     phone_number: "電話番号",
     cancel: "キャンセル",

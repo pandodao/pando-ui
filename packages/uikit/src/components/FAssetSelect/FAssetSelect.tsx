@@ -1,5 +1,6 @@
 import { computed, defineComponent, PropType, ref, withModifiers } from "vue";
 import { useLocale } from "vuetify";
+import { VImg } from "vuetify/components";
 import { FModal } from "../FModal";
 import { FAssetList } from "./FAssetList";
 import { FAssetSelectField } from "./FAssetSelectField";
@@ -41,6 +42,8 @@ export const FAssetSelect = defineComponent({
       filterAssets(props.assets, filter.value)
     );
 
+    const empty = computed(() => filteredAssets.value.length === 0);
+
     const handleSelect = (v) => {
       emit("update:asset", v);
       emit("update:dialog", false);
@@ -69,10 +72,18 @@ export const FAssetSelect = defineComponent({
               <div class="f-asset-select__search">
                 <FSearchInput v-model={filter.value} variant="outlined" />
               </div>
-              <FAssetList
-                assets={filteredAssets.value}
-                onSelect={handleSelect}
-              />
+              {!empty.value ? (
+                <FAssetList
+                  asset={props.asset}
+                  assets={filteredAssets.value}
+                  onSelect={handleSelect}
+                />
+              ) : (
+                <div class="f-asset-select__search--empty">
+                  <img src="https://static.fox.one/image/empty_placeholder.svg" />
+                  <p>{t("$vuetify.uikit.no_results")}</p>
+                </div>
+              )}
             </div>
           ),
         }}
