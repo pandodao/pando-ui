@@ -1,6 +1,5 @@
 import { computed, defineComponent, PropType, ref, withModifiers } from "vue";
 import { useLocale } from "vuetify";
-import { VImg } from "vuetify/components";
 import { FModal } from "../FModal";
 import { FAssetList } from "./FAssetList";
 import { FAssetSelectField } from "./FAssetSelectField";
@@ -49,6 +48,8 @@ export const FAssetSelect = defineComponent({
       emit("update:dialog", false);
     };
 
+    const handleClear = () => (filter.value = "");
+
     return () => (
       <FModal
         title={t("$vuetify.uikit.select_asset")}
@@ -70,7 +71,12 @@ export const FAssetSelect = defineComponent({
           default: () => (
             <div class="f-asset-select">
               <div class="f-asset-select__search">
-                <FSearchInput v-model={filter.value} variant="outlined" />
+                <FSearchInput
+                  v-model={filter.value}
+                  variant="outlined"
+                  clearable
+                  onClick:clear={handleClear}
+                />
               </div>
               {!empty.value ? (
                 <FAssetList
