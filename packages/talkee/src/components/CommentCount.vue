@@ -1,9 +1,10 @@
 <template>
-  <div class="comment-count">
+  <div class="talkee-comment-count">
     <VIcon size="16">
       <IconMessage />
     </VIcon>
-    <span class="comment-count-text">{{ globals.total }}</span>
+    <span class="talkee-comment-count-text">{{ globals.total }}</span>
+    <a href="https://pando.im/talkee/" target="_blank" class="talkee-link"> Talkee</a>
   </div>
 </template>
 
@@ -22,10 +23,22 @@ const globals = useGlobals();
 </script>
 
 <style lang="scss" scoped>
-.comment-count {
+.talkee-link {
+  text-decoration: none;
+  font-size: 14px;
+  font-style: italic;
+  font-weight: 500;
+  color: rgb(var(--v-theme-greyscale_3));
+
+  &:hover {
+    color: rgb(var(--v-theme-greyscale_2));
+  }
+}
+
+.talkee-comment-count {
   font-size: 14px;
 
-  .comment-count-text {
+  .talkee-comment-count-text {
     margin-left: 4px;
   }
 }

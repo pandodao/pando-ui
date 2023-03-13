@@ -1,6 +1,6 @@
 <template>
   <div class="talkee">
-    <div class="topbar">
+    <div class="talkee-topbar">
       <CommentCount />
       <SortMethods />
     </div>
@@ -78,6 +78,7 @@ async function handleLoggin() {
       scope: "PROFILE:READ PHONE:READ",
       origin: "Talkee",
       pkce: true,
+      mvmAuthType: 'SignedMessage',
       hooks: {
         beforeSignMessage: async () => {
           return {
@@ -123,7 +124,7 @@ async function handleLoggin() {
   --v-theme-overlay-multiplier: 1;
   padding: 16px;
 
-  .topbar {
+  .talkee-topbar {
     display: flex;
     justify-content: space-between;
     margin-bottom: 32px;

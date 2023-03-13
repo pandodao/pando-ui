@@ -1,5 +1,5 @@
 <template>
-  <div class="comments">
+  <div class="talkee-comments">
     <CommentItem
       v-for="(item, index) in commentsList"
       :key="index"
@@ -11,7 +11,7 @@
 
     <InfiniteLoad @infinite="(state) => loadComments(false, state)" />
 
-    <div v-if="error" class="comment-error">
+    <div v-if="error" class="talkee-comment-error">
       {{ t("$vuetify.talkee.error_hint") }}
     </div>
   </div>
@@ -116,10 +116,10 @@ async function handleUpdate(comment) {
 </script>
 
 <style lang="scss" scoped>
-.comments {
+.talkee-comments {
   padding: 16px 0;
 
-  .comment-error {
+  .talkee-comment-error {
     color: rgb(var(--v-theme-error));
     font-size: 14px;
     text-align: center;

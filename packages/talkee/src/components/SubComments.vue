@@ -1,5 +1,5 @@
 <template>
-  <div v-if="comments.length" class="subcomments">
+  <div v-if="comments.length" class="talkee-subcomments">
     <SubCommentItem
       v-for="(item, index) in comments"
       :key="index"
@@ -69,14 +69,10 @@ defineExpose({ loadSubComments });
 </script>
 
 <style lang="scss" scoped>
-.subcomments {
+.talkee-subcomments {
   background: rgb(var(--v-theme-greyscale_6));
   padding: 8px;
   border-radius: 8px;
   margin-top: 16px;
-
-  .load-more {
-    text-align: left;
-  }
 }
 </style>

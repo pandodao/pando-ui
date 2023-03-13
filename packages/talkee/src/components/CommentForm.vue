@@ -1,15 +1,17 @@
 <template>
-  <VForm class="comment-form" @submit="handleSubmit">
-    <ProfileModal
-      :user="profile"
-      :profile="profile"
-    >
+  <VForm class="talkee-comment-form" @submit="handleSubmit">
+    <ProfileModal :user="profile" :profile="profile">
       <template #activator="{ props: { onClick } }">
-        <Avatar :url="profile?.avatar_url" class="avatar" :user-id="profile?.id" @click="onClick"/>
+        <Avatar
+          :url="profile?.avatar_url"
+          class="talkee-user-avatar"
+          :user-id="profile?.id"
+          @click="onClick"
+        />
       </template>
     </ProfileModal>
 
-    <div class="form-right">
+    <div class="talkee-form-right">
       <VTextarea
         v-model="content"
         persistent-counter
@@ -20,7 +22,7 @@
         :placeholder="t('$vuetify.talkee.comment_placeholder')"
       />
 
-      <div class="submit-action">
+      <div class="talkee-submit-action">
         <FButton
           :disabled="!valid"
           :loading="loading"
@@ -29,7 +31,6 @@
         >
           {{ t("$vuetify.talkee.submit") }}
         </FButton>
-
       </div>
     </div>
   </VForm>
@@ -83,22 +84,17 @@ async function handleSubmit() {
 
   loading.value = false;
 }
-
 </script>
 
 <style lang="scss" scoped>
-.comment-form {
+.talkee-comment-form {
   display: flex;
 
-  .logout-action {
-    margin-left: 16px;
-  }
-
-  .form-right {
+  .talkee-form-right {
     flex: 1;
   }
 
-  .avatar {
+  .talkee-user-avatar {
     margin-right: 16px;
   }
 }

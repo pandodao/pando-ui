@@ -1,5 +1,5 @@
 <template>
-  <div class="login-action">
+  <div class="talkee-login-action">
     <FButton
       :loading="globals.logging.value"
       color="primary"
@@ -30,7 +30,7 @@ const emits = defineEmits({
 </script>
 
 <style lang="scss" scoped>
-.login-action {
+.talkee-login-action {
   text-align: center;
 }
 </style>

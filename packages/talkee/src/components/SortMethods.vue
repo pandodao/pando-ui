@@ -1,6 +1,6 @@
 <template>
-  <div class="sort-methods">
-    <VIcon size="16" class="icon-sort">
+  <div class="talkee-sort-methods">
+    <VIcon size="16" class="talkee-icon-sort">
       <IconFilter />
     </VIcon>
 
@@ -8,8 +8,8 @@
       v-for="(item, index) in sortItems"
       :key="index"
       :class="[
-        'sort-method',
-        { 'sort-method--active': item.value === globals.sort.value },
+        'talkee-sort-method',
+        { 'talkee-sort-method--active': item.value === globals.sort.value },
       ]"
       @click="handleSortChange(item)"
     >
@@ -57,17 +57,17 @@ function handleSortChange(item) {
 </script>
 
 <style lang="scss" scoped>
-.sort-methods {
+.talkee-sort-methods {
   display: flex;
   gap: 8px;
   align-items: center;
   font-size: 14px;
 
-  .sort-method {
+  .talkee-sort-method {
     cursor: pointer;
     font-weight: 500;
 
-    &:not(.sort-method--active) {
+    &:not(.talkee-sort-method--active) {
       font-weight: 400;
       color: rgb(var(--v-theme-greyscale_3));
     }

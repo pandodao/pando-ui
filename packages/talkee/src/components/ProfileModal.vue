@@ -19,15 +19,15 @@
           <IconFace />
         </VIcon>
 
-        <Username class="display-name" :name="dialogMeta.name" />
-        <div class="uid">{{ dialogMeta.uid }}</div>
+        <Username class="talkee-profile-username" :name="dialogMeta.name" />
+        <div class="talkee-profile-uid">{{ dialogMeta.uid }}</div>
       </div>
 
       <div class="talkee-profile-dialog-control">
         <template v-if="isMvm">
           <FButton
             color="primary"
-            class="view-action"
+            class="talkee-view-action"
             block
             @click="handleViewInExplorer"
           >
@@ -38,7 +38,7 @@
           <FButton
             variant="outlined"
             color="error"
-            class="logout-action"
+            class="talkee-logout-action"
             @click="handleLogout"
             block
           >
@@ -129,25 +129,30 @@ function handleViewInExplorer() {
 .talkee-profile-dialog-inner {
   padding: 0 20px 20px;
 }
+
 .talkee-profile-dialog-info {
   display: flex;
   flex-direction: column;
   align-items: center;
-  .display-name {
+
+  .talkee-profile-username {
     margin-top: 8px;
   }
-  .uid {
+
+  .talkee-profile-uid {
     font-size: 0.7rem;
     opacity: 0.6;
   }
 }
+
 .talkee-profile-dialog-control {
   display: flex;
   flex-direction: column;
   align-items: center;
   max-width: 200px;
   margin: 20px auto 0 auto;
-  .logout-action {
+
+  .talkee-logout-action {
     margin-top: 8px;
   }
 }

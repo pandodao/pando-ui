@@ -1,5 +1,5 @@
 <template>
-  <span class="name">
+  <span class="talkee-username">
     {{ displayName }}
     <slot />
   </span>
@@ -25,4 +25,12 @@ const displayName = computed(() => {
 });
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.talkee-username {
+  font-size: 14px;
+  font-weight: 500;
+  flex: 1;
+  margin-right: 4px;
+  color: rgb(var(--v-theme-greyscale_3));
+}
+</style>

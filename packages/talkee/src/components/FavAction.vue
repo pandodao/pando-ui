@@ -3,15 +3,15 @@
     variant="plain"
     size="x-small"
     color="greyscale_3"
-    class="fav-action"
+    class="talkee-fav-action"
     :loading="loading"
-    :class="{ 'fav-action--active': isFavor }"
+    :class="{ 'talkee-fav-action--active': isFavor }"
     @click="handleToggleFav"
   >
     <VIcon size="16">
       <IconHeart />
     </VIcon>
-    <span class="action-text">{{ comment?.favor_count }}</span>
+    <span class="talkee-fav-count">{{ comment?.favor_count }}</span>
   </FButton>
 </template>
 
@@ -71,10 +71,15 @@ async function handleToggleFav() {
 </script>
 
 <style lang="scss" scoped>
-.fav-action {
+.talkee-fav-action {
   line-height: 1;
   font-size: 12px;
   padding: 0 8px;
+  cursor: pointer !important;
+
+  &:hover {
+    color: rgb(var(--v-theme-greyscale_1)) !important;
+  }
 
   :deep(.v-progress-circular) {
     width: 16px !important;
@@ -86,11 +91,11 @@ async function handleToggleFav() {
   opacity: 1;
 }
 
-.fav-action--active {
+.talkee-fav-action--active {
   color: rgb(var(--v-theme-greyscale_1)) !important;
 }
 
-.action-text {
+.talkee-fav-count {
   margin-left: 2px;
 }
 </style>
