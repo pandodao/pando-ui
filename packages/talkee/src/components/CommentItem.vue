@@ -1,19 +1,19 @@
 <template>
-  <div class="comment-item">
+  <div class="talkee-comment-item">
     <ProfileModal :user="comment?.creator" :profile="profile">
       <template #activator="{ props: { onClick } }">
         <Avatar
           :url="comment?.creator?.avatar_url"
           size="24"
           :user-id="comment?.creator?.id"
-          class="avatar"
+          class="talkee-avatar"
           @click="onClick"
         />
       </template>
     </ProfileModal>
 
-    <div class="comment-details">
-      <div class="comment-top">
+    <div class="talkee-comment-details">
+      <div class="talkee-comment-top">
         <Username :name="comment?.creator?.full_name" />
         <CommentReward :reward="comment?.reward" />
       </div>
@@ -38,8 +38,8 @@
         ref="subComments"
       />
 
-      <div class="info">
-        <div class="comment-actions">
+      <div class="talkee-comment-info">
+        <div class="talkee-comment-actions">
           <MessageAction :comment="comment" @toggle="handleToggleReply" />
           <FavAction
             :comment="comment"
@@ -48,7 +48,7 @@
           />
           <ShareAction :comment="comment" />
         </div>
-        <div class="time">
+        <div class="talkee-comment-time">
           {{ formatTime(comment?.created_at) }}
         </div>
       </div>
@@ -112,34 +112,27 @@ function handleToggleReply() {
 </script>
 
 <style lang="scss" scoped>
-.comment-item {
+.talkee-comment-item {
   margin: 16px 0;
   display: flex;
 
-  .comment-top {
+  .talkee-comment-top {
     display: flex;
     align-items: center;
   }
 
-  .avatar {
+  .talkee-avatar {
     margin-right: 8px;
     cursor: pointer;
   }
 
-  .name {
-    font-size: 14px;
-    font-weight: 500;
-    flex: 1;
-    color: rgb(var(--v-theme-greyscale_3));
-  }
-
-  .comment-details {
+  .talkee-comment-details {
     flex: 1;
     display: flex;
     flex-direction: column;
   }
 
-  .info {
+  .talkee-comment-info {
     display: flex;
     align-items: center;
     color: rgb(var(--v-theme-greyscale_3));
@@ -148,11 +141,11 @@ function handleToggleReply() {
     margin-top: 8px;
   }
 
-  .comment-actions {
+  .talkee-comment-actions {
     flex-grow: 1;
   }
 
-  .time {
+  .talkee-comment-time {
     line-height: 1;
     font-size: 12px;
     color: rgb(var(--v-theme-greyscale_3));

@@ -1,10 +1,10 @@
 <template>
-  <div class="subcomment-item">
+  <div class="talkee-subcomment-item">
     <Username :name="comment?.creator.full_name">
       <span>:</span>
     </Username>
 
-    <span class="content">{{ comment?.content }}</span>
+    <span class="talkee-subcomment-content">{{ comment?.content }}</span>
   </div>
 </template>
 
@@ -38,15 +38,9 @@ const content = computed(() => {
 </script>
 
 <style lang="scss" scoped>
-.subcomment-item {
+.talkee-subcomment-item {
   font-size: 12px;
   word-break: break-all;
   line-height: 2;
-
-  .name {
-    font-weight: 500;
-    margin-right: 4px;
-    color: rgb(var(--v-theme-greyscale_3));
-  }
 }
 </style>

@@ -3,14 +3,14 @@
     variant="plain"
     size="x-small"
     color="greyscale_3"
-    class="message-action"
+    class="talkee-message-action"
     @click="emits('toggle')"
   >
     <VIcon size="16">
       <IconMessageDot />
     </VIcon>
 
-    <span class="action-text">
+    <span class="talkee-message-count">
       {{ comment?.reply_count }}
     </span>
   </FButton>
@@ -40,12 +40,17 @@ const emits = defineEmits({
 </script>
 
 <style lang="scss" scoped>
-.message-action {
+.talkee-message-action {
   margin-right: 8px;
   padding: 0;
   min-width: auto;
   line-height: 1;
   font-size: 12px;
+  cursor: pointer !important;
+
+  &:hover {
+    color: rgb(var(--v-theme-greyscale_1)) !important;
+  }
 
   :deep(.v-progress-circular) {
     width: 16px !important;
@@ -57,7 +62,7 @@ const emits = defineEmits({
   opacity: 1;
 }
 
-.action-text {
+.talkee-message-count {
   margin-left: 2px;
 }
 </style>

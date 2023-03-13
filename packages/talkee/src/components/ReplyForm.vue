@@ -1,5 +1,5 @@
 <template>
-  <div class="reply-form">
+  <div class="talkee-reply-form">
     <FInput
       v-model="content"
       hide-details
@@ -79,7 +79,7 @@ async function handleReply() {
 </script>
 
 <style lang="scss" scoped>
-.reply-form {
+.talkee-reply-form {
   margin-top: 16px;
 }
 </style>

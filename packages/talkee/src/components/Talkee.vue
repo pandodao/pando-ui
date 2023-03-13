@@ -1,6 +1,6 @@
 <template>
   <div class="talkee">
-    <div class="topbar">
+    <div class="talkee-topbar">
       <CommentCount />
       <SortMethods />
     </div>
@@ -124,7 +124,7 @@ async function handleLoggin() {
   --v-theme-overlay-multiplier: 1;
   padding: 16px;
 
-  .topbar {
+  .talkee-topbar {
     display: flex;
     justify-content: space-between;
     margin-bottom: 32px;

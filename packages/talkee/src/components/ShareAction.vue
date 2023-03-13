@@ -3,7 +3,7 @@
     variant="plain"
     size="x-small"
     color="greyscale_3"
-    class="share-action"
+    class="talkee-share-action"
     @click="handleShare"
   >
     <VIcon size="16">
@@ -42,10 +42,15 @@ async function handleShare() {
 </script>
 
 <style lang="scss" scoped>
-.share-action {
+.talkee-share-action {
   line-height: 1;
   font-size: 12px;
   padding: 0 8px;
+  cursor: pointer !important;
+
+  &:hover {
+    color: rgb(var(--v-theme-greyscale_1)) !important;
+  }
 
   :deep(.v-progress-circular) {
     width: 16px !important;
@@ -55,9 +60,5 @@ async function handleShare() {
 
 .v-btn--variant-plain {
   opacity: 1;
-}
-
-.action-text {
-  margin-left: 2px;
 }
 </style>

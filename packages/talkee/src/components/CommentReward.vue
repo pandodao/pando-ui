@@ -1,6 +1,6 @@
 <template>
-  <div v-if="reward" class="comment-reward">
-    <span class="reward-text">{{ rewardText }}</span>
+  <div v-if="reward" class="talkee-comment-reward">
+    <span class="talkee-reward-text">{{ rewardText }}</span>
 
     <VIcon size="12">
       <IconGift />
@@ -39,7 +39,7 @@ const rewardText = computed(() => {
 </script>
 
 <style lang="scss" scoped>
-.comment-reward {
+.talkee-comment-reward {
   padding: 0 4px;
   font-size: 12px;
   height: 18px;
@@ -49,7 +49,7 @@ const rewardText = computed(() => {
   display: flex;
   align-items: center;
 
-  .reward-text {
+  .talkee-reward-text {
     font-weight: 500;
     margin-right: 4px;
   }

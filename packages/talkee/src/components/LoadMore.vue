@@ -3,7 +3,7 @@
     v-if="hasNext"
     size="x-small"
     variant="text"
-    class="load-more"
+    class="talkee-load-more"
     :loading="loading"
     @click="emits('more')"
   >
@@ -35,7 +35,7 @@ const emits = defineEmits({
 </script>
 
 <style lang="scss" scoped>
-.load-more {
+.talkee-load-more {
   font-size: 12px;
   color: rgb(var(--v-theme-info));
   text-align: center !important;

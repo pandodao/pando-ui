@@ -4,7 +4,7 @@
       <FLoading size="16" />
     </template>
     <template #complete>
-      <div class="no-more-text">
+      <div class="talkee-no-more-text">
         {{ t("$vuetify.talkee.no_more_comments") }}
       </div>
     </template>
@@ -26,7 +26,7 @@ const { t } = useLocale();
 </script>
 
 <style lang="scss" scoped>
-.no-more-text {
+.talkee-no-more-text {
   text-align: center;
   color: rgb(var(--v-theme-greyscale_4));
   font-size: 12px;
