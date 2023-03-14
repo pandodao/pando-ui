@@ -1,14 +1,16 @@
 <template>
-  <FButton
-    v-if="hasNext"
-    size="x-small"
-    variant="text"
-    class="talkee-load-more"
-    :loading="loading"
-    @click="emits('more')"
-  >
-    {{ t("$vuetify.talkee.load_more") }}
-  </FButton>
+  <div class="talkee-load-more-wrapper">
+    <FButton
+      v-if="hasNext"
+      size="x-small"
+      variant="text"
+      class="talkee-load-more"
+      :loading="loading"
+      @click="emits('more')"
+    >
+      {{ t("$vuetify.talkee.load_more") }}
+    </FButton>
+  </div>
 </template>
 
 <script lang="ts">
@@ -35,10 +37,13 @@ const emits = defineEmits({
 </script>
 
 <style lang="scss" scoped>
+.talkee-load-more-wrapper {
+  text-align: center;
+}
+
 .talkee-load-more {
   font-size: 12px;
   color: rgb(var(--v-theme-info));
-  text-align: center !important;
 
   :deep(.v-progress-circular) {
     width: 16px !important;

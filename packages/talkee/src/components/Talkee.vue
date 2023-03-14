@@ -6,7 +6,10 @@
     </div>
 
     <CommentForm v-if="globals.logged.value" :profile="profile" />
-    <LoginAction v-else @login="handleLoggin" />
+    <div v-else>
+      <LoginAction @login="handleLoggin" />
+      <SiteLink />
+    </div>
 
     <Comments :profile="profile" @login="handleLoggin" />
   </div>
@@ -27,6 +30,7 @@ import CommentCount from "./CommentCount.vue";
 import CommentForm from "./CommentForm.vue";
 import Comments from "./Comments.vue";
 import LoginAction from "./LoginAction.vue";
+import SiteLink from "./SiteLink.vue";
 import { useGlobals } from "../composables";
 import { getMe, auth, getAssets } from "../services";
 import { AuthMethod } from "../types";
