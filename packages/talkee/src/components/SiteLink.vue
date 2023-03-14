@@ -1,6 +1,6 @@
 <template>
   <div class="talkee-link">
-    <a href="https://pando.im/talkee/" target="_blank">powered by Talkee</a>
+    <a href="https://pando.im/talkee/" target="_blank">Powered by Talkee</a>
   </div>
 </template>
 
