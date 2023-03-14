@@ -1,5 +1,13 @@
 # @foxone/talkee
 
+## 3.0.1
+
+### Patch Changes
+
+- d7fa5fe: talkee classname, ui update
+- Updated dependencies [d7fa5fe]
+  - @foxone/uikit@4.2.4
+
 ## 3.0.0
 
 ### Major Changes

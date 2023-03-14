@@ -1,5 +1,11 @@
 # @foxone/uikit
 
+## 4.2.4
+
+### Patch Changes
+
+- d7fa5fe: talkee classname, ui update
+
 ## 4.2.3
 
 ### Patch Changes
