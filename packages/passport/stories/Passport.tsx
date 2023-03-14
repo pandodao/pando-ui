@@ -95,6 +95,7 @@ export const Passport = defineComponent({
         const localeChannel = localStorage.getItem("channel") || "";
 
         const data = await passport.sync({
+          origin: "FoxONE UIKit",
           token: localeToken,
           channel: localeChannel as any,
           refreshToken: true,

@@ -78,6 +78,7 @@ async function handleLoggin() {
       scope: "PROFILE:READ PHONE:READ",
       origin: "Talkee",
       pkce: true,
+      mvmAuthType: "SignedMessage",
       hooks: {
         beforeSignMessage: async () => {
           return {
