@@ -31,6 +31,8 @@
         >
           {{ t("$vuetify.talkee.submit") }}
         </FButton>
+
+        <SiteLink />
       </div>
     </div>
   </VForm>
@@ -52,6 +54,7 @@ import { postComment } from "../services";
 import { useGlobals } from "../composables";
 import Avatar from "./Avatar.vue";
 import ProfileModal from "./ProfileModal.vue";
+import SiteLink from "./SiteLink.vue";
 
 const props = defineProps({
   profile: { type: Object },
@@ -97,5 +100,11 @@ async function handleSubmit() {
   .talkee-user-avatar {
     margin-right: 16px;
   }
+}
+
+.talkee-submit-action {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 </style>
