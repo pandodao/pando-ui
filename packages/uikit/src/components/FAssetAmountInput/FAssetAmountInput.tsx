@@ -26,6 +26,10 @@ export const FAssetAmountInput = defineComponent({
       type: Array as PropType<Asset[]>,
       default: () => [],
     },
+    themeColor: {
+      type: String,
+      default: "primary",
+    },
   },
 
   emits: {
@@ -64,6 +68,7 @@ export const FAssetAmountInput = defineComponent({
               outlined={false}
               asset={props.asset}
               assets={props.assets}
+              themeColor={props.themeColor}
               onUpdate:asset={(v) => emit("update:asset", v)}
             />
           ),

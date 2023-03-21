@@ -11,7 +11,13 @@ const Template: StoryFn<typeof FAssetInputTools> = (args) => ({
   setup() {
     return { args };
   },
-  template: `<FAssetInputTools v-bind="args"></FAssetInputTools>`,
+  template: `
+  <FAssetInputTools v-bind="args">
+    <template #append-left>
+      <VIcon size="12">$check</VIcon>
+    </template>
+  </FAssetInputTools>
+  `,
 });
 
 export const Default = Template.bind({});

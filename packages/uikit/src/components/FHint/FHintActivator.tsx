@@ -6,8 +6,8 @@ export const FHintActivator = defineComponent({
 
   setup() {
     return () => (
-      <VIcon size="12" class="f-hint__activator">
-        $info
+      <VIcon size="12" color="greyscale_4" class="f-hint__activator">
+        $help
       </VIcon>
     );
   },

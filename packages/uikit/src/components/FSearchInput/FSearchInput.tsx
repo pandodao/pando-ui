@@ -19,7 +19,13 @@ export const FSearchInput = defineComponent({
       >
         {{
           ...slots,
-          "prepend-inner": () => <VIcon size={24}>$search</VIcon>,
+          "prepend-inner": () => (
+            <span class="f-search-input-prepend">
+              <VIcon size={16} color="greyscale_3">
+                $search
+              </VIcon>
+            </span>
+          ),
         }}
       </FInput>
     );

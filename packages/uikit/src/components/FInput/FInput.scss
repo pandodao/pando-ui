@@ -2,9 +2,9 @@
 
 .f-input.v-input {
   .v-field {
-    font-size: 1.125rem;
-    font-weight: 600;
-    line-height: 1.5rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    line-height: 1.375rem;
 
     &.v-field--variant-filled {
       border-bottom-left-radius: $border-radius-root;
@@ -33,6 +33,13 @@
         .v-field__overlay {
           background: rgb(var(--v-theme-error_bg));
         }
+      }
+    }
+
+    .v-field__clearable {
+      svg {
+        width: 16px;
+        height: 16px;
       }
     }
   }

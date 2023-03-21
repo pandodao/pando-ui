@@ -18,12 +18,3 @@ const Template: StoryFn<typeof FSlider> = (args) => ({
 
 export const Default = Template.bind({});
 Default.args = {};
-
-export const Process = Template.bind({});
-Process.args = {
-  isProcess: true,
-  min: 0,
-  max: 3,
-  ticks: { 0: "0%", 1: "33.3%", 2: "66.6%", 3: "100%" },
-  modelValue: 1.5,
-};

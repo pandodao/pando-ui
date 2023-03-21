@@ -1,4 +1,4 @@
-import { computed, defineComponent } from "vue";
+import { defineComponent } from "vue";
 import { VSlider } from "vuetify/components";
 
 import "./FSlider.scss";
@@ -6,33 +6,20 @@ import "./FSlider.scss";
 export const FSlider = defineComponent({
   name: "FSlider",
 
-  props: {
-    isProcess: Boolean,
-  },
-
   setup(props) {
-    const classes = computed(() => {
-      return { "f-slider--hide-thumb": props.isProcess };
-    });
+    const presets = {
+      trackSize: 4,
+      thumbSize: 16,
+      elevation: 0,
+      tickSize: 10,
+      min: 0,
+      max: 1,
+      showTicks: "always" as const,
+      ticks: { 0.33: "", 0.66: "" },
+      color: "greyscale_1",
+      trackColor: "greyscale_5",
+    };
 
-    const presets = !props.isProcess
-      ? {
-          trackSize: 8,
-          thumbSize: 24,
-          elevation: 0,
-          color: "greyscale_1",
-          trackColor: "greyscale_5",
-        }
-      : {
-          trackSize: 4,
-          tickSize: 4,
-          color: "success",
-          trackColor: "greyscale_6",
-          rounded: 0,
-          showTicks: "always" as const,
-          readonly: true,
-        };
-
-    return () => <VSlider class={["f-slider", classes.value]} {...presets} />;
+    return () => <VSlider class={["f-slider"]} {...presets} />;
   },
 });

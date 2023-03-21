@@ -1,6 +1,7 @@
 import { defineComponent, PropType, computed } from "vue";
 import { FAssetItem } from "./FAssetItem";
 import { VList } from "vuetify/components";
+import "./FAssetList.scss";
 
 import type { Asset } from "../../types";
 

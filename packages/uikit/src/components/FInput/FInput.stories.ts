@@ -8,7 +8,7 @@ export default {
   component: FInput,
 } as Meta<typeof FInput>;
 
-export const Default: StoryFn<typeof FInput> = (args) => ({
+const Template: StoryFn<typeof FInput> = (args) => ({
   components: { FInput },
   setup() {
     const text = ref("");
@@ -19,9 +19,6 @@ export const Default: StoryFn<typeof FInput> = (args) => ({
   template: `
     <FInput v-model="text" v-bind="attrs" variant="underlined">
       <template #append>
-        <VIcon>$close</VIcon>
-      </template>
-      <template #append-inner>
         <VIcon>$close</VIcon>
       </template>
     </FInput>
@@ -60,11 +57,24 @@ export const Default: StoryFn<typeof FInput> = (args) => ({
   `,
 });
 
+export const Default = Template.bind({});
+
 Default.args = {
   loading: false,
   singleLine: false,
   disabled: false,
+  clearable: true,
   label: "Label",
+};
+
+export const Density = Template.bind({});
+
+Density.args = {
+  loading: false,
+  singleLine: false,
+  disabled: false,
+  label: "Label",
+  density: "default",
 };
 
 export const NumberInput: StoryFn<typeof FInput> = () => ({

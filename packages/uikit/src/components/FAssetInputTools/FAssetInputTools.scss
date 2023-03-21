@@ -6,15 +6,16 @@
 
   .f-asset-input-tools__left {
     height: 16px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
 
     .f-asset-input-tools__connect-btn {
-      padding: 0;
+      padding: 0 4px;
+      margin-left: -4px;
       color: rgb(var(--v-theme-greyscale_1));
       height: 16px;
-    }
-
-    .f-asset-input-tools__connect-icon {
-      margin-left: 4px;
+      font-weight: 400;
     }
 
     .f-asset-input-tools__balance {

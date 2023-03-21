@@ -21,18 +21,11 @@ export const FAssetLogo = defineComponent({
       type: [String, Number],
       default: 18,
     },
-    color: {
-      type: [String],
-      default: "greyscale_7",
-    },
   },
 
   setup(props) {
     return () => (
-      <div
-        class="f-asset-logo"
-        style={`color: rgb(var(--v-theme-${props.color}))`}
-      >
+      <div class="f-asset-logo">
         <VImg width={props.size} src={props.asset?.logo}></VImg>
         {props.asset?.chainLogo && (
           <VImg

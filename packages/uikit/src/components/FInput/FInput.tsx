@@ -20,6 +20,7 @@ export const FInput = defineComponent({
   setup(props, { attrs, emit, slots }) {
     const inputRef = ref<typeof VTextField>();
     const focused = ref(false);
+    const preset = { density: "comfortable" as const };
 
     const handleChange = (value) => {
       if (attrs.type === "number" && props.precision) {
@@ -52,6 +53,7 @@ export const FInput = defineComponent({
         modelValue={props.modelValue}
         onUpdate:modelValue={handleChange}
         onKeydown={handleKeydown}
+        {...preset}
       >
         {{
           ...slots,

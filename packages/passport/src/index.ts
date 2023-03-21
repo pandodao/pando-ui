@@ -11,7 +11,7 @@ import createPaymentAction from "./payment";
 import createAssetsAction from "./assets";
 import createAssetAction from "./asset";
 import createSyncAction from "./sync";
-import { usePassport } from "./helper";
+import { usePassport, isMVM } from "./helper";
 
 import type { App } from "vue";
 import type { VuetifyOptions } from "vuetify";
@@ -56,6 +56,15 @@ function install(app: App, options: PassportOptions = {}) {
     getAssets: () => createAssetsAction(state),
     getProfile: () => state.mixin.getProfile(),
     sync: (options: SyncOptions) => createSyncAction(options, state),
+    watchAsset: (params: {
+      assetId: string;
+      image: string;
+      symbol: string;
+    }) => {
+      if (isMVM(state.channel)) {
+        state.mvm.watchAsset(params);
+      }
+    },
   };
   const properties = app.config.globalProperties;
 

@@ -25,6 +25,10 @@ export const FAssetSelectField = defineComponent({
       type: Object as PropType<Asset | null>,
       default: null,
     },
+    logoBackgroundColor: {
+      type: String,
+      default: "greyscale_7",
+    },
   },
 
   setup(props) {

@@ -1,4 +1,8 @@
 .f-slider {
+  .v-slider-track__background--opacity {
+    opacity: 1;
+  }
+
   &.v-slider.v-input--horizontal {
     .v-slider-track {
       height: var(--v-slider-track-size);
@@ -9,21 +13,19 @@
     }
   }
 
-  &--hide-thumb {
-    .v-slider-thumb {
-      display: none;
-    }
-  }
-
   .v-slider-track__tick {
-    border-radius: 0;
-    background-color: white;
+    border-radius: 100%;
+    background-color: rgb(var(--v-theme-greyscale_5));
+
+    &.v-slider-track__tick--filled {
+      background-color: rgb(var(--v-theme-greyscale_1));
+    }
 
     .v-slider-track__tick-label {
       font-weight: 500;
       font-size: 12px;
       line-height: 15px;
-      color: rgb(var(--v-theme-greyscale_4))
+      color: rgb(var(--v-theme-greyscale_4));
     }
   }
 
@@ -37,8 +39,8 @@
     }
 
     &::after {
-      width: 16px;
-      height: 16px;
+      width: 10px;
+      height: 10px;
       background-color: rgb(var(--v-theme-greyscale_7));
       border-radius: 50%;
     }

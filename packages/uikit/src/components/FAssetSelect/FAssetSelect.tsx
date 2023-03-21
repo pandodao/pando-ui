@@ -26,6 +26,10 @@ export const FAssetSelect = defineComponent({
       type: Array as PropType<Asset[]>,
       default: () => [],
     },
+    themeColor: {
+      type: String,
+      default: "primary",
+    },
   },
 
   emits: {
@@ -75,6 +79,7 @@ export const FAssetSelect = defineComponent({
                   v-model={filter.value}
                   variant="outlined"
                   clearable
+                  color={props.themeColor}
                   onClick:clear={handleClear}
                 />
               </div>

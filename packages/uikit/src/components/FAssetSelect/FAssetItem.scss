@@ -1,0 +1,27 @@
+.v-list-item.f-asset-item {
+  padding: 16px;
+  border-radius: 8px;
+
+  &:hover,
+  &.v-list-item--active {
+    --v-theme-overlay-multiplier: 0;
+    background-color: rgb(var(--v-theme-greyscale_6));
+
+    .f-asset-logo {
+      --f-asset-logo-background: var(--v-theme-greyscale_6);
+    }
+  }
+
+  .v-list-item-title {
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 14px;
+  }
+
+  .v-list-item-subtitle {
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 12px;
+    color: rgb(var(--v-theme-greyscale_4));
+  }
+}

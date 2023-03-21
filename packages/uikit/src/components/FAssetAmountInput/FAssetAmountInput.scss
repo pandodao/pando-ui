@@ -13,9 +13,17 @@
     z-index: 1;
     align-self: center;
 
+    .f-asset-logo {
+      --f-asset-logo-background: var(--v-theme-greyscale_6);
+    }
+
     &:hover,
     &--active {
       background: rgb(var(--v-theme-greyscale_5));
+
+      .f-asset-logo {
+        --f-asset-logo-background: var(--v-theme-greyscale_5);
+      }
     }
   }
 }

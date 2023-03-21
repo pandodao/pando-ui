@@ -19,6 +19,8 @@
 
   .f-modal__content {
     position: relative;
+    min-width: 280px;
+    min-height: 200px;
 
     .f-modal__close {
       position: absolute;

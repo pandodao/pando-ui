@@ -2,6 +2,7 @@ import { defineComponent, PropType } from "vue";
 import { VLazy } from "vuetify/components";
 import { FListItem } from "../FListItem";
 import { FAssetLogo } from "../FAssetLogo";
+import "./FAssetItem.scss";
 
 import type { Asset } from "../../types";
 

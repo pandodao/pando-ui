@@ -51,6 +51,9 @@ const Template2: StoryFn<typeof FAssetAmountInput> = (args) => ({
 export const Default = Template1.bind({});
 Default.args = { fullfilled: false };
 
+export const ThemeColor = Template1.bind({});
+ThemeColor.args = { themeColor: "error" };
+
 export const WithRules = Template1.bind({});
 WithRules.args = {
   fullfilled: false,

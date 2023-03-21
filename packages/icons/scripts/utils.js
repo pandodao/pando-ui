@@ -6,8 +6,8 @@ const prefix = "FIcon";
 const parseName = (name, style) => {
   const cleanName = name.replace(/\//g, "-");
 
-  if (style === "untitle") {
-    return upperFirst(camelCase(cleanName));
+  if (style === "default") {
+    return { componentName: "Icon" + upperFirst(camelCase(cleanName)) };
   }
 
   let baseName = prefix + upperFirst(camelCase(cleanName));

@@ -1,11 +1,14 @@
 .f-asset-logo {
+  --f-asset-logo-background: var(--v-theme-greyscale_7);
   position: relative;
   display: inline-block;
+  color: rgb(var(--f-asset-logo-background));
+  background-color: rgb(var(--f-asset-logo-background));
 
   .f-asset-logo__chain {
     position: absolute;
     left: 0;
-    bottom: 0;    
+    bottom: 0;
     border: 2px solid currentColor;
     border-radius: 50%;
   }

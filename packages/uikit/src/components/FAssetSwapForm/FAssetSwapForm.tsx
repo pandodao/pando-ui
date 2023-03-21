@@ -27,7 +27,7 @@ export const FAssetSwapForm = defineComponent({
             class="f-asset-swap-form__swap"
             onClick={() => emit("switch")}
           >
-            <VIcon>$swap</VIcon>
+            <VIcon size="18">$swap</VIcon>
           </FButton>
         </div>
 

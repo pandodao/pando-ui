@@ -80,6 +80,12 @@ export interface AuthData {
   channel: AuthMethod;
 }
 
+export interface WatchAssetParams {
+  assetId: string;
+  image: string;
+  symbol: string;
+}
+
 export interface Passport {
   auth: (options: AuthOptions) => Promise<AuthData>;
   payment: (options: PaymentOptions) => Promise<void>;
@@ -88,4 +94,5 @@ export interface Passport {
   getAsset: (id: string) => Promise<any>;
   getAssets: () => Promise<any>;
   getProfile: () => Promise<any>;
+  watchAsset: (params: WatchAssetParams) => void;
 }

@@ -10,6 +10,7 @@ export interface NavItem {
   value?: string;
   to?: string;
   exact?: string;
+  active?: boolean;
 }
 
 export const FBottomNav = defineComponent({
@@ -22,7 +23,7 @@ export const FBottomNav = defineComponent({
     },
   },
 
-  setup(props) {
+  setup(props, { slots }) {
     const presets = { height: 66, elevation: 0, mandatory: true };
 
     const content = () => (
@@ -32,6 +33,7 @@ export const FBottomNav = defineComponent({
             value={item.value}
             to={item.to}
             exact={item.exact}
+            active={item.active}
             class="f-bottom-nav__item"
           >
             <VIcon class="f-bottom-nav__icon">{item.icon}</VIcon>
@@ -43,7 +45,11 @@ export const FBottomNav = defineComponent({
 
     return () => (
       <VBottomNavigation class="f-bottom-nav" {...presets}>
-        {{ default: () => content() }}
+        {{
+          default: () => {
+            return slots.default?.() || content();
+          },
+        }}
       </VBottomNavigation>
     );
   },

@@ -3,6 +3,14 @@
     opacity: 1;
     width: 24px;
     transition: ease 0.2s;
+
+    .f-search-input-prepend {
+      display: inline-flex;
+      width: 24px;
+      height: 24px;
+      align-items: center;
+      justify-content: center;
+    }
   }
 
   .v-field--focused {

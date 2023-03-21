@@ -33,7 +33,7 @@ const Template: StoryFn<typeof FAssetSwapForm> = (args) => ({
       <template #input>
         <FAssetAmountInput v-model:asset="inputAsset" v-model:amount="inputAmount" :assets="assets" fullfilled v-bind="args">
           <template #tools>
-            <FAssetInputTools :connected="true" balance="1,213" fiatAmount="$5,000" :messages="args.errorMessages" />
+            <FAssetInputTools :connected="args.connected" balance="1,213" fiatAmount="$5,000" :messages="args.errorMessages" />
           </template>
         </FAssetAmountInput>
       </template>
@@ -41,7 +41,7 @@ const Template: StoryFn<typeof FAssetSwapForm> = (args) => ({
       <template #output>
         <FAssetAmountInput v-model:asset="outputAsset" v-model:amount="outputAmount" :assets="assets" fullfilled v-bind="args">
           <template #tools>
-            <FAssetInputTools :connected="true" balance="1,213" fiatAmount="$5,000" :messages="args.errorMessages" />
+            <FAssetInputTools :connected="args.connected" balance="1,213" fiatAmount="$5,000" :messages="args.errorMessages" />
           </template>
         </FAssetAmountInput>
       </template>
@@ -50,7 +50,9 @@ const Template: StoryFn<typeof FAssetSwapForm> = (args) => ({
 });
 
 export const Default = Template.bind({});
-Default.args = {};
+Default.args = {
+  connected: true,
+};
 
 export const WithError = Template.bind({});
 WithError.args = {
