@@ -1,6 +1,6 @@
 import { defineComponent } from "vue";
 import { useDisplay, useLocale } from "vuetify";
-// import { getBrowser } from "../../utils";
+import { getBrowser } from "../../utils";
 
 import { FButton } from "../FButton";
 
@@ -14,11 +14,10 @@ export const FAuthFennecInstall = defineComponent({
     const { t } = useLocale();
 
     const handleInstall = () => {
-      const url = "";
-      // const url =
-      //   getBrowser() === "firefox"
-      //     ? "https://addons.mozilla.org/firefox/addon/fox_fennec"
-      //     : "https://chrome.google.com/webstore/detail/fennec/eincngenkhohbbfpkohipekcmnkfamjp";
+      const url =
+        getBrowser() === "firefox"
+          ? "https://addons.mozilla.org/firefox/addon/fox_fennec"
+          : "https://chrome.google.com/webstore/detail/fennec/eincngenkhohbbfpkohipekcmnkfamjp";
 
       window.open(url);
     };

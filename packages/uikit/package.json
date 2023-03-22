@@ -32,7 +32,8 @@
     "pako": "^2.1.0",
     "qrious": "^4.0.2",
     "reconnecting-websocket": "^4.4.0",
-    "tsconfig": "^7.0.0"
+    "tsconfig": "^7.0.0",
+    "v3-infinite-loading": "^1.2.2"
   },
   "peerDependencies": {
     "vue": "^3.2.40",

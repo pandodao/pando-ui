@@ -11,6 +11,7 @@ export * from "./FButton";
 export * from "./FDivider";
 export * from "./FFiatDivision";
 export * from "./FHint";
+export * from "./FInfiniteLoad";
 export * from "./FInfoGrid";
 export * from "./FInput";
 export * from "./FListItem";

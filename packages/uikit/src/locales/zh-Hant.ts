@@ -47,5 +47,8 @@ export default {
     onekey_not_installed_2: "沒有安裝",
     onekey_introduction: "多合一加密钱包。数以百万计的信任。",
     onekey_introduction_2: "多合一加密钱包。数以百万计的信任。",
+    infinite_complete: "没有更多数据",
+    infinite_error: "出错了！",
+    retry: "重试",
   },
 };

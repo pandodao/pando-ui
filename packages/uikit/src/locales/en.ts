@@ -50,5 +50,8 @@ export default {
     onekey_not_installed_2: "OneKey not installed",
     onekey_introduction: "All-in-one crypto wallet. Trusted by millions.",
     onekey_introduction_2: "All-in-one crypto wallet. Trusted by millions.",
+    infinite_complete: "No More Data",
+    infinite_error: "Oops something went wrong!",
+    retry: "Retry",
   },
 };
