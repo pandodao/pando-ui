@@ -31,6 +31,7 @@ export const FAssetList = defineComponent({
         {props.assets.map((asset) => (
           <FAssetItem
             asset={asset}
+            current={props?.asset?.id}
             key={asset.id}
             onClick={() => emit("select", asset)}
           />

@@ -1,5 +1,5 @@
 import { defineComponent, PropType } from "vue";
-import { VLazy } from "vuetify/components";
+import { VLazy, VIcon } from "vuetify/components";
 import { FListItem } from "../FListItem";
 import { FAssetLogo } from "../FAssetLogo";
 import "./FAssetItem.scss";
@@ -13,6 +13,10 @@ export const FAssetItem = defineComponent({
     asset: {
       type: Object as PropType<Asset>,
       default: null,
+    },
+    current: {
+      type: String,
+      default: "",
     },
   },
 
@@ -34,6 +38,12 @@ export const FAssetItem = defineComponent({
                 class="f-asset-item__logo"
               />
             ),
+            append: () =>
+              props.current === props.asset?.id ? (
+                <VIcon size={16}>$check</VIcon>
+              ) : (
+                ""
+              ),
           }}
         </FListItem>
       </VLazy>

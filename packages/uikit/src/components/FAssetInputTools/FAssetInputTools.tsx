@@ -73,6 +73,7 @@ export const FAssetInputTools = defineComponent({
                   {props.fillable && (
                     <VIcon
                       size="12"
+                      color="greyscale_3"
                       onClick={withModifiers(handleFill, ["stop"])}
                     >
                       $fill
