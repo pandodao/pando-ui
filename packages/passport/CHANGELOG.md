@@ -1,5 +1,11 @@
 # @foxone/mixin-passport
 
+## 1.2.4
+
+### Patch Changes
+
+- c92a030: update ui
+
 ## 1.2.3
 
 ### Patch Changes

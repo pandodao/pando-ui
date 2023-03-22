@@ -1,5 +1,11 @@
 # @foxone/icons
 
+## 4.1.2
+
+### Patch Changes
+
+- c92a030: update ui
+
 ## 4.1.1
 
 ### Patch Changes

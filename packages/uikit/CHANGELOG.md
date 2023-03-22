@@ -1,5 +1,12 @@
 # @foxone/uikit
 
+## 4.2.5
+
+### Patch Changes
+
+- b8130fa: FInfiniteLoad
+- c92a030: update ui
+
 ## 4.2.4
 
 ### Patch Changes
