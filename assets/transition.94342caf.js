@@ -1,0 +1,2 @@
+var p=Object.defineProperty;var r=(t,n)=>p(t,"name",{value:n,configurable:!0});import{h as m,m as c,T as f}from"./vue.esm-bundler.3b29098a.js";import{b as l}from"./useRender.3ca1765f.js";const T=l({transition:{type:[Boolean,String,Object],default:"fade-transition",validator:t=>t!==!0}},"transition"),d=r((t,n)=>{let{slots:s}=n;const{transition:o,...a}=t,{component:e=f,...i}=typeof o=="object"?o:{};return m(e,c(typeof o=="string"?{name:o}:i,a),s)},"MaybeTransition");export{d as M,T as m};
+//# sourceMappingURL=transition.94342caf.js.map
