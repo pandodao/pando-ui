@@ -1,4 +1,12 @@
 .f-asset-amount-input {
+  &.f-input.v-input {
+    .v-field {
+      font-size: 1.125rem;
+      font-weight: 500;
+      line-height: 1.375rem;
+    }
+  }
+
   .v-field__prepend-inner {
     padding-top: 0;
   }

@@ -51,24 +51,26 @@ export const FAssetSelectField = defineComponent({
           </span>
         )}
 
-        <div class="f-asset-field__right">
-          <div
-            class={[
-              "f-asset-field__symbol",
-              {
-                "f-asset-field__symbol--sm":
-                  (props.asset?.symbol?.length ?? 0) > 8,
-              },
-            ]}
-          >
-            {props.asset?.symbol}
-          </div>
-          {props.showName && (
-            <div class="f-asset-field__name text-greyscale_3">
-              {props.asset?.name}
+        {props.asset && (
+          <div class="f-asset-field__right">
+            <div
+              class={[
+                "f-asset-field__symbol",
+                {
+                  "f-asset-field__symbol--sm":
+                    (props.asset?.symbol?.length ?? 0) > 8,
+                },
+              ]}
+            >
+              {props.asset?.symbol}
             </div>
-          )}
-        </div>
+            {props.showName && (
+              <div class="f-asset-field__name text-greyscale_3">
+                {props.asset?.name}
+              </div>
+            )}
+          </div>
+        )}
 
         {props.selectable && (
           <VIcon size="16" class="f-asset-field__expend">
