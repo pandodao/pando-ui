@@ -21,7 +21,7 @@ export const FTooltip = defineComponent({
     const content = () => {
       return (
         <div class="f-tooltip__tip">
-          <span>{props.text}</span>
+          <span innerHTML={props.text} />
           <span>{slots.default?.()}</span>
         </div>
       );
