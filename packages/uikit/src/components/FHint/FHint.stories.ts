@@ -19,7 +19,7 @@ const Template: StoryFn<typeof FHint> = (args) => ({
   template: `
     <div>
       <FHint
-        hint="The annual percentage yield (APY) is the real rate of return earned on an investment"
+        hint="The annual percentage yield (APY) is the real rate of <br> return earned on an investment"
         v-bind="args"
       >
       <template #activator="{props}">
