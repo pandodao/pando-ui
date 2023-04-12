@@ -1,5 +1,14 @@
 # @foxone/talkee
 
+## 3.0.2
+
+### Patch Changes
+
+- 0af530f: update passport, ui
+- Updated dependencies [0af530f]
+  - @foxone/mixin-passport@1.2.5
+  - @foxone/uikit@4.2.10
+
 ## 3.0.1
 
 ### Patch Changes

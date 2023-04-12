@@ -1,5 +1,11 @@
 # @foxone/uikit
 
+## 4.2.10
+
+### Patch Changes
+
+- 0af530f: update passport, ui
+
 ## 4.2.9
 
 ### Patch Changes
