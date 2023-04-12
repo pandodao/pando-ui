@@ -44,7 +44,7 @@ export const FHint = defineComponent({
         props.href && <FHintLink href={props.href} />
       ) : (
         <div class="f-hint__modal-content">
-          {props.hint}
+          <span innerHTML={props.hint}></span>
           {props.href && <FHintLink href={props.href} />}
         </div>
       );

@@ -15,7 +15,7 @@ export const FPhoneInput = defineComponent({
 
   setup(props, { slots, emit }) {
     const dialog = ref(false);
-    const presets = { reverse: true, type: "number" };
+    const presets = { type: "number" };
 
     const handleKeydown = (e: KeyboardEvent) => {
       if (["e", "+", "-", "."].includes(e.key)) {

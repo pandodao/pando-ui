@@ -37,7 +37,7 @@ export const FSegmentControl = defineComponent({
         {...presets}
       >
         {props.items.map((item) => (
-          <FButton value={item.value}>{item.text}</FButton>
+          <FButton {...item}>{item.text}</FButton>
         ))}
       </VBtnToggle>
     );

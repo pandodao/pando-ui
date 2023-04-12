@@ -53,7 +53,7 @@ export const FCountryCodeSelect = defineComponent({
                     {props.code || "code"}
                   </span>
                 ) : (
-                  <VIcon>$question</VIcon>
+                  <VIcon>$help</VIcon>
                 )}
                 <VIcon size="16">$expand</VIcon>
               </div>
