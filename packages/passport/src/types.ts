@@ -5,7 +5,6 @@ import MixinAPI from "./mixin-apis";
 export interface PassportOptions {
   infuraId?: string;
   chainId?: number;
-  onDisconnect?: () => void;
 }
 
 export interface SignMessageParams {
@@ -20,20 +19,39 @@ export interface SignMessageParams {
 }
 
 export interface AuthOptions {
-  origin: string;
-  config?: { infuraId?: string };
+  origin?: string;
   JWTPayload?: any;
-  mvmAuthType?: "SignedMessage" | "MixinToken";
-  hooks?: {
-    afterOAuthCodeLoad?: (code: string) => Promise<string>;
-    beforeSignMessage?: () => Promise<SignMessageParams>;
-    afterSignMessage?: (params: {
-      message: string;
-      signature: string;
-    }) => Promise<string>;
-    afterFennecTokenLoad?: (token: string) => Promise<string>;
-  };
+  // if customizeToken = false:
+  // mvm and fennec channel will return access token for https://api.mixin.one/me
+  // developer can save this token to access Mixin Messenger backend
+  // ATTENTION: /me token has a short expire time (about one day)
+  // token will be refreshed everytime sync function executed
+  // mixin oauth channel will return Mixin OAuth Token
 
+  // if customizeToken = true:
+  // developer should provide hooks for exchange token or auth code or signed message to customizeToken token
+  // developer should both token and mixin_token for Mixin OAuth in order to access mixin assets
+  // token will NOT be refershed in sync function
+  customizeToken?: boolean;
+
+  // if signMessage = false
+  // mvm will use /me token as auth type
+
+  // if signMessage = true
+  // mvm connect will ask user to sign message
+  // developer should provider hooks to verfiy signature and distribute custom token
+  signMessage?: boolean;
+  hooks?: {
+    beforeSignMessage?: () => Promise<SignMessageParams>;
+    onDistributeToken?: (params: {
+      type: "mixin_token" | "signed_message" | "mixin_code";
+      code?: string;
+      token?: string;
+      message?: string;
+      signature?: string;
+    }) => Promise<{ token: string; mixin_token?: string }>;
+    afterDisconnect?: () => void;
+  };
   authMethods?: AuthMethod[];
   // Mixin oauth params
   clientId?: string;
@@ -64,15 +82,15 @@ export type State = {
   mixin: MixinAPI;
   mvm: any | null;
   token: string;
+  mixin_token: string;
 };
 
 export interface SyncOptions {
   token: string;
+  mixin_token?: string;
   channel: AuthMethod;
   origin?: string;
-  // true means that client use /me token after auth with MVM and Fennec, need refresh token everytime user access since expire time is short.
-  // ƒalse means that client use third part token, need not refresh by default, but need provide both Fennec and MVM hooks.
-  refreshToken?: boolean;
+  customizeToken?: boolean;
 }
 
 export interface AuthData {

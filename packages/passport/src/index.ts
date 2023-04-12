@@ -24,9 +24,10 @@ import type {
   PassportOptions,
 } from "./types";
 
-function install(app: App, options: PassportOptions = {}) {
+function install(app: App, passportOptions: PassportOptions = {}) {
   const state: State = {
     token: "",
+    mixin_token: "",
     channel: "" as AuthMethod,
     fennec: new Fennec(),
     mixin: new MixinAPI(),
@@ -35,27 +36,21 @@ function install(app: App, options: PassportOptions = {}) {
 
   if (typeof MVM !== "undefined") {
     state.mvm = new MVM({
-      infuraId: options.infuraId,
-      chainId: options.chainId,
-    });
-    state.mvm.on("disconnect", () => {
-      options.onDisconnect?.();
+      infuraId: passportOptions.infuraId,
+      chainId: passportOptions.chainId,
     });
   }
 
-  state.mixin.use((options) => ({
-    ...options,
-    headers: { ...options.headers, Authorization: `Bearer ${state.token}` },
-  }));
-
   const passport = {
-    auth: (options: AuthOptions) => createAuthAction(app, options, state),
+    auth: (options: AuthOptions) =>
+      createAuthAction(app, { ...passportOptions, ...options }, state),
     payment: (options: PaymentOptions) =>
       createPaymentAction(app, options, state),
     getAsset: (id: string) => createAssetAction(id, state),
     getAssets: () => createAssetsAction(state),
     getProfile: () => state.mixin.getProfile(),
-    sync: (options: SyncOptions) => createSyncAction(options, state),
+    sync: (options: SyncOptions) =>
+      createSyncAction({ ...passportOptions, ...options }, state),
     watchAsset: (params: {
       assetId: string;
       image: string;

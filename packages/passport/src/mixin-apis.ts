@@ -3,11 +3,7 @@ export default class MixinAPI {
 
   baseUrl = "https://api.mixin.one";
 
-  intercepts: any[] = [];
-
-  use(intercept) {
-    this.intercepts.push(intercept);
-  }
+  authIntercept: any = null;
 
   async request(url: string, method = "GET") {
     let options = {
@@ -15,10 +11,9 @@ export default class MixinAPI {
       headers: {},
     };
 
-    options = this.intercepts.reduce(
-      (merged, intercept) => intercept(merged),
-      options
-    );
+    if (this.authIntercept) {
+      options = this.authIntercept(options);
+    }
 
     const resp = await fetch(this.baseUrl + url, options);
     const json = await resp.json();

@@ -2,23 +2,36 @@ import { isMVM } from "./helper";
 import { useAuth } from "./helper";
 
 import type { App } from "vue";
-import type { AuthData, AuthOptions, SignMessageParams, State } from "./types";
+import type {
+  AuthData,
+  AuthOptions,
+  PassportOptions,
+  SignMessageParams,
+  State,
+} from "./types";
 
-export default function (app: App, options: AuthOptions, state: State) {
+export default function (
+  app: App,
+  options: AuthOptions & PassportOptions,
+  state: State
+) {
   const connectFennec = async () => {
-    await state.fennec.connect(options.origin);
+    await state.fennec.connect(options.origin ?? "");
 
-    let token = await state.fennec.ctx?.wallet.signToken({
+    const mixinToken = await state.fennec.ctx?.wallet.signToken({
       payload: options.JWTPayload || {},
     });
 
-    token = token || "";
+    if (options.customizeToken) {
+      const resp = await options.hooks?.onDistributeToken?.({
+        token: mixinToken,
+        type: "mixin_token",
+      });
 
-    if (options.hooks?.afterFennecTokenLoad) {
-      token = await options.hooks?.afterFennecTokenLoad(token);
+      state.token = resp?.token ?? "";
+    } else {
+      state.token = mixinToken ?? "";
     }
-
-    state.token = token;
   };
 
   const connectMVM = async (type, reject) => {
@@ -26,35 +39,70 @@ export default function (app: App, options: AuthOptions, state: State) {
 
     await state.mvm?.connenct(type);
 
-    if (options.mvmAuthType === "MixinToken") {
-      state.token = state.mvm.getAuthToken();
-    } else {
+    if (options.signMessage) {
       let params: SignMessageParams = {};
 
       if (options.hooks?.beforeSignMessage) {
         params = await options.hooks.beforeSignMessage();
       }
 
-      let resp = await state.mvm.signMessage(params);
+      const signedData: any = await state.mvm?.signMessage(params);
 
-      if (options.hooks?.afterSignMessage) {
-        resp = await options.hooks.afterSignMessage(resp);
+      if (options.hooks?.onDistributeToken) {
+        const resp = await options.hooks?.onDistributeToken?.({
+          message: signedData?.message ?? "",
+          signature: signedData?.signature ?? "",
+          type: "signed_message",
+        });
+
+        state.token = resp?.token ?? "";
       } else {
-        reject("Need afterSignMessage hook to process signed message to token");
+        reject(
+          "Need onDistributeToken hook to process signed message to token"
+        );
       }
+    } else {
+      const mixinToken = state.mvm?.getAuthToken() ?? "";
 
-      state.token = resp;
+      if (options.customizeToken) {
+        const resp = await options.hooks?.onDistributeToken?.({
+          token: mixinToken,
+          type: "mixin_token",
+        });
+
+        state.token = resp?.token ?? "";
+      } else {
+        state.token = mixinToken;
+      }
     }
   };
 
   const connectMixin = async (data, reject) => {
     if (data.token) {
-      state.token = data.token;
-    } else {
-      if (options.hooks?.afterOAuthCodeLoad) {
-        state.token = await options.hooks.afterOAuthCodeLoad(data.code);
+      const mixinToken = data.token;
+
+      if (options.customizeToken) {
+        const resp = await options.hooks?.onDistributeToken?.({
+          token: mixinToken,
+          type: "mixin_token",
+        });
+
+        state.token = resp?.token ?? "";
+        state.mixin_token = mixinToken;
       } else {
-        reject("Need afterOAuthCodeLoad hook to process code to tokens");
+        state.token = mixinToken;
+      }
+    } else {
+      if (options.hooks?.onDistributeToken) {
+        const resp = await options.hooks.onDistributeToken({
+          code: data.code,
+          type: "mixin_code",
+        });
+
+        state.token = resp.token;
+        state.mixin_token = resp.mixin_token ?? "";
+      } else {
+        reject("Need onDistributeToken hook to process code to tokens");
       }
     }
   };
@@ -68,10 +116,20 @@ export default function (app: App, options: AuthOptions, state: State) {
 
     if (state.channel === "mixin") await connectMixin(data, reject);
 
-    resolve({ channel: state.channel, token: state.token });
+    resolve({
+      channel: state.channel,
+      token: state.token,
+      mixin_token: state.mixin_token,
+    });
   };
 
   return new Promise<AuthData>((resolve, reject) => {
+    state.mixin.authIntercept = (configs) => {
+      configs.headers.Authorization = `Bearer ${
+        options.customizeToken ? state.mixin_token : state.token
+      }`;
+    };
+
     useAuth(app)?.show({
       ...options,
       authMethodState: {

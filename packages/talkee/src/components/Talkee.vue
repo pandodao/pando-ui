@@ -33,7 +33,7 @@ import LoginAction from "./LoginAction.vue";
 import SiteLink from "./SiteLink.vue";
 import { useGlobals } from "../composables";
 import { getMe, auth, getAssets } from "../services";
-import { AuthMethod } from "../types";
+import { AuthMethod, AuthParams } from "../types";
 
 const props = defineProps({
   siteId: { type: String, default: "" },
@@ -77,12 +77,13 @@ async function handleLoggin() {
 
   try {
     const data = await passport.auth({
+      origin: "Talkee",
+      customizeToken: true,
+      signMessage: true,
       clientId: globals.clientId.value,
       authMethods: props.authMethods as any[],
       scope: "PROFILE:READ PHONE:READ",
-      origin: "Talkee",
       pkce: true,
-      mvmAuthType: "SignedMessage",
       hooks: {
         beforeSignMessage: async () => {
           return {
@@ -92,27 +93,31 @@ async function handleLoggin() {
             ).toISOString(),
           };
         },
-        afterSignMessage: async ({ message, signature }) => {
-          return (
-            await auth({
+        onDistributeToken: async (params) => {
+          let data: AuthParams;
+
+          if (params.type === "mixin_token") {
+            data = {
+              method: AuthMethod.MixinToken,
+              mixin_token: params.token,
+            };
+          } else {
+            data = {
               method: AuthMethod.MVM,
-              signed_message: message,
-              signature,
-            })
-          ).access_token;
+              signed_message: params.message,
+              signature: params.signature,
+            };
+          }
+
+          const { access_token } = await auth(data);
+
+          return { token: access_token };
         },
       },
     });
 
     const channel = data.channel;
-
-    let token = data.token;
-
-    if (data.channel === "fennec" || data.channel === "mixin") {
-      token = (
-        await auth({ method: AuthMethod.MixinToken, mixin_token: token })
-      ).access_token;
-    }
+    const token = data.token;
 
     globals.loggin({ token, channel });
   } catch (error: any) {

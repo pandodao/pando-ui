@@ -1,9 +1,13 @@
 import { isMVM } from "./helper";
-import type { SyncOptions, State } from "./types";
+import type { SyncOptions, State, PassportOptions } from "./types";
 
-export default async function (options: SyncOptions, state: State) {
+export default async function (
+  options: SyncOptions & PassportOptions,
+  state: State
+) {
   state.channel = options.channel;
   state.token = options.token;
+  state.mixin_token = options.mixin_token ?? "";
 
   if (state.channel === "fennec") {
     if (!options.origin) {
@@ -12,7 +16,7 @@ export default async function (options: SyncOptions, state: State) {
 
     await state.fennec.connect(options.origin);
 
-    if (options.refreshToken) {
+    if (!options.customizeToken) {
       state.token =
         (await state.fennec.ctx?.wallet.signToken({ payload: {} })) ?? "";
     }
@@ -21,10 +25,14 @@ export default async function (options: SyncOptions, state: State) {
   if (isMVM(state.channel)) {
     await state.mvm.connenct(state.channel);
 
-    if (options.refreshToken) {
+    if (!options.customizeToken) {
       state.token = state.mvm.getAuthToken();
     }
   }
 
-  return { channel: state.channel, token: state.token };
+  return {
+    channel: state.channel,
+    token: state.token,
+    mixin_token: state.mixin_token,
+  };
 }
