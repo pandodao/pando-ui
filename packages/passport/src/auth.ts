@@ -124,12 +124,6 @@ export default function (
   };
 
   return new Promise<AuthData>((resolve, reject) => {
-    state.mixin.authIntercept = (configs) => {
-      configs.headers.Authorization = `Bearer ${
-        options.customizeToken ? state.mixin_token : state.token
-      }`;
-    };
-
     useAuth(app)?.show({
       ...options,
       authMethodState: {

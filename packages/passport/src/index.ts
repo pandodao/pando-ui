@@ -41,6 +41,14 @@ function install(app: App, passportOptions: PassportOptions = {}) {
     });
   }
 
+  state.mixin.authIntercept = (configs) => {
+    configs.headers.Authorization = `Bearer ${
+      passportOptions.customizeToken ? state.mixin_token : state.token
+    }`;
+
+    return configs;
+  };
+
   const passport = {
     auth: (options: AuthOptions) =>
       createAuthAction(app, { ...passportOptions, ...options }, state),

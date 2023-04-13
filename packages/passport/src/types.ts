@@ -5,6 +5,7 @@ import MixinAPI from "./mixin-apis";
 export interface PassportOptions {
   infuraId?: string;
   chainId?: number;
+  customizeToken?: boolean;
 }
 
 export interface SignMessageParams {
@@ -96,6 +97,7 @@ export interface SyncOptions {
 export interface AuthData {
   token: string;
   channel: AuthMethod;
+  mixin_token: string;
 }
 
 export interface WatchAssetParams {
