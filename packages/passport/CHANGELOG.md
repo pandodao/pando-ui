@@ -1,5 +1,11 @@
 # @foxone/mixin-passport
 
+## 1.2.6
+
+### Patch Changes
+
+- 27a2aed: upadte ui
+
 ## 1.2.5
 
 ### Patch Changes

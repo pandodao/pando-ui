@@ -1,6 +1,6 @@
 {
   "name": "@foxone/talkee",
-  "version": "3.0.2",
+  "version": "3.0.3",
   "description": "Talkee components",
   "main": "dist/index.mjs",
   "module": "dist/index.mjs",
@@ -12,7 +12,7 @@
   },
   "license": "MIT",
   "peerDependencies": {
-    "@foxone/mixin-passport": "^1.2.5",
+    "@foxone/mixin-passport": "^1.2.6",
     "@foxone/uikit": "^4.2.10",
     "vuetify": "^3.1.2"
   },

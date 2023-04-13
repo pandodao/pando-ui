@@ -1,6 +1,6 @@
 {
   "name": "@foxone/mixin-passport",
-  "version": "1.2.5",
+  "version": "1.2.6",
   "description": "Vue plugin of multi auth and payment helps for Mixin Network",
   "license": "MIT",
   "main": "lib/index.js",
