@@ -25,6 +25,10 @@ export const FModal = defineComponent({
       type: String as PropType<"dialog" | "menu">,
       default: "dialog",
     },
+    modelValue: {
+      type: Boolean,
+      default: false,
+    },
   },
 
   emits: {
@@ -83,6 +87,7 @@ export const FModal = defineComponent({
 
     return () => (
       <meta.value.wrapper
+        modelValue={props.modelValue}
         {...meta.value.presets}
         class={classes.value}
         onUpdate:modelValue={(v) => emit("update:modelValue", v)}

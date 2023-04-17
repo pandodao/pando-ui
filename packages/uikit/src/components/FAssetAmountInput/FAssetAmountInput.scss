@@ -36,6 +36,12 @@
   }
 }
 
+.f-asset-amount-input.f-input--focused .f-asset-field {
+  .f-asset-logo {
+    --f-asset-logo-background: var(--v-theme-greyscale_5);
+  }
+}
+
 .f-input.f-asset-amount-input--filled {
   background: rgb(var(--v-theme-greyscale_6));
   border-radius: 8px;

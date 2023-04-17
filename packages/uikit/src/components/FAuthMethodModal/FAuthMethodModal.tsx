@@ -15,6 +15,8 @@ import { AuthData, AuthMethod, AuthMethodState } from "../../types";
 export const FAuthMethodModal = defineComponent({
   name: "FAuthMethodModal",
 
+  inheritAttrs: false,
+
   props: {
     authMethods: {
       type: Array as PropType<AuthMethod[]>,
