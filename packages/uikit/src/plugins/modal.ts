@@ -13,6 +13,8 @@ export interface MessageModalProps {
   cancel?: ModalAction;
   confirm?: ModalAction;
   actions?: VNode;
+  hideActions?: Boolean;
+  width?: string | number;
   type?: string;
   container?: string;
 }

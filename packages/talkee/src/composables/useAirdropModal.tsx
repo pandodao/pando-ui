@@ -18,7 +18,7 @@ export function useAirdropModal(type: AirdropType, opponentId?: number) {
     msgModal.show({
       title: title.value,
       text: <AirdropForm type={type} opponentId={opponentId} />,
-      actions: <div></div>,
+      hideActions: true,
     });
   }
 

@@ -1,5 +1,5 @@
-import { defineComponent, PropType, ref, watch } from "vue";
-import { useLocale } from "vuetify";
+import { defineComponent, PropType, ref, watch, computed } from "vue";
+import { useLocale, useDisplay } from "vuetify";
 
 import type { VNode } from "vue";
 
@@ -40,6 +40,14 @@ export const FMessageModal = defineComponent({
     actions: {
       type: Object as PropType<VNode>,
     },
+    hideActions: {
+      type: Boolean,
+      default: false,
+    },
+    width: {
+      type: [String, Number],
+      default: 420,
+    }
   },
 
   emits: {
@@ -48,7 +56,10 @@ export const FMessageModal = defineComponent({
 
   setup(props, { emit, expose }) {
     const { t } = useLocale();
+    const { smAndDown } = useDisplay();
     const dialog = ref(false);
+
+    const width = computed(() => smAndDown.value ? '100%' : props.width);
 
     const show = () => (dialog.value = true);
 
@@ -91,27 +102,29 @@ export const FMessageModal = defineComponent({
             <FRender content={props.title} />
           </div>
         }
-        maxWidth="420"
+        width={width.value}
         class="f-msg-modal"
       >
         <div class="f-msg-modal__body">
           <FRender content={props.text} />
-          <div class="f-msg-modal__actions">
-            {props.actions || [
-              genAction({
-                show: true,
-                text: t("$vuetify.uikit.cancel"),
-                props: { variant: "plain" },
-                ...(props?.cancel || {}),
-              }),
-              genAction({
-                show: true,
-                text: t("$vuetify.uikit.continue"),
-                props: { color: "greyscale_1" },
-                ...(props?.confirm || {}),
-              }),
-            ]}
-          </div>
+          {!props.hideActions && (
+            <div class="f-msg-modal__actions">
+              {props.actions || [
+                genAction({
+                  show: true,
+                  text: t("$vuetify.uikit.cancel"),
+                  props: { variant: "plain" },
+                  ...(props?.cancel || {}),
+                }),
+                genAction({
+                  show: true,
+                  text: t("$vuetify.uikit.continue"),
+                  props: { color: "greyscale_1" },
+                  ...(props?.confirm || {}),
+                }),
+              ]}
+            </div>
+          )}
         </div>
       </FModal>
     );
