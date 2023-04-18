@@ -27,7 +27,7 @@ const displayName = computed(() => {
 
 <style lang="scss" scoped>
 .talkee-username {
-  font-size: 14px;
+  font-size: 0.7rem;
   font-weight: 500;
   flex: 1;
   margin-right: 4px;

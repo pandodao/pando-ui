@@ -2,26 +2,33 @@
   <div class="talkee">
     <RewardSLugPanel />
 
-    <div class="talkee-topbar">
+    <div class="talkee-topbar"></div>
+
+    <CommentForm v-if="globals.logged.value" :profile="profile" />
+    <div v-else>
+      <LoginAction @login="handleLoggin" />
+      <SiteLink />
+    </div>
+
+    <div class="talkee-comments-bar">
       <CommentCount />
 
-      <div class="talkee-topbar-right">
+      <div class="talkee-comments-bar-right">
         <RewardModal :type="AirdropType.Comments">
           <template #activator="{ props: { onClick } }">
-            <FButton variant="tonal" size="small" @click="onClick">
-              {{ t("$vuetify.talkee.airdrop") }}
+            <FButton class="talkee-send-comments-airdrop-btn" variant="plain" size="small" @click="onClick">
+              <VIcon size="12" class="talkee-send-comments-airdrop-icon talkee-icon-airdrop">
+                <IconGift />
+              </VIcon>
+              <span class="talkee-send-comments-airdrop-btn-label">
+                {{ t("$vuetify.talkee.airdrop") }}
+              </span>
             </FButton>
           </template>
         </RewardModal>
 
         <SortMethods />
       </div>
-    </div>
-
-    <CommentForm v-if="globals.logged.value" :profile="profile" />
-    <div v-else>
-      <LoginAction @login="handleLoggin" />
-      <SiteLink />
     </div>
 
     <Comments :profile="profile" @login="handleLoggin" />
@@ -53,6 +60,7 @@ import RewardSLugPanel from "./reward/RewardSlugPanel.vue";
 import { useGlobals } from "../composables";
 import { getMe, auth, getAssets } from "../services";
 import { AuthMethod, AuthParams, AirdropType } from "../types";
+import { IconGift } from "./icons";
 
 const props = defineProps({
   siteId: { type: String, default: "" },
@@ -159,21 +167,34 @@ async function handleLoggin() {
   --v-theme-overlay-multiplier: 1;
   padding: 16px;
 
-  .talkee-topbar {
+  .talkee-airdrop-modal {
+    padding: 16px;
+  }
+
+  .talkee-comments-bar {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 32px;
+    margin-top: 24px;
+    border-bottom: 1px solid rgb(var(--v-theme-greyscale_5));
   }
 
-  .talkee-topbar-right {
+  .talkee-comments-bar-right {
     display: flex;
     align-items: center;
     gap: 12px;
   }
 
-  .talkee-airdrop-modal {
-    padding: 16px;
+  .talkee-send-comments-airdrop-btn {
+    padding-left: 8px;
+    padding-right: 8px;
+    .talkee-send-comments-airdrop-icon {
+      margin-right: 4px;
+    }
+    .talkee-send-comments-airdrop-btn-label {
+      font-weight: 500;
+      font-size: 0.8rem;
+    }
   }
 }
 </style>

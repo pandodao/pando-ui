@@ -33,7 +33,7 @@
         <template v-if="!isMe">
           <RewardModal :type="AirdropType.User" :opponent-id="dialogMeta.id">
             <template #activator="{ props: { onClick } }">
-              <FButton color="success" block @click="onClick">
+              <FButton color="" variant="tonal" block @click="onClick">
                 {{ t("$vuetify.talkee.reward") }}
               </FButton>
             </template>
@@ -100,9 +100,9 @@ const dialogMeta = computed(() => {
     };
   }
 
-  let uid = props.user.mixin_identity_number;
-  if (props.user.mvm_public_key !== "") {
-    uid = props.user.mvm_public_key;
+  let uid = props.user.mvm_public_key;
+  if (props.user.mixin_identity_number !== "" && props.user.mixin_identity_number !== '0') {
+    uid = props.user.mixin_identity_number;
   }
   return {
     id: props.user.id,
@@ -147,6 +147,8 @@ function handleViewInExplorer() {
 
   .talkee-profile-username {
     margin-top: 8px;
+    margin-right: 0px;
+    font-size: 0.8rem;
   }
 
   .talkee-profile-uid {

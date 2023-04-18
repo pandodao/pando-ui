@@ -1,6 +1,7 @@
 <template>
-  <div class="talkee-link">
-    <a href="https://pando.im/talkee/" target="_blank">Powered by Talkee</a>
+  <div class="talkee-brand">
+    Powered by
+    <a href="https://pando.im/talkee/" target="_blank">Talkee</a>
   </div>
 </template>
 
@@ -11,18 +12,16 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.talkee-link {
+.talkee-brand {
   text-align: center;
   margin-top: 8px;
-
+  color: rgb(var(--v-theme-greyscale_4));
+  font-size: 12px;
   > a {
     text-decoration: none;
-    font-size: 12px;
-    font-weight: 500;
-    color: rgb(var(--v-theme-greyscale_4));
-
+    color: rgb(var(--v-theme-greyscale_3));
     &:hover {
-      color: rgb(var(--v-theme-greyscale_3));
+      color: rgb(var(--v-theme-greyscale_2));
     }
   }
 }

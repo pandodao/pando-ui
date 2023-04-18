@@ -11,52 +11,53 @@
 
     <VForm v-model="valid">
       <div class="talkee-reward-modal pa-4">
-        <div>
-          <p class="talkee-reward-modal-label">
-            {{ t("$vuetify.talkee.select_asset") }}
-          </p>
-          <FAssetAmountInput
-            v-model:asset="asset"
-            v-model:amount="amount"
-            :placeholder="t('$vuetify.talkee.input_amount')"
-            :assets="assets"
-            :rules="rules.inputAsset"
-          />
-        </div>
-
-        <div>
-          <span class="talkee-reward-modal-label">
-            {{ t("$vuetify.talkee.memo") }}
-          </span>
-          <FInput v-model="memo" :placeholder="t('$vuetify.talkee.memo')" />
-        </div>
+        <VRow>
+          <VCol cols="12">
+            <FAssetAmountInput
+              v-model:asset="asset"
+              v-model:amount="amount"
+              :placeholder="t('$vuetify.talkee.input_amount')"
+              :assets="assets"
+              :rules="rules.inputAsset"
+              hide-details
+            />
+          </VCol>
+          <VCol cols="12">
+            <FInput v-model="memo" :label="t('$vuetify.talkee.memo')" />
+          </VCol>
+        </VRow>
 
         <div v-if="isAirdrop">
-          <div class="mb-6">
-            <p class="talkee-reward-modal-label">
-              {{ t("$vuetify.talkee.select_strategy") }}
-            </p>
-            <VBtnToggle
-              v-model="strategyName"
-              mandatory
-              density="compact"
-              class="talkee-strategy-toggle"
-            >
-              <VBtn value="topn">top N</VBtn>
-              <VBtn value="avg">avg</VBtn>
-            </VBtnToggle>
-          </div>
+          <VRow dense class="mb-6">
+            <VCol cols="12">
+              <VBtnToggle
+                v-model="strategyName"
+                mandatory
+                density="compact"
+                class="talkee-strategy-toggle"
+                block
+              >
+                <!-- @TODO: translate the string -->
+                <VBtn value="topn">top N</VBtn>
+                <VBtn value="avg">avg</VBtn>
+              </VBtnToggle>
+            </VCol>
+            <VCol>
+              <div class="talkee-reward-modal-hint-strategy">
+                <!-- @TODO: translate the string -->
+                {{ strategyName === 'topn' ? "Only top N comments will share the airdrop" : "Every comment will share the airdrop" }}
+              </div>
+            </VCol>
+            <VCol v-if="strategyName === 'topn'" cols="12">
+              <FInput
+                v-model="airdropNumber"
+                :label="t('$vuetify.talkee.input_integer')"
+                :rules="rules.inputN"
+                hide-details
+              />
+            </VCol>
+          </VRow>
 
-          <div v-if="strategyName === 'topn'">
-            <p class="talkee-reward-modal-label">
-              {{ t("$vuetify.talkee.input_topn") }}
-            </p>
-            <FInput
-              v-model="airdropNumber"
-              :placeholder="t('$vuetify.talkee.input_integer')"
-              :rules="rules.inputN"
-            />
-          </div>
         </div>
 
         <FButton
@@ -194,5 +195,10 @@ const handleSubmit = async () => {
   :deep(.v-btn--active) {
     color: rgb(var(--v-theme-greyscale_1));
   }
+}
+
+.talkee-reward-modal-hint-strategy {
+  font-size: 0.7rem;
+  opacity: 0.5;
 }
 </style>

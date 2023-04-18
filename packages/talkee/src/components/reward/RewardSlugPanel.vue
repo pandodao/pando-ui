@@ -35,6 +35,5 @@ const { t } = useLocale();
   align-items: center;
   padding: 20px 0;
   margin: 16px 0;
-  border-bottom: 1px solid rgb(var(--v-theme-greyscale_5));
 }
 </style>

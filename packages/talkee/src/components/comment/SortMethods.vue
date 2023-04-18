@@ -1,14 +1,15 @@
 <template>
   <div class="talkee-sort-methods">
-    <VIcon size="16" class="talkee-icon-sort">
+    <VIcon size="12" class="talkee-icon-sort">
       <IconFilter />
     </VIcon>
-
     <VSelect
+      class="talkee-sort-methods-select"
       :model-value="current"
       variant="plain"
       :items="selectItems"
       @update:model-value="(v) => current = v"
+      hide-details
     />
   </div>
 </template>
@@ -58,8 +59,25 @@ watch(
 <style lang="scss" scoped>
 .talkee-sort-methods {
   display: flex;
-  gap: 8px;
+  gap: 4px;
   align-items: center;
   font-size: 14px;
+}
+
+.talkee-sort-methods-select {
+  &:deep(.v-field__append-inner) {
+    display: none;
+  }
+  &:deep(.v-field__field) {
+    padding: 0;
+    .v-field__input {
+      padding: 0;
+      display: flex;
+      align-items: center;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: rgb(var(--v-theme-greyscale_1));
+    }
+  }
 }
 </style>

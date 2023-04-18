@@ -73,6 +73,6 @@ defineExpose({ loadSubComments });
   background: rgb(var(--v-theme-greyscale_6));
   padding: 8px;
   border-radius: 8px;
-  margin-top: 16px;
+  margin-top: 8px;
 }
 </style>
