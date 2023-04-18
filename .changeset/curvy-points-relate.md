@@ -1,5 +1,0 @@
----
-"@foxone/talkee": minor
----
-
-airdrop

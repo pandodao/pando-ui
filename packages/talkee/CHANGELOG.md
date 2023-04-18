@@ -1,5 +1,11 @@
 # @foxone/talkee
 
+## 3.2.0
+
+### Minor Changes
+
+- 2485efc: airdrop
+
 ## 3.1.0
 
 ### Minor Changes
