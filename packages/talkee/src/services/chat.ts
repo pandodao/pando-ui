@@ -28,7 +28,7 @@ function responseInterceptors() {
   ];
 }
 
-export const httpWs = new Http(
+export const httpChat = new Http(
   {},
   [requestInterceptors()],
   [responseInterceptors()]

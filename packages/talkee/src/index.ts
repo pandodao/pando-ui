@@ -24,7 +24,6 @@ function show(
     apiBase?: string;
     wsBase?: string;
     wsApiBase?: string;
-    redirectUrl?: string;
     slug?: string;
     siteId?: string;
     clientId?: string;

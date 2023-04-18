@@ -1,5 +1,5 @@
 import { http } from "./http";
-import { httpWs } from "./wss";
+import { httpChat } from "./chat";
 import {
   AuthParams,
   AuthResponse,
@@ -66,9 +66,9 @@ export function createAirdrop(data: AirdropParams) {
 }
 
 export function sendMessage(site_id: string, slug: string, data) {
-  return httpWs.post(`/messages?site_id=${site_id}&slug=${slug}`, { data });
+  return httpChat.post(`/messages?site_id=${site_id}&slug=${slug}`, { data });
 }
 
 export function getLatestMessages(site_id: string, slug: string) {
-  return httpWs.get(`/messages?site_id=${site_id}&slug=${slug}&filter=latest`);
+  return httpChat.get(`/messages?site_id=${site_id}&slug=${slug}&filter=latest`);
 }

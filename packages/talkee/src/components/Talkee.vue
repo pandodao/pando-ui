@@ -60,7 +60,6 @@ const props = defineProps({
   apiBase: { type: String, default: "" },
   wsBase: { type: String, default: "" },
   wsApiBase: { type: String, default: "" },
-  redirectUrl: { type: String, default: "" },
   clientId: { type: String, default: "" },
   showLink: { type: Boolean, default: true },
   authMethods: { type: Array, default: () => ["mixin"] },
@@ -79,7 +78,6 @@ onBeforeMount(() => {
   globals.apiBase.value = props.apiBase || "";
   globals.wsBase.value = props.wsBase || "";
   globals.wsApiBase.value = props.wsApiBase || "";
-  globals.redirectUrl.value = props.redirectUrl || "";
   globals.clientId.value = props.clientId || "";
   globals.showLink.value = props.showLink;
 });

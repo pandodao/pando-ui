@@ -28,5 +28,6 @@ export default {
     amount_need_integer: "Number should be integer",
     reward_details: "Reward Details",
     chat_room: "Chat Room",
+    please_login: "Please login",
   },
 };

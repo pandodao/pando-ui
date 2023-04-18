@@ -7,7 +7,6 @@ const channel = ref(getToken().channel);
 const apiBase = ref("");
 const wsBase = ref("");
 const wsApiBase = ref("");
-const redirectUrl = ref("");
 const clientId = ref("");
 const siteId = ref("");
 const slug = ref("");
@@ -43,7 +42,6 @@ export function useGlobals() {
     apiBase,
     wsBase,
     wsApiBase,
-    redirectUrl,
     slug,
     sort,
     total,

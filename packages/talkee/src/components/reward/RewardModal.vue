@@ -3,6 +3,7 @@
     v-model="modal"
     :title="isAirdrop ? t('airdrop') : t('reward')"
     :width="smAndDown ? '100%' : 380"
+    @update:model-value="handleOpen"
   >
     <template #activator="{ props: modalProps }">
       <slot :props="modalProps" name="activator" />
@@ -87,6 +88,7 @@ import {
   FAssetAmountInput,
   FInput,
 } from "@foxone/uikit/components";
+import { useToast } from "@foxone/uikit/plugins/toast";
 import { VBtnToggle, VBtn, VForm } from "vuetify/components";
 import { useGlobals } from "../../composables";
 import { createAirdrop } from "../../services";
@@ -105,6 +107,7 @@ const props = defineProps({
 
 const { t } = useLocale();
 const { smAndDown } = useDisplay();
+const toast = useToast();
 const globals = useGlobals();
 const isAirdrop = computed(() => props.type === AirdropType.Comments);
 
@@ -136,6 +139,13 @@ const rules = computed(() => {
   };
 });
 
+const handleOpen = () => {
+  if (!globals.logged.value) {
+    toast.warning({ message: t("$vuetify.talkee.please_login") })
+    modal.value = false;
+  }
+};
+
 const handleSubmit = async () => {
   loading.value = true;
 
@@ -146,7 +156,7 @@ const handleSubmit = async () => {
     asset_id: asset.value?.id!,
     amount: amount.value,
     memo: memo.value,
-    redirect_url: globals.redirectUrl.value,
+    redirect_url: window.location.href,
   };
 
   if (isAirdrop.value) {
