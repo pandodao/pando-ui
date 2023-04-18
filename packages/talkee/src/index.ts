@@ -22,7 +22,8 @@ function show(
   options: {
     showLink?: boolean;
     apiBase?: string;
-    showChat?: boolean;
+    enableChat?: boolean;
+    enableSlugTip?: boolean;
     wsBase?: string;
     wsApiBase?: string;
     slug?: string;

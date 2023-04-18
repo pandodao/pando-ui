@@ -1,5 +1,9 @@
 <template>
-  <FModal v-model="modal" :title="t('$vuetify.talkee.details')" :width="smAndDown ? '100%' : 400">
+  <FModal
+    v-model="modal"
+    :title="t('$vuetify.talkee.details')"
+    :width="smAndDown ? '100%' : 400"
+  >
     <template #activator="{ props: { onClick } }">
       <Avatar
         :url="meta.avatarUrl"
@@ -10,9 +14,10 @@
     </template>
 
     <VRow dense class="talkee-tip-details">
-      <VCol cols="6"
+      <VCol
         v-for="(tip, index) in tips"
         :key="index"
+        cols="6"
         class="talkee-tip-details-item"
       >
         <img
@@ -80,6 +85,7 @@ const getValue = (val: Tip) => {
 
 <style lang="scss" scoped>
 .talkee-tip-details {
+  width: 100%;
   padding: 0 16px 16px;
   margin-bottom: 0.5rem;
 

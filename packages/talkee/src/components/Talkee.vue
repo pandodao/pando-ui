@@ -1,6 +1,10 @@
 <template>
   <div class="talkee">
-    <RewardSLugPanel :tips-list="tipsList" @login="handleLoggin" />
+    <RewardSLugPanel
+      v-if="enableSlugTip"
+      :tips-list="tipsList"
+      @login="handleLoggin"
+    />
 
     <CommentForm v-if="globals.logged.value" :profile="profile" />
     <div v-else>
@@ -19,7 +23,7 @@
 
     <Comments :profile="profile" @login="handleLoggin" />
 
-    <Launcher v-if="showChat" />
+    <Launcher v-if="enableChat" />
   </div>
 </template>
 
@@ -57,7 +61,8 @@ const props = defineProps({
   siteId: { type: String, default: "" },
   slug: { type: String, default: "" },
   apiBase: { type: String, default: "" },
-  showChat: { type: Boolean, default: false },
+  enableChat: { type: Boolean, default: false },
+  enableSlugTip: { type: Boolean, default: false },
   wsBase: { type: String, default: "" },
   wsApiBase: { type: String, default: "" },
   clientId: { type: String, default: "" },
@@ -72,12 +77,14 @@ const globals = useGlobals();
 const profile = ref<any>(null);
 const tipsList = ref<Tip[][]>([[]]);
 
-const showChat = computed(() => globals.showChat.value);
+const enableChat = computed(() => globals.enableChat.value);
+const enableSlugTip = computed(() => globals.enableSlugTip.value);
 
 onBeforeMount(() => {
   globals.siteId.value = props.siteId || "";
   globals.slug.value = props.slug || "";
-  globals.showChat.value = props.showChat || false;
+  globals.enableChat.value = props.enableChat || false;
+  globals.enableSlugTip.value = props.enableSlugTip || false;
   globals.apiBase.value = props.apiBase || "";
   globals.wsBase.value = props.wsBase || "";
   globals.wsApiBase.value = props.wsApiBase || "";
@@ -88,22 +95,24 @@ onBeforeMount(() => {
 onMounted(async () => {
   globals.assets.value = await getAssets();
 
-  const resp = await getSlugs();
-  const data: Tip[] = resp.tips;
+  if (enableSlugTip.value) {
+    const resp = await getSlugs();
+    const data: Tip[] = resp.tips;
 
-  if (data.length > 0) {
-    let obj: Record<number, Tip[]> = {};
+    if (data.length > 0) {
+      let obj: Record<number, Tip[]> = {};
 
-    data.map((item) => {
-      if (item.user_id in obj) {
-        obj[item.user_id].push(item);
-      } else {
-        obj[item.user_id] = [];
-        obj[item.user_id].push(item);
-      }
-    });
+      data.map((item) => {
+        if (item.user_id in obj) {
+          obj[item.user_id].push(item);
+        } else {
+          obj[item.user_id] = [];
+          obj[item.user_id].push(item);
+        }
+      });
 
-    tipsList.value = Object.values(obj);
+      tipsList.value = Object.values(obj);
+    }
   }
 });
 
