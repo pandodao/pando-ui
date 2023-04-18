@@ -52,6 +52,10 @@ function show(
         apiBase: options.apiBase || "https://talkee-api.pando.im/api",
         clientId: options.clientId || "61504be8-a9da-477d-9e18-448ac3780919",
         authMethods: options.auth?.authMethods,
+        enableSlugTip: options.enableSlugTip,
+        enableChat: options.enableChat,
+        wsBase: options.wsBase || "",
+        wsApiBase: options.wsApiBase || "",
       };
       const { current } = useLocale();
 

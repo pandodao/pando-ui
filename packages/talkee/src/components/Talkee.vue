@@ -83,8 +83,8 @@ const enableSlugTip = computed(() => globals.enableSlugTip.value);
 onBeforeMount(() => {
   globals.siteId.value = props.siteId || "";
   globals.slug.value = props.slug || "";
-  globals.enableChat.value = props.enableChat || false;
-  globals.enableSlugTip.value = props.enableSlugTip || false;
+  globals.enableChat.value = props.enableChat;
+  globals.enableSlugTip.value = props.enableSlugTip;
   globals.apiBase.value = props.apiBase || "";
   globals.wsBase.value = props.wsBase || "";
   globals.wsApiBase.value = props.wsApiBase || "";

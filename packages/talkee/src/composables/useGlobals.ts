@@ -1,6 +1,6 @@
 import { ref, computed } from "vue";
 import { getToken, setToken } from "../utils/helper";
-import { SortMethod, Asset, StoreData, User } from "../types";
+import { SortMethod, Asset, StoreData } from "../types";
 
 const token = ref(getToken().token);
 const channel = ref(getToken().channel);
