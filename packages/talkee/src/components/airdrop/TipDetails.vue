@@ -9,8 +9,8 @@
       />
     </template>
 
-    <div class="talkee-tip-details">
-      <div
+    <VRow dense class="talkee-tip-details">
+      <VCol cols="6"
         v-for="(tip, index) in tips"
         :key="index"
         class="talkee-tip-details-item"
@@ -28,8 +28,8 @@
             {{ `$${getValue(tip)}` }}
           </div>
         </div>
-      </div>
-    </div>
+      </VCol>
+    </VRow>
   </FModal>
 </template>
 
@@ -80,11 +80,8 @@ const getValue = (val: Tip) => {
 
 <style lang="scss" scoped>
 .talkee-tip-details {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 12px;
   padding: 0 16px 16px;
+  margin-bottom: 0.5rem;
 
   &-label {
     color: rgb(var(--v-theme-greyscale_3));
@@ -96,31 +93,26 @@ const getValue = (val: Tip) => {
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 24px;
-    padding: 8px 16px 8px 12px;
-    background: rgba(0, 0, 0, 0.03);
-    box-shadow: 0 0 0 0.5px rgba(0, 0, 0, 0.08);
+    padding: 4px 12px 4px 8px;
 
     &-logo {
       flex: 0;
       text-align: right;
-      width: 28px;
+      width: 24px;
     }
 
     &-text {
       flex: 3;
-      padding-left: 8px;
+      padding-left: 6px;
     }
 
     &-amount {
-      font-size: 12px;
-      font-weight: 700;
-      color: rgb(var(--v-theme-greyscale_2));
+      font-size: 10px;
+      color: rgb(var(--v-theme-greyscale_1));
     }
 
     &-value {
       font-size: 10px;
-      font-weight: 400;
       color: rgb(var(--v-theme-greyscale_3));
     }
   }

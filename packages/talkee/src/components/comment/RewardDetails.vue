@@ -9,20 +9,24 @@
     </template>
 
     <div class="talkee-airdrop-details">
-      <div class="talkee-airdrop-details-total">
-        <div class="talkee-airdrop-details-total-label">
-          {{ t("$vuetify.talkee.total_received") }}
-        </div>
-        <div class="talkee-airdrop-details-total-amount">
-          {{ rewardText }}
-        </div>
-      </div>
+      <VRow no-gutters>
+        <VCol cols="12">
+          <div class="talkee-airdrop-details-total-label">
+            {{ t("$vuetify.talkee.total_received") }}
+          </div>
+        </VCol>
+        <VCol cols="8" class="talkee-airdrop-details-total">
+          <div class="talkee-airdrop-details-total-amount">
+            {{ rewardText }}
+          </div>
+        </VCol>
+      </VRow>
 
       <div class="talkee-airdrop-details-items-label">
         {{ t("$vuetify.talkee.details") }}
       </div>
-      <div class="talkee-airdrop-details-items">
-        <div
+      <VRow dense class="talkee-airdrop-details-items">
+        <VCol cols="6"
           v-for="(item, index) in rewardGroups"
           :key="`reward-item-${index}`"
           class="talkee-airdrop-details-item"
@@ -40,17 +44,19 @@
               {{ `$${item.value_usd}` }}
             </div>
           </div>
-        </div>
-      </div>
+        </VCol>
+      </VRow>
 
-      <FButton color="primary" @click="handleTip">
-        <VIcon size="16">
-          <IconGift />
-        </VIcon>
-        <span class="talkee-airdrop-details-send-btn">
-          {{ t("$vuetify.talkee.send_airdrop") }}
-        </span>
-      </FButton>
+      <div class="talkee-airdrop-details-bottom">
+        <FButton color="primary" @click="handleTip">
+          <VIcon size="16">
+            <IconGift />
+          </VIcon>
+          <span class="talkee-airdrop-details-send-btn">
+            {{ t("$vuetify.talkee.send_airdrop") }}
+          </span>
+        </FButton>
+      </div>
     </div>
   </FModal>
 </template>
@@ -140,8 +146,8 @@ const handleTip = () => {
   flex-direction: column;
 
   &-total {
-    margin-bottom: 24px;
-    text-align: center;
+    margin-bottom: 1rem;
+    text-align: left;
 
     &-label {
       color: rgb(var(--v-theme-greyscale_3));
@@ -161,51 +167,47 @@ const handleTip = () => {
   }
 
   &-items-label {
-    text-align: center;
+    text-align: left;
     color: rgb(var(--v-theme-greyscale_3));
     font-size: 0.7rem;
+    margin-bottom: 0.4rem;
   }
 
   &-items {
-    margin-bottom: 1rem;
-    padding: 0.4rem;
-    flex-wrap: wrap;
-    display: flex;
-    justify-content: center;
+    margin-bottom: 2rem;
   }
 
   &-item {
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 24px;
-    padding: 8px 16px 8px 12px;
-    margin: 0 8px 8px 0;
-    background: rgba(0, 0, 0, 0.03);
-    box-shadow: 0 0 0 0.5px rgba(0, 0, 0, 0.08);
+    padding: 4px 12px 4px 8px;
 
     &-logo {
       flex: 0;
       text-align: right;
-      width: 28px;
+      width: 24px;
     }
 
     &-text {
       flex: 3;
-      padding-left: 8px;
+      padding-left: 6px;
     }
 
     &-amount {
-      font-size: 12px;
-      font-weight: 700;
-      color: rgb(var(--v-theme-greyscale_2));
+      font-size: 10px;
+      color: rgb(var(--v-theme-greyscale_1));
     }
 
     &-value {
       font-size: 10px;
-      font-weight: 400;
       color: rgb(var(--v-theme-greyscale_3));
     }
+  }
+
+  &-bottom {
+    text-align: center;
+    margin-bottom: 1rem;
   }
 
   &-send-btn {

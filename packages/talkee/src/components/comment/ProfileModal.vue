@@ -31,8 +31,13 @@
         </template>
 
         <template v-if="!isMe">
-          <FButton color="" variant="tonal" block @click="showAirdrop">
-            {{ t("$vuetify.talkee.send_airdrop") }}
+          <FButton color="greyscale_2" variant="tonal" block @click="showAirdrop">
+            <VIcon size="16">
+              <IconGift />
+            </VIcon>
+            <div class="talkee-profile-dialog-airdrop-action">
+              {{ t("$vuetify.talkee.send_airdrop") }}
+            </div>
           </FButton>
         </template>
 
@@ -70,6 +75,7 @@ import Username from "../common/Username.vue";
 import { colorize } from "../../utils/helper";
 import { useAirdropModal } from "../../composables/useAirdropModal";
 import { AirdropType } from "../../types";
+import { IconGift } from "../icons";
 
 const globals = useGlobals();
 const { t } = useLocale();
@@ -123,7 +129,7 @@ const isMe = computed(() => {
 });
 
 const isMvm = computed(() => {
-  return props.user.mvm_public_key !== "";
+  return props.user.mvm_public_key !== "" && props.user.mvm_public_key !== "0x0000000000000000000000000000000000000000";
 });
 
 function handleLogout() {
@@ -170,6 +176,9 @@ function handleViewInExplorer() {
   max-width: 200px;
   margin: 20px auto 0 auto;
 
+  .talkee-profile-dialog-airdrop-action {
+    margin-left: 8px;
+  }
   .talkee-logout-action {
     margin-top: 8px;
   }
