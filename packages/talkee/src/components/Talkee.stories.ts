@@ -29,6 +29,7 @@ export const Test = Template.bind({});
 
 Test.args = {
   apiBase: "https://talkee-api.aspens.rocks/api",
+  showChat: false,
   wsBase: "wss://talkee-ws.pando.im/ws",
   wsApiBase: "https://talkee-ws.pando.im/ws",
   slug: "talkee-chat",

@@ -31,13 +31,9 @@
         </template>
 
         <template v-if="!isMe">
-          <RewardModal :type="AirdropType.User" :opponent-id="dialogMeta.id">
-            <template #activator="{ props: { onClick } }">
-              <FButton color="" variant="tonal" block @click="onClick">
-                {{ t("$vuetify.talkee.reward") }}
-              </FButton>
-            </template>
-          </RewardModal>
+          <FButton color="" variant="tonal" block @click="showAirdrop">
+            {{ t("$vuetify.talkee.send_airdrop") }}
+          </FButton>
         </template>
 
         <template v-if="isMe">
@@ -70,9 +66,9 @@ import { FModal, FButton } from "@foxone/uikit/components";
 import { IconFace } from "../icons";
 import { useGlobals } from "../../composables";
 import { isDesktop } from "@foxone/utils/helper";
-import Username from "./Username.vue";
+import Username from "../common/Username.vue";
 import { colorize } from "../../utils/helper";
-import RewardModal from "../reward/RewardModal.vue";
+import { useAirdropModal } from "../../composables/useAirdropModal";
 import { AirdropType } from "../../types";
 
 const globals = useGlobals();
@@ -101,7 +97,10 @@ const dialogMeta = computed(() => {
   }
 
   let uid = props.user.mvm_public_key;
-  if (props.user.mixin_identity_number !== "" && props.user.mixin_identity_number !== '0') {
+  if (
+    props.user.mixin_identity_number !== "" &&
+    props.user.mixin_identity_number !== "0"
+  ) {
     uid = props.user.mixin_identity_number;
   }
   return {
@@ -112,6 +111,12 @@ const dialogMeta = computed(() => {
     avatar: props.user.avatar_url,
   };
 });
+
+const airdropModal = useAirdropModal(AirdropType.User, dialogMeta.value.id);
+const showAirdrop = () => {
+  modal.value = false;
+  airdropModal.showAirdropModal();
+};
 
 const isMe = computed(() => {
   return props.user.id === props.profile?.id;

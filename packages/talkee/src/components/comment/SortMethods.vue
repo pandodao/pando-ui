@@ -3,14 +3,26 @@
     <VIcon size="12" class="talkee-icon-sort">
       <IconFilter />
     </VIcon>
+
     <VSelect
+      v-model="current"
       class="talkee-sort-methods-select"
-      :model-value="current"
       variant="plain"
       :items="selectItems"
-      @update:model-value="(v) => current = v"
+      :menu-props="{ closeOnContentClick: true }"
       hide-details
-    />
+      hide-selected
+    >
+      <template #item="{ item, index }">
+        <FListItem
+          :key="index"
+          class="talkee-sort-methods-select-item"
+          @click="() => (current = item.value)"
+        >
+          {{ item.title }}
+        </FListItem>
+      </template>
+    </VSelect>
   </div>
 </template>
 
@@ -24,6 +36,7 @@ export default {
 import { computed, ref, watch } from "vue";
 import { IconFilter } from "../icons";
 import { VIcon, VSelect } from "vuetify/components";
+import { FListItem } from "@foxone/uikit/components";
 import { useLocale } from "vuetify";
 import { useGlobals } from "../../composables";
 import { SortMethod } from "../../types";
@@ -68,6 +81,7 @@ watch(
   &:deep(.v-field__append-inner) {
     display: none;
   }
+
   &:deep(.v-field__field) {
     padding: 0;
     .v-field__input {
@@ -78,6 +92,10 @@ watch(
       font-weight: 500;
       color: rgb(var(--v-theme-greyscale_1));
     }
+  }
+
+  &-item {
+    font-size: 12px;
   }
 }
 </style>

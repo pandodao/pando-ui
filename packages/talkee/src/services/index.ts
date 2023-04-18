@@ -9,6 +9,10 @@ import {
   AirdropParams,
 } from "../types";
 
+export function getSlugs() {
+  return http.get("/slugs");
+}
+
 export function getMe(): Promise<User> {
   return http.get("/me");
 }
@@ -70,5 +74,7 @@ export function sendMessage(site_id: string, slug: string, data) {
 }
 
 export function getLatestMessages(site_id: string, slug: string) {
-  return httpChat.get(`/messages?site_id=${site_id}&slug=${slug}&filter=latest`);
+  return httpChat.get(
+    `/messages?site_id=${site_id}&slug=${slug}&filter=latest`
+  );
 }

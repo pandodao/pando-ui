@@ -4,6 +4,7 @@ import { SortMethod, Asset, StoreData, User } from "../types";
 
 const token = ref(getToken().token);
 const channel = ref(getToken().channel);
+const showChat = ref(false);
 const apiBase = ref("");
 const wsBase = ref("");
 const wsApiBase = ref("");
@@ -40,6 +41,7 @@ export function useGlobals() {
     siteId,
     clientId,
     apiBase,
+    showChat,
     wsBase,
     wsApiBase,
     slug,

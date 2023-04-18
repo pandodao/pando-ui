@@ -15,7 +15,7 @@
     <div class="talkee-comment-details">
       <div class="talkee-comment-top">
         <Username :name="comment?.creator?.full_name" />
-        <RewardDetails :rewards="comment?.rewards" />
+        <RewardDetails :id="comment?.id!" :rewards="comment?.rewards" />
       </div>
 
       <CommentContent
@@ -46,9 +46,6 @@
             @login="$emit('login')"
             @refresh="handleRefresh"
           />
-
-          <CommentRewardAction :id="comment?.id!" />
-
           <ShareAction :comment="comment" />
         </div>
         <div class="talkee-comment-time">
@@ -76,9 +73,8 @@ import MessageAction from "./MessageAction.vue";
 import ReplyForm from "./ReplyForm.vue";
 import CommentContent from "./CommentContent.vue";
 import RewardDetails from "./RewardDetails.vue";
-import CommentRewardAction from "./CommentRewardAction.vue";
-import Avatar from "./Avatar.vue";
-import Username from "./Username.vue";
+import Avatar from "../common/Avatar.vue";
+import Username from "../common/Username.vue";
 import ProfileModal from "./ProfileModal.vue";
 
 import type { Comment } from "../../types";

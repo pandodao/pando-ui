@@ -18,12 +18,15 @@
 
     <script>
       Talkee.show({
-        apiBase: "https://talkee-api.aspens.rocks/api",
-        slug: "7000103488-course-2367",
-        siteId: "2",
-        clientId: "829283f7-c82d-4931-bad6-a04da459d83b",
         container: "body",
         locale: "en",
+        apiBase: "https://talkee-api.aspens.rocks/api",
+        showChat: false,
+        wsBase: "wss://talkee-ws.pando.im/ws",
+        wsApiBase: "https://talkee-ws.pando.im/ws",
+        slug: "talkee-chat",
+        siteId: "3",
+        clientId: "829283f7-c82d-4931-bad6-a04da459d83b",
         auth: {
           authMethods: ["mixin", "fennec", "metamask"],
         },

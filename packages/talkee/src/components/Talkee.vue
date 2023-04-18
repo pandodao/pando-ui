@@ -1,8 +1,6 @@
 <template>
   <div class="talkee">
-    <RewardSLugPanel />
-
-    <div class="talkee-topbar"></div>
+    <RewardSLugPanel v-if="hasTips" :tips-list="tipsList" />
 
     <CommentForm v-if="globals.logged.value" :profile="profile" />
     <div v-else>
@@ -14,26 +12,14 @@
       <CommentCount />
 
       <div class="talkee-comments-bar-right">
-        <RewardModal :type="AirdropType.Comments">
-          <template #activator="{ props: { onClick } }">
-            <FButton class="talkee-send-comments-airdrop-btn" variant="plain" size="small" @click="onClick">
-              <VIcon size="12" class="talkee-send-comments-airdrop-icon talkee-icon-airdrop">
-                <IconGift />
-              </VIcon>
-              <span class="talkee-send-comments-airdrop-btn-label">
-                {{ t("$vuetify.talkee.airdrop") }}
-              </span>
-            </FButton>
-          </template>
-        </RewardModal>
-
+        <CommentsAirdropAction />
         <SortMethods />
       </div>
     </div>
 
     <Comments :profile="profile" @login="handleLoggin" />
 
-    <Launcher />
+    <Launcher v-if="showChat" />
   </div>
 </template>
 
@@ -44,8 +30,14 @@ export default {
 </script>
 
 <script lang="ts" setup>
-import { watch, ref, defineProps, onBeforeMount, onMounted } from "vue";
-import { useLocale } from "vuetify";
+import {
+  watch,
+  ref,
+  defineProps,
+  onBeforeMount,
+  onMounted,
+  computed,
+} from "vue";
 import { usePassport } from "@foxone/mixin-passport/lib/helper";
 import { useToast } from "@foxone/uikit/plugins/toast";
 import SortMethods from "./comment/SortMethods.vue";
@@ -55,17 +47,17 @@ import Comments from "./comment/Comments.vue";
 import LoginAction from "./comment/LoginAction.vue";
 import SiteLink from "./comment/SiteLink.vue";
 import Launcher from "./chat/Launcher.vue";
-import RewardModal from "./reward/RewardModal.vue";
-import RewardSLugPanel from "./reward/RewardSlugPanel.vue";
+import RewardSLugPanel from "./airdrop/SiteTipsPanel.vue";
+import CommentsAirdropAction from "./comment/CommentsAirdropAction.vue";
 import { useGlobals } from "../composables";
-import { getMe, auth, getAssets } from "../services";
-import { AuthMethod, AuthParams, AirdropType } from "../types";
-import { IconGift } from "./icons";
+import { getMe, auth, getAssets, getSlugs } from "../services";
+import { AuthMethod, AuthParams, Tip } from "../types";
 
 const props = defineProps({
   siteId: { type: String, default: "" },
   slug: { type: String, default: "" },
   apiBase: { type: String, default: "" },
+  showChat: { type: Boolean, default: false },
   wsBase: { type: String, default: "" },
   wsApiBase: { type: String, default: "" },
   clientId: { type: String, default: "" },
@@ -73,16 +65,20 @@ const props = defineProps({
   authMethods: { type: Array, default: () => ["mixin"] },
 });
 
-const { t } = useLocale();
 const passport = usePassport();
 const toast = useToast();
 const globals = useGlobals();
 
 const profile = ref<any>(null);
+const tipsList = ref<Tip[][]>([[]]);
+const hasTips = computed(() => tipsList.value[0].length > 0);
+
+const showChat = computed(() => globals.showChat.value);
 
 onBeforeMount(() => {
   globals.siteId.value = props.siteId || "";
   globals.slug.value = props.slug || "";
+  globals.showChat.value = props.showChat || false;
   globals.apiBase.value = props.apiBase || "";
   globals.wsBase.value = props.wsBase || "";
   globals.wsApiBase.value = props.wsApiBase || "";
@@ -92,6 +88,24 @@ onBeforeMount(() => {
 
 onMounted(async () => {
   globals.assets.value = await getAssets();
+
+  const resp = await getSlugs();
+  const data: Tip[] = resp.tips;
+
+  if (data.length > 0) {
+    let obj: Record<number, Tip[]> = {};
+
+    data.map((item) => {
+      if (item.user_id in obj) {
+        obj[item.user_id].push(item);
+      } else {
+        obj[item.user_id] = [];
+        obj[item.user_id].push(item);
+      }
+    });
+
+    tipsList.value = Object.values(obj);
+  }
 });
 
 watch(
@@ -167,10 +181,6 @@ async function handleLoggin() {
   --v-theme-overlay-multiplier: 1;
   padding: 16px;
 
-  .talkee-airdrop-modal {
-    padding: 16px;
-  }
-
   .talkee-comments-bar {
     display: flex;
     justify-content: space-between;
@@ -183,18 +193,6 @@ async function handleLoggin() {
     display: flex;
     align-items: center;
     gap: 12px;
-  }
-
-  .talkee-send-comments-airdrop-btn {
-    padding-left: 8px;
-    padding-right: 8px;
-    .talkee-send-comments-airdrop-icon {
-      margin-right: 4px;
-    }
-    .talkee-send-comments-airdrop-btn-label {
-      font-weight: 500;
-      font-size: 0.8rem;
-    }
   }
 }
 </style>

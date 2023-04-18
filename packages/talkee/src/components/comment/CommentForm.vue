@@ -52,7 +52,7 @@ import { FButton } from "@foxone/uikit/components";
 import { useToast } from "@foxone/uikit/plugins/toast";
 import { postComment } from "../../services";
 import { useGlobals } from "../../composables";
-import Avatar from "./Avatar.vue";
+import Avatar from "../common/Avatar.vue";
 import ProfileModal from "./ProfileModal.vue";
 import SiteLink from "./SiteLink.vue";
 

@@ -171,3 +171,17 @@ export interface Message {
   created_at: string;
   user: User;
 }
+
+export interface Tip {
+  id: number;
+  uuid: string;
+  user_id: number;
+  site_id: number;
+  slug: string;
+  asset_id: string;
+  amount: string;
+  memo: string;
+  created_at: string;
+  mixpay_code: string;
+  user: User;
+}

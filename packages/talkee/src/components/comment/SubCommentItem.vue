@@ -17,7 +17,7 @@ export default {
 <script lang="ts" setup>
 import { computed, PropType } from "vue";
 import { TextParser } from "@foxone/utils/text-parser";
-import Username from "./Username.vue";
+import Username from "../common/Username.vue";
 
 import type { Comment } from "../../types";
 

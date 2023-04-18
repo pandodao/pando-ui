@@ -2,7 +2,7 @@ import { createApp, onMounted } from "vue";
 import { createVuetify, useLocale } from "vuetify";
 import { VApp } from "vuetify/components";
 import { usePresets } from "@foxone/uikit/presets";
-import { Auth, Toast } from "@foxone/uikit/plugins";
+import { Auth, Toast, Modal } from "@foxone/uikit/plugins";
 import { locales } from "./locales";
 import Passport from "@foxone/mixin-passport";
 
@@ -22,6 +22,7 @@ function show(
   options: {
     showLink?: boolean;
     apiBase?: string;
+    showChat?: boolean;
     wsBase?: string;
     wsApiBase?: string;
     slug?: string;
@@ -69,6 +70,7 @@ function show(
   app.use(Passport, options.passport);
   app.use(Auth, { container: options.container, ...options.auth });
   app.use(Toast, { container: options.container, ...options.toast });
+  app.use(Modal, { container: options.container });
 
   install(app);
 
