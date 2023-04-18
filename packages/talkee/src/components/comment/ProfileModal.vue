@@ -32,6 +32,7 @@
 
         <template v-if="!isMe">
           <FButton
+            class="talkee-profile-dialog-tip-btn"
             color="greyscale_2"
             variant="tonal"
             block
@@ -195,8 +196,19 @@ function handleViewInExplorer() {
   .talkee-profile-dialog-airdrop-action {
     margin-left: 8px;
   }
+
   .talkee-logout-action {
     margin-top: 8px;
+
+    :deep(.v-btn__overlay) {
+      display: none;
+    }
+  }
+
+  .talkee-profile-dialog-tip-btn {
+    :deep(.v-btn__overlay) {
+      display: none;
+    }
   }
 }
 </style>

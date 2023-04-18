@@ -71,7 +71,7 @@ export default {
 <script setup lang="ts">
 import { computed, PropType, ref } from "vue";
 import { useDisplay, useLocale } from "vuetify";
-import { FModal } from "@foxone/uikit/components";
+import { FModal, FButton } from "@foxone/uikit/components";
 import CommentReward from "./CommentReward.vue";
 import { RewardsItem, AirdropType } from "../../types";
 import { useGlobals } from "../../composables";
