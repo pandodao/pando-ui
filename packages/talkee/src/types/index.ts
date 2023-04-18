@@ -12,6 +12,7 @@ export interface Comment {
   updated_at: string;
   creator: User;
   reward?: Reward;
+  rewards?: Array<RewardsItem>;
 }
 
 export interface Rely {
@@ -42,6 +43,7 @@ export interface User {
   full_name: string;
   avatar_url: string;
   created_at: string;
+  mvm_public_key: string;
 }
 
 export enum AuthMethod {
@@ -91,6 +93,16 @@ export interface Asset {
   updated_at: string;
 }
 
+export interface MixinAsset {
+  id: string;
+  symbol: string;
+  displaySymbol?: string;
+  name?: string;
+  logo: string;
+  chainLogo?: string;
+  label?: string;
+}
+
 export interface Reward {
   amount: string;
   asset_id: string;
@@ -106,7 +118,56 @@ export interface Reward {
   updated_at: string;
 }
 
+export interface RewardsItem {
+  id: number;
+  tip_id: number;
+  object_type: string;
+  object_id: number;
+  site_id: number;
+  recipient_id: string;
+  trace_id: string;
+  snapshot_id: string;
+  asset_id: string;
+  amount: string;
+  memo: string;
+  status: string;
+  created_at: string;
+  updated_at: string;
+}
+
+export enum AirdropType {
+  Comments = "comments",
+  Comment = "comment",
+  User = "user",
+  Slug = "slug",
+}
+
+export enum AirdropStrategy {
+  TopN = "topn",
+  Avg = "avg",
+}
+
+export interface AirdropParams {
+  airdrop_type: AirdropType;
+  site_id?: number;
+  slug?: string;
+  opponent_id?: number;
+  strategy_name?: AirdropStrategy;
+  strategy_params?: object;
+  asset_id: string;
+  amount: string;
+  memo: string;
+  redirect_url: string;
+}
+
 export interface StoreData {
   token: string;
   channel: string;
+}
+
+export interface Message {
+  category: string;
+  data: string;
+  created_at: string;
+  user: User;
 }

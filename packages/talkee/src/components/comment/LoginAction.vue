@@ -19,7 +19,7 @@ export default {
 <script lang="ts" setup>
 import { useLocale } from "vuetify";
 import { FButton } from "@foxone/uikit/components";
-import { useGlobals } from "../composables";
+import { useGlobals } from "../../composables";
 
 const globals = useGlobals();
 const { t } = useLocale();

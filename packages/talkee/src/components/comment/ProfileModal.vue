@@ -6,7 +6,7 @@
     :title="t('$vuetify.talkee.user_info')"
   >
     <template #activator="{ props: modalProps }">
-      <slot name="activator" :props="modalProps"></slot>
+      <slot name="activator" :props="modalProps" />
     </template>
 
     <div class="talkee-profile-dialog-inner">
@@ -25,22 +25,28 @@
 
       <div class="talkee-profile-dialog-control">
         <template v-if="isMvm">
-          <FButton
-            color="primary"
-            class="talkee-view-action"
-            block
-            @click="handleViewInExplorer"
-          >
+          <FButton color="primary" block @click="handleViewInExplorer">
             {{ t("$vuetify.talkee.view_in_explorer") }}
           </FButton>
         </template>
+
+        <template v-if="!isMe">
+          <RewardModal :type="AirdropType.User" :opponent-id="dialogMeta.id">
+            <template #activator="{ props: { onClick } }">
+              <FButton color="success" block @click="onClick">
+                {{ t("$vuetify.talkee.reward") }}
+              </FButton>
+            </template>
+          </RewardModal>
+        </template>
+
         <template v-if="isMe">
           <FButton
             variant="outlined"
             color="error"
+            block
             class="talkee-logout-action"
             @click="handleLogout"
-            block
           >
             {{ t("$vuetify.talkee.logout") }}
           </FButton>
@@ -61,11 +67,13 @@ import { computed, ref } from "vue";
 import { useLocale } from "vuetify";
 import { VImg, VAvatar, VIcon } from "vuetify/components";
 import { FModal, FButton } from "@foxone/uikit/components";
-import { IconFace } from "./icons";
-import { useGlobals } from "../composables";
+import { IconFace } from "../icons";
+import { useGlobals } from "../../composables";
 import { isDesktop } from "@foxone/utils/helper";
 import Username from "./Username.vue";
-import { colorize } from "../utils/helper";
+import { colorize } from "../../utils/helper";
+import RewardModal from "../reward/RewardModal.vue";
+import { AirdropType } from "../../types";
 
 const globals = useGlobals();
 const { t } = useLocale();
@@ -84,6 +92,7 @@ const color = computed(() => {
 const dialogMeta = computed(() => {
   if (props.user === null) {
     return {
+      id: "",
       title: "$NAME",
       name: "$NAME",
       uid: "$UID",
@@ -96,6 +105,7 @@ const dialogMeta = computed(() => {
     uid = props.user.mvm_public_key;
   }
   return {
+    id: props.user.id,
     title: props.user.full_name,
     name: props.user.full_name,
     uid,
@@ -148,6 +158,7 @@ function handleViewInExplorer() {
 .talkee-profile-dialog-control {
   display: flex;
   flex-direction: column;
+  gap: 12px;
   align-items: center;
   max-width: 200px;
   margin: 20px auto 0 auto;

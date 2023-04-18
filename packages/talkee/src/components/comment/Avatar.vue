@@ -19,8 +19,8 @@ export default {
 <script lang="ts" setup>
 import { computed } from "vue";
 import { VImg, VAvatar, VIcon } from "vuetify/components";
-import { IconFace } from "./icons";
-import { colorize } from "../utils/helper";
+import { IconFace } from "../icons";
+import { colorize } from "../../utils/helper";
 
 const props = defineProps({
   url: { type: String, default: "" },

@@ -15,7 +15,7 @@
     <div class="talkee-comment-details">
       <div class="talkee-comment-top">
         <Username :name="comment?.creator?.full_name" />
-        <CommentReward :reward="comment?.reward" />
+        <RewardDetails :rewards="comment?.rewards" />
       </div>
 
       <CommentContent
@@ -46,6 +46,9 @@
             @login="$emit('login')"
             @refresh="handleRefresh"
           />
+
+          <CommentRewardAction :id="comment?.id!" />
+
           <ShareAction :comment="comment" />
         </div>
         <div class="talkee-comment-time">
@@ -64,20 +67,21 @@ export default {
 
 <script lang="ts" setup>
 import { ref, PropType } from "vue";
-import { formatTime } from "../utils/helper";
-import { useGlobals } from "../composables";
+import { formatTime } from "../../utils/helper";
+import { useGlobals } from "../../composables";
 import SubComments from "./SubComments.vue";
 import FavAction from "./FavAction.vue";
 import ShareAction from "./ShareAction.vue";
 import MessageAction from "./MessageAction.vue";
 import ReplyForm from "./ReplyForm.vue";
 import CommentContent from "./CommentContent.vue";
-import CommentReward from "./CommentReward.vue";
+import RewardDetails from "./RewardDetails.vue";
+import CommentRewardAction from "./CommentRewardAction.vue";
 import Avatar from "./Avatar.vue";
 import Username from "./Username.vue";
 import ProfileModal from "./ProfileModal.vue";
 
-import type { Comment } from "../types";
+import type { Comment } from "../../types";
 
 defineProps({
   comment: { type: Object as PropType<Comment> },

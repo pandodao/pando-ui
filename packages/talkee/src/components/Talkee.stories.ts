@@ -29,8 +29,11 @@ export const Test = Template.bind({});
 
 Test.args = {
   apiBase: "https://talkee-api.aspens.rocks/api",
-  slug: "talkee-demo",
-  siteId: "2",
+  wsBase: "wss://talkee-ws.pando.im/ws",
+  wsApiBase: "https://talkee-ws.pando.im/ws",
+  redirectUrl: "http://localhost:6006/?path=/story/talkee-talkee--test",
+  slug: "talkee-chat",
+  siteId: "3",
   clientId: "829283f7-c82d-4931-bad6-a04da459d83b",
   authMethods: ["mixin", "fennec", "metamask"],
 };

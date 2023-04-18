@@ -15,8 +15,8 @@ export default {
 
 <script lang="ts" setup>
 import { VIcon } from "vuetify/components";
-import { IconMessage } from "./icons";
-import { useGlobals } from "../composables";
+import { IconMessage } from "../icons";
+import { useGlobals } from "../../composables";
 
 const globals = useGlobals();
 </script>

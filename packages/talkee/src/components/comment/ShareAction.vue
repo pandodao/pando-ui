@@ -20,7 +20,7 @@ export default {
 
 <script lang="ts" setup>
 import { defineProps } from "vue";
-import { IconShare } from "./icons";
+import { IconShare } from "../icons";
 import { VIcon } from "vuetify/components";
 import { FButton } from "@foxone/uikit/components";
 import { isDesktop } from "@foxone/utils/helper";

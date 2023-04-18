@@ -7,3 +7,5 @@ export * from "./IconHash";
 export * from "./IconFace";
 export * from "./IconGift";
 export * from "./IconShare";
+export * from "./IconChat";
+export * from "./IconRewardHand";

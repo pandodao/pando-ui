@@ -1,10 +1,13 @@
 import { ref, computed } from "vue";
 import { getToken, setToken } from "../utils/helper";
-import { SortMethod, Asset, StoreData } from "../types";
+import { SortMethod, Asset, StoreData, User } from "../types";
 
 const token = ref(getToken().token);
 const channel = ref(getToken().channel);
 const apiBase = ref("");
+const wsBase = ref("");
+const wsApiBase = ref("");
+const redirectUrl = ref("");
 const clientId = ref("");
 const siteId = ref("");
 const slug = ref("");
@@ -38,6 +41,9 @@ export function useGlobals() {
     siteId,
     clientId,
     apiBase,
+    wsBase,
+    wsApiBase,
+    redirectUrl,
     slug,
     sort,
     total,

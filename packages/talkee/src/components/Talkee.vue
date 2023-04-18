@@ -1,8 +1,21 @@
 <template>
   <div class="talkee">
+    <RewardSLugPanel />
+
     <div class="talkee-topbar">
       <CommentCount />
-      <SortMethods />
+
+      <div class="talkee-topbar-right">
+        <RewardModal :type="AirdropType.Comments">
+          <template #activator="{ props: { onClick } }">
+            <FButton variant="tonal" size="small" @click="onClick">
+              {{ t("$vuetify.talkee.airdrop") }}
+            </FButton>
+          </template>
+        </RewardModal>
+
+        <SortMethods />
+      </div>
     </div>
 
     <CommentForm v-if="globals.logged.value" :profile="profile" />
@@ -12,6 +25,8 @@
     </div>
 
     <Comments :profile="profile" @login="handleLoggin" />
+
+    <Launcher />
   </div>
 </template>
 
@@ -23,27 +38,35 @@ export default {
 
 <script lang="ts" setup>
 import { watch, ref, defineProps, onBeforeMount, onMounted } from "vue";
+import { useLocale } from "vuetify";
 import { usePassport } from "@foxone/mixin-passport/lib/helper";
 import { useToast } from "@foxone/uikit/plugins/toast";
-import SortMethods from "./SortMethods.vue";
-import CommentCount from "./CommentCount.vue";
-import CommentForm from "./CommentForm.vue";
-import Comments from "./Comments.vue";
-import LoginAction from "./LoginAction.vue";
-import SiteLink from "./SiteLink.vue";
+import SortMethods from "./comment/SortMethods.vue";
+import CommentCount from "./comment/CommentCount.vue";
+import CommentForm from "./comment/CommentForm.vue";
+import Comments from "./comment/Comments.vue";
+import LoginAction from "./comment/LoginAction.vue";
+import SiteLink from "./comment/SiteLink.vue";
+import Launcher from "./chat/Launcher.vue";
+import RewardModal from "./reward/RewardModal.vue";
+import RewardSLugPanel from "./reward/RewardSlugPanel.vue";
 import { useGlobals } from "../composables";
 import { getMe, auth, getAssets } from "../services";
-import { AuthMethod, AuthParams } from "../types";
+import { AuthMethod, AuthParams, AirdropType } from "../types";
 
 const props = defineProps({
   siteId: { type: String, default: "" },
   slug: { type: String, default: "" },
   apiBase: { type: String, default: "" },
+  wsBase: { type: String, default: "" },
+  wsApiBase: { type: String, default: "" },
+  redirectUrl: { type: String, default: "" },
   clientId: { type: String, default: "" },
   showLink: { type: Boolean, default: true },
   authMethods: { type: Array, default: () => ["mixin"] },
 });
 
+const { t } = useLocale();
 const passport = usePassport();
 const toast = useToast();
 const globals = useGlobals();
@@ -54,6 +77,9 @@ onBeforeMount(() => {
   globals.siteId.value = props.siteId || "";
   globals.slug.value = props.slug || "";
   globals.apiBase.value = props.apiBase || "";
+  globals.wsBase.value = props.wsBase || "";
+  globals.wsApiBase.value = props.wsApiBase || "";
+  globals.redirectUrl.value = props.redirectUrl || "";
   globals.clientId.value = props.clientId || "";
   globals.showLink.value = props.showLink;
 });
@@ -66,7 +92,9 @@ watch(
   () => [globals.token.value],
   async () => {
     if (globals.logged.value) {
-      profile.value = await getMe();
+      const resp = await getMe();
+      profile.value = resp;
+      globals.profile.value = resp;
     }
   },
   { immediate: true }
@@ -136,7 +164,18 @@ async function handleLoggin() {
   .talkee-topbar {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     margin-bottom: 32px;
+  }
+
+  .talkee-topbar-right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .talkee-airdrop-modal {
+    padding: 16px;
   }
 }
 </style>

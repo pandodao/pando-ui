@@ -18,8 +18,8 @@ export default {
 
 <script lang="ts" setup>
 import { onMounted, ref, watch } from "vue";
-import { getSubComments } from "../services";
-import { useGlobals } from "../composables";
+import { getSubComments } from "../../services";
+import { useGlobals } from "../../composables";
 import SubCommentItem from "./SubCommentItem.vue";
 import LoadMore from "./LoadMore.vue";
 

@@ -28,10 +28,10 @@ import { ref, watch, computed, PropType } from "vue";
 import { useLocale } from "vuetify";
 import CommentItem from "./CommentItem.vue";
 import InfiniteLoad from "./InfiniteLoad.vue";
-import { useGlobals } from "../composables";
-import { getComments } from "../services";
+import { useGlobals } from "../../composables";
+import { getComments } from "../../services";
 
-import type { User } from "../types";
+import type { User } from "../../types";
 
 defineProps({
   profile: { type: Object as PropType<User> },

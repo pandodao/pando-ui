@@ -22,7 +22,7 @@ export default {
 <script lang="ts" setup>
 import { computed } from "vue";
 import { TextParser } from "@foxone/utils/text-parser";
-import { IconHash } from "./icons";
+import { IconHash } from "../icons";
 import { VIcon } from "vuetify/components";
 
 const props = defineProps({

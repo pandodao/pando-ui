@@ -1,10 +1,12 @@
 import { http } from "./http";
+import { httpWs } from "./wss";
 import {
   AuthParams,
   AuthResponse,
   User,
   Comment,
   PaginationParams,
+  AirdropParams,
 } from "../types";
 
 export function getMe(): Promise<User> {
@@ -57,4 +59,16 @@ export function getAssets() {
 
 export function getAsset(id: string) {
   return http.get(`/assets/${id}`);
+}
+
+export function createAirdrop(data: AirdropParams) {
+  return http.post("/airdrops", { data });
+}
+
+export function sendMessage(site_id: string, slug: string, data) {
+  return httpWs.post(`/messages?site_id=${site_id}&slug=${slug}`, { data });
+}
+
+export function getLatestMessages(site_id: string, slug: string) {
+  return httpWs.get(`/messages?site_id=${site_id}&slug=${slug}&filter=latest`);
 }

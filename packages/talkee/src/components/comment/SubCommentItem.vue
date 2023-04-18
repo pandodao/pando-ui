@@ -19,7 +19,7 @@ import { computed, PropType } from "vue";
 import { TextParser } from "@foxone/utils/text-parser";
 import Username from "./Username.vue";
 
-import type { Comment } from "../types";
+import type { Comment } from "../../types";
 
 const props = defineProps({
   comment: { type: Object as PropType<Comment> },

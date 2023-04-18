@@ -36,8 +36,8 @@ import { useLocale } from "vuetify";
 import { VIcon } from "vuetify/components";
 import { FButton, FInput } from "@foxone/uikit/components";
 import { useToast } from "@foxone/uikit/plugins/toast";
-import { IconSend } from "./icons";
-import { postSubComment, getComment } from "../services";
+import { IconSend } from "../icons";
+import { postSubComment, getComment } from "../../services";
 
 const props = defineProps({
   comment: { type: Object },

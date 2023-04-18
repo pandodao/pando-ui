@@ -1,6 +1,6 @@
 import { store } from "./storeage";
 import { STORE_KEYS } from "../constants";
-import { StoreData } from "../types";
+import { StoreData, Asset, MixinAsset } from "../types";
 
 export { format as formatTime } from "@foxone/utils/time";
 
@@ -43,4 +43,14 @@ export function colorize(userId) {
 
   const pos = userId % colors.length;
   return colors[pos];
+}
+
+export function convertMixinAsset(asset: Asset): MixinAsset {
+  return {
+    id: asset.asset_id,
+    symbol: asset.symbol,
+    logo: asset.icon_url,
+    name: asset.name,
+    chainLogo: asset.icon_url,
+  };
 }
