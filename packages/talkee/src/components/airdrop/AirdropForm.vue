@@ -1,6 +1,6 @@
 <template>
   <VForm v-model="valid">
-    <div class="pa-4">
+    <div class="talkee-airdrop-modal-form">
       <VRow>
         <VCol cols="12">
           <FAssetAmountInput
@@ -17,8 +17,8 @@
         </VCol>
       </VRow>
 
-      <div v-if="isAirdrop">
-        <VRow dense class="mb-6">
+      <div v-if="isCommentsAirdrop">
+        <VRow dense class="talkee-airdrop-modal-comments-fields">
           <VCol cols="12">
             <VBtnToggle
               v-model="strategyName"
@@ -27,10 +27,10 @@
               class="talkee-strategy-toggle"
               block
             >
-              <VBtn value="topn">
+              <VBtn value="topn" :ripple="false">
                 {{ t("$vuetify.talkee.top_n") }}
               </VBtn>
-              <VBtn value="avg">
+              <VBtn value="avg" :ripple="false">
                 {{ t("$vuetify.talkee.avg") }}
               </VBtn>
             </VBtnToggle>
@@ -99,7 +99,7 @@ const props = defineProps({
 const { t } = useLocale();
 const globals = useGlobals();
 
-const isAirdrop = computed(() => props.type === AirdropType.Comments);
+const isCommentsAirdrop = computed(() => props.type === AirdropType.Comments);
 
 const assets = computed(() => {
   const assetsCopy = globals.assets.value;
@@ -143,7 +143,7 @@ const handleSubmit = async () => {
     redirect_url: window.location.href,
   };
 
-  if (isAirdrop.value) {
+  if (isCommentsAirdrop.value) {
     params.strategy_name = strategyName.value;
     params.strategy_params = { n: Number(airdropNumber.value) };
   } else if (props.type !== AirdropType.Slug) {
@@ -171,13 +171,26 @@ onMounted(() => (asset.value = assets.value[0]));
     color: rgb(var(--v-theme-greyscale_3));
   }
 
+  :deep(.v-btn:hover) {
+    color: rgb(var(--v-theme-greyscale_2));
+  }
+
   :deep(.v-btn--active) {
     color: rgb(var(--v-theme-greyscale_1));
+    background-color: rgb(var(--v-theme-greyscale_5));
+  }
+
+  :deep(.v-btn .v-btn__overlay) {
+    display: none;
   }
 }
 
 .talkee-airdrop-modal-hint-strategy {
   font-size: 0.7rem;
-  opacity: 0.5;
+  opacity: 0.6;
+}
+
+.talkee-airdrop-modal-comments-fields {
+  margin-bottom: 24px;
 }
 </style>

@@ -26,6 +26,14 @@
       top: 12px;
       right: 16px;
       z-index: 1;
+
+      &:hover {
+        background-color: rgb(var(--v-theme-greyscale_6));
+      }
+    }
+
+    .f-modal__close .v-btn__overlay {
+      display: none;
     }
   }
 }

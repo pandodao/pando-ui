@@ -19,6 +19,7 @@ export function useAirdropModal(type: AirdropType, opponentId?: number) {
       title: title.value,
       text: <AirdropForm type={type} opponentId={opponentId} />,
       hideActions: true,
+      width: 400,
     });
   }
 
