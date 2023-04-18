@@ -20,7 +20,7 @@ export default {
     select_strategy: "Strategy",
     input_topn: "Number of Airdrops",
     start_chat: "Start chat",
-    input_integer: "Input integer",
+    input_integer: "Input the \"N\"",
     input_amount: "Total amount",
     asset_required: "Asset is required",
     amount_invalid: "Amount is invalid",
