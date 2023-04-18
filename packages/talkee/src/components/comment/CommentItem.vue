@@ -1,6 +1,10 @@
 <template>
   <div class="talkee-comment-item">
-    <ProfileModal :user="comment?.creator" :profile="profile">
+    <ProfileModal
+      :user="comment?.creator"
+      :profile="profile"
+      @login="$emit('login')"
+    >
       <template #activator="{ props: { onClick } }">
         <Avatar
           :url="comment?.creator?.avatar_url"
@@ -15,7 +19,11 @@
     <div class="talkee-comment-details">
       <div class="talkee-comment-top">
         <Username :name="comment?.creator?.full_name" />
-        <RewardDetails :id="comment?.id!" :rewards="comment?.rewards" />
+        <RewardDetails
+          :id="comment?.id!"
+          :rewards="comment?.rewards"
+          @login="$emit('login')"
+        />
       </div>
 
       <CommentContent

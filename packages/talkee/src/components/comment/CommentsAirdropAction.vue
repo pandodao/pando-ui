@@ -3,7 +3,7 @@
     class="talkee-send-comments-airdrop-btn"
     variant="plain"
     size="small"
-    @click="() => airdropModal.showAirdropModal()"
+    @click="handleAirdrop"
   >
     <VIcon
       size="12"
@@ -28,11 +28,25 @@ import { useLocale } from "vuetify";
 import { IconGift } from "../icons";
 import { VIcon } from "vuetify/components";
 import { FButton } from "@foxone/uikit/components";
+import { useGlobals } from "../../composables";
 import { useAirdropModal } from "../../composables/useAirdropModal";
 import { AirdropType } from "../../types";
 
+const emits = defineEmits({
+  login: () => true,
+});
+
 const { t } = useLocale();
 const airdropModal = useAirdropModal(AirdropType.Comments);
+const globals = useGlobals();
+
+const handleAirdrop = () => {
+  if (!globals.logged.value) {
+    emits("login");
+  } else {
+    airdropModal.showAirdropModal();
+  }
+}
 </script>
 
 <style lang="scss" scoped>

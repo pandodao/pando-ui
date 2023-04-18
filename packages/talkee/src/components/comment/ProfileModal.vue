@@ -31,7 +31,12 @@
         </template>
 
         <template v-if="!isMe">
-          <FButton color="greyscale_2" variant="tonal" block @click="showAirdrop">
+          <FButton
+            color="greyscale_2"
+            variant="tonal"
+            block
+            @click="showAirdrop"
+          >
             <VIcon size="16">
               <IconGift />
             </VIcon>
@@ -85,6 +90,10 @@ const props = defineProps({
   profile: { type: Object },
 });
 
+const emits = defineEmits({
+  login: () => true,
+});
+
 const modal = ref(false);
 
 const color = computed(() => {
@@ -121,7 +130,11 @@ const dialogMeta = computed(() => {
 const airdropModal = useAirdropModal(AirdropType.User, dialogMeta.value.id);
 const showAirdrop = () => {
   modal.value = false;
-  airdropModal.showAirdropModal();
+  if (!globals.logged.value) {
+    emits("login");
+  } else {
+    airdropModal.showAirdropModal();
+  }
 };
 
 const isMe = computed(() => {
@@ -129,7 +142,10 @@ const isMe = computed(() => {
 });
 
 const isMvm = computed(() => {
-  return props.user.mvm_public_key !== "" && props.user.mvm_public_key !== "0x0000000000000000000000000000000000000000";
+  return (
+    props.user.mvm_public_key !== "" &&
+    props.user.mvm_public_key !== "0x0000000000000000000000000000000000000000"
+  );
 });
 
 function handleLogout() {

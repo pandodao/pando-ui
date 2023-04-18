@@ -26,9 +26,10 @@
         {{ t("$vuetify.talkee.details") }}
       </div>
       <VRow dense class="talkee-airdrop-details-items">
-        <VCol cols="6"
+        <VCol
           v-for="(item, index) in rewardGroups"
           :key="`reward-item-${index}`"
+          cols="6"
           class="talkee-airdrop-details-item"
         >
           <img
@@ -83,6 +84,10 @@ const props = defineProps({
   rewards: { type: Array as PropType<RewardsItem[]> },
 });
 
+const emits = defineEmits({
+  login: () => true,
+});
+
 const { t } = useLocale();
 const { smAndDown } = useDisplay();
 const airdropModal = useAirdropModal(AirdropType.Comment, props.id);
@@ -135,7 +140,11 @@ const rewardText = computed(() => {
 
 const handleTip = () => {
   modal.value = false;
-  airdropModal.showAirdropModal();
+  if (!globals.logged.value) {
+    emits("login");
+  } else {
+    airdropModal.showAirdropModal();
+  }
 };
 </script>
 

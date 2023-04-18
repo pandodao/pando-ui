@@ -4,7 +4,7 @@
       {{ t("$vuetify.talkee.send_tips") }}
     </FButton>
 
-    <PayerList :tips-list="tipsList" />
+    <PayerList v-if="hasTips" :tips-list="tipsList" />
   </div>
 </template>
 
@@ -15,21 +15,35 @@ export default {
 </script>
 
 <script setup lang="ts">
-import { PropType } from "vue";
+import { PropType, computed } from "vue";
 import { useLocale } from "vuetify";
 import PayerList from "./PayerList.vue";
 import { FButton } from "@foxone/uikit/components";
+import { useGlobals } from "../../composables";
 import { useAirdropModal } from "../../composables/useAirdropModal";
 import { AirdropType, Tip } from "../../types";
 
-defineProps({
+const props = defineProps({
   tipsList: { type: Array as PropType<Tip[][]>, default: () => [[]] },
+});
+
+const emits = defineEmits({
+  login: () => true,
 });
 
 const { t } = useLocale();
 const airdropModal = useAirdropModal(AirdropType.Slug);
+const globals = useGlobals();
 
-const showAirdrop = () => airdropModal.showAirdropModal();
+const hasTips = computed(() => props.tipsList[0].length > 0);
+
+const showAirdrop = () => {
+  if (!globals.logged.value) {
+    emits("login")
+  } else {
+    airdropModal.showAirdropModal();
+  }
+};
 </script>
 
 <style lang="scss" scoped>

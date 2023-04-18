@@ -1,6 +1,6 @@
 <template>
   <div class="talkee">
-    <RewardSLugPanel v-if="hasTips" :tips-list="tipsList" />
+    <RewardSLugPanel :tips-list="tipsList" @login="handleLoggin" />
 
     <CommentForm v-if="globals.logged.value" :profile="profile" />
     <div v-else>
@@ -12,7 +12,7 @@
       <CommentCount />
 
       <div class="talkee-comments-bar-right">
-        <CommentsAirdropAction />
+        <CommentsAirdropAction @login="handleLoggin" />
         <SortMethods />
       </div>
     </div>
@@ -71,7 +71,6 @@ const globals = useGlobals();
 
 const profile = ref<any>(null);
 const tipsList = ref<Tip[][]>([[]]);
-const hasTips = computed(() => tipsList.value[0].length > 0);
 
 const showChat = computed(() => globals.showChat.value);
 
