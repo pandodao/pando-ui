@@ -1,5 +1,11 @@
 # @foxone/talkee
 
+## 3.1.0
+
+### Minor Changes
+
+- a3e90c4: updat talkee
+
 ## 3.0.3
 
 ### Patch Changes
