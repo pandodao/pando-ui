@@ -1,0 +1,2 @@
+var n=Object.defineProperty;var s=(e,t)=>n(e,"name",{value:t,configurable:!0});import{b as a}from"./vue.esm-bundler.9500adb2.js";import{b as r,h as o}from"./useRender.44945942.js";const i=[null,"default","comfortable","compact"],c=r({density:{type:String,default:"default",validator:e=>i.includes(e)}},"density");function y(e){let t=arguments.length>1&&arguments[1]!==void 0?arguments[1]:o();return{densityClasses:a(()=>`${t}--density-${e.density}`)}}s(y,"useDensity");export{c as m,y as u};
+//# sourceMappingURL=density.0c8fab1e.js.map
