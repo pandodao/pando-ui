@@ -1,5 +1,11 @@
 # @foxone/uikit
 
+## 4.2.12
+
+### Patch Changes
+
+- 2eb3a8e: update asset filter
+
 ## 4.2.11
 
 ### Patch Changes
