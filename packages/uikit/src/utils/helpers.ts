@@ -15,7 +15,10 @@ export function filterAssets(assets: Asset[], filter: string) {
     const name = (asset?.name || "").toLowerCase();
     const symbol = (asset?.symbol || "").toLowerCase();
 
-    return name.startsWith(filter) || symbol.includes(filter);
+    return (
+      name.startsWith(filter.toLowerCase()) ||
+      symbol.startsWith(filter.toLowerCase())
+    );
   });
 }
 
