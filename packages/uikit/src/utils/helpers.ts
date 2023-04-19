@@ -14,11 +14,9 @@ export function filterAssets(assets: Asset[], filter: string) {
   return assets.filter((asset) => {
     const name = (asset?.name || "").toLowerCase();
     const symbol = (asset?.symbol || "").toLowerCase();
+    const filterStr = filter.toLowerCase();
 
-    return (
-      name.startsWith(filter.toLowerCase()) ||
-      symbol.startsWith(filter.toLowerCase())
-    );
+    return name.includes(filterStr) || symbol.includes(filterStr);
   });
 }
 
