@@ -1,5 +1,11 @@
 # @foxone/talkee
 
+## 3.2.1
+
+### Patch Changes
+
+- 9ddfff8: talkee airdrop input style fix
+
 ## 3.2.0
 
 ### Minor Changes
