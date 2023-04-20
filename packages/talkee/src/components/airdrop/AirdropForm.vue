@@ -1,7 +1,7 @@
 <template>
   <VForm v-model="valid">
     <div class="talkee-airdrop-modal-form">
-      <VRow>
+      <VRow dense>
         <VCol cols="12">
           <FAssetAmountInput
             v-model:asset="asset"
@@ -9,6 +9,7 @@
             :placeholder="t('$vuetify.talkee.input_amount')"
             :assets="assets"
             :rules="rules.inputAsset"
+            class="talkee-airdrop-modal-asset-input"
             hide-details
           />
         </VCol>
@@ -23,9 +24,9 @@
             <VBtnToggle
               v-model="strategyName"
               mandatory
-              density="compact"
-              class="talkee-strategy-toggle"
-              block
+              density="comfortable"
+              class="talkee-strategy-toggle d-flex"
+              variant="tonal"
             >
               <VBtn value="topn" :ripple="false">
                 {{ t("$vuetify.talkee.top_n") }}
@@ -166,6 +167,7 @@ onMounted(() => (asset.value = assets.value[0]));
 <style lang="scss" scoped>
 .talkee-strategy-toggle {
   :deep(.v-btn) {
+    width: 50%;
     font-size: 14px;
     font-weight: 500;
     color: rgb(var(--v-theme-greyscale_3));
@@ -182,6 +184,12 @@ onMounted(() => (asset.value = assets.value[0]));
 
   :deep(.v-btn .v-btn__overlay) {
     display: none;
+  }
+}
+
+.talkee-airdrop-modal-asset-input {
+  :deep(input) {
+    background: transparent;
   }
 }
 
