@@ -1,5 +1,11 @@
 # @foxone/talkee
 
+## 3.2.2
+
+### Patch Changes
+
+- 165a3f1: fix ui issues
+
 ## 3.2.1
 
 ### Patch Changes

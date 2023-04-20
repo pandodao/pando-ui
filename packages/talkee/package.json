@@ -1,6 +1,6 @@
 {
   "name": "@foxone/talkee",
-  "version": "3.2.1",
+  "version": "3.2.2",
   "description": "Talkee components",
   "main": "dist/index.mjs",
   "module": "dist/index.mjs",
