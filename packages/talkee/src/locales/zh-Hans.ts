@@ -32,7 +32,7 @@ export default {
     "please_login": "请登录",
     "top_n": "空投给前 N",
     "avg": "平均空投",
-    "top_n_hint": "只有前 N 名评论将分享空投",
+    "top_n_hint": "只有前 N 名最高评分的评论将分享空投",
     "avg_hint": "每个评论都将分享空投",
     "total_received": "总接收量",
     "details": "详情",

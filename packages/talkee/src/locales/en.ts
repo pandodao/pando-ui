@@ -32,7 +32,7 @@ export default {
     please_login: "Please login",
     top_n: "Top N",
     avg: "Avarage",
-    top_n_hint: "Only top N comments will share the airdrop",
+    top_n_hint: "Only top N comments with highest score will share the airdrop",
     avg_hint: "Every comment will share the airdrop",
     total_received: "Total received",
     details: "Details",

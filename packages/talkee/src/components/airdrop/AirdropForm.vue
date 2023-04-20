@@ -14,7 +14,7 @@
           />
         </VCol>
         <VCol cols="12">
-          <FInput v-model="memo" :label="t('$vuetify.talkee.memo')" />
+          <FInput v-model="memo" :label="t('$vuetify.talkee.memo')" class="talkee-input talkee-airdrop-modal-memo-input" />
         </VCol>
       </VRow>
 
@@ -25,7 +25,7 @@
               v-model="strategyName"
               mandatory
               density="comfortable"
-              class="talkee-strategy-toggle d-flex"
+              class="talkee-strategy-toggle"
               variant="tonal"
             >
               <VBtn value="topn" :ripple="false">
@@ -50,6 +50,7 @@
           <VCol v-if="strategyName === 'topn'" cols="12">
             <FInput
               v-model="airdropNumber"
+              class="talkee-input talkee-airdrop-modal-topn-input"
               :label="t('$vuetify.talkee.input_integer')"
               :rules="rules.inputN"
               hide-details
@@ -58,15 +59,16 @@
         </VRow>
       </div>
 
-      <FButton
-        :disabled="!valid"
-        color="primary"
-        block
-        :loading="loading"
-        @click="handleSubmit"
-      >
-        {{ t("$vuetify.talkee.submit") }}
-      </FButton>
+      <div class="talkee-airdrop-modal-form-bottom">
+        <FButton
+          :disabled="!valid"
+          color="primary"
+          :loading="loading"
+          @click="handleSubmit"
+        >
+          {{ t("$vuetify.talkee.submit") }}
+        </FButton>
+      </div>
     </div>
   </VForm>
 </template>
@@ -193,6 +195,12 @@ onMounted(() => (asset.value = assets.value[0]));
   }
 }
 
+.talkee-input {
+  :deep(input) {
+    background: transparent;
+  }
+}
+
 .talkee-airdrop-modal-hint-strategy {
   font-size: 0.7rem;
   opacity: 0.6;
@@ -200,5 +208,9 @@ onMounted(() => (asset.value = assets.value[0]));
 
 .talkee-airdrop-modal-comments-fields {
   margin-bottom: 24px;
+}
+
+.talkee-airdrop-modal-form {
+  text-align: center;
 }
 </style>

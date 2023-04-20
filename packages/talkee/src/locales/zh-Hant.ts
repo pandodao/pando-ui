@@ -32,7 +32,7 @@ export default {
     please_login: "請先登入",
     top_n: "前 N 名",
     avg: "平均分配",
-    top_n_hint: "只有前 N 名評論會分享空投",
+    top_n_hint: "只有前 N 名最高评分的評論會分享空投",
     avg_hint: "每個評論都會分享空投",
     total_received: "總共收到的金額",
     details: "詳細資訊",

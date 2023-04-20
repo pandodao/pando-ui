@@ -109,11 +109,13 @@ const rewardGroups = computed(() => {
     const item = props.rewards[ix];
     if (!groups[item.asset_id]) {
       const asset = getAsset(item.asset_id);
-      groups[item.asset_id] = {
-        asset,
-        amount: 0,
-        value_usd: 0,
-      };
+      if (asset) {
+        groups[item.asset_id] = {
+          asset,
+          amount: 0,
+          value_usd: 0,
+        };
+      }
     }
     groups[item.asset_id].amount += parseFloat(item.amount);
   }

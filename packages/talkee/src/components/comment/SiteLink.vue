@@ -14,7 +14,7 @@ export default {
 <style lang="scss" scoped>
 .talkee-brand {
   text-align: center;
-  margin-top: 8px;
+  margin-top: 16px;
   color: rgb(var(--v-theme-greyscale_4));
   font-size: 12px;
   > a {
