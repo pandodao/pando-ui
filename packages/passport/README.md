@@ -9,7 +9,8 @@ Vue3 plugin for multi auth channel for mixin account, support Mixin Apps, fennec
 install from npm
 
 ```shell
-yarn add @foxone/mixin-passport
+// install lastest version of 1.x
+yarn add @foxone/mixin-passport@1
 ```
 
 install plugins
