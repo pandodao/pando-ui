@@ -2,6 +2,8 @@
 
 Vue3 plugin for multi auth channel for mixin account, support Mixin Apps, fennec, and MVM, depend on @foxone/uikit.
 
+**Please be attention: This repo is for @foxone/mixin-passport version 1.x, if you are using @foxone/uikit@3.x Please visit [Version 0.x](https://github.com/fox-one/fe-tools-mixin/tree/main/packages/passport)**
+
 ## Use via npm
 
 install from npm
@@ -35,9 +37,9 @@ Vue.use(Passport, {
 
 ```ts
 interface PassportOptions {
-  infuraId?: string; // Needed by WalletConnect for MVM connection
-  chainId?: number; //
-  onDisconnect?: () => void; // callback for wallet disconnect. eg: Metamask chain changed
+  infuraId?: string;
+  chainId?: number;
+  customizeToken?: boolean;
 }
 ```
 
@@ -51,23 +53,59 @@ import { usePassport } from "@foxone/mixin-passport/lib/helper";
 // must use in setup function
 const passport = usePassport();
 
-const { token, channel } = await passport.auth({
+const authData = await passport.auth({
   // AuthOptions
 });
 ```
 
 ```ts
 interface AuthOptions {
-  origin: string; // used for fennec identify website
-  config?: { infuraId?: string };
+  origin?: string;
   JWTPayload?: any;
-  getTokenByCode?: (code: string) => Promise<string>; // custom token action while login by Mixin Messenager OAuth
-  authMethods?: AuthMethod[]; // support wallets
+  // if customizeToken = false:
+  // mvm and fennec channel will return access token for https://api.mixin.one/me
+  // developer can save this token to access Mixin Messenger backend
+  // ATTENTION: /me token has a short expire time (about one day)
+  // token will be refreshed everytime sync function executed
+  // mixin oauth channel will return Mixin OAuth Token
+
+  // if customizeToken = true:
+  // developer should provide hooks for exchange token or auth code or signed message to customizeToken token
+  // developer should both token and mixin_token for Mixin OAuth in order to access mixin assets
+  // token will NOT be refershed in sync function
+  customizeToken?: boolean;
+
+  // if signMessage = false
+  // mvm will use /me token as auth type
+
+  // if signMessage = true
+  // mvm connect will ask user to sign message
+  // developer should provider hooks to verfiy signature and distribute custom token
+  signMessage?: boolean;
+  hooks?: {
+    beforeSignMessage?: () => Promise<SignMessageParams>;
+    onDistributeToken?: (params: {
+      type: "mixin_token" | "signed_message" | "mixin_code";
+      code?: string;
+      token?: string;
+      message?: string;
+      signature?: string;
+    }) => Promise<{ token: string; mixin_token?: string }>;
+    afterDisconnect?: () => void;
+  };
+  authMethods?: AuthMethod[];
+  // Mixin oauth params
   clientId?: string;
   scope?: string;
   isFiresbox?: boolean;
   pkce?: boolean;
-  hosts?: string[]; // custom mixin oauth API host
+  hosts?: string[];
+}
+
+export interface AuthData {
+  token: string;
+  channel: AuthMethod;
+  mixin_token: string;
 }
 ```
 
@@ -78,10 +116,12 @@ sync locale auth data with passport
 ```ts
 const tokenLocale = "";
 const channelLocale = "";
+const mixinTokenLocale = "";
 
-const { token, channel } = await passport.sync({
+const authData = await passport.sync({
   channel: channelLocale,
   token: tokenLocale,
+  mixin_token: mixinTokenLocale,
 });
 ```
 
@@ -97,7 +137,7 @@ await passport.payment({
 ```
 
 ```ts
-interface PaymentOptions {
+export interface PaymentOptions {
   // transfer params
   assetId?: string;
   amount?: string;
