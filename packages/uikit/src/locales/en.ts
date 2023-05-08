@@ -53,5 +53,6 @@ export default {
     infinite_complete: "No More Data",
     infinite_error: "Oops something went wrong!",
     retry: "Retry",
+    clear: "Clear",
   },
 };

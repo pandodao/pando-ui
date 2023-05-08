@@ -102,7 +102,6 @@ export const FAuthMethodModal = defineComponent({
 
     const handleModalValueChange = (value) => {
       dialog.value = value;
-      emit("error", new Error("Cancelled"));
     };
 
     watch(() => dialog.value, handleDialogChange);

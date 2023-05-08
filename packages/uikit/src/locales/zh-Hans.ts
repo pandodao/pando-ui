@@ -50,5 +50,6 @@ export default {
     infinite_complete: "没有更多数据",
     infinite_error: "出错了！",
     retry: "重试",
+    clear: "清空",
   },
 };

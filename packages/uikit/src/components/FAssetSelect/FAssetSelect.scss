@@ -1,6 +1,8 @@
 .f-asset-select {
+  min-width: 340px;
+  max-width: 420px;
+
   .f-asset-select__list {
-    min-width: 340px;
     height: 420px;
     overflow: auto;
   }
