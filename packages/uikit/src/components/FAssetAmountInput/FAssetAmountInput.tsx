@@ -30,11 +30,21 @@ export const FAssetAmountInput = defineComponent({
       type: String,
       default: "primary",
     },
+    showRecords: {
+      type: Boolean,
+      default: false,
+    },
+    records: {
+      type: Object as PropType<string[]>,
+      default: () => [],
+    },
   },
 
   emits: {
     "update:asset": (value: Asset | null) => true,
     "update:amount": (value: string) => true,
+    "update:records": (value: string) => true,
+    "clear:records": () => true,
   },
 
   setup(props, { emit, slots }) {
@@ -68,8 +78,12 @@ export const FAssetAmountInput = defineComponent({
               outlined={false}
               asset={props.asset}
               assets={props.assets}
+              records={props.records}
               themeColor={props.themeColor}
+              showRecords={props.showRecords}
               onUpdate:asset={(v) => emit("update:asset", v)}
+              onUpdate:records={(v) => emit("update:records", v)}
+              onClear:records={() => emit("clear:records")}
             />
           ),
         }}

@@ -1,8 +1,17 @@
-import { computed, defineComponent, PropType, ref, withModifiers } from "vue";
+import {
+  computed,
+  defineComponent,
+  nextTick,
+  PropType,
+  ref,
+  watch,
+  withModifiers,
+} from "vue";
 import { useLocale } from "vuetify";
 import { FModal } from "../FModal";
 import { FAssetList } from "./FAssetList";
 import { FAssetSelectField } from "./FAssetSelectField";
+import { FSearchRecords } from "./FSearchRecords";
 import { FSearchInput } from "../FSearchInput";
 import { filterAssets } from "../../utils";
 
@@ -30,11 +39,21 @@ export const FAssetSelect = defineComponent({
       type: String,
       default: "primary",
     },
+    showRecords: {
+      type: Boolean,
+      default: false,
+    },
+    records: {
+      type: Object as PropType<string[]>,
+      default: () => [],
+    },
   },
 
   emits: {
     "update:asset": (value: Asset | null) => true,
     "update:dialog": (value: Boolean) => true,
+    "update:records": (value: string) => true,
+    "clear:records": () => true,
   },
 
   setup(props, { emit, attrs }) {
@@ -47,12 +66,25 @@ export const FAssetSelect = defineComponent({
 
     const empty = computed(() => filteredAssets.value.length === 0);
 
+    watch(
+      () => props.dialog,
+      () => {
+        if (!props.dialog && filter.value) {
+          emit("update:records", filter.value);
+
+          nextTick(() => (filter.value = ""));
+        }
+      }
+    );
+
     const handleSelect = (v) => {
       emit("update:asset", v);
       emit("update:dialog", false);
     };
 
     const handleClear = () => (filter.value = "");
+
+    const handleUpdateFilter = (v) => (filter.value = v);
 
     return () => (
       <FModal
@@ -82,6 +114,14 @@ export const FAssetSelect = defineComponent({
                   color={props.themeColor}
                   onClick:clear={handleClear}
                 />
+
+                {props.showRecords && props.records.length > 0 && (
+                  <FSearchRecords
+                    records={props.records}
+                    onSelect={handleUpdateFilter}
+                    onClear={() => emit("clear:records")}
+                  />
+                )}
               </div>
               {!empty.value ? (
                 <FAssetList

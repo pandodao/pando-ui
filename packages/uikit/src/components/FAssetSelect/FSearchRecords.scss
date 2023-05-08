@@ -1,0 +1,22 @@
+.f-search-records {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 4px;
+  padding-top: 16px;
+  font-size: 12px;
+
+  .f-search-record {
+    cursor: pointer;
+    padding: 4px 8px;
+    border-radius: 8px;
+
+    &:hover {
+      background-color: rgb(var(--v-theme-greyscale_6));
+    }
+  }
+
+  .f-search-record__clear {
+    color: rgb(var(--v-theme-greyscale_3));
+  }
+}
