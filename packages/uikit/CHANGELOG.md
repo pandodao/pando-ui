@@ -1,5 +1,11 @@
 # @foxone/uikit
 
+## 4.2.13
+
+### Patch Changes
+
+- 192e5df: add search records
+
 ## 4.2.12
 
 ### Patch Changes
