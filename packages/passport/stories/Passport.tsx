@@ -98,7 +98,7 @@ export const Passport = defineComponent({
           origin: "FoxONE UIKit",
           token: localeToken,
           channel: localeChannel as any,
-          refreshToken: true,
+          customizeToken: true,
         });
 
         console.log("after sync");

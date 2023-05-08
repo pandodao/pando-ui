@@ -1,0 +1,23 @@
+{
+  "name": "test-talkee",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@babel/runtime": "^7.21.5",
+    "@foxone/mixin-passport": "1",
+    "@foxone/talkee": "^3.2.2",
+    "@foxone/uikit": "^4.2.12",
+    "vue": "^3.2.47",
+    "vuetify": "^3.2.2"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^4.1.0",
+    "vite": "^4.3.2"
+  }
+}

@@ -11,7 +11,10 @@ Talkee is build with Vue3, Vuetify, @foxone/uikit, @foxone/mixin-passport, if yo
 #### install
 
 ```shell
-yarn add @foxone/talkee
+// create app use vite
+// yarn create vite my-vue-app --template vue
+
+yarn add @foxone/talkee @foxone/uikit @foxone/icons @foxone/mixin-passport@1 vuetify
 ```
 
 #### import
@@ -25,9 +28,15 @@ import { usePresets } from "@foxone/uikit/presets";
 import Passport from "@foxone/mixin-passport";
 import Talkee from "@foxone";
 
+import "@foxone/talkee/dist/style.css";
+
 const vuetify = createVuetify(
   usePresets({
     // overwrite vuetify options
+    locale: {
+      messages: { ...Talkee.locales },
+    },
+    s,
   })
 );
 

@@ -27,12 +27,11 @@ Default.args = {
     clientId: "fbd26bc6-3d04-4964-a7fe-a540432b16e2",
     scope: "PROFILE:READ ASSETS:READ SNAPSHOTS:READ",
     pkce: true,
-    mvmAuthType: "MixinToken",
+    customizeToken: true,
     hooks: {
-      beforeSignMessage: () => ({ statement: "This is statement" }),
-      afterSignMessage: (data) => {
-        console.log(data);
-        return "asdfasfdas";
+      beforeSignMessage: () => Promise.resolve({ statement: "" }),
+      onDistributeToken: () => {
+        return Promise.resolve({ token: "dasfas" });
       },
     },
   },
