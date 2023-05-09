@@ -20,7 +20,6 @@ module.exports = {
   features: {
     storyStoreV7: true,
   },
-  staticDirs: ["../public"],
   async viteFinal(config, { configType }) {
     if (configType === "PRODUCTION") {
       config.base = "/uikit-next/";
