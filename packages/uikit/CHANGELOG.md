@@ -1,5 +1,11 @@
 # @foxone/uikit
 
+## 4.2.14
+
+### Patch Changes
+
+- 63f4d07: fix auth modal close
+
 ## 4.2.13
 
 ### Patch Changes
