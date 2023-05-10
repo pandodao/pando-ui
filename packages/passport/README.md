@@ -12,8 +12,12 @@ install from npm
 // create app use vite
 // yarn create vite my-vue-app --template vue
 
-// install lastest version of 1.x
-yarn add @foxone/uikit @foxone/icons @foxone/mixin-passport@1 vuetify
+// install lastest version passport of 1.x and its dependencies
+yarn add @foxone/mixin-passport@1 \
+  @foxone/uikit @foxone/icons \
+  vuetify \
+  uuid \
+  @babel/runtime
 ```
 
 install plugins
