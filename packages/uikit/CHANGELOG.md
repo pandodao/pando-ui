@@ -1,5 +1,11 @@
 # @foxone/uikit
 
+## 4.2.15
+
+### Patch Changes
+
+- 8d0cf17: add latest tag
+
 ## 4.2.14
 
 ### Patch Changes
