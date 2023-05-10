@@ -1,5 +1,11 @@
 # @foxone/icons
 
+## 4.1.3
+
+### Patch Changes
+
+- 8d0cf17: add latest tag
+
 ## 4.1.2
 
 ### Patch Changes

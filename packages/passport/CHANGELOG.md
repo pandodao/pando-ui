@@ -1,5 +1,11 @@
 # @foxone/mixin-passport
 
+## 1.2.7
+
+### Patch Changes
+
+- 8d0cf17: add latest tag
+
 ## 1.2.6
 
 ### Patch Changes
