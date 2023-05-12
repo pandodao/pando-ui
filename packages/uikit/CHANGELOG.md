@@ -1,5 +1,11 @@
 # @foxone/uikit
 
+## 4.2.16
+
+### Patch Changes
+
+- ab77cf6: fix auth modal
+
 ## 4.2.15
 
 ### Patch Changes
