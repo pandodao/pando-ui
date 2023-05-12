@@ -108,7 +108,7 @@ export const FAuthMethodModal = defineComponent({
     watch(() => dialog.value, handleDialogChange);
 
     const show = () => {
-      if (isMixin()) {
+      if (isMixin() && props.authMethods.includes("mixin")) {
         client.value = authorize(
           { clientId: props.clientId, scope: props.scope, pkce: props.pkce },
           props.isFiresbox,
