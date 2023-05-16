@@ -1,5 +1,11 @@
 # @foxone/uikit
 
+## 4.2.17
+
+### Patch Changes
+
+- a48b6ae: update i18n
+
 ## 4.2.16
 
 ### Patch Changes
