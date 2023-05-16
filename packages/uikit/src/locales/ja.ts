@@ -39,20 +39,22 @@ export default {
     metamask_introduction:
       "MVMを使用するには、Metamask互換のウォレットを事前にインストールする必要があります。ウォレットアプリケーションの準備ができていることを確認してください。",
     gas_fee_hint:
-      "If you use Metamask and Other wallet, you can claim some tokens as gas fee. <a href='https://catkin.pando.im/faucet/mvm/' target='_blank'>Get for free</a>",
+      "Metamask やその他のウォレットを使用している場合は、ガス料金としていくつかのトークンを請求できます。 <a href='https://catkin.pando.im/faucet/mvm/' target='_blank'>無料で入手</a>",
     metamask_not_installed_2:
-      "Please open in the <span style='color: #F68614'>built-in browser of metamask mobile app</span> or desktop browser.",
+      "<span style='color: #F68614'>メタマスク モバイル アプリの組み込みブラウザ</span>またはデスクトップ ブラウザで開いてください。",
     metamask_introduction_2:
-      "You have two ways to connect to Metamask.<br>1: Copy the dApp address and open it in Metamask's built-in browser.<br>2: Open it in a desktop browser.",
-    open_in_mixin: "Open in Mixin",
-    open_in_links: "Open in Links",
-    onekey_not_installed: "OneKey not installed",
-    onekey_not_installed_2: "OneKey not installed",
-    onekey_introduction: "All-in-one crypto wallet. Trusted by millions.",
-    onekey_introduction_2: "All-in-one crypto wallet. Trusted by millions.",
-    infinite_complete: "No More Data",
-    infinite_error: "Oops something went wrong!",
-    retry: "Retry",
-    clear: "Clear",
+      "メタマスクに接続するには 2 つの方法があります。<br>1: dApp アドレスをコピーし、メタマスクの組み込みブラウザで開きます。<br>2: デスクトップ ブラウザで開きます。",
+    open_in_mixin: "Mixin で開く",
+    open_in_links: "Links で開く",
+    onekey_not_installed: "OneKey がインストールされていません",
+    onekey_not_installed_2: "OneKey がインストールされていません",
+    onekey_introduction:
+      "オールインワンの暗号通貨ウォレット。 何百万もの人々に信頼されています。",
+    onekey_introduction_2:
+      "オールインワンの暗号通貨ウォレット。 何百万もの人々に信頼されています。",
+    infinite_complete: "これ以上データはありません",
+    infinite_error: "おっと！何かが間違っていた！",
+    retry: "リトライ",
+    clear: "クリア",
   },
 };
