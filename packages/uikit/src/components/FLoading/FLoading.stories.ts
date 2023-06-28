@@ -1,6 +1,6 @@
 import { ref } from "vue";
 import { FLoading } from "./FLoading";
-import { FFullscreenLoading } from "./FFullscreenLoading";
+import { FFullScreenLoading } from "./FFullscreenLoading";
 import { FButton } from "../FButton";
 import { Meta, StoryFn } from "@storybook/vue3";
 
@@ -31,7 +31,7 @@ ProcessProps.args = {
 };
 
 const Template2: StoryFn<typeof FLoading> = (args) => ({
-  components: { FFullscreenLoading, FButton },
+  components: { FFullScreenLoading, FButton },
   setup() {
     const loading = ref(false);
     const show = () => {

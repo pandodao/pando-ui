@@ -20,7 +20,7 @@ const Template: StoryFn<typeof FInfiniteLoad> = (args) => ({
           if (items.value.length > 20) {
             state.complete();
             reject();
-          } else if (Math.random() < 0.5) {
+          } else if (Math.random() < 0.1) {
             state.error();
             reject();
           } else {

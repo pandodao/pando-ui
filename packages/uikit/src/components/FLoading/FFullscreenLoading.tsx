@@ -2,8 +2,8 @@ import { defineComponent } from "vue";
 import { FLoading } from "./FLoading";
 import { VOverlay } from "vuetify/components";
 
-export const FFullscreenLoading = defineComponent({
-  name: "FFullscreenLoading",
+export const FFullScreenLoading = defineComponent({
+  name: "FFullScreenLoading",
 
   setup(props, { attrs }) {
     return () => (

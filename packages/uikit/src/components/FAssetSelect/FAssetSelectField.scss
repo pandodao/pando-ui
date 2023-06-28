@@ -4,13 +4,14 @@
   padding: 4px 16px;
   border-radius: 8px;
   min-height: 52px;
+  cursor: pointer;
 
   &--outlined {
     border: 1px solid rgb(var(--v-theme-greyscale_5));
   }
 
-  &--selectable {
-    cursor: pointer;
+  &--no-selectable {
+    pointer-events: none;
   }
 
   &__placeholder {
