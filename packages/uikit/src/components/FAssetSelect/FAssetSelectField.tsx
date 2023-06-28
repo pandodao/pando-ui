@@ -36,7 +36,7 @@ export const FAssetSelectField = defineComponent({
     const classes = computed(() => {
       return {
         "f-asset-field": true,
-        "f-asset-field--selectable": props.selectable,
+        "f-asset-field--no-selectable": !props.selectable,
         "f-asset-field--outlined": props.outlined,
       };
     });

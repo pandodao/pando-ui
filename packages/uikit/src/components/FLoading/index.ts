@@ -1,2 +1,2 @@
 export { FLoading } from "./FLoading";
-export { FFullscreenLoading } from "./FFullscreenLoading";
+export { FFullScreenLoading } from "./FFullscreenLoading";

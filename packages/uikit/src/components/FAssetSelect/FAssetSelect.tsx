@@ -47,6 +47,10 @@ export const FAssetSelect = defineComponent({
       type: Object as PropType<string[]>,
       default: () => [],
     },
+    selectable: {
+      type: Boolean,
+      default: true,
+    },
   },
 
   emits: {
@@ -97,7 +101,12 @@ export const FAssetSelect = defineComponent({
         {{
           activator: ({ isActive, props: { onClick } }) => (
             <FAssetSelectField
-              class={[{ "f-asset-field--active": isActive }]}
+              class={[
+                {
+                  "f-asset-field--active": isActive,
+                },
+              ]}
+              selectable={props.selectable}
               asset={props.asset}
               onClick={withModifiers(onClick, ["stop"])}
               onMousedown={withModifiers(() => {}, ["stop"])}

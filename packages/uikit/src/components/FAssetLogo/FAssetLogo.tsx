@@ -1,5 +1,4 @@
 import { defineComponent, PropType } from "vue";
-import { VImg } from "vuetify/components";
 
 import "./FAssetLogo.scss";
 
@@ -25,10 +24,13 @@ export const FAssetLogo = defineComponent({
 
   setup(props) {
     return () => (
-      <div class="f-asset-logo">
-        <VImg width={props.size} src={props.asset?.logo}></VImg>
+      <div
+        class="f-asset-logo"
+        style={{ width: props.size + "px", height: props.size + "px" }}
+      >
+        <img width={props.size} src={props.asset?.logo}></img>
         {props.asset?.chainLogo && (
-          <VImg
+          <img
             class="f-asset-logo__chain"
             width={props.chainSize}
             src={props.asset?.chainLogo}

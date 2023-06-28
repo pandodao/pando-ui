@@ -38,6 +38,10 @@ export const FAssetAmountInput = defineComponent({
       type: Object as PropType<string[]>,
       default: () => [],
     },
+    selectable: {
+      type: Boolean,
+      deafult: true,
+    },
   },
 
   emits: {
@@ -81,6 +85,7 @@ export const FAssetAmountInput = defineComponent({
               records={props.records}
               themeColor={props.themeColor}
               showRecords={props.showRecords}
+              selectable={props.selectable}
               onUpdate:asset={(v) => emit("update:asset", v)}
               onUpdate:records={(v) => emit("update:records", v)}
               onClear:records={() => emit("clear:records")}

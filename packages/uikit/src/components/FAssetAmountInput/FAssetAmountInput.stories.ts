@@ -111,3 +111,35 @@ export const WithRecords = Template3.bind({});
 WithRecords.args = {
   showRecords: true,
 };
+
+const Template4: StoryFn<typeof FAssetAmountInput> = (args) => ({
+  components: { FAssetAmountInput },
+  setup() {
+    const asset = ref({
+      asset_id: "02a39171-dfc1-36d1-94c3-9e9725d59bbb",
+      provider: "mixin",
+      chain_id: "43d61dcd-e413-450d-80b8-101d5e903357",
+      symbol: "ZIL",
+      name: "Zilliqa",
+      logo: "https://mixin-images.zeromesh.net/prUxZ_5EC6UYufpA3lYn7Sjiq8HeTCiZ7VsIFtso0sjZrck7T8oCHyaSKNwsrKAE82h1oxqAJM_hZsnRm-ZAIMc=s128",
+      confirmations: 16,
+      price_usd: "0.02306898",
+      change_usd: "0.047327018826841996",
+      balance: "0.00000001",
+      destination: "0x4cC777dFb649b9Ebc524E78e7DA89f0916Dd0f24",
+      tag: "",
+    });
+    const amount = ref("");
+
+    return {
+      args,
+      asset,
+      amount,
+      assets: assets.map((asset) => convertMixinAsset(asset)),
+    };
+  },
+  template: `<FAssetAmountInput v-model:asset="asset" v-model:amount="amount" v-bind="args" :assets="assets"></FAssetAmountInput>`,
+});
+
+export const NotSelectable = Template4.bind({});
+NotSelectable.args = {};
