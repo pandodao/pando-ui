@@ -10,6 +10,7 @@ export const FInput = defineComponent({
   props: {
     modelValue: { type: String, default: "" },
     precision: { type: [Number, String] },
+    isNumber: { type: Boolean, default: false },
     hideDefaultMessages: Boolean,
   },
 
@@ -23,7 +24,7 @@ export const FInput = defineComponent({
     const preset = { density: "comfortable" as const };
 
     const handleChange = (value) => {
-      if (attrs.type === "number" && props.precision) {
+      if (props.isNumber && props.precision) {
         emit("update:modelValue", numberInput(value, props.precision));
         inputRef?.value?.$forceUpdate();
 
@@ -34,7 +35,7 @@ export const FInput = defineComponent({
     };
 
     const handleKeydown = (e: KeyboardEvent) => {
-      if (attrs.type === "number") {
+      if (props.isNumber) {
         if (["e", "+", "-"].includes(e.key)) {
           e.preventDefault();
         }

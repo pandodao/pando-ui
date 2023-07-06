@@ -2,11 +2,18 @@ import { toPrecision } from "@foxone/utils/number";
 import BigNumber from "bignumber.js";
 
 export function numberInput(value: string, precision: number | string) {
-  const dp = new BigNumber(value).decimalPlaces();
+  const str = value.replace(/\,/g, ".");
+  const num = new BigNumber(str);
+
+  if (num.isNaN()) {
+    return "";
+  }
+
+  const dp = num.decimalPlaces();
 
   if (dp && dp > +precision) {
     return toPrecision({ n: value, dp: +precision });
   }
 
-  return value;
+  return str;
 }

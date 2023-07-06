@@ -56,7 +56,6 @@ export const FAssetAmountInput = defineComponent({
     const persets = computed(() => {
       return {
         reverse: true,
-        type: "number",
         precision: 8,
       };
     });
@@ -70,6 +69,7 @@ export const FAssetAmountInput = defineComponent({
     return () => (
       <FInput
         {...persets.value}
+        isNumber={true}
         modelValue={props.amount}
         class={classes.value}
         onUpdate:modelValue={(v) => emit("update:amount", v)}

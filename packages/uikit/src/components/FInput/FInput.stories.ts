@@ -86,7 +86,7 @@ export const NumberInput: StoryFn<typeof FInput> = () => ({
     return { num, rules };
   },
   template: `
-    <FInput v-model="num" type="number" precision="8" placeholder="Input Number" :rules="rules" />
+    <FInput v-model="num" is-number precision="8" placeholder="Input Number" :rules="rules"  inputmode="decimal" />
   `,
 });
 
