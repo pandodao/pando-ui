@@ -1,5 +1,11 @@
 # @foxone/uikit
 
+## 4.2.19
+
+### Patch Changes
+
+- d136a49: update number input
+
 ## 4.2.18
 
 ### Patch Changes
