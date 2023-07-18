@@ -45,7 +45,7 @@ Vue.use(Passport, {
 
 ```ts
 interface PassportOptions {
-  infuraId?: string;
+  walletConnectProjectId?: string;
   chainId?: number;
   customizeToken?: boolean;
 }

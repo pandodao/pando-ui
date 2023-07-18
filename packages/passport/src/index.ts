@@ -36,7 +36,7 @@ function install(app: App, passportOptions: PassportOptions = {}) {
 
   if (typeof MVM !== "undefined") {
     state.mvm = new MVM({
-      infuraId: passportOptions.infuraId,
+      walletConnectProjectId: passportOptions.walletConnectProjectId,
       chainId: passportOptions.chainId,
     });
   }

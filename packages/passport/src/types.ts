@@ -3,7 +3,7 @@ import Fennec from "@foxone/fennec-dapp";
 import MixinAPI from "./mixin-apis";
 
 export interface PassportOptions {
-  infuraId?: string;
+  walletConnectProjectId?: string;
   chainId?: number;
   customizeToken?: boolean;
 }
