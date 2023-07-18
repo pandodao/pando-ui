@@ -1,5 +1,11 @@
 # @foxone/mixin-passport
 
+## 1.2.8
+
+### Patch Changes
+
+- 230bc39: passport update, uikit issue
+
 ## 1.2.7
 
 ### Patch Changes
