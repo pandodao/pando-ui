@@ -40,7 +40,7 @@ export const FAssetAmountInput = defineComponent({
     },
     selectable: {
       type: Boolean,
-      deafult: true,
+      default: true,
     },
   },
 
