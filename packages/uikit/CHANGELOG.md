@@ -1,5 +1,11 @@
 # @foxone/uikit
 
+## 4.2.20
+
+### Patch Changes
+
+- 230bc39: passport update, uikit issue
+
 ## 4.2.19
 
 ### Patch Changes
