@@ -17,6 +17,10 @@ export const FModal = defineComponent({
 
   props: {
     hideClose: Boolean,
+    hideBack: {
+      type: Boolean,
+      default: true,
+    },
     title: {
       type: [String, Object],
       default: "",
@@ -33,6 +37,7 @@ export const FModal = defineComponent({
 
   emits: {
     "update:modelValue": (value: boolean) => true,
+    back: () => true,
   },
 
   setup(props, { slots, emit, attrs }) {
@@ -63,16 +68,26 @@ export const FModal = defineComponent({
     const content = () => {
       return (
         <VCard class="f-modal__content">
+          {!props.hideBack && (
+            <FButton
+              icon
+              size="24"
+              class="f-modal__back"
+              onClick={(e) => emit("back")}
+            >
+              <VIcon>$back</VIcon>
+            </FButton>
+          )}
           {!meta.value.hasClose && (
             <FButton
               icon
-              size="32"
+              size="24"
               class="f-modal__close"
               onClick={(e) => {
                 emit("update:modelValue", false);
               }}
             >
-              <VIcon>$close</VIcon>
+              <VIcon size="22">$close</VIcon>
             </FButton>
           )}
           {meta.value.hasTitle && (

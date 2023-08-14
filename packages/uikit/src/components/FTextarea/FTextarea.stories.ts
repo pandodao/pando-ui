@@ -16,3 +16,28 @@ const Template: StoryFn<typeof FTextarea> = (args) => ({
 
 export const Default = Template.bind({});
 Default.args = {};
+
+const Template2: StoryFn<typeof FTextarea> = (args) => ({
+  components: { FTextarea },
+  setup() {
+    return { args };
+  },
+  template: `
+    <FTextarea v-bind="args"  auto-grow placeholder="Text...">
+      <template #prepend>
+        <VIcon>$expand</VIcon>
+      </template>
+      <template #prepend-inner>
+        <VIcon>$expand</VIcon>
+      </template>
+      <template #append>
+        <VIcon>$expand</VIcon>
+      </template>
+      <template #append-inner>
+        <VIcon>$expand</VIcon>
+      </template>
+    </FTextarea>
+  `,
+});
+
+export const Slots = Template2.bind({});

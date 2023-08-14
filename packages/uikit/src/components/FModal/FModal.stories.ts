@@ -19,7 +19,7 @@ const Template: StoryFn<typeof FModal> = (args) => ({
     return { args, dialog, close };
   },
   template: `
-    <FModal v-model="dialog" v-bind="args">
+    <FModal v-model="dialog" v-bind="args" :hide-back="false">
       <template #activator="{props}">
         <FButton color="primary" v-bind="props">Active</FButton>
       </template>

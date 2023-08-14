@@ -107,6 +107,7 @@ export interface WatchAssetParams {
 }
 
 export interface Passport {
+  state: any;
   auth: (options: AuthOptions) => Promise<AuthData>;
   payment: (options: PaymentOptions) => Promise<void>;
   sync: (options: SyncOptions) => Promise<AuthData>;

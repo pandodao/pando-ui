@@ -23,17 +23,16 @@
 
     .f-modal__close {
       position: absolute;
-      top: 12px;
-      right: 16px;
+      top: 16px;
+      right: 12px;
       z-index: 1;
-
-      &:hover {
-        background-color: rgb(var(--v-theme-greyscale_6));
-      }
     }
 
-    .f-modal__close .v-btn__overlay {
-      display: none;
+    .f-modal__back {
+      position: absolute;
+      top: 16px;
+      left: 12px;
+      z-index: 1;
     }
   }
 }
