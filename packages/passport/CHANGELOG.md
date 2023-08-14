@@ -1,5 +1,11 @@
 # @foxone/mixin-passport
 
+## 1.2.9
+
+### Patch Changes
+
+- 570f69a: update ui
+
 ## 1.2.8
 
 ### Patch Changes
