@@ -6,11 +6,11 @@ import "./FTextarea.scss";
 export const FTextarea = defineComponent({
   name: "FTextarea",
 
-  setup() {
+  setup(props, { slots }) {
     const presets = { color: "primary" };
 
     return () => (
-      <VTextarea class="rounded f-textarea" {...presets}></VTextarea>
+      <VTextarea class="rounded f-textarea" {...presets} v-slots={slots} />
     );
   },
 });

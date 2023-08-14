@@ -10,6 +10,7 @@
     cursor: pointer;
     padding: 4px 8px;
     border-radius: 8px;
+    border: 1px solid rgb(var(--v-theme-greyscale_6));
 
     &:hover {
       background-color: rgb(var(--v-theme-greyscale_6));
@@ -18,5 +19,6 @@
 
   .f-search-record__clear {
     color: rgb(var(--v-theme-greyscale_3));
+    border: none;
   }
 }

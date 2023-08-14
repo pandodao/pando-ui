@@ -27,6 +27,10 @@ export const FAssetSelect = defineComponent({
       type: Boolean,
       default: false,
     },
+    desktop: {
+      type: String,
+      default: "menu",
+    },
     asset: {
       type: Object as PropType<Asset | null>,
       default: null,
@@ -60,7 +64,7 @@ export const FAssetSelect = defineComponent({
     "clear:records": () => true,
   },
 
-  setup(props, { emit, attrs }) {
+  setup(props, { emit, attrs, slots }) {
     const { t } = useLocale();
     const filter = ref("");
 
@@ -94,7 +98,7 @@ export const FAssetSelect = defineComponent({
       <FModal
         title={t("$vuetify.uikit.select_asset")}
         modelValue={props.dialog}
-        desktop="menu"
+        desktop={props.desktop as any}
         close-on-content-click={false}
         onUpdate:modelValue={(v) => emit("update:dialog", v)}
       >
@@ -146,6 +150,7 @@ export const FAssetSelect = defineComponent({
               )}
             </div>
           ),
+          ...slots,
         }}
       </FModal>
     );

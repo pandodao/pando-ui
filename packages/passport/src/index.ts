@@ -50,6 +50,7 @@ function install(app: App, passportOptions: PassportOptions = {}) {
   };
 
   const passport = {
+    state,
     auth: (options: AuthOptions) =>
       createAuthAction(app, { ...passportOptions, ...options }, state),
     payment: (options: PaymentOptions) =>

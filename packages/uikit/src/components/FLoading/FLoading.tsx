@@ -19,7 +19,9 @@ export const FLoading = defineComponent({
           indeterminate={true}
           {...props.processProps}
         />
-        <span class="f-loading__text">{slots.text?.() ?? props.text}</span>
+        {(slots.text || props.text) && (
+          <span class="f-loading__text">{slots.text?.() ?? props.text}</span>
+        )}
       </div>
     );
   },
