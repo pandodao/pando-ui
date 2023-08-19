@@ -77,18 +77,24 @@ Density.args = {
   density: "default",
 };
 
-export const NumberInput: StoryFn<typeof FInput> = () => ({
+const Template2: StoryFn<typeof FInput> = (args) => ({
   components: { FInput },
   setup() {
     const num = ref("");
     const rules = [(v) => !!v || "Field is required"];
 
-    return { num, rules };
+    return { args, num, rules };
   },
   template: `
-    <FInput v-model="num" is-number precision="8" placeholder="Input Number" :rules="rules"  inputmode="decimal" />
+    <FInput v-model="num" is-number v-bind="args" placeholder="Input Number" :rules="rules"  inputmode="decimal" />
   `,
 });
+
+export const NumberInput = Template2.bind({});
+
+NumberInput.args = {
+  precision: 8,
+};
 
 export const WithTools: StoryFn<typeof FInput> = () => ({
   components: { FInput, FAssetInputTools },

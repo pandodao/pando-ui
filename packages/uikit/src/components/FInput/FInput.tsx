@@ -24,8 +24,14 @@ export const FInput = defineComponent({
     const preset = { density: "comfortable" as const };
 
     const handleChange = (value) => {
-      if (props.isNumber && props.precision) {
-        emit("update:modelValue", numberInput(value, props.precision));
+      if (props.isNumber && props.precision !== undefined) {
+        let formated = numberInput(value, props.precision);
+
+        if (props.precision === 0 && formated.endsWith(".")) {
+          formated = formated.slice(0, -1);
+        }
+
+        emit("update:modelValue", formated);
         inputRef?.value?.$forceUpdate();
 
         return;
