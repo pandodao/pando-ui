@@ -1,5 +1,11 @@
 # @foxone/uikit
 
+## 4.2.22
+
+### Patch Changes
+
+- cda43f1: number input precision
+
 ## 4.2.21
 
 ### Patch Changes
