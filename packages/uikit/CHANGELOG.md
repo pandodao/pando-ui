@@ -1,5 +1,11 @@
 # @foxone/uikit
 
+## 4.2.23
+
+### Patch Changes
+
+- aaad086: minor update
+
 ## 4.2.22
 
 ### Patch Changes

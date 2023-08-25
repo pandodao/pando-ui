@@ -1,5 +1,11 @@
 # @foxone/mixin-passport
 
+## 1.2.10
+
+### Patch Changes
+
+- aaad086: minor update
+
 ## 1.2.9
 
 ### Patch Changes
