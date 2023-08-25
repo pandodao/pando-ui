@@ -69,7 +69,17 @@ function install(app: App, passportOptions: PassportOptions = {}) {
         state.mvm.watchAsset(params);
       }
     },
+    disconnect: () => {
+      if (isMVM(state.channel)) {
+        state.mvm.disconnect();
+      }
+
+      state.token = "";
+      state.mixin_token = "";
+      state.channel = "" as any;
+    },
   };
+
   const properties = app.config.globalProperties;
 
   properties.$passport = passport;
