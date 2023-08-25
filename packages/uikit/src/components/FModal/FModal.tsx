@@ -75,7 +75,7 @@ export const FModal = defineComponent({
               class="f-modal__back"
               onClick={(e) => emit("back")}
             >
-              <VIcon>$back</VIcon>
+              <VIcon size="18">$back</VIcon>
             </FButton>
           )}
           {!meta.value.hasClose && (
@@ -87,7 +87,7 @@ export const FModal = defineComponent({
                 emit("update:modelValue", false);
               }}
             >
-              <VIcon size="22">$close</VIcon>
+              <VIcon size="18">$close</VIcon>
             </FButton>
           )}
           {meta.value.hasTitle && (
