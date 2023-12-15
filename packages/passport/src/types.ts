@@ -109,11 +109,15 @@ export interface WatchAssetParams {
 export interface Passport {
   state: any;
   auth: (options: AuthOptions) => Promise<AuthData>;
-  payment: (options: PaymentOptions) => Promise<void>;
   sync: (options: SyncOptions) => Promise<AuthData>;
-  // TODO: Add Mixin Asset type
+  payment: (options: PaymentOptions) => Promise<void>;
   getAsset: (id: string) => Promise<any>;
-  getAssets: () => Promise<any>;
+  getAssets: (ids: string[]) => Promise<any>;
+  legacy: {
+    payment: (options: PaymentOptions) => Promise<void>;
+    getAsset: (id: string) => Promise<any>;
+    getAssets: () => Promise<any>;
+  };
   getProfile: () => Promise<any>;
   watchAsset: (params: WatchAssetParams) => void;
 }
