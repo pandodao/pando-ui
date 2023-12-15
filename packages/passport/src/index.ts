@@ -7,8 +7,11 @@ import { Toast, ToastGlobalOptions } from "@foxone/uikit/plugins/toast";
 import MixinAPI from "./mixin-apis";
 import Fennec from "@foxone/fennec-dapp";
 import createAuthAction from "./auth";
+import createLegacyPaymentAction from "./payment_legacy";
 import createPaymentAction from "./payment";
+import createLegacyAssetsAction from "./assets_legacy";
 import createAssetsAction from "./assets";
+import createLegacyAssetAction from "./asset_legacy";
 import createAssetAction from "./asset";
 import createSyncAction from "./sync";
 import { usePassport, isMVM } from "./helper";
@@ -56,7 +59,13 @@ function install(app: App, passportOptions: PassportOptions = {}) {
     payment: (options: PaymentOptions) =>
       createPaymentAction(app, options, state),
     getAsset: (id: string) => createAssetAction(id, state),
-    getAssets: () => createAssetsAction(state),
+    getAssets: (ids: string[]) => createAssetsAction(ids, state),
+    legacy: {
+      payment: (options: PaymentOptions) =>
+        createLegacyPaymentAction(app, options, state),
+      getAsset: (id: string) => createLegacyAssetAction(id, state),
+      getAssets: () => createLegacyAssetsAction(state),
+    },
     getProfile: () => state.mixin.getProfile(),
     sync: (options: SyncOptions) =>
       createSyncAction({ ...passportOptions, ...options }, state),

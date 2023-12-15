@@ -1618,10 +1618,10 @@
   dependencies:
     "@foxone/fennec-base" "0.5.8"
 
-"@foxone/utils@^0.2.26", "@foxone/utils@^0.2.27", "@foxone/utils@^0.2.28":
-  version "0.2.28"
-  resolved "https://registry.npmjs.org/@foxone/utils/-/utils-0.2.28.tgz#bc0a763017d749718cb3651ac7850ee25ee0a023"
-  integrity sha512-32dXa418NjNvrAq8qPZPHPcplrYNljrnMxjmkxJ01hVK1k6ebLa4Ns/qNiXs06FREn/lEDew1T+J0M3auGnHog==
+"@foxone/utils@^0.2.26", "@foxone/utils@^0.2.27", "@foxone/utils@^0.2.29":
+  version "0.2.29"
+  resolved "https://registry.npmjs.org/@foxone/utils/-/utils-0.2.29.tgz#f42f32e1ae12c8dc4ba5f91b0f6b855adaa8f25e"
+  integrity sha512-wlwWfD2E3A//S+MfJUhpKi7NPnwsqXpzPh3kWLzclsANrqqu7uEgqu5jnsAa3764PxhNbgEU3ProfMU8rvW76Q==
   dependencies:
     axios "^0.21.1"
     bignumber.js "^9.0.1"
