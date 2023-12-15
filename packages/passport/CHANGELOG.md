@@ -1,5 +1,11 @@
 # @foxone/mixin-passport
 
+## 1.3.0
+
+### Minor Changes
+
+- 88cd42a: add safe api
+
 ## 1.2.10
 
 ### Patch Changes

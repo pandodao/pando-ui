@@ -1,5 +1,12 @@
 # @foxone/talkee
 
+## 4.0.0
+
+### Patch Changes
+
+- Updated dependencies [88cd42a]
+  - @foxone/mixin-passport@1.3.0
+
 ## 3.2.2
 
 ### Patch Changes
