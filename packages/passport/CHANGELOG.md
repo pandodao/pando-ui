@@ -1,5 +1,11 @@
 # @foxone/mixin-passport
 
+## 1.3.1
+
+### Patch Changes
+
+- 5a4c107: update ui
+
 ## 1.3.0
 
 ### Minor Changes
