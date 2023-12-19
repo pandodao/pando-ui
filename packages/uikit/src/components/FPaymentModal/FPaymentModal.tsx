@@ -34,6 +34,7 @@ export const FPaymentModal = defineComponent({
     const amount = ref("");
     const scheme = ref("");
     const channel = ref("");
+    const hasChecker = ref(false);
     const hideCheckingModal = ref(false);
 
     const { mdAndUp } = useDisplay();
@@ -61,6 +62,7 @@ export const FPaymentModal = defineComponent({
         checking.value = false;
         channel.value = "";
         scheme.value = "";
+        hasChecker.value = false;
         qr.value = false;
         asset.value = null;
         reject.value = null;
@@ -81,9 +83,14 @@ export const FPaymentModal = defineComponent({
       channel.value = options.channel;
       assetId.value = options.assetId;
       amount.value = options.amount;
+      hasChecker.value = Boolean(checker);
       hideCheckingModal.value = options.hideCheckingModal || false;
 
-      const showChecking = () => (checking.value = true);
+      const showChecking = () => {
+        if (checker) {
+          checking.value = true;
+        }
+      };
 
       switch (channel.value) {
         case "mixin":
@@ -104,6 +111,10 @@ export const FPaymentModal = defineComponent({
           await actions.mvm?.();
           showChecking();
           break;
+      }
+
+      if (!checker) {
+        return;
       }
 
       return new Promise((resolve, _reject) => {
@@ -191,13 +202,15 @@ export const FPaymentModal = defineComponent({
                 ])}
               ></div>
               <div class="f-payment-modal__actions">
-                <FButton
-                  loading={checking.value}
-                  color="greyscale_1"
-                  onClick={handlePaid}
-                >
-                  {t("$vuetify.uikit.paid")}
-                </FButton>
+                {hasChecker.value && (
+                  <FButton
+                    loading={checking.value}
+                    color="greyscale_1"
+                    onClick={handlePaid}
+                  >
+                    {t("$vuetify.uikit.paid")}
+                  </FButton>
+                )}
                 <FButton color="greyscale_6" onClick={handleOpenInApp}>
                   {t("$vuetify.uikit.open_in_mixin")}
                 </FButton>
