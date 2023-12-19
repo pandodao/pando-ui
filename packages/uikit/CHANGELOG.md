@@ -1,5 +1,11 @@
 # @foxone/uikit
 
+## 4.2.24
+
+### Patch Changes
+
+- 5a4c107: update ui
+
 ## 4.2.23
 
 ### Patch Changes
