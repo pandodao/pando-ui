@@ -16,7 +16,7 @@ export interface PaymentOptions {
     fennec?: () => Promise<boolean>;
     mvm?: () => Promise<boolean>;
   };
-  checker: () => Promise<boolean>;
+  checker?: () => Promise<boolean>;
   container?: string;
 }
 
