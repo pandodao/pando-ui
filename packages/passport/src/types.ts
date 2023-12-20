@@ -60,6 +60,9 @@ export interface AuthOptions {
   isFiresbox?: boolean;
   pkce?: boolean;
   hosts?: string[];
+  useEd25519KeyStore?: boolean;
+  publicKey?: string;
+  privateKey?: string;
 }
 
 export interface PaymentOptions {
@@ -84,11 +87,13 @@ export type State = {
   mvm: any | null;
   token: string;
   mixin_token: string;
+  keystore: any | null;
 };
 
 export interface SyncOptions {
   token: string;
   mixin_token?: string;
+  keystore?: any;
   channel: AuthMethod;
   origin?: string;
   customizeToken?: boolean;
@@ -98,6 +103,7 @@ export interface AuthData {
   token: string;
   channel: AuthMethod;
   mixin_token: string;
+  keystore: any;
 }
 
 export interface WatchAssetParams {

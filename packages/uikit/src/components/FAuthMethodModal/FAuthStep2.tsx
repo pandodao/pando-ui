@@ -31,6 +31,18 @@ export const FAuthStep2 = defineComponent({
       type: Boolean,
       default: false,
     },
+    useEd25519KeyStore: {
+      type: Boolean,
+      default: false,
+    },
+    publicKey: {
+      type: String,
+      default: "",
+    },
+    privateKey: {
+      type: String,
+      default: "",
+    },
     isFiresbox: {
       type: Boolean,
       default: false,

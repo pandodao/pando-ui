@@ -26,6 +26,18 @@ export const FAuthMixinMessenger = defineComponent({
       type: Boolean,
       default: false,
     },
+    useEd25519KeyStore: {
+      type: Boolean,
+      default: false,
+    },
+    publicKey: {
+      type: String,
+      default: "",
+    },
+    privateKey: {
+      type: String,
+      default: "",
+    },
     isFiresbox: {
       type: Boolean,
       default: false,
@@ -60,7 +72,14 @@ export const FAuthMixinMessenger = defineComponent({
 
     onMounted(() => {
       client.value = authorize(
-        { clientId: props.clientId, scope: props.scope, pkce: props.pkce },
+        {
+          clientId: props.clientId,
+          scope: props.scope,
+          pkce: props.pkce,
+          useEd25519KeyStore: props.useEd25519KeyStore,
+          publicKey: props.publicKey,
+          privateKey: props.privateKey,
+        },
         props.isFiresbox,
         props.hosts,
         {
@@ -71,11 +90,7 @@ export const FAuthMixinMessenger = defineComponent({
 
             client.value?.disconnect();
 
-            if (props.pkce) {
-              emit("auth", { type: "mixin", token: data });
-            } else {
-              emit("auth", { type: "mixin", code: data });
-            }
+            emit("auth", { type: "mixin", ...data });
           },
         }
       );

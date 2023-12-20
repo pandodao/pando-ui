@@ -9,6 +9,9 @@ export interface AuthParams {
   clientId: string;
   scope: string;
   pkce: boolean;
+  useEd25519KeyStore?: boolean;
+  publicKey?: string;
+  privateKey?: string;
 }
 
 export interface Callbacks {
@@ -76,35 +79,64 @@ export default function authorize(
     // give code or token on success handler
     if (data.authorization_code.length > 16) {
       if (params.pkce) {
+        const body = params.useEd25519KeyStore
+          ? {
+              client_id: params.clientId,
+              code_verifier: verifier,
+              code: data.authorization_code,
+              ed25519: params.publicKey,
+            }
+          : {
+              client_id: params.clientId,
+              code_verifier: verifier,
+              code: data.authorization_code,
+            };
+
         fetch(http + "/oauth/token", {
           method: "post",
           mode: "cors",
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({
-            client_id: params.clientId,
-            code_verifier: verifier,
-            code: data.authorization_code,
-          }),
+          body: JSON.stringify(body),
         })
           .then((response) => response.json())
           .then((data) => {
-            const token = data?.data?.access_token;
+            if (params.useEd25519KeyStore) {
+              const scope = data?.data?.scope;
+              const authorizationId = data?.data?.authorization_id;
 
-            if (token) {
-              callbacks.onSuccess?.(token);
+              if (!scope || !authorizationId) {
+                callbacks.onError?.({
+                  description: "Access Denied",
+                });
+              } else {
+                callbacks.onSuccess?.({
+                  keystore: {
+                    user_id: params.clientId,
+                    scope,
+                    authorization_id: authorizationId,
+                    private_key: params.privateKey,
+                  },
+                });
+              }
             } else {
-              callbacks.onError?.({
-                description: "Get PKCE access token error",
-              });
+              const token = data?.data?.access_token;
+
+              if (token) {
+                callbacks.onSuccess?.({ token });
+              } else {
+                callbacks.onError?.({
+                  description: "Get PKCE access token error",
+                });
+              }
             }
           })
           .catch(() => {
             callbacks.onError?.({ description: "Get PKCE access token error" });
           });
       } else {
-        callbacks.onSuccess?.(data.authorization_code);
+        callbacks.onSuccess?.({ code: data.authorization_code });
       }
 
       return true;

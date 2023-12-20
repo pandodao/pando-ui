@@ -31,6 +31,7 @@ function install(app: App, passportOptions: PassportOptions = {}) {
   const state: State = {
     token: "",
     mixin_token: "",
+    keystore: null,
     channel: "" as AuthMethod,
     fennec: new Fennec(),
     mixin: new MixinAPI(),
@@ -45,9 +46,15 @@ function install(app: App, passportOptions: PassportOptions = {}) {
   }
 
   state.mixin.authIntercept = (configs) => {
-    configs.headers.Authorization = `Bearer ${
-      passportOptions.customizeToken ? state.mixin_token : state.token
-    }`;
+    const token = passportOptions.customizeToken
+      ? state.mixin_token
+      : state.token;
+
+    if (!token) {
+      throw new Error("Token not found");
+    }
+
+    configs.headers.Authorization = `Bearer ${token}`;
 
     return configs;
   };

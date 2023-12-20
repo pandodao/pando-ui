@@ -92,7 +92,7 @@ export default function (
       } else {
         state.token = mixinToken;
       }
-    } else {
+    } else if (data.code) {
       if (options.hooks?.onDistributeToken) {
         const resp = await options.hooks.onDistributeToken({
           code: data.code,
@@ -104,6 +104,8 @@ export default function (
       } else {
         reject("Need onDistributeToken hook to process code to tokens");
       }
+    } else if (data.keystore) {
+      state.keystore = data.keystore;
     }
   };
 
@@ -119,6 +121,7 @@ export default function (
     resolve({
       channel: state.channel,
       token: state.token,
+      keystore: state.keystore,
       mixin_token: state.mixin_token,
     });
   };

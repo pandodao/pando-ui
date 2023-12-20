@@ -49,7 +49,7 @@
   "dependencies": {
     "@changesets/cli": "^2.25.0",
     "@foxone/dev": "^0.2.22",
-    "@foxone/utils": "^0.2.29"
+    "@foxone/utils": "^0.2.30"
   },
   "resolutions": {
     "@foxone/utils": "^0.2.29"
