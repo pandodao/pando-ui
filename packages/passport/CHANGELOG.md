@@ -1,5 +1,11 @@
 # @foxone/mixin-passport
 
+## 1.3.2
+
+### Patch Changes
+
+- 7998363: add ed25519 auth
+
 ## 1.3.1
 
 ### Patch Changes
