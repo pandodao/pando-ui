@@ -1,5 +1,11 @@
 # @foxone/uikit
 
+## 4.2.25
+
+### Patch Changes
+
+- 7998363: add ed25519 auth
+
 ## 4.2.24
 
 ### Patch Changes
