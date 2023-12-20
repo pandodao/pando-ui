@@ -7,6 +7,7 @@ export default async function (
 ) {
   state.channel = options.channel;
   state.token = options.token;
+  state.keystore = options.keystore;
   state.mixin_token = options.mixin_token ?? "";
 
   if (state.channel === "fennec") {
@@ -33,6 +34,7 @@ export default async function (
   return {
     channel: state.channel,
     token: state.token,
+    keystore: state.keystore,
     mixin_token: state.mixin_token,
   };
 }

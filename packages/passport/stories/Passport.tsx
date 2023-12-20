@@ -1,7 +1,7 @@
 /* eslint-disable vue/one-component-per-file */
 import "./Passport.scss";
 
-import { computed, defineComponent, onMounted, ref, watch } from "vue";
+import { computed, defineComponent, ref, watch } from "vue";
 import { VAvatar, VIcon, VImg, VSheet } from "vuetify/components";
 import { FButton, FFiatDivision, FListItem } from "@foxone/uikit/components";
 import { useToast } from "@foxone/uikit/plugins/toast";
@@ -31,11 +31,8 @@ export const Passport = defineComponent({
       try {
         const data = await passport.auth(props.authOptions as any);
 
-        token.value = data.token;
+        token.value = data.token || data.keystore;
         channel.value = data.channel;
-
-        localStorage.setItem("token", data.token);
-        localStorage.setItem("channel", data.channel);
       } catch (error) {
         console.log(error);
       }
@@ -82,35 +79,14 @@ export const Passport = defineComponent({
     watch(
       () => token.value,
       async () => {
-        profile.value = await passport.getProfile();
-        assets.value = await passport.getAssets();
+        try {
+          profile.value = await passport.getProfile();
+          assets.value = await passport.getAssets([]);
+        } catch (error) {
+          console.log(error);
+        }
       }
     );
-
-    onMounted(async () => {
-      try {
-        loading.value = true;
-
-        const localeToken = localStorage.getItem("token") || "";
-        const localeChannel = localStorage.getItem("channel") || "";
-
-        const data = await passport.sync({
-          origin: "FoxONE UIKit",
-          token: localeToken,
-          channel: localeChannel as any,
-          customizeToken: true,
-        });
-
-        console.log("after sync");
-
-        token.value = data.token;
-        channel.value = data.channel;
-
-        loading.value = false;
-      } catch (error) {
-        console.log(error);
-      }
-    });
 
     return () => (
       <div class="passport-overvie-container">

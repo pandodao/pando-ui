@@ -54,3 +54,15 @@ PKCE.args = {
   ...Default.args,
   pkce: true,
 };
+
+export const Ed25519 = Template.bind({});
+Ed25519.args = {
+  authMethods: ["mixin"],
+  clientId: "fbd26bc6-3d04-4964-a7fe-a540432b16e2",
+  scope: "PROFILE:READ",
+  pkce: true,
+  useEd25519KeyStore: true,
+  privateKey:
+    "7nCu4fwxbTqYH5ymhEvincz8BbiMll8gnw6cSvfgp9OZo6pabLgeGhsTf3umWtj8jk-qSupIUsO4hulL6pVRTA",
+  publicKey: "maOqWmy4HhobE397plrY_I5PqkrqSFLDuIbpS-qVUUw",
+};

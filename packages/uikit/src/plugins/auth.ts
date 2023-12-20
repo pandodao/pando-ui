@@ -14,6 +14,9 @@ export interface AuthMethodGlobalOptions {
   pkce?: boolean;
   hosts?: string[];
   container?: string;
+  useEd25519KeyStore?: boolean;
+  publicKey?: string;
+  privateKey?: string;
 }
 
 export interface AuthMethodOptions {
