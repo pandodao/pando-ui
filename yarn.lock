@@ -1618,21 +1618,12 @@
   dependencies:
     "@foxone/fennec-base" "0.5.8"
 
-"@foxone/utils@^0.2.26", "@foxone/utils@^0.2.27", "@foxone/utils@^0.2.29":
+"@foxone/utils@^0.2.26", "@foxone/utils@^0.2.27", "@foxone/utils@^0.2.29", "@foxone/utils@^0.2.30":
   version "0.2.29"
   resolved "https://registry.npmjs.org/@foxone/utils/-/utils-0.2.29.tgz#f42f32e1ae12c8dc4ba5f91b0f6b855adaa8f25e"
   integrity sha512-wlwWfD2E3A//S+MfJUhpKi7NPnwsqXpzPh3kWLzclsANrqqu7uEgqu5jnsAa3764PxhNbgEU3ProfMU8rvW76Q==
   dependencies:
     axios "^0.21.1"
-    bignumber.js "^9.0.1"
-    dayjs "^1.10.4"
-
-"@foxone/utils@^0.2.30":
-  version "0.2.30"
-  resolved "https://registry.npmjs.org/@foxone/utils/-/utils-0.2.30.tgz#7fa174cb00c8624133a5e0a3ef593a7d1d82f379"
-  integrity sha512-6Bi3VWfA+vBt2WqmcE78Uf/QeWx9dF4+kxcsUlSHAHEUrLUhWLGTm9YAD1lNBuMcoq7QSEg5+c19v8ZIlkHbzQ==
-  dependencies:
-    axios "^1.6.0"
     bignumber.js "^9.0.1"
     dayjs "^1.10.4"
 
@@ -18424,10 +18415,10 @@ vue@^3.2.40:
     "@vue/server-renderer" "3.2.45"
     "@vue/shared" "3.2.45"
 
-vuetify@^3.1.6:
-  version "3.1.6"
-  resolved "https://registry.npmjs.org/vuetify/-/vuetify-3.1.6.tgz"
-  integrity sha512-4We27L5ksy8esNKfUPWPucEU+M7XJDO2o66zXL5qiBVbALwshcK2CAobLQMx+ALtkLENXAYNH3RzvfAYjTi3Aw==
+vuetify@^3.5.6:
+  version "3.5.8"
+  resolved "https://registry.npmjs.org/vuetify/-/vuetify-3.5.8.tgz#bc8f08dfd3314640e7b5d43b50138a26d650cbbf"
+  integrity sha512-8nGS+lKejZkev55HFwIfsRt+9fOqbeDQNmXxfmLKAlnUT8FtynVwbjAwHMtX/OQAQ3ZwRaR1ptqQQmx3OgxzbQ==
 
 w3c-hr-time@^1.0.2:
   version "1.0.2"

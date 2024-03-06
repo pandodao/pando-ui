@@ -142,4 +142,6 @@ const Template4: StoryFn<typeof FAssetAmountInput> = (args) => ({
 });
 
 export const NotSelectable = Template4.bind({});
-NotSelectable.args = {};
+NotSelectable.args = {
+  selectable: false,
+};

@@ -44,7 +44,7 @@ const Template2: StoryFn<typeof FLoading> = (args) => ({
   },
   template: `
     <div>
-      <FFullscreenLoading v-model="loading" v-bind="args" />
+      <FFullScreenLoading v-model="loading" v-bind="args" />
 
       <FButton color="primary" @click="show">Show</FButton>
     </div>
