@@ -1,5 +1,11 @@
 # @foxone/uikit
 
+## 4.2.26
+
+### Patch Changes
+
+- 55d28c6: update vuetify version
+
 ## 4.2.25
 
 ### Patch Changes
