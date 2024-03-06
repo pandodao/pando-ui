@@ -1,2 +1,0 @@
-var i=Object.defineProperty;var o=(t,s)=>i(t,"name",{value:s,configurable:!0});import{b as n}from"./vue.esm-bundler.b09b7c5a.js";import{d as e,t as a}from"./color.7fbf1750.js";const r=["static","relative","fixed","absolute","sticky"],d=e({position:{type:String,validator:t=>r.includes(t)}},"position");function l(t){let s=arguments.length>1&&arguments[1]!==void 0?arguments[1]:a();return{positionClasses:n(()=>t.position?`${s}--${t.position}`:void 0)}}o(l,"usePosition");export{d as m,l as u};
-//# sourceMappingURL=position.faf59b49.js.map

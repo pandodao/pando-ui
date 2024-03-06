@@ -1,0 +1,2 @@
+var e=Object.defineProperty;var t=(o,s)=>e(o,"name",{value:s,configurable:!0});import{s as n,o as a,b as r,H as i}from"./vue.esm-bundler.80cafc0b.js";function l(){const o=n(!1);return a(()=>{window.requestAnimationFrame(()=>{o.value=!0})}),{ssrBootStyles:r(()=>o.value?void 0:{transition:"none !important"}),isBooted:i(o)}}t(l,"useSsrBoot");export{l as u};
+//# sourceMappingURL=ssrBoot.e8acd638.js.map

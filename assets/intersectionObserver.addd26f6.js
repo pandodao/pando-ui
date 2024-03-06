@@ -1,0 +1,2 @@
+var u=Object.defineProperty;var f=(e,t)=>u(e,"name",{value:t,configurable:!0});import{r as v,s as I,z as m,d as c}from"./vue.esm-bundler.80cafc0b.js";import{Q as p}from"./helpers.32675158.js";function S(e,t){const i=v(),o=I(!1);if(p){const n=new IntersectionObserver(s=>{e==null||e(s,n),o.value=!!s.find(r=>r.isIntersecting)},t);m(()=>{n.disconnect()}),c(i,(s,r)=>{r&&(n.unobserve(r),o.value=!1),s&&n.observe(s)},{flush:"post"})}return{intersectionRef:i,isIntersecting:o}}f(S,"useIntersectionObserver");export{S as u};
+//# sourceMappingURL=intersectionObserver.addd26f6.js.map
