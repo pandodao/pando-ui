@@ -1,4 +1,4 @@
-import { defineComponent, onMounted, ref, PropType } from "vue";
+import { defineComponent, onMounted, ref, PropType, onUnmounted } from "vue";
 import { useDisplay, useLocale } from "vuetify";
 import authorize from "../../utils/authorize";
 
@@ -67,8 +67,14 @@ export const FAuthMixinMessenger = defineComponent({
     };
 
     const handleOpenInApp = () => {
-      window.location.href = qrUrl.value;
+      if (qrUrl.value) {
+        window.location.href = qrUrl.value;
+      }
     };
+
+    onUnmounted(() => {
+      client.value?.disconnect();
+    });
 
     onMounted(() => {
       client.value = authorize(
