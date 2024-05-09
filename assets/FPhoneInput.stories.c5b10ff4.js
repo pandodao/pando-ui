@@ -1,0 +1,24 @@
+var y=Object.defineProperty;var l=(e,o)=>y(e,"name",{value:o,configurable:!0});import{r as c,o as F,b as v,D as u,a as n,e as m,R as h,m as g}from"./vue.esm-bundler.80cafc0b.js";import{F as I}from"./FInput.ee50ce76.js";import{F as C}from"./FListItem.b2ca06e9.js";import{F as S}from"./FModal.ac7dde43.js";import{F as _}from"./FSearchInput.d7e59333.js";import{a as b}from"./index.85be89f5.js";import{a as P}from"./locale.68d0262d.js";import{V as d}from"./VIcon.ac9f05d6.js";import{V}from"./VList.c8ed43d6.js";import{V as x}from"./VLazy.d1caeda2.js";import"./bignumber.8dc24abd.js";import"./VTextField.be2090fb.js";import"./VField.59d98d58.js";import"./index.b676db0f.js";import"./color.7ba4ffe3.js";import"./helpers.32675158.js";import"./transition.b6a16e6c.js";import"./VInput.44c51e7f.js";import"./VMessages.8e887dfb.js";import"./density.e2c1329b.js";import"./proxiedModel.dbd4de1d.js";import"./loader.5e66d0fd.js";import"./VProgressLinear.23574e13.js";import"./intersectionObserver.addd26f6.js";import"./anchor.5ba72fdd.js";import"./rounded.b42653ce.js";import"./easing.da2e9236.js";import"./forwardRefs.34034356.js";import"./index.f2b6c1e4.js";import"./VListItem.da04c970.js";import"./createSimpleFunctional.19425ddc.js";import"./border.b14058ef.js";import"./router.9241c2dd.js";import"./elevation.8d0c61c6.js";import"./variant.1e842247.js";import"./index.d4fa9fd4.js";import"./VAvatar.7760fc0a.js";import"./VImg.78b97665.js";import"./VDefaultsProvider.522cf1e0.js";import"./FButton.5e8d1e13.js";import"./VBtn.ce544012.js";import"./position.19a0d7a5.js";import"./VProgressCircular.fec55325.js";import"./VCard.a6ed511f.js";import"./VOverlay.a7e28035.js";import"./display.1ed39e23.js";import"./iframe.e1ac4337.js";import"./ssrBoot.e8acd638.js";import"./VDivider.7c8b3fdb.js";function L(e){const o=c([]);F(async()=>{const a=(await b.get("https://static.fox.one/assets/country-code.json")).data;o.value=Object.keys(a).map(p=>({name:a[p].name,code:String(a[p].dialCode)+""}))});const s=v(()=>o.value.filter(r=>{const a=String(r.name).toLowerCase(),p=String(r.code).toLowerCase();return a.startsWith(e.value)||p.startsWith(e.value)}));return{countries:o,filtered:s}}l(L,"useCountries");function D(e){return typeof e=="function"||Object.prototype.toString.call(e)==="[object Object]"&&!h(e)}l(D,"_isSlot");const j=u({name:"FCountryCodeSelect",props:{dialog:{type:Boolean,default:!1},code:{type:String,default:""}},emits:{"update:code":e=>!0,"update:dialog":e=>!0},setup(e,{emit:o}){const{t:s}=P(),r=c(""),{filtered:a}=L(r),p=l(t=>{o("update:code",t),o("update:dialog",!1)},"handleSelect");return()=>n(S,{title:s("$vuetify.uikit.select_phone_code"),modelValue:e.dialog,"onUpdate:modelValue":t=>o("update:dialog",t)},{activator:({props:{onClick:t}})=>n("div",{class:"f-country-code-select__field",onClick:t},[e.code?n("span",{class:"f-country-code-select__code"},[e.code||"code"]):n(d,null,{default:()=>[m("$help")]}),n(d,{size:"16"},{default:()=>[m("$expand")]})]),default:()=>{let t;return n("div",{class:"f-country-code-select"},[n("div",{class:"f-country-code-select__search"},[n(_,{modelValue:r.value,"onUpdate:modelValue":i=>r.value=i},null)]),n(V,{class:"f-country-code-select__list"},D(t=a.value.map(i=>n(x,{minHeight:48},{default:()=>[n(C,{title:i.code+" "+i.name,value:i.code,onClick:()=>p(i.code)},null)]})))?t:{default:()=>[t]})])}})}}),f=u({name:"FPhoneInput",props:{code:{type:String,default:""}},emits:{"update:code":e=>!0},setup(e,{slots:o,emit:s}){const r=c(!1),a={type:"number"},p=l(t=>{["e","+","-","."].includes(t.key)&&t.preventDefault()},"handleKeydown");return()=>n(I,g(a,{onKeydown:p}),{...o,"prepend-inner":()=>n(j,{dialog:r.value,"onUpdate:dialog":t=>r.value=t,code:e.code,"onUpdate:code":t=>s("update:code",t)},null)})}}),De={parameters:{storySource:{source:`import { FPhoneInput } from "./FPhoneInput";
+import { Meta, StoryFn } from "@storybook/vue3";
+import { ref } from "vue";
+
+export default {
+  title: "Components/FPhoneInput",
+  component: FPhoneInput,
+} as Meta<typeof FPhoneInput>;
+
+const Template: StoryFn<typeof FPhoneInput> = (args) => ({
+  components: { FPhoneInput },
+  setup() {
+    const code = ref("86");
+    const number = ref("");
+
+    return { args, code, number };
+  },
+  template: \`<FPhoneInput v-model:code="code" v-model="number" />\`,
+});
+
+export const Default = Template.bind({});
+Default.args = {};
+`,locationsMap:{default:{startLoc:{col:46,line:10},endLoc:{col:2,line:19},startBody:{col:46,line:10},endBody:{col:2,line:19}}}}},title:"Components/FPhoneInput",component:f},k=l(e=>({components:{FPhoneInput:f},setup(){const o=c("86"),s=c("");return{args:e,code:o,number:s}},template:'<FPhoneInput v-model:code="code" v-model="number" />'}),"Template"),w=k.bind({});w.args={};const je=["Default"];export{w as Default,je as __namedExportsOrder,De as default};
+//# sourceMappingURL=FPhoneInput.stories.c5b10ff4.js.map
