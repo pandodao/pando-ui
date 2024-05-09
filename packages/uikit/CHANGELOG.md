@@ -1,5 +1,11 @@
 # @foxone/uikit
 
+## 4.2.27
+
+### Patch Changes
+
+- 62f0f9b: issue fix
+
 ## 4.2.26
 
 ### Patch Changes
